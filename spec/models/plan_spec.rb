@@ -5,6 +5,11 @@ RSpec.describe Plan, type: :model do
     expect(build(:plan)).to be_valid
   end
 
+  describe "association" do
+    it { is_expected.to have_many(:spots).inverse_of(:plan) }
+    it { is_expected.to accept_nested_attributes_for(:spots).allow_destroy(true) }
+  end
+
   describe "validation" do
     it { is_expected.to validate_presence_of(:name) }
     it { is_expected.to validate_length_of(:name).is_at_most(50) }
