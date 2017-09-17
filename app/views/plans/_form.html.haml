@@ -7,9 +7,9 @@
   %p= f.text_field :name
   %p= f.label :description
   %p= f.text_area :description
-  %h2 スポット登録
+  %h2= t("title.register_spot")
   = f.fields_for :spots do |spot|
     = render "spot_fields", f: spot
   .links
-    = link_to_add_association "スポットを追加", f, :spots
+    = link_to_add_association f, :spots
   = f.submit

@@ -1,5 +1,7 @@
 ja:
   activerecord:
+    models:
+      spot: スポット
     attributes:
       plan:
         name: プラン名

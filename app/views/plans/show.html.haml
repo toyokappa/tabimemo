@@ -1,9 +1,9 @@
-%h1 プラン詳細
+%h1= t("title.detail_plan")
 %h2= @plan.name
 %p= @plan.description
-%p= link_to "編集", edit_plan_path(@plan)
-%p= link_to "削除", @plan, method: :delete, data: { confirm: "削除しますか？" }
-%h3 スポット
+%p= link_to t("link.edit"), edit_plan_path(@plan)
+%p= link_to t("link.delete"), @plan, method: :delete, data: { confirm: t("view.delete_confirm") }
+%h3= Spot.model_name.human
 - @plan.spots.each do |spot|
   %h4= spot.name
   %p= spot.description
