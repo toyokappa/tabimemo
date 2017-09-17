@@ -18,6 +18,7 @@ class PlansController < ApplicationController
     if @plan.save
       redirect_to plan_path(@plan), notice: t(:register_success, scope: :flash)
     else
+      @plan.spots.build
       render "new"
     end
   end
@@ -30,6 +31,7 @@ class PlansController < ApplicationController
     if @plan.update
       redirect_to plan_path(@plan), notice: t(:update_success, scope: :flash)
     else
+      @plan.spots.build
       render "edit"
     end
   end
@@ -42,7 +44,7 @@ class PlansController < ApplicationController
   private
 
     def plan_params
-      params.require(:plan).permit(:name, :description, spots_attributes[:id, :name, :description, :_destroy])
+      params.require(:plan).permit(:name, :description, spots_attributes: [:id, :name, :description, :_destroy])
     end
 
     def set_plan
