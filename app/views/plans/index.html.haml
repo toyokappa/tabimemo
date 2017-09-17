@@ -1,0 +1,6 @@
+%h1 プラン一覧
+%ul
+  - @plans.each do |plan|
+    %li
+      %h2= link_to plan.name, plan_path(plan)
+      %p= plan.description
