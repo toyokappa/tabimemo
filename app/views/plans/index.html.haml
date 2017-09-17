@@ -4,3 +4,4 @@
     %li
       %h2= link_to plan.name, plan_path(plan)
       %p= plan.description
+= paginate @plans
