@@ -2,7 +2,7 @@ class PlansController < ApplicationController
   before_action :set_plan, only: [:show, :edit, :update, :destroy]
 
   def index
-    @plans = Plan.all
+    @plans = Plan.page(params[:page])
   end
 
   def show
