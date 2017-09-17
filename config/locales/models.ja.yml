@@ -1,0 +1,11 @@
+ja:
+  activerecord:
+    models:
+      spot: スポット
+    attributes:
+      plan:
+        name: プラン名
+        description: プラン説明
+      spot:
+        name: スポット名
+        description: スポット説明

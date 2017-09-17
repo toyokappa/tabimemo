@@ -5,3 +5,18 @@ ja:
     register_success: 登録しました！
     update_success: 更新しました！
     delete_success: 削除しました！
+  title:
+    register_plan: プラン登録
+    register_spot: スポット登録
+    index_plan: プラン一覧
+    detail_plan: プラン詳細
+    edit_plan: プラン編集
+  link:
+    edit: 編集
+    delete: 削除
+  view:
+    delete_confirm: 削除しますか？
+  cocoon:
+    spots:
+      add: スポットを追加
+      remove: スポットを削除
