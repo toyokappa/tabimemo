@@ -28,7 +28,7 @@ class PlansController < ApplicationController
   end
 
   def update
-    if @plan.update
+    if @plan.update(plan_params)
       redirect_to plan_path(@plan), notice: t(:update_success, scope: :flash)
     else
       @plan.spots.build
