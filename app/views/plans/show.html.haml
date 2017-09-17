@@ -1,0 +1,9 @@
+%h1 プラン詳細
+%h2= @plan.name
+%p= @plan.description
+%p= link_to "編集", edit_plan_path(@plan)
+%p= link_to "削除", @plan, method: :delete, data: { confirm: "削除しますか？" }
+%h3 スポット
+- @plan.spots.each do |spot|
+  %h4= spot.name
+  %p= spot.description
