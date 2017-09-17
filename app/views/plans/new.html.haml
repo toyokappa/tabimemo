@@ -1,17 +1,2 @@
 %h1 プラン登録
-= form_with model: @plan, local: true do |f|
-  - if @plan.errors.any?
-    %ul
-      - @plan.errors.full_messages.each do |message|
-        %li= message
-  %p= f.label :name
-  %p= f.text_field :name
-  %p= f.label :description
-  %p= f.text_area :description
-  %h2 スポット登録
-  = f.fields_for :spots do |spot_f|
-    %p= spot_f.label :name
-    %p= spot_f.text_field :name
-    %p= spot_f.label :description
-    %p= spot_f.text_area :description
-  = f.submit
+= render "form"
