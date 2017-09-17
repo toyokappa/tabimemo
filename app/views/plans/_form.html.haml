@@ -1,0 +1,15 @@
+= form_with model: @plan, local: true do |f|
+  - if @plan.errors.any?
+    %ul
+      - @plan.errors.full_messages.each do |message|
+        %li= message
+  %p= f.label :name
+  %p= f.text_field :name
+  %p= f.label :description
+  %p= f.text_area :description
+  %h2 スポット登録
+  = f.fields_for :spots do |spot|
+    = render "spot_fields", f: spot
+  .links
+    = link_to_add_association "スポットを追加", f, :spots
+  = f.submit
