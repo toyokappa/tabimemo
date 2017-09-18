@@ -10,4 +10,6 @@
       %ul
         %li= link_to t("app.title"), root_path
         %li= link_to t("title.register_plan"), new_plan_path
+    - flash.each do |message_type, message|
+      = content_tag :div, message, class: "alert alert-#{message_type}"
     = yield
