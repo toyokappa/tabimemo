@@ -6,6 +6,7 @@ git_source(:github) do |repo_name|
 end
 
 gem "bootstrap-sass"
+gem "carrierwave"
 gem "cocoon"
 gem "coffee-rails", "~> 4.2"
 gem "hamlit-rails"
@@ -13,6 +14,7 @@ gem "jbuilder", "~> 2.5"
 gem "jquery-rails"
 gem "kaminari"
 gem "kaminari-i18n"
+gem "mini_magick"
 gem "pg", "~> 0.18"
 gem "puma", "~> 3.7"
 gem "rails", "~> 5.1.2"
