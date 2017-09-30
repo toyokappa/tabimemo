@@ -6,4 +6,6 @@
 %h3= Spot.model_name.human
 - @plan.spots.each do |spot|
   %h4= spot.name
+  - spot.photos.each do |photo|
+    %p= image_tag photo.thumb.url
   %p= spot.description
