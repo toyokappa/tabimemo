@@ -7,6 +7,7 @@ end
 
 gem "bootstrap-sass"
 gem "carrierwave"
+gem "carrierwave-i18n"
 gem "cocoon"
 gem "coffee-rails", "~> 4.2"
 gem "hamlit-rails"
