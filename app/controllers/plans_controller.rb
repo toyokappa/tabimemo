@@ -44,7 +44,7 @@ class PlansController < ApplicationController
   private
 
     def plan_params
-      params.require(:plan).permit(:name, :description, spots_attributes: [:id, :name, :description, :_destroy, {photos: []}])
+      params.require(:plan).permit(:name, :description, spots_attributes: [:id, :name, :description, :_destroy, { photos: [] }])
     end
 
     def set_plan
