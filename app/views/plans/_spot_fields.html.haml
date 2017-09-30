@@ -3,4 +3,6 @@
   %p= f.text_field :name
   %p= f.label :description
   %p= f.text_area :description
+  %p= f.label :photos
+  %p= f.file_field :photos, multiple: true
   = link_to_remove_association f
