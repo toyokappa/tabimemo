@@ -6,10 +6,13 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
-    %header
-      %ul
-        %li= link_to t("app.title"), root_path
-        %li= link_to t("title.register_plan"), new_plan_path
-    - flash.each do |message_type, message|
-      = content_tag :div, message, class: "alert alert-#{message_type}"
-    = yield
+    %header.navbar.navbar-static-top.navbar-inverse
+      %nav.container
+        .navbar-header
+          = link_to t("app.title"), root_path, class: "navbar-brand"
+        %ul.nav.navbar-nav.navbar-right
+          %li= link_to t("title.register_plan"), new_plan_path
+    .container
+      - flash.each do |message_type, message|
+        = content_tag :div, message, class: "alert alert-#{message_type}"
+      = yield
