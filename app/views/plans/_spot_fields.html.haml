@@ -1,10 +1,15 @@
-.nested-fields
-  %p= f.label :name
-  %p= f.text_field :name
-  %p= f.label :description
-  %p= f.text_area :description
-  %p= f.label :photos
-  - f.object.photos.each do |photo|
-    %p= image_tag photo.thumb.url
-  %p= f.file_field :photos, multiple: true
-  = link_to_remove_association f
+.nested-fields.jumbotron
+  .form-group
+    = f.label :name
+    = f.text_field :name, class: "form-control"
+  .form-group
+    = f.label :description
+    = f.text_area :description, rows: 5, class: "form-control"
+  .form-group
+    = f.label :photos
+    - if f.object.photos.any?
+      %ul.image-area
+        - f.object.photos.each do |photo|
+          %li= image_tag photo.thumb.url
+    = f.file_field :photos, multiple: true
+  = link_to_remove_association f, class: "btn btn-danger"

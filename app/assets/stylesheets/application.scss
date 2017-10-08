@@ -13,5 +13,41 @@
  *= require_tree .
  *= require_self
  */
- @import "bootstrap-sprockets";
- @import "bootstrap";
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+/*    alert   */
+
+.alert-notice {
+  @extend .alert-success;
+}
+
+.alert-error {
+  @extend .alert-danger;
+}
+
+/*    default   */
+
+body {
+  margin-bottom: 50px;
+}
+
+ul {
+  list-style: none;
+}
+
+/*    form    */
+
+form {
+  .image-area {
+    padding-left: 0;
+    li {
+      display: inline;
+      margin-right: 10px;
+    }
+  }
+  .btn-success {
+   margin-bottom: 20px;
+ }
+}
