@@ -10,3 +10,5 @@ ja:
         name: スポット名
         description: スポット説明
         photos: 写真
+      spots:
+        photos: 写真

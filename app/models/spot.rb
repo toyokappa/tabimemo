@@ -11,7 +11,7 @@ class Spot < ApplicationRecord
     def photos_file_size
       photos.each do |photo|
         if photo.size > 5.megabytes
-          errors.add(:photos, "のファイルサイズは5MBまでです。")
+          errors.add(:photos, I18n.t("errors.messages.min_size_error"))
         end
       end
     end
