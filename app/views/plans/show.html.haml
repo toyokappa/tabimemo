@@ -1,11 +1,12 @@
-%h1= t("title.detail_plan")
-%h2= @plan.name
+%h1= @plan.name
 %p= @plan.description
-%p= link_to t("link.edit"), edit_plan_path(@plan)
-%p= link_to t("link.delete"), @plan, method: :delete, data: { confirm: t("view.delete_confirm") }
-%h3= Spot.model_name.human
+= link_to t("link.edit"), edit_plan_path(@plan), class: "btn btn-success"
+= link_to t("link.delete"), @plan, method: :delete, data: { confirm: t("view.delete_confirm") }, class: "btn btn-danger"
 - @plan.spots.each do |spot|
-  %h4= spot.name
-  - spot.photos.each do |photo|
-    %p= image_tag photo.thumb.url
-  %p= spot.description
+  .jumbotron
+    %h2= spot.name
+    - if spot.photos.any?
+      %ul.image-area
+        - spot.photos.each do |photo|
+          %li= image_tag photo.thumb.url
+    = spot.description

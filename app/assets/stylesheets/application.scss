@@ -40,14 +40,17 @@ ul {
 /*    form    */
 
 form {
-  .image-area {
-    padding-left: 0;
-    li {
-      display: inline;
-      margin-right: 10px;
-    }
-  }
   .btn-success {
    margin-bottom: 20px;
  }
+}
+
+/*    image   */
+
+.image-area {
+  padding-left: 0;
+  li {
+    display: inline;
+    margin-right: 10px;
+  }
 }
