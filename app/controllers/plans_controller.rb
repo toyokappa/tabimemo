@@ -3,6 +3,13 @@ class PlansController < ApplicationController
 
   def index
     @plans = Plan.page(params[:page])
+    @search = Plan.ransack(params[:q])
+    @result = @search.result.includes(:plan, :spots)
+  end
+
+  def search
+    index
+    render :index
   end
 
   def show
