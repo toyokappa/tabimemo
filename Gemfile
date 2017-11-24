@@ -15,7 +15,7 @@ gem "jquery-rails"
 gem "kaminari"
 gem "kaminari-i18n"
 gem "mini_magick"
-gem "pg", "~> 0.18"
+gem "mysql2"
 gem "puma", "~> 3.7"
 gem "rails", "~> 5.1.2"
 gem "rails-i18n"
@@ -45,7 +45,7 @@ end
 group :test do
   gem "capybara"
   gem "selenium-webdriver"
-  gem "shoulda-matchers", git: "https://github.com/thoughtbot/shoulda-matchers.git", branch: "rails-5"
+  gem "shoulda-matchers"
 end
 
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]

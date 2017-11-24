@@ -1,11 +1,3 @@
-GIT
-  remote: https://github.com/thoughtbot/shoulda-matchers.git
-  revision: edaf9cb926ee9c59c59729e7a4f8c206b44da8a1
-  branch: rails-5
-  specs:
-    shoulda-matchers (3.1.2)
-      activesupport (>= 4.2.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -149,6 +141,7 @@ GEM
     mini_portile2 (2.2.0)
     minitest (5.10.3)
     multi_json (1.12.2)
+    mysql2 (0.4.10)
     nio4r (2.1.0)
     nokogiri (1.8.0)
       mini_portile2 (~> 2.2.0)
@@ -158,7 +151,6 @@ GEM
     parallel (1.12.0)
     parser (2.4.0.0)
       ast (~> 2.2)
-    pg (0.21.0)
     powerpack (0.1.1)
     pry (0.10.4)
       coderay (~> 1.1.0)
@@ -255,6 +247,8 @@ GEM
     selenium-webdriver (3.5.2)
       childprocess (~> 0.5)
       rubyzip (~> 1.0)
+    shoulda-matchers (3.1.2)
+      activesupport (>= 4.0.0)
     slop (3.6.0)
     spring (2.0.2)
       activesupport (>= 4.2)
@@ -308,8 +302,8 @@ DEPENDENCIES
   kaminari-i18n
   listen (>= 3.0.5, < 3.2)
   mini_magick
+  mysql2
   onkcop
-  pg (~> 0.18)
   pry-byebug
   pry-doc
   pry-rails
@@ -321,7 +315,7 @@ DEPENDENCIES
   rubocop
   sass-rails (~> 5.0)
   selenium-webdriver
-  shoulda-matchers!
+  shoulda-matchers
   spring
   turbolinks (~> 5)
   tzinfo-data
