@@ -19,3 +19,5 @@
 .byebug_history
 
 public/uploads
+vendor/bundle
+.DS_Store
