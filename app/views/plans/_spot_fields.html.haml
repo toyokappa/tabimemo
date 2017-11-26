@@ -7,9 +7,9 @@
     = f.text_area :description, rows: 5, class: "form-control"
   .form-group
     = f.label :photos
-    - if f.object.photos.any?
-      %ul.image-area
+    %ul.photo_area
+      - if f.object.photos.any?
         - f.object.photos.each do |photo|
           %li= image_tag photo.thumb.url
-    = f.file_field :photos, multiple: true
+    = f.file_field :photos, multiple: true, class: "photos"
   = link_to_remove_association f, class: "btn btn-danger"

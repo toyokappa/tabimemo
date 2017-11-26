@@ -10,8 +10,9 @@
     = f.label :description
     = f.text_area :description, rows:5, class: "form-control"
   %h2= t("title.register_spot")
-  = f.fields_for :spots do |spot|
-    = render "spot_fields", f: spot
-  .links
-    = link_to_add_association f, :spots, class: "btn btn-success"
+  .spot_container
+    = f.fields_for :spots do |spot|
+      = render "spot_fields", f: spot
+    .links
+      = link_to_add_association f, :spots, class: "btn btn-success"
   = f.submit class: "btn btn-primary"
