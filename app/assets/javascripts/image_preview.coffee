@@ -9,17 +9,17 @@ class previewImages
   createPreview: (e) =>
     files = e.target.files
     parent = e.target.parentNode
-    @resetPreview(parent)
+    @resetPreview parent
     for file in files
-      reader = new FileReader()
+      reader = new FileReader
       reader.readAsDataURL file
       reader.addEventListener "load", (re) ->
-        li = document.createElement "li"
-        li.className = "preview"
+        div = document.createElement "div"
+        div.className = "preview"
         img = document.createElement "img"
         img.src = re.target.result
-        li.appendChild img
-        parent.querySelector(".photo_area").appendChild(li)
+        div.appendChild img
+        parent.insertBefore div, e.target
     return
 
   resetPreview: (parent) =>
@@ -29,4 +29,4 @@ class previewImages
     return
 
 $(document).on "turbolinks:load", ->
-  new previewImages($(".spot_container"))
+  new previewImages $(".spot_container")

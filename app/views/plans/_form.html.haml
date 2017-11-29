@@ -1,18 +1,10 @@
-= form_with model: @plan, local: true do |f|
-  - if @plan.errors.any?
-    %ul.alert.alert-error
-      - @plan.errors.full_messages.each do |message|
-        %li= message
-  .form-group
-    = f.label :name
-    = f.text_field :name, class: "form-control"
-  .form-group
-    = f.label :description
-    = f.text_area :description, rows:5, class: "form-control"
+= simple_form_for @plan do |f|
+  = f.input :name
+  = f.input :description, input_html: { rows:5 }
   %h2= t("title.register_spot")
   .spot_container
-    = f.fields_for :spots do |spot|
+    = f.simple_fields_for :spots do |spot|
       = render "spot_fields", f: spot
     .links
       = link_to_add_association f, :spots, class: "btn btn-success"
-  = f.submit class: "btn btn-primary"
+  = f.button :submit, class: "btn-primary"
