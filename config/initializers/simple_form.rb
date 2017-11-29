@@ -1,6 +1,6 @@
 SimpleForm.setup do |config|
   config.wrappers :default, tag: "div", class: "form-group",
-    hint_class: :field_with_hint, error_class: :field_with_errors do |b|
+    error_class: "has-error" do |b|
     b.use :html5
     b.use :placeholder
     b.optional :maxlength
@@ -9,20 +9,20 @@ SimpleForm.setup do |config|
     b.optional :readonly
     b.use :label, class: "control-label"
     b.use :input, class: "form-control"
-    b.use :hint,  wrap_with: { tag: :span, class: :hint }
-    b.use :error, wrap_with: { tag: :span, class: :error }
+    b.use :hint, wrap_with: { tag: :span, class: "help-block" }
+    b.use :full_error, wrap_with: { tag: :span, class: "help-block" }
   end
 
   config.wrappers :file_input, tag: "div", class: "form-group",
-    hint_class: :field_with_hint, error_class: :field_with_errors do |b|
+    error_class: "has-error" do |b|
     b.use :html5
     b.use :placeholder
     b.optional :maxlength
     b.optional :readonly
     b.use :label, class: "control-label"
     b.use :input
-    b.use :hint,  wrap_with: { tag: :span, class: :hint }
-    b.use :error, wrap_with: { tag: :span, class: :error }
+    b.use :hint, wrap_with: { tag: :span, class: "help-block" }
+    b.use :full_error, wrap_with: { tag: :span, class: "help-block" }
   end
 
   # The default wrapper to be used by the FormBuilder.
