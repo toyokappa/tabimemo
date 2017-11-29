@@ -1,9 +1,5 @@
 .nested-fields.jumbotron
   = f.input :name
   = f.input :description, input_html: { rows: 5 }
-  %ul.photo_area
-    - if f.object.photos.any?
-      - f.object.photos.each do |photo|
-        %li= image_tag photo.thumb.url
-  = f.input :photos, as: :file, input_html: { class: "photos", multiple: true }
+  = f.input :photos, as: :image_preview, input_html: { class: "photos", multiple: true, preview_version: :thumb }
   = link_to_remove_association f, class: "btn btn-danger"
