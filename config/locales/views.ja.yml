@@ -11,11 +11,15 @@ ja:
     index_plan: プラン一覧
     detail_plan: プラン詳細
     edit_plan: プラン編集
+    sign_up: ユーザー登録
+    sign_in: ログイン
+    sign_out: ログアウト
   link:
     edit: 編集
     delete: 削除
   view:
     delete_confirm: 削除しますか？
+    minimum_length: "%{minimum_length}文字以上で入力してください"
   cocoon:
     spots:
       add: スポットを追加
