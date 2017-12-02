@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171130001716) do
+ActiveRecord::Schema.define(version: 20171202022829) do
 
   create_table "plans", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name", null: false
@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(version: 20171130001716) do
     t.integer "view_count", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_plans_on_user_id"
   end
 
   create_table "spots", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -52,5 +54,6 @@ ActiveRecord::Schema.define(version: 20171130001716) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "plans", "users"
   add_foreign_key "spots", "plans"
 end
