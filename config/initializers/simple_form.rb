@@ -1,6 +1,5 @@
 SimpleForm.setup do |config|
-  config.wrappers :default, tag: "div", class: "form-group",
-    error_class: "has-error" do |b|
+  config.wrappers :default, tag: "div", class: "form-group", error_class: "has-error" do |b|
     b.use :html5
     b.use :placeholder
     b.optional :maxlength
@@ -13,8 +12,7 @@ SimpleForm.setup do |config|
     b.use :full_error, wrap_with: { tag: :span, class: "help-block" }
   end
 
-  config.wrappers :file_input, tag: "div", class: "form-group",
-    error_class: "has-error" do |b|
+  config.wrappers :file_input, tag: "div", class: "form-group", error_class: "has-error" do |b|
     b.use :html5
     b.use :placeholder
     b.optional :maxlength
@@ -23,6 +21,18 @@ SimpleForm.setup do |config|
     b.use :input
     b.use :hint, wrap_with: { tag: :span, class: "help-block" }
     b.use :full_error, wrap_with: { tag: :span, class: "help-block" }
+  end
+
+  config.wrappers :boolean_input, tag: "div", class: "form-group", error_class: "has-error" do |b|
+    b.use :html5
+    b.optional :readonly
+
+    b.wrapper tag: "div", class: "checkbox" do |ba|
+      ba.use :label_input
+    end
+
+    b.use :hint, wrap_with: { tag: :span, class: "help-block" }
+    b.use :error, wrap_with: { tag: :span, class: "help-block" }
   end
 
   # The default wrapper to be used by the FormBuilder.
@@ -105,7 +115,8 @@ SimpleForm.setup do |config|
   # type as key and the wrapper that will be used for all inputs with specified type.
   config.wrapper_mappings = {
     file: :file_input,
-    image_preview: :file_input
+    image_preview: :file_input,
+    boolean: :boolean_input
   }
 
   # Namespaces where SimpleForm should look for custom input classes that

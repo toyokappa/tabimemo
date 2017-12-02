@@ -1,4 +1,5 @@
 class PlansController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:index, :show]
   before_action :set_plan, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -9,12 +10,12 @@ class PlansController < ApplicationController
   end
 
   def new
-    @plan = Plan.new
+    @plan = current_user.plans.build
     @plan.spots.build
   end
 
   def create
-    @plan = Plan.new(plan_params)
+    @plan = current_user.plans.build(plan_params)
     if @plan.save
       redirect_to plan_path(@plan), notice: t(:register_success, scope: :flash)
     else
@@ -24,14 +25,12 @@ class PlansController < ApplicationController
   end
 
   def edit
-    @plan.spots.build
   end
 
   def update
     if @plan.update(plan_params)
       redirect_to plan_path(@plan), notice: t(:update_success, scope: :flash)
     else
-      @plan.spots.build
       render "edit"
     end
   end
@@ -44,7 +43,7 @@ class PlansController < ApplicationController
   private
 
     def plan_params
-      params.require(:plan).permit(:name, :description, spots_attributes: [:id, :name, :description, :_destroy, { photos: [] }])
+      params.require(:plan).permit(:name, :description, spots_attributes: [:id, :name, :description, :_destroy, :photos_cache, { photos: [] }])
     end
 
     def set_plan
