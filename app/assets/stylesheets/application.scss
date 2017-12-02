@@ -23,7 +23,7 @@
   @extend .alert-success;
 }
 
-.alert-error {
+.alert-error, .alert-alert {
   @extend .alert-danger;
 }
 
