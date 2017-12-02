@@ -1,4 +1,5 @@
 class PlansController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:index]
   before_action :set_plan, only: [:show, :edit, :update, :destroy]
 
   def index
