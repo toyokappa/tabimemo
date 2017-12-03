@@ -1,7 +1,8 @@
 %h1= @plan.name
 %p= @plan.description
-= link_to t("link.edit"), edit_plan_path(@plan), class: "btn btn-success"
-= link_to t("link.delete"), @plan, method: :delete, data: { confirm: t("view.delete_confirm") }, class: "btn btn-danger"
+- if @plan.user == current_user
+  = link_to t("link.edit"), edit_plan_path(@plan), class: "btn btn-success"
+  = link_to t("link.delete"), @plan, method: :delete, data: { confirm: t("view.delete_confirm") }, class: "btn btn-danger"
 - @plan.spots.each do |spot|
   .jumbotron
     %h2= spot.name

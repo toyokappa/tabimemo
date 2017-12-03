@@ -1,6 +1,7 @@
 class PlansController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
   before_action :set_plan, only: [:show, :edit, :update, :destroy]
+  before_action :is_current_user?, only: [:edit, :update, :destroy]
 
   def index
     @plans = Plan.page(params[:page])
@@ -48,5 +49,11 @@ class PlansController < ApplicationController
 
     def set_plan
       @plan = Plan.find(params[:id])
+    end
+
+    def is_current_user?
+      unless @plan.user == current_user
+        redirect_to root_path
+      end
     end
 end
