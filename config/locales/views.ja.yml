@@ -17,6 +17,8 @@ ja:
   link:
     edit: 編集
     delete: 削除
+    published: 公開する
+    draft: 下書きとして保存
   view:
     delete_confirm: 削除しますか？
     minimum_length: "%{minimum_length}文字以上で入力してください"
