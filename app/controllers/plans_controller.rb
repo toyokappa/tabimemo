@@ -18,6 +18,7 @@ class PlansController < ApplicationController
 
   def create
     @plan = current_user.plans.build(plan_params)
+    @plan.published = params[:draft] ? false : true
     if @plan.save
       redirect_to plan_path(@plan), notice: t(:register_success, scope: :flash)
     else
@@ -30,6 +31,7 @@ class PlansController < ApplicationController
   end
 
   def update
+    @plan.published = params[:draft] ? false : true
     if @plan.update(plan_params)
       redirect_to plan_path(@plan), notice: t(:update_success, scope: :flash)
     else
