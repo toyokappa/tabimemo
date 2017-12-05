@@ -2,9 +2,10 @@ class PlansController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
   before_action :set_plan, only: [:show, :edit, :update, :destroy]
   before_action :is_current_user?, only: [:edit, :update, :destroy]
+  before_action :is_published?, only: [:show]
 
   def index
-    @plans = Plan.page(params[:page])
+    @plans = Plan.where(published: true).page(params[:page])
   end
 
   def show
@@ -55,5 +56,9 @@ class PlansController < ApplicationController
       unless @plan.user == current_user
         redirect_to root_path
       end
+    end
+
+    def is_published?
+      redirect_to root_path unless @plan.published?
     end
 end

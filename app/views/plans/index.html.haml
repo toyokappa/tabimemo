@@ -4,9 +4,12 @@
     %p あなたのオリジナルのプランをみんなに見てもらおう
     = link_to "プランを登録する", new_plan_path, class: "btn btn-info"
 %h2= t("title.index_plan")
-%ul
-  - @plans.each do |plan|
-    %li
-      %h2= link_to plan.name, plan_path(plan)
-      %p= plan.description
+- if @plan.present?
+  %ul
+    - @plans.each do |plan|
+      %li
+        %h2= link_to plan.name, plan_path(plan)
+        %p= plan.description
+- else
+  表示できるプランがありません。
 = paginate @plans
