@@ -52,8 +52,6 @@ class PlansController < ApplicationController
     end
 
     def is_current_user?
-      unless @plan.user == current_user
-        redirect_to root_path
-      end
+      redirect_to root_path unless @plan.user == current_user
     end
 end
