@@ -2,6 +2,7 @@ ja:
   activerecord:
     models:
       spot: スポット
+      profile: プロフィール
     attributes:
       plan:
         name: プラン名
@@ -17,3 +18,18 @@ ja:
         password: パスワード
         password_confirmation: パスワード(確認)
         remember_me: ログイン状態を保持する
+      profile:
+        name: ユーザー名
+        description: 自己紹介
+        location: 場所
+        url: ホームページ
+        gender: 性別
+        birthday: 誕生日
+  enumerize:
+    profile:
+      gender:
+        male: 男性
+        female: 女性
+  date:
+    formats:
+      long: ! "%Y年%m月%d日"

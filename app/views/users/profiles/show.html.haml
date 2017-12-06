@@ -1,0 +1,13 @@
+%h2= Profile.model_name.human
+- if @profile.present?
+  %p= "#{Profile.human_attribute_name :name}: #{@profile.name}"
+  %p= "#{Profile.human_attribute_name :description}: #{@profile.description}"
+  %p= "#{Profile.human_attribute_name :location}: #{@profile.location}"
+  %p
+    = "#{Profile.human_attribute_name :url}: "
+    = link_to @profile.url, @profile.url
+  %p= "#{Profile.human_attribute_name :gender}: #{@profile.gender_text}"
+  %p= "#{Profile.human_attribute_name :birthday}: #{l(@profile.birthday, format: :long)}"
+  %p= link_to t("link.edit_profile"), edit_users_profile_path, class: "btn btn-primary"
+- else
+  %p= link_to t("link.register_profile"), new_users_profile_path, class: "btn btn-primary"

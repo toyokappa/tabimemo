@@ -4,5 +4,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :rememberable, :trackable, :validatable
 
+  has_one :profile, foreign_key: "id"
   has_many :plans, dependent: :destroy
 end
