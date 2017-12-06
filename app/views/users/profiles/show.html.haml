@@ -1,13 +1,13 @@
-%h2 プロフィール
+%h2= Profile.model_name.human
 - if @profile.present?
-  %p= "ユーザー名：#{@profile.name}"
-  %p= "自己紹介：#{@profile.description}"
-  %p= "場所：#{@profile.location}"
+  %p= "#{Profile.human_attribute_name :name}: #{@profile.name}"
+  %p= "#{Profile.human_attribute_name :description}: #{@profile.description}"
+  %p= "#{Profile.human_attribute_name :location}: #{@profile.location}"
   %p
-    ホームページ：
+    = "#{Profile.human_attribute_name :url}: "
     = link_to @profile.url, @profile.url
-  %p= "性別：#{@profile.gender}"
-  %p= "誕生日：#{@profile.birthday}"
-  %p= link_to "プロフィールを編集する", edit_users_profile_path, class: "btn btn-primary"
+  %p= "#{Profile.human_attribute_name :gender}: #{@profile.gender_text}"
+  %p= "#{Profile.human_attribute_name :birthday}: #{l(@profile.birthday, format: :long)}"
+  %p= link_to t("link.edit_profile"), edit_users_profile_path, class: "btn btn-primary"
 - else
-  %p= link_to "プロフィールを登録する", new_users_profile_path, class: "btn btn-primary"
+  %p= link_to t("link.register_profile"), new_users_profile_path, class: "btn btn-primary"
