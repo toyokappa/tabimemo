@@ -1,4 +1,4 @@
-%h1= @plan.name
+%h2= @plan.name
 %p= @plan.description
 - if @plan.user == current_user
   = link_to t("link.edit"), edit_users_plan_path(@plan), class: "btn btn-success"
