@@ -11,6 +11,7 @@ ja:
     index_plan: プラン一覧
     detail_plan: プラン詳細
     edit_plan: プラン編集
+    manage_plan: プラン管理
     sign_up: ユーザー登録
     sign_in: ログイン
     sign_out: ログアウト
@@ -19,6 +20,8 @@ ja:
     delete: 削除
     published: 公開する
     draft: 下書きとして保存
+    register_plan: プランを登録する
+    sign_up: まずはユーザー登録
   view:
     delete_confirm: 削除しますか？
     minimum_length: "%{minimum_length}文字以上で入力してください"
