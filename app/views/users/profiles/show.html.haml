@@ -1,0 +1,13 @@
+%h2 プロフィール
+- if @profile.present?
+  %p= "ユーザー名：#{@profile.name}"
+  %p= "自己紹介：#{@profile.description}"
+  %p= "場所：#{@profile.location}"
+  %p
+    ホームページ：
+    = link_to @profile.url, @profile.url
+  %p= "性別：#{@profile.gender}"
+  %p= "誕生日：#{@profile.birthday}"
+  %p= link_to "プロフィールを編集する", edit_users_profile_path, class: "btn btn-primary"
+- else
+  %p= link_to "プロフィールを登録する", new_users_profile_path, class: "btn btn-primary"

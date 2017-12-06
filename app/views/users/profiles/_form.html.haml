@@ -1,0 +1,11 @@
+= simple_form_for @profile, url: users_profile_path do |f|
+  = f.input :name
+  = f.input :description
+  = f.input :location
+  = f.input :url
+  = f.input :gender, as: :select, collection: Profile.genders.keys, include_blank: "性別を選択", class: "form-control"
+  = f.input :birthday, use_month_numbers: true,
+            start_year: Date.today.year - 110,
+            end_year: Date.today.year,
+            default: "#{Date.today.year - 30}-01-01".to_date
+  = f.button :submit, class: "btn-primary"
