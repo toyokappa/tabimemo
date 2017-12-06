@@ -12,7 +12,8 @@
           = link_to t("app.title"), root_path, class: "navbar-brand"
         %ul.nav.navbar-nav.navbar-right
           - if user_signed_in?
-            %li= link_to t("title.register_plan"), new_plan_path
+            %li= link_to t("title.register_plan"), new_users_plan_path
+            %li= link_to t("title.manage_plan"), users_plans_path
             %li= link_to t("title.sign_out"), destroy_user_session_path, method: :delete
           - else
             %li= link_to t("title.sign_up"), new_user_registration_path

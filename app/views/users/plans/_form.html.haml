@@ -1,4 +1,4 @@
-= simple_form_for @plan do |f|
+= simple_form_for @plan, url: url do |f|
   - if @plan.errors.present?
     - @plan.errors.full_messages.each do |msg|
       = msg

@@ -2,7 +2,10 @@
   .v-align-center
     %h1 旅の思い出をシェアしよう
     %p あなたのオリジナルのプランをみんなに見てもらおう
-    = link_to "プランを登録する", new_plan_path, class: "btn btn-info"
+    - if user_signed_in?
+      = link_to t("link.register_plan"), new_users_plan_path(current_user), class: "btn btn-info"
+    - else
+      = link_to t("link.sign_up"), new_user_registration_path, class: "btn btn-info"
 %h2= t("title.index_plan")
 - if @plans.present?
   %ul
