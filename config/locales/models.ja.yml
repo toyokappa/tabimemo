@@ -14,12 +14,13 @@ ja:
       spots:
         photos: 写真
       user:
+        name: ユーザー名
         email: メールアドレス
         password: パスワード
         password_confirmation: パスワード(確認)
         remember_me: ログイン状態を保持する
       profile:
-        name: ユーザー名
+        name: 表示名
         description: 自己紹介
         location: 場所
         url: ホームページ
