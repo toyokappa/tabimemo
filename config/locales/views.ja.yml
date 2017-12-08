@@ -14,6 +14,7 @@ ja:
     manage_plan: プラン管理
     register_profile: プロフィール登録
     edit_profile: プロフィール編集
+    edit_password: パスワード変更
     user_info: ユーザー情報
     sign_up: ユーザー登録
     sign_in: ログイン

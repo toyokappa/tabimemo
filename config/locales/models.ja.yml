@@ -18,6 +18,7 @@ ja:
         email: メールアドレス
         password: パスワード
         password_confirmation: パスワード(確認)
+        current_password: 現在のパスワード
         remember_me: ログイン状態を保持する
       profile:
         name: 表示名
