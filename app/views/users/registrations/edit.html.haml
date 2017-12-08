@@ -1,0 +1,7 @@
+%h2= t("title.user_info")
+= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+  .form-inputs
+    = f.input :name, required: true, autofocus: true
+    = f.input :email, required: true
+  .form-actions
+    = f.button :submit, class: "btn-primary"
