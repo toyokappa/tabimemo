@@ -32,6 +32,9 @@ ja:
     delete_confirm: 削除しますか？
     minimum_length: "%{minimum_length}文字以上で入力してください"
     select_item: "%{item}を選択"
+    new_password: 新しいパスワード
+    new_password_confirmation: 新しいパスワード(確認)
+    login_id: ユーザー名またはメールアドレス
   cocoon:
     spots:
       add: スポットを追加
