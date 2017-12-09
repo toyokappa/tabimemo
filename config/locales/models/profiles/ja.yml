@@ -1,0 +1,18 @@
+ja:
+  activerecord:
+    models:
+      profile: プロフィール
+    attributes:
+      profile:
+        name: 表示名
+        description: 自己紹介
+        location: 場所
+        url: ホームページ
+        gender: 性別
+        birthday: 誕生日
+  enumerize:
+    profile:
+      gender:
+        male: 男性
+        female: 女性
+      
