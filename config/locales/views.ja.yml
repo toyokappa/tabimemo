@@ -1,10 +1,6 @@
 ja:
   app:
     title: Tabimemo
-  flash:
-    register_success: 登録しました！
-    update_success: 更新しました！
-    delete_success: 削除しました！
   title:
     register_plan: プラン登録
     register_spot: スポット登録
