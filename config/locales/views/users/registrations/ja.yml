@@ -1,0 +1,7 @@
+ja:
+  users:
+    registrations:
+      new:
+        title: ユーザー登録
+      edit:
+        title: ユーザー情報

@@ -1,0 +1,7 @@
+ja:
+  users:
+    sessions:
+      new:
+        title: ログイン
+  form:
+    login_id: ユーザー名またはメールアドレス

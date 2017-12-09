@@ -1,0 +1,6 @@
+ja:
+  activerecord:
+    attributes:
+      plan:
+        name: プラン名
+        description: プラン説明

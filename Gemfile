@@ -38,6 +38,7 @@ end
 
 group :development do
   gem "annotate", require: false
+  gem "i18n-tasks"
   gem "listen", ">= 3.0.5", "< 3.2"
   gem "onkcop", require: false
   gem "rubocop", require: false

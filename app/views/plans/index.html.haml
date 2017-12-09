@@ -6,7 +6,7 @@
       = link_to t("link.register_plan"), new_users_plan_path(current_user), class: "btn btn-info"
     - else
       = link_to t("link.sign_up"), new_user_registration_path, class: "btn btn-info"
-%h2= t("title.index_plan")
+%h2= t(".title")
 - if @plans.present?
   %ul
     - @plans.each do |plan|
@@ -14,5 +14,5 @@
         %h2= link_to plan.name, plan_path(plan)
         %p= plan.description
 - else
-  表示できるプランがありません。
+  = t("view.no_plans")
 = paginate @plans

@@ -1,0 +1,8 @@
+ja:
+  users:
+    passwords:
+      edit:
+        title: パスワード変更
+  form:
+    new_password: 新しいパスワード
+    new_password_confirmation: 新しいパスワード(確認)

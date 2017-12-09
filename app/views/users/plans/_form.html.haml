@@ -4,11 +4,11 @@
       = msg
   = f.input :name
   = f.input :description, input_html: { rows:5 }
-  %h2= t("title.register_spot")
+  %h2= t("form.register_spot")
   .spot_container
     = f.simple_fields_for :spots do |spot|
       = render "spot_fields", f: spot
     .links
       = link_to_add_association f, :spots, class: "btn btn-success"
-  = f.button :submit, t("link.published"), class: "btn-primary"
-  = f.button :submit, t("link.draft"), class: "btn-primary", name: :draft
+  = f.button :submit, t("form.published"), class: "btn-primary"
+  = f.button :submit, t("form.draft"), class: "btn-primary", name: :draft

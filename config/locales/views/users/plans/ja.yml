@@ -1,0 +1,15 @@
+ja:
+  users:
+    plans:
+      index:
+        title: プラン管理
+      show:
+        title: プラン詳細
+      new:
+        title: プラン登録
+      edit:
+        title: プラン編集
+  form:
+    register_spot: スポット登録
+    published: 公開する
+    draft: 下書きとして保存

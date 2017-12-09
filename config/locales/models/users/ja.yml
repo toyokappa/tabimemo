@@ -1,0 +1,11 @@
+ja:
+  activerecord:
+    attributes:
+      user:
+        name: ユーザー名
+        email: メールアドレス
+        login: ログインID
+        password: パスワード
+        password_confirmation: パスワード(確認)
+        current_password: 現在のパスワード
+        remember_me: ログイン状態を保持する
