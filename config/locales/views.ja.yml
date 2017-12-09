@@ -14,6 +14,8 @@ ja:
     manage_plan: プラン管理
     register_profile: プロフィール登録
     edit_profile: プロフィール編集
+    edit_password: パスワード変更
+    user_info: ユーザー情報
     sign_up: ユーザー登録
     sign_in: ログイン
     sign_out: ログアウト
@@ -30,6 +32,9 @@ ja:
     delete_confirm: 削除しますか？
     minimum_length: "%{minimum_length}文字以上で入力してください"
     select_item: "%{item}を選択"
+    new_password: 新しいパスワード
+    new_password_confirmation: 新しいパスワード(確認)
+    login_id: ユーザー名またはメールアドレス
   cocoon:
     spots:
       add: スポットを追加
