@@ -1,4 +1,4 @@
-%h2= t("title.manage_plan")
+%h2= t(".title")
 - if @plans.present?
   %ul
     - @plans.each do |plan|
@@ -6,5 +6,5 @@
         %h2= link_to plan.name, users_plan_path(plan)
         %p= plan.description
 - else
-  表示できるプランがありません。
+  = t("view.no_plans")
 = paginate @plans

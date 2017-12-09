@@ -1,4 +1,23 @@
 ja:
+  app:
+    title: Tabimemo
+  menu:
+    sign_up: ユーザー登録
+    sign_in: ログイン
+    sign_out: ログアウト
+    register_plan: プラン登録
+    manage_plan: プラン管理
+    user_info: ユーザー情報
+    edit_password: パスワード変更
+  view:
+    no_plans: 表示できるプランはありません。
+    delete_confirm: 削除しますか？
+  link:
+    edit: 編集
+    delete: 削除
+  form:
+    minimum_length: "%{minimum_length}文字以上で入力してください"
+    select_item: "%{item}を選択"
   date:
     formats:
       long: ! "%Y年%m月%d日"
