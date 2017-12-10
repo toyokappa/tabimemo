@@ -8,6 +8,7 @@
     = link_to @profile.url, @profile.url
   %p= "#{Profile.human_attribute_name :gender}: #{@profile.gender_text}"
   %p= "#{Profile.human_attribute_name :birthday}: #{l(@profile.birthday, format: :long)}"
-  %p= link_to t("link.edit_profile"), edit_users_profile_path, class: "btn btn-primary"
+  %p= link_to t("link.edit_profile"), edit_users_profile_path, class: "btn btn-primary" if @user == current_user
 - else
-  %p= link_to t("link.register_profile"), new_users_profile_path, class: "btn btn-primary"
+  %p= t("view.no_profile")
+  %p= link_to t("link.register_profile"), new_users_profile_path, class: "btn btn-primary" if @user == current_user

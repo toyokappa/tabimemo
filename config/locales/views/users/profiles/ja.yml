@@ -8,3 +8,5 @@ ja:
   link:
     register_profile: プロフィールを登録する
     edit_profile: プロフィールを編集する
+  view:
+    no_profile: プロフィールが登録されていません。

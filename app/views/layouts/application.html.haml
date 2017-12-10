@@ -14,7 +14,7 @@
           - if user_signed_in?
             %li= link_to t("menu.register_plan"), new_users_plan_path
             %li= link_to t("menu.manage_plan"), users_plans_path
-            %li= link_to Profile.model_name.human, users_profile_path
+            %li= link_to Profile.model_name.human, user_profile_path(current_user.name)
             %li= link_to t("menu.user_info"), edit_user_registration_path
             %li= link_to t("menu.edit_password"), users_password_path
             %li= link_to t("menu.sign_out"), destroy_user_session_path, method: :delete
