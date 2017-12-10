@@ -3,7 +3,7 @@
   %ul
     - @plans.each do |plan|
       %li
-        %h2= link_to plan.name, users_plan_path(plan)
+        %h2= link_to plan.name, user_plan_path(user_name: @user.name, id: plan)
         %p= plan.description
 - else
   = t("view.no_plans")

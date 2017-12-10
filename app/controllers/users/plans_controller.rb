@@ -1,12 +1,15 @@
 class Users::PlansController < ApplicationController
-  before_action :set_plan, only: [:show, :edit, :update, :destroy]
+  before_action :set_plan, only: [:edit, :update, :destroy]
   before_action :is_current_user?, only: [:edit, :update, :destroy]
 
   def index
-    @plans = current_user.plans.page(params[:page])
+    @user = current_user
+    @plans = @user.plans.page(params[:page])
   end
 
   def show
+    @user = User.find_by(name: params[:user_name])
+    @plan = @user.plans.find(params[:id])
   end
 
   def new
@@ -15,10 +18,11 @@ class Users::PlansController < ApplicationController
   end
 
   def create
-    @plan = current_user.plans.build(plan_params)
+    user = current_user
+    @plan = user.plans.build(plan_params)
     @plan.published = params[:draft] ? false : true
     if @plan.save
-      redirect_to users_plan_path(@plan), notice: t(:register_success, scope: :flash)
+      redirect_to user_plan_path(user_name: user.name, id: @plan), notice: t(:register_success, scope: :flash)
     else
       @plan.spots.build
       render "new"
@@ -31,7 +35,7 @@ class Users::PlansController < ApplicationController
   def update
     @plan.published = params[:draft] ? false : true
     if @plan.update(plan_params)
-      redirect_to users_plan_path(@plan), notice: t(:update_success, scope: :flash)
+      redirect_to user_plan_path(user_name: @user.name, id: @plan), notice: t(:update_success, scope: :flash)
     else
       render "edit"
     end
@@ -49,7 +53,8 @@ class Users::PlansController < ApplicationController
     end
 
     def set_plan
-      @plan = current_user.plans.find(params[:id])
+      @user = current_user
+      @plan = @user.plans.find(params[:id])
     end
 
     def is_current_user?
