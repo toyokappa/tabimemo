@@ -10,7 +10,8 @@ Rails.application.routes.draw do
   end
 
   resources :users, param: :name, path: "/", only: [] do
-    resources :plans, only: [:show], controller: "users/plans"
     resource :profile, only: [:show], controller: "users/profiles"
   end
+
+  resources :plans, only: [:show]
 end

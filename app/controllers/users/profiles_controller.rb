@@ -1,4 +1,5 @@
 class Users::ProfilesController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:show]
   before_action :set_profile, only: [:edit, :update]
 
   def show
