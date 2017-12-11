@@ -6,8 +6,13 @@ class ImagePreviewInput < SimpleForm::Inputs::FileInput
     # check if there's an uploaded file (eg: edit mode or form not saved)
     if object.send("#{attribute_name}?")
       # append preview image to output
-      object.send(attribute_name).each do |obj|
-        url = template.image_tag(obj.tap {|o| break o.send(version) if version}.send('url'))
+      if object.send(attribute_name).instance_of?(Array)
+        object.send(attribute_name).each do |obj|
+          url = template.image_tag(obj.tap {|o| break o.send(version) if version}.send('url'))
+          out << "<div>#{url}</div>"
+        end
+      else
+        url = template.image_tag(object.send(attribute_name).tap {|o| break o.send(version) if version}.send('url'))
         out << "<div>#{url}</div>"
       end
     end
