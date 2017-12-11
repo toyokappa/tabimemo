@@ -14,3 +14,5 @@
 %p
   投稿者:
   = link_to @user.profile.present? ? @user.profile.name : @user.name, user_profile_path(@user.name)
+  = image_tag @user.profile&.image.present? ? @user.profile.image.mini_thumb.url : "no_user_image.svg", size: "50x50"
+
