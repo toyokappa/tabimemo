@@ -11,3 +11,6 @@
         - spot.photos.each do |photo|
           %li= image_tag photo.thumb.url
     = spot.description
+%p
+  投稿者:
+  = link_to @user.profile.present? ? @user.profile.name : @user.name, user_profile_path(@user.name)

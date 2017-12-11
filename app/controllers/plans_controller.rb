@@ -7,6 +7,7 @@ class PlansController < ApplicationController
 
   def show
     @plan = Plan.find(params[:id])
-    redirect_to root_path unless @plan.published?
+    @user = @plan.user
+    redirect_to root_path unless @plan.published? || @user == current_user
   end
 end

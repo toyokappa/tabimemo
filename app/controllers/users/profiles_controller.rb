@@ -1,7 +1,10 @@
 class Users::ProfilesController < ApplicationController
-  before_action :set_profile, only: [:show, :edit, :update]
+  skip_before_action :authenticate_user!, only: [:show]
+  before_action :set_profile, only: [:edit, :update]
 
   def show
+    @user = User.find_by(name: params[:user_name])
+    @profile = @user.profile
   end
 
   def new
@@ -11,7 +14,7 @@ class Users::ProfilesController < ApplicationController
   def create
     @profile = current_user.build_profile(profile_params)
     if @profile.save
-      redirect_to users_profile_path, notice: t("flash.register_success")
+      redirect_to user_profile_path(current_user.name), notice: t("flash.register_success")
     else
       render "new"
     end
@@ -22,7 +25,7 @@ class Users::ProfilesController < ApplicationController
 
   def update
     if @profile.update(profile_params)
-      redirect_to users_profile_path, notice: t("flash.update_success")
+      redirect_to user_profile_path(current_user.name), notice: t("flash.update_success")
     else
       render "edit"
     end

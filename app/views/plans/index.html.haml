@@ -3,7 +3,7 @@
     %h1 旅の思い出をシェアしよう
     %p あなたのオリジナルのプランをみんなに見てもらおう
     - if user_signed_in?
-      = link_to t("link.register_plan"), new_users_plan_path(current_user), class: "btn btn-info"
+      = link_to t("link.register_plan"), new_users_plan_path, class: "btn btn-info"
     - else
       = link_to t("link.sign_up"), new_user_registration_path, class: "btn btn-info"
 %h2= t(".title")
