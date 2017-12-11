@@ -10,9 +10,10 @@ ja:
         url: ホームページ
         gender: 性別
         birthday: 誕生日
+        image: プロフィール画像
   enumerize:
     profile:
       gender:
         male: 男性
         female: 女性
-      
+
