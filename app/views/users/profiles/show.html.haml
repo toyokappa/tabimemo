@@ -1,5 +1,6 @@
 %h2= Profile.model_name.human
 - if @profile.present?
+  %p= image_tag @profile.image.url
   %p= "#{Profile.human_attribute_name :name}: #{@profile.name}"
   %p= "#{Profile.human_attribute_name :description}: #{@profile.description}"
   %p= "#{Profile.human_attribute_name :location}: #{@profile.location}"
