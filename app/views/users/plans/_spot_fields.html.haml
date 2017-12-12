@@ -1,6 +1,6 @@
 .nested-fields.jumbotron
   = f.input :name
   = f.input :description, input_html: { rows: 5 }
-  .photo_field
-    = f.input :photos, as: :image_preview, input_html: { class: "photos", multiple: true, preview_version: :thumb }
+  .image_field
+    = f.input :photos, as: :image_preview, input_html: { class: "images", multiple: true, preview_version: :thumb }
   = link_to_remove_association f, class: "btn btn-danger"
