@@ -13,7 +13,7 @@ class ImagePreviewInput < SimpleForm::Inputs::FileInput
         end
       else
         url = template.image_tag(object.send(attribute_name).tap {|o| break o.send(version) if version}.send('url'))
-        out << "<div>#{url}</div>"
+        out << "<div class='preview'>#{url}</div>"
       end
     end
     # allow multiple submissions without losing the tmp version

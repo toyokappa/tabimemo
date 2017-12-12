@@ -3,7 +3,7 @@ class previewImages
     @bind()
 
   bind: =>
-    @$root.on "change", ".photos", @createPreview
+    @$root.on "change", ".images", @createPreview
     return
 
   createPreview: (e) =>
@@ -29,4 +29,4 @@ class previewImages
     return
 
 $(document).on "turbolinks:load", ->
-  new previewImages $(".spot_container")
+  new previewImages $(".image_field")
