@@ -6,13 +6,16 @@
       = link_to t("link.register_plan"), new_users_plan_path, class: "btn btn-info"
     - else
       = link_to t("link.sign_up"), new_user_registration_path, class: "btn btn-info"
-%h2= t(".title")
-- if @plans.present?
-  %ul
-    - @plans.each do |plan|
-      %li
-        %h2= link_to plan.name, plan_path(plan)
-        %p= plan.description
-- else
-  = t("view.no_plans")
-= paginate @plans
+.plan-index-area
+  %h2= t(".title")
+  - if @plans.present?
+    .row.flex
+      - @plans.each do |plan|
+        .col-sm-3.plan-item
+          .plan-image
+            = link_to image_tag(plan.spots.first&.photos.present? ? plan.spots.first.photos.first.thumb.url : "no_plan_image.png"), plan
+          %h3.plan-name= link_to plan.name, plan
+          .plan-description= plan.description
+  - else
+    = t("view.no_plans")
+  = paginate @plans
