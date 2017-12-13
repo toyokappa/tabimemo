@@ -1,7 +1,4 @@
 = simple_form_for @plan, url: url do |f|
-  - if @plan.errors.present?
-    - @plan.errors.full_messages.each do |msg|
-      = msg
   = f.input :name
   = f.input :description, input_html: { rows:5 }
   %h2= t("form.register_spot")

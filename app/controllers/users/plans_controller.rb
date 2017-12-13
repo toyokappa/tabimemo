@@ -14,22 +14,21 @@ class Users::PlansController < ApplicationController
 
   def create
     user = current_user
-    @plan = user.plans.build(plan_params)
-    @plan.published = params[:draft] ? false : true
+    @plan = user.plans.build(new_plan_params)
     if @plan.save
-      redirect_to plan_path(@plan), notice: t(:register_success, scope: :flash)
+      redirect_to edit_users_plan_path(@plan)
     else
-      @plan.spots.build
       render "new"
     end
   end
 
   def edit
+    @plan.spots.build if @plan.spots.blank?
   end
 
   def update
     @plan.published = params[:draft] ? false : true
-    if @plan.update(plan_params)
+    if @plan.update(edit_plan_params)
       redirect_to plan_path(@plan), notice: t(:update_success, scope: :flash)
     else
       render "edit"
@@ -43,7 +42,11 @@ class Users::PlansController < ApplicationController
 
   private
 
-    def plan_params
+    def new_plan_params
+      params.require(:plan).permit(:name, :description, :published)
+    end
+
+    def edit_plan_params
       params.require(:plan).permit(:name, :description, spots_attributes: [:id, :name, :description, :_destroy, :photos_cache, { photos: [] }])
     end
 
