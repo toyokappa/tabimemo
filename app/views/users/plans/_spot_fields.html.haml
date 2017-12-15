@@ -2,5 +2,6 @@
   = f.input :name
   = f.input :description, input_html: { rows: 5 }
   .image_field
-    = f.input :photos, as: :image_preview, input_html: { class: "images", multiple: true, preview_version: :thumb }
+    = f.simple_fields_for :photos do |photo_f|
+      = photo_f.input :image, as: :file, input_html: { multiple: true }
   = link_to_remove_association f, class: "btn btn-danger"

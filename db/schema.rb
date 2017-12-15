@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171213100013) do
+ActiveRecord::Schema.define(version: 20171215095055) do
+
+  create_table "photos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.text "image"
+    t.bigint "spot_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["spot_id"], name: "index_photos_on_spot_id"
+  end
 
   create_table "plans", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name", null: false
@@ -45,7 +53,6 @@ ActiveRecord::Schema.define(version: 20171213100013) do
     t.bigint "plan_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.json "photos"
     t.index ["plan_id"], name: "index_spots_on_plan_id"
   end
 
@@ -68,6 +75,7 @@ ActiveRecord::Schema.define(version: 20171213100013) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "photos", "spots"
   add_foreign_key "plans", "users"
   add_foreign_key "spots", "plans"
 end

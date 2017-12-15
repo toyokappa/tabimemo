@@ -47,7 +47,7 @@ class Users::PlansController < ApplicationController
     end
 
     def edit_plan_params
-      params.require(:plan).permit(:name, :description, spots_attributes: [:id, :name, :description, :_destroy, :photos_cache, { photos: [] }])
+      params.require(:plan).permit(:name, :description, spots_attributes: [:id, :name, :description, :_destroy, photos_attributes: [:id, { image: [] }, :image_cache, :_destroy]])
     end
 
     def set_plan
