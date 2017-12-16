@@ -4,6 +4,5 @@
   = f.input :name
   = f.input :description, input_html: { rows: 5 }
   .image_field
-    = f.simple_fields_for :photos do |photo_f|
-      = photo_f.input :image, as: :file, input_html: { multiple: true }
+    = f.file_field :photos, multiple: true
   = link_to "スポットを削除", "javascript:void(0);", class: "btn btn-danger destroy_btn"

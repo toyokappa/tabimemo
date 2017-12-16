@@ -28,7 +28,7 @@ class Users::PlansController < ApplicationController
 
   def update
     @plan.published = params[:draft] ? false : true
-    if @plan.update(edit_plan_params)
+    if @plan.update(edit_plan_params) && Photo.create_photos_by(photo_params[:spots_attributes])
       redirect_to plan_path(@plan), notice: t(:update_success, scope: :flash)
     else
       render "edit"
@@ -53,7 +53,11 @@ class Users::PlansController < ApplicationController
     end
 
     def edit_plan_params
-      params.require(:plan).permit(:name, :description, spots_attributes: [:id, :name, :description, :_destroy, photos_attributes: [:id, { image: [] }, :image_cache, :_destroy]])
+      params.require(:plan).permit(:name, :description, spots_attributes: [:id, :name, :description, :_destroy])
+    end
+
+    def photo_params
+      params.require(:plan).permit(spots_attributes: [:id, { photos: [] }])
     end
 
     def set_plan
