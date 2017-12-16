@@ -4,5 +4,11 @@
   = f.input :name
   = f.input :description, input_html: { rows: 5 }
   .image_field
+    = f.simple_fields_for :photos do |photo_f|
+      .photo_area
+        = photo_f.hidden_field :id
+        = photo_f.hidden_field :_destroy, class: "destroy_photo"
+        = image_tag photo_f.object.image.thumb.url
+        = link_to "画像を削除", "javascript:void(0);", class: "destroy_photo_btn"
     = f.file_field :photos, multiple: true
   = link_to "スポットを削除", "javascript:void(0);", class: "btn btn-danger destroy_btn"

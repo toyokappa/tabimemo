@@ -26,10 +26,17 @@ class spotFields
     $spot_form.hide()
     return
 
+  destroyPhoto: (e)=>
+    e.preventDefault()
+    $target = $(e.target)
+    $photo_area = $target.closest(".photo_area")
+    $photo_area.find(".destroy_photo").val(true)
+    $photo_area.hide()
 
   bind: =>
     @$root.on "click", ".create_btn", @createSpotField
           .on "click", ".destroy_btn", @destroySpotField
+          .on "click", ".destroy_photo_btn", @destroyPhoto
     return
 
 $(document).on "turbolinks:load", ->

@@ -7,6 +7,7 @@ class Photo < ApplicationRecord
   def self.create_photos_by(photo_params)
     Photo.transaction do
       photo_params.each do |index|
+        next if photo_params[index][:_destroy] == true
         spot = Spot.find(photo_params[index][:id])
         photo_params[index][:photos]&.each do |photo|
           return false unless spot.photos.create!(image: photo)
