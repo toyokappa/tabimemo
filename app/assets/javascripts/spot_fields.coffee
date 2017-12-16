@@ -7,9 +7,15 @@ class spotFields
     $target = $(e.target)
     data = $target.data()
     spot_field = @$root.find(".spot_field")
-    time = new Date().getTime()
-    regexp = new RegExp(data.id, "g")
-    spot_field.append(data.fields.replace(regexp, time))
+    $.ajax
+      url: "/users/create_spot"
+      type: "GET"
+      dataType: "json"
+      data:
+        plan_id: data.planId
+    .done (res) =>
+      regexp = new RegExp(data.id, "g")
+      spot_field.append(data.fields.replace(regexp, res))
     return
 
   destroySpotField: (e)=>
