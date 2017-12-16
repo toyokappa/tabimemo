@@ -3,9 +3,9 @@
   = f.input :description, input_html: { rows:5 }
   %h2= t("form.register_spot")
   .spot_container
-    = f.simple_fields_for :spots do |spot|
-      = render "spot_fields", f: spot
-    .links
-      = link_to_add_association f, :spots, class: "btn btn-success"
+    .spot_field
+      = f.simple_fields_for :spots do |spot|
+        = render "spot_fields", f: spot
+    = link_to "スポットを追加", "javascript:void(0);", class: "btn btn-success create_btn", data: new_spot_field(f)
   = f.button :submit, t("form.published"), class: "btn-primary"
   = f.button :submit, t("form.draft"), class: "btn-primary", name: :draft

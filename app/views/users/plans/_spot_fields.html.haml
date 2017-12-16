@@ -1,7 +1,8 @@
-.nested-fields.jumbotron
+.spot_form.jumbotron
+  = f.hidden_field :_destroy, class: "destroy_spot"
   = f.input :name
   = f.input :description, input_html: { rows: 5 }
   .image_field
     = f.simple_fields_for :photos do |photo_f|
       = photo_f.input :image, as: :file, input_html: { multiple: true }
-  = link_to_remove_association f, class: "btn btn-danger"
+  = link_to "スポットを削除", "javascript:void(0);", class: "btn btn-danger destroy_btn"

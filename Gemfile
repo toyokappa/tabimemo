@@ -7,7 +7,6 @@ end
 
 gem "bootstrap-sass"
 gem "carrierwave"
-gem "cocoon"
 gem "coffee-rails", "~> 4.2"
 gem "devise"
 gem "enumerize"
