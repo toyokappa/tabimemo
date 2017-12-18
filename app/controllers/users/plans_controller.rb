@@ -28,7 +28,7 @@ class Users::PlansController < ApplicationController
 
   def update
     @plan.published = params[:draft] ? false : true
-    if Photo.create_photos_by(photo_params[:spots_attributes]) && @plan.update(edit_plan_params) 
+    if @plan.spots.each {|spot| spot.create_photos_by(photo_params[:spots_attributes])} && @plan.update(edit_plan_params) 
       redirect_to plan_path(@plan), notice: t(:update_success, scope: :flash)
     else
       render "edit"

@@ -1,14 +1,21 @@
 .spot_form.jumbotron
-  = f.hidden_field :id
+  = f.hidden_field :id, class: "spot_field_id"
   = f.hidden_field :_destroy, class: "destroy_spot"
   = f.input :name
   = f.input :description, input_html: { rows: 5 }
   .image_field
-    = f.simple_fields_for :photos do |photo_f|
-      .photo_area
-        = photo_f.hidden_field :id
-        = photo_f.hidden_field :_destroy, class: "destroy_photo"
-        = image_tag photo_f.object.image.thumb.url
-        = link_to "画像を削除", "javascript:void(0);", class: "destroy_photo_btn"
-    = f.file_field :photos, multiple: true
+    .form-group{ class: "#{'has-error' if f.object.errors.present?}" }
+      = f.label :photos, Photo.model_name.human, class: "control-label"
+      - photo_error_messages = []
+      = f.simple_fields_for :photos do |photo_f|
+        - photo_error_messages += photo_f.object.errors.full_messages_for(:image).map { |msg| msg }
+        .photo_area
+          - if photo_f.object.valid?
+            = photo_f.hidden_field :id
+            = photo_f.hidden_field :_destroy, class: "destroy_photo"
+            = image_tag photo_f.object.image.thumb.url
+            = link_to "画像を削除", "javascript:void(0);", class: "destroy_photo_btn"
+      = f.file_field :photos, multiple: true
+      - photo_error_messages.each do |msg|
+        .help-block= msg
   = link_to "スポットを削除", "javascript:void(0);", class: "btn btn-danger destroy_btn"
