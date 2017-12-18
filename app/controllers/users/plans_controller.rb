@@ -23,7 +23,7 @@ class Users::PlansController < ApplicationController
   end
 
   def edit
-    @plan.spots.build if @plan.spots.blank?
+    @plan.spots.create if @plan.spots.blank?
   end
 
   def update
