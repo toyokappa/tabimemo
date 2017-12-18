@@ -15,8 +15,8 @@
             = photo_f.hidden_field :_destroy, class: "destroy_photo"
             .photo_image
               = image_tag photo_f.object.image.thumb.url
-              = link_to "画像を削除", "javascript:void(0);", class: "destroy_photo_btn"
+              = link_to t("form.destroy_photo"), "javascript:void(0);", class: "destroy_photo_btn"
     = f.file_field :photos, multiple: true, class: "preview_photo"
     - photo_error_messages.each do |msg|
       .help-block= msg
-  = link_to "スポットを削除", "javascript:void(0);", class: "btn btn-danger destroy_btn"
+  = link_to t("form.destroy_spot"), "javascript:void(0);", class: "btn btn-danger destroy_btn"
