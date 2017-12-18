@@ -8,8 +8,13 @@ ja:
       new:
         title: プラン登録
       edit:
-        title: プラン編集
+        title: プラン情報
   form:
+    register_plan: スポット登録に進む
     register_spot: スポット登録
+    create_spot: スポットを追加
+    destroy_spot: スポットを削除
+    destroy_photo: 写真を削除
     published: 公開する
     draft: 下書きとして保存
+    no_spot_name: 無題のスポット

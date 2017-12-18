@@ -1,18 +1,29 @@
 class Spot < ApplicationRecord
-  belongs_to :plan
-  mount_uploaders :photos, PhotoUploader
+  has_many :photos, inverse_of: :spot, dependent: :destroy
+  accepts_nested_attributes_for :photos, allow_destroy: true
 
-  validates :name, presence: true, length: { maximum: 50 }
+  belongs_to :plan
+
+  validates :name, length: { maximum: 50 }
   validates :description, length: { maximum: 1000 }
-  validate :photos_file_size
+
+  before_save :set_default_name_with_blank
+
+  def create_photos_by(photo_params)
+    Photo.transaction do
+      photo_params.each do |index|
+        next if photo_params[index][:_destroy] == true
+        photo_params[index][:photos]&.each do |photo|
+          next unless id == photo_params[index][:id].to_i
+          return unless photos.create(image: photo)
+        end
+      end
+    end
+  end
 
   private
 
-    def photos_file_size
-      photos.each do |photo|
-        if photo.size > 5.megabytes
-          errors.add(:photos, I18n.t("errors.messages.min_size_error"))
-        end
-      end
+    def set_default_name_with_blank
+      self.name = I18n.t("form.no_spot_name") if name.blank?
     end
 end

@@ -9,7 +9,7 @@
     - if spot.photos.any?
       %ul.image-area
         - spot.photos.each do |photo|
-          %li= image_tag photo.thumb.url
+          %li= image_tag photo.image.thumb.url
     = spot.description
 %p
   投稿者:

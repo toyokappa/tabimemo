@@ -13,7 +13,7 @@
       - @plans.each do |plan|
         .col-sm-3.plan-item
           .plan-image
-            = link_to image_tag(plan.spots.first&.photos.present? ? plan.spots.first.photos.first.thumb.url : "no_plan_image.png"), plan
+            = link_to image_tag(plan.spots.first&.photos.present? ? plan.spots.first.photos.first.image.thumb.url : "no_plan_image.png"), plan
           %h3.plan-name= link_to plan.name, plan
           .plan-description= plan.description
   - else

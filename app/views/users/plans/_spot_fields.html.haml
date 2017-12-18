@@ -1,6 +1,22 @@
-.nested-fields.jumbotron
+.spot_form.jumbotron
+  = f.hidden_field :id, class: "spot_field_id"
+  = f.hidden_field :_destroy, class: "destroy_spot"
   = f.input :name
   = f.input :description, input_html: { rows: 5 }
-  .image_field
-    = f.input :photos, as: :image_preview, input_html: { class: "images", multiple: true, preview_version: :thumb }
-  = link_to_remove_association f, class: "btn btn-danger"
+  .form-group{ class: "#{'has-error' if f.object.errors.present?}" }
+    = f.label :photos, Photo.model_name.human, class: "control-label"
+    - photo_error_messages = []
+    .row.flex.photo_field
+      = f.simple_fields_for :photos do |photo_f|
+        - photo_error_messages += photo_f.object.errors.full_messages_for(:image).map { |msg| msg }
+        - if photo_f.object.valid?
+          .col-sm-4.photo_area
+            = photo_f.hidden_field :id
+            = photo_f.hidden_field :_destroy, class: "destroy_photo"
+            .photo_image
+              = image_tag photo_f.object.image.thumb.url
+              = link_to t("form.destroy_photo"), "javascript:void(0);", class: "destroy_photo_btn"
+    = f.file_field :photos, multiple: true, class: "preview_photo"
+    - photo_error_messages.each do |msg|
+      .help-block= msg
+  = link_to t("form.destroy_spot"), "javascript:void(0);", class: "btn btn-danger destroy_btn"

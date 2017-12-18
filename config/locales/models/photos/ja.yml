@@ -1,0 +1,7 @@
+ja:
+  activerecord:
+    models:
+      photo: 写真
+    attributes:
+      photo:
+        image: 写真
