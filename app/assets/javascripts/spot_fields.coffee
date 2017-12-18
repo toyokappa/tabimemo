@@ -16,6 +16,7 @@ class spotFields
     .done (res) =>
       regexp = new RegExp(data.id, "g")
       spot_field.append(data.fields.replace(regexp, res))
+      @$root.find(".spot_field_id").last().val(res)
     return
 
   destroySpotField: (e)=>

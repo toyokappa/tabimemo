@@ -4,7 +4,7 @@ module ApplicationHelper
     id = "new_spot"
     plan_id = f.object.id
     fields = f.fields_for(:spots, new_object, child_index: id) do |builder|
-      render '/users/plans/spot_new_field', f: builder, id: id
+      render '/users/plans/spot_fields', f: builder
     end
     { fields: fields.gsub("\n", ""), id: id, plan_id: plan_id }
   end
