@@ -34,10 +34,34 @@ class spotFields
     $photo_area.find(".destroy_photo").val(true)
     $photo_area.hide()
 
+  createPreview: (e) =>
+    files = e.target.files
+    $parent = $(e.target.parentNode)
+    $photo_field = $parent.find(".photo_field").first()
+    @resetPreview $photo_field
+    for file in files
+      reader = new FileReader
+      reader.readAsDataURL file
+      reader.addEventListener "load", (re) ->
+        div = document.createElement "div"
+        div.className = "col-sm-4 preview"
+        img = document.createElement "img"
+        img.src = re.target.result
+        div.appendChild img
+        $photo_field.append div
+    return
+
+  resetPreview: ($field) =>
+    previews = $field.find(".preview")
+    for preview in previews
+      $(preview).remove()
+    return
+
   bind: =>
     @$root.on "click", ".create_btn", @createSpotField
           .on "click", ".destroy_btn", @destroySpotField
           .on "click", ".destroy_photo_btn", @destroyPhoto
+          .on "change", ".preview_photo", @createPreview
     return
 
 $(document).on "turbolinks:load", ->
