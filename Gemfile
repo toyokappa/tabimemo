@@ -8,6 +8,7 @@ end
 gem "bootstrap-sass"
 gem "carrierwave"
 gem "coffee-rails", "~> 4.2"
+gem "enumerize"
 gem "devise"
 gem "enumerize"
 gem "hamlit-rails"

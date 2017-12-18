@@ -2,7 +2,7 @@ class PlansController < ApplicationController
   skip_before_action :authenticate_user!
 
   def index
-    @plans = Plan.where(published: true).page(params[:page])
+    @plans = Plan.with_status(:published).page(params[:page])
   end
 
   def show
