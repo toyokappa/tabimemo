@@ -29,4 +29,4 @@ class previewImages
     return
 
 $(document).on "turbolinks:load", ->
-  new previewImages $(".image_field")
+  new previewImages $(".image-field")

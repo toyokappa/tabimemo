@@ -2,10 +2,10 @@
   = f.input :name
   = f.input :description, input_html: { rows:5 }
   %h2= t("form.register_spot")
-  .spot_container
-    .spot_field
+  .spot-container
+    .spot-field
       = f.simple_fields_for :spots do |spot|
         = render "spot_fields", f: spot
-    = link_to t("form.create_spot"), "javascript:void(0);", class: "btn btn-success create_btn", data: new_spot_field(f)
+    = link_to t("form.create_spot"), "javascript:void(0);", class: "btn btn-success create-spot-btn", data: new_spot_field(f)
   = f.button :submit, t("form.published"), class: "btn-primary"
   = f.button :submit, t("form.draft"), class: "btn-primary", name: :draft

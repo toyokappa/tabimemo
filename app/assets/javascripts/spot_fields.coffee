@@ -6,7 +6,7 @@ class spotFields
     e.preventDefault()
     $target = $(e.target)
     data = $target.data()
-    spot_field = @$root.find(".spot_field")
+    spot_field = @$root.find(".spot-field")
     $.ajax
       url: "/users/create_spot"
       type: "GET"
@@ -16,28 +16,28 @@ class spotFields
     .done (res) =>
       regexp = new RegExp(data.id, "g")
       spot_field.append(data.fields.replace(regexp, res))
-      @$root.find(".spot_field_id").last().val(res)
+      @$root.find(".spot-field-id").last().val(res)
     return
 
   destroySpotField: (e)=>
     e.preventDefault()
     $target = $(e.target)
-    $spot_form = $target.closest(".spot_form")
-    $spot_form.find(".destroy_spot").val(true)
+    $spot_form = $target.closest(".spot-form")
+    $spot_form.find(".destroy-spot").val(true)
     $spot_form.hide()
     return
 
   destroyPhoto: (e)=>
     e.preventDefault()
     $target = $(e.target)
-    $photo_area = $target.closest(".photo_area")
-    $photo_area.find(".destroy_photo").val(true)
+    $photo_area = $target.closest(".photo-area")
+    $photo_area.find(".destroy-photo").val(true)
     $photo_area.hide()
 
   createPreview: (e) =>
     files = e.target.files
     $parent = $(e.target.parentNode)
-    $photo_field = $parent.find(".photo_field").first()
+    $photo_field = $parent.find(".photo-field").first()
     @resetPreview $photo_field
     for file in files
       reader = new FileReader
@@ -58,11 +58,11 @@ class spotFields
     return
 
   bind: =>
-    @$root.on "click", ".create_btn", @createSpotField
-          .on "click", ".destroy_btn", @destroySpotField
-          .on "click", ".destroy_photo_btn", @destroyPhoto
-          .on "change", ".preview_photo", @createPreview
+    @$root.on "click", ".create-spot-btn", @createSpotField
+          .on "click", ".destroy-spot-btn", @destroySpotField
+          .on "click", ".destroy-photo-btn", @destroyPhoto
+          .on "change", ".preview-photo", @createPreview
     return
 
 $(document).on "turbolinks:load", ->
-  new spotFields $(".spot_container")
+  new spotFields $(".spot-container")

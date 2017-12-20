@@ -1,22 +1,22 @@
-.spot_form.jumbotron
-  = f.hidden_field :id, class: "spot_field_id"
-  = f.hidden_field :_destroy, class: "destroy_spot"
+.spot-form.jumbotron
+  = f.hidden_field :id, class: "spot-field-id"
+  = f.hidden_field :_destroy, class: "destroy-spot"
   = f.input :name
   = f.input :description, input_html: { rows: 5 }
   .form-group{ class: "#{'has-error' if f.object.errors.present?}" }
     = f.label :photos, Photo.model_name.human, class: "control-label"
     - photo_error_messages = []
-    .row.flex.photo_field
+    .row.flex.photo-field
       = f.simple_fields_for :photos do |photo_f|
         - photo_error_messages += photo_f.object.errors.full_messages_for(:image).map { |msg| msg }
         - if photo_f.object.valid?
-          .col-sm-4.photo_area
+          .col-sm-4.photo-area
             = photo_f.hidden_field :id
-            = photo_f.hidden_field :_destroy, class: "destroy_photo"
-            .photo_image
+            = photo_f.hidden_field :_destroy, class: "destroy-photo"
+            .photo
               = image_tag photo_f.object.image.thumb.url
-              = link_to t("form.destroy_photo"), "javascript:void(0);", class: "destroy_photo_btn"
-    = f.file_field :photos, multiple: true, class: "preview_photo"
+              = link_to t("form.destroy_photo"), "javascript:void(0);", class: "destroy-photo-btn"
+    = f.file_field :photos, multiple: true, class: "preview-photo"
     - photo_error_messages.each do |msg|
       .help-block= msg
-  = link_to t("form.destroy_spot"), "javascript:void(0);", class: "btn btn-danger destroy_btn"
+  = link_to t("form.destroy_spot"), "javascript:void(0);", class: "btn btn-danger destroy-spot-btn"
