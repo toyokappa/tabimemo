@@ -1,11 +1,12 @@
-%h2= t(".title")
-- if @plans.present?
-  %ul
-    - @plans.each do |plan|
-      %li
-        %h2= link_to plan.name, plan_path(plan)
-        %p= plan.description
-        %p= plan.status_text
-- else
-  = t("view.no_plans")
-= paginate @plans
+.container
+  %h2= t(".title")
+  - if @plans.present?
+    %ul
+      - @plans.each do |plan|
+        %li
+          %h2= link_to plan.name, plan_path(plan)
+          %p= plan.description
+          %p= plan.status_text
+  - else
+    = t("view.no_plans")
+  = paginate @plans
