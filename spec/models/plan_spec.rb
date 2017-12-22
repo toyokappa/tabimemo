@@ -6,6 +6,7 @@ RSpec.describe Plan, type: :model do
   end
 
   describe "association" do
+    it { is_expected.to belong_to(:user) }
     it { is_expected.to have_many(:spots).inverse_of(:plan).dependent(:destroy) }
     it { is_expected.to accept_nested_attributes_for(:spots).allow_destroy(true) }
   end
