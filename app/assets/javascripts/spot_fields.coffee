@@ -6,23 +6,22 @@ class spotFields
     e.preventDefault()
     $target = $(e.target)
     data = $target.data()
-    spot_field = @$root.find(".spot-field")
-    $.ajax
-      url: "/users/create_spot"
-      type: "GET"
-      dataType: "json"
-      data:
-        plan_id: data.planId
-    .done (res) =>
-      regexp = new RegExp(data.id, "g")
-      spot_field.append(data.fields.replace(regexp, res))
-      @$root.find(".spot-field-id").last().val(res)
+    $spot_field = @$root.find ".spot-field"
+    $.get(
+      "/users/create_spot"
+      plan_id: data.planId
+      (res) =>
+        regexp = new RegExp data.id, "g"
+        $spot_field.append data.fields.replace(regexp, res)
+        @$root.find(".spot-field-id").last().val(res)
+      "json"
+    )
     return
 
   destroySpotField: (e)=>
     e.preventDefault()
     $target = $(e.target)
-    $spot_form = $target.closest(".spot-form")
+    $spot_form = $target.closest ".spot-form"
     $spot_form.find(".destroy-spot").val(true)
     $spot_form.hide()
     return
@@ -30,7 +29,7 @@ class spotFields
   destroyPhoto: (e)=>
     e.preventDefault()
     $target = $(e.target)
-    $photo_area = $target.closest(".photo-area")
+    $photo_area = $target.closest ".photo-area"
     $photo_area.find(".destroy-photo").val(true)
     $photo_area.hide()
 
@@ -52,7 +51,7 @@ class spotFields
     return
 
   resetPreview: ($field) =>
-    previews = $field.find(".preview")
+    previews = $field.find ".preview"
     for preview in previews
       $(preview).remove()
     return
