@@ -1,5 +1,5 @@
 = simple_form_for @profile, url: users_profile_path do |f|
-  .image_field
+  .image-field
     = f.input :image, as: :image_preview, input_html: { class: "images", preview_version: :thumb }
   = f.input :name
   = f.input :description
