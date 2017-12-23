@@ -6,11 +6,12 @@ RSpec.describe Spot, type: :model do
   end
 
   describe "association" do
+    it { is_expected.to have_many(:photos).inverse_of(:spot).dependent(:destroy) }
+    it { is_expected.to accept_nested_attributes_for(:photos).allow_destroy(true) }
     it { is_expected.to belong_to(:plan) }
   end
 
   describe "validation" do
-    it { is_expected.to validate_presence_of(:name) }
     it { is_expected.to validate_length_of(:name).is_at_most(50) }
     it { is_expected.to validate_length_of(:description).is_at_most(1000) }
   end
