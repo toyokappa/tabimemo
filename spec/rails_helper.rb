@@ -24,3 +24,10 @@ Shoulda::Matchers.configure do |config|
     with.library :rails
   end
 end
+
+def sign_in(user)
+  visit new_user_session_path
+  fill_in "user[login]", with: user.name
+  fill_in "user[password]", with: user.password
+  click_button I18n.t("users.sessions.new.title")
+end
