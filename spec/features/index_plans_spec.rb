@@ -2,8 +2,9 @@ require "rails_helper"
 
 feature "プラン一覧" do
   context "登録件数が10件の場合" do
+    given(:user) { create :user }
     before do
-      @plans = create_list(:plan, 10)
+      @plans = create_list(:plan, 10, user: user, status: 1)
       visit root_path
     end
 
@@ -14,8 +15,9 @@ feature "プラン一覧" do
   end
 
   context "登録件数が11件の場合" do
+    given(:user) { create :user }
     before do
-      @plan = create_list(:plan, 11)
+      @plan = create_list(:plan, 11, user: user, status: 1)
       visit root_path
     end
 
