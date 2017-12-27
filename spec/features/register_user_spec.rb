@@ -20,6 +20,7 @@ feature "ユーザーの登録" do
     scenario "登録に成功する" do
       expect(page).to have_content I18n.t("devise.registrations.signed_up")
       expect(current_path).to eq root_path
+      expect(page).to have_content I18n.t("menu.sign_out")
     end
   end
 

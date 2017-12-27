@@ -24,7 +24,7 @@ feature "プラン編集" do
       expect(page).to have_content I18n.t("flash.update_success")
       expect(current_path).to eq plan_path(plan)
       visit root_path
-      expect(page).to have_content plan_name
+      expect(page).to have_content plan_description
     end
   end
 
@@ -40,7 +40,7 @@ feature "プラン編集" do
       expect(page).to have_content I18n.t("flash.update_success")
       expect(current_path).to eq plan_path(plan)
       visit root_path
-      expect(page).not_to have_content plan_name
+      expect(page).not_to have_content plan_description
     end
   end
 

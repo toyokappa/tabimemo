@@ -17,7 +17,7 @@ feature "ユーザー認証" do
 
       scenario "ログインに成功する" do
         expect(page).to have_content I18n.t("devise.sessions.signed_in")
-        expect(page).to have_content I18n.t("menu.sign_in")
+        expect(page).to have_content I18n.t("menu.sign_out")
         expect(current_path).to eq root_path
       end
     end
@@ -29,7 +29,7 @@ feature "ユーザー認証" do
 
       scenario "ログインに成功する" do
         expect(page).to have_content I18n.t("devise.sessions.signed_in")
-        expect(page).to have_content I18n.t("menu.sign_in")
+        expect(page).to have_content I18n.t("menu.sign_out")
         expect(current_path).to eq root_path
       end
     end
