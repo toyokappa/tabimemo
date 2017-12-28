@@ -12,7 +12,7 @@ feature "ユーザーの登録" do
   end
 
   context "正しい値を入力した場合" do
-    given(:user_name) { Faker::Internet.user_name(1..15) }
+    given(:user_name) { Faker::Internet.user_name(1..15, %w(- _)) }
     given(:user_email) { Faker::Internet.unique.email }
     given(:user_password) { "password" }
     given(:user_password_confirmation) { "password" }
@@ -37,7 +37,7 @@ feature "ユーザーの登録" do
   end
 
   context "メールアドレスが不正な場合" do
-    given(:user_name) { Faker::Internet.user_name(1..15) }
+    given(:user_name) { Faker::Internet.user_name(1..15, %w(- _)) }
     given(:user_email) { nil }
     given(:user_password) { "password" }
     given(:user_password_confirmation) { "password" }
@@ -49,7 +49,7 @@ feature "ユーザーの登録" do
   end
 
   context "パスワードが不正な場合（未入力）" do
-    given(:user_name) { Faker::Internet.user_name(1..15) }
+    given(:user_name) { Faker::Internet.user_name(1..15, %w(- _)) }
     given(:user_email) { Faker::Internet.unique.email }
     given(:user_password) { nil }
     given(:user_password_confirmation) { nil }
@@ -61,7 +61,7 @@ feature "ユーザーの登録" do
   end
 
   context "パスワードが不正な場合（不一致）" do
-    given(:user_name) { Faker::Internet.user_name(1..15) }
+    given(:user_name) { Faker::Internet.user_name(1..15, %w(- _)) }
     given(:user_email) { Faker::Internet.unique.email }
     given(:user_password) { "foobar" }
     given(:user_password_confirmation) { "foobaz" }
