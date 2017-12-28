@@ -12,7 +12,7 @@ feature "ユーザー編集" do
     end
 
     context "正しい値を入力した場合" do
-      given(:name) { Faker::Internet.user_name(1..15) }
+      given(:name) { Faker::Internet.user_name(1..15, %w(- _)) }
       given(:email) { Faker::Internet.unique.email }
 
       scenario "更新に成功する" do
@@ -32,7 +32,7 @@ feature "ユーザー編集" do
     end
 
     context "メールアドレスが不正な場合" do
-      given(:name) { Faker::Internet.user_name(1..15) }
+      given(:name) { Faker::Internet.user_name(1..15, %w(- _)) }
       given(:email) { nil }
 
       scenario "更新に失敗する" do

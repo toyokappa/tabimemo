@@ -15,5 +15,6 @@ RSpec.describe User, type: :model do
     it { is_expected.to validate_length_of(:name).is_at_most(15) }
     it { is_expected.to validate_uniqueness_of(:name).case_insensitive }
     it { is_expected.to allow_value("toyokappa").for(:name) }
+    it { is_expected.not_to allow_value("toyo.kappa").for(:name)}
   end
 end
