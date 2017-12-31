@@ -67,6 +67,32 @@ ul {
   flex-wrap: wrap;
 }
 
+/*    header    */
+
+.dropdown {
+  .dropdown-image {
+    img {
+      width: 28px;
+      height: 28px;
+      border: solid 2px gray;
+      border-radius: 50%;
+    }
+  }
+  .dropdown-menu {
+    border-radius: 0;
+    padding: 0;
+    .dropdown-item {
+      border-bottom: solid 1px lightgray;
+      &:last-child {
+        border-bottom: none;
+      }
+      a {
+        padding: 15px 0 15px 15px;
+      }
+    }
+  }
+}
+
 /*    top page    */
 
 .page-top {
