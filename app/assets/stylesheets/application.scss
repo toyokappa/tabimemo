@@ -69,8 +69,19 @@ ul {
 
 /*    header    */
 
+.navbar {
+  min-height: 80px;
+  .navbar-brand {
+    padding: 30px 15px;
+  }
+  .nav > li > a {
+    padding: 30px 15px;
+  }
+}
+
 .dropdown {
   .dropdown-image {
+    padding: 26px 15px !important;
     img {
       width: 28px;
       height: 28px;
