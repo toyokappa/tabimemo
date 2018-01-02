@@ -2,9 +2,9 @@
   %h2= @plan.name
   %p= @plan.description
   - if @like.present?
-    = render "unlike"
+    .unlike= render "unlike"
   - else
-    = render "like"
+    .like= render "like"
   - if @plan.user == current_user
     = link_to t("link.edit"), edit_users_plan_path(@plan), class: "btn btn-success"
     = link_to t("link.delete"), users_plan_path(@plan), method: :delete, data: { confirm: t("view.delete_confirm") }, class: "btn btn-danger"
