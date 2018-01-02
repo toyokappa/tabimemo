@@ -1,3 +1,4 @@
-= link_to like_path(@plan), method: :delete do
-  = fa_icon "heart"
-  = Like.where(plan_id: @plan).count
+.unlike
+  = link_to like_path(@plan), method: :delete, remote: true do
+    = fa_icon "heart"
+    = Like.where(plan_id: @plan).count
