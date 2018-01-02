@@ -33,3 +33,35 @@
     }
   }
 }
+
+/*    show    */
+
+.unlike {
+  font-size: 18px;
+  a {
+    color: crimson;
+    &:hover {
+      color: crimson;
+      text-decoration: none;
+    }
+    &:active {
+      color: crimson;
+      text-decoration: none;
+    }
+  }
+}
+
+.like {
+  font-size: 18px;
+  a {
+    color: gray;
+    &:hover {
+      color: gray;
+      text-decoration: none;
+    }
+    &:active {
+      color: gray;
+      text-decoration: none;
+    }
+  }
+}

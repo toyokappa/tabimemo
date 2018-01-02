@@ -9,6 +9,7 @@ class User < ApplicationRecord
 
   has_one :profile, dependent: :destroy, foreign_key: "id"
   has_many :plans, dependent: :destroy
+  has_many :likes, dependent: :destroy
 
   VALID_NAME_REGEX = /\A[\w+\-]+\z/i
   validates :name, presence: true, length: { maximum: 15 }, uniqueness: { case_sensitive: false }, format: { with: VALID_NAME_REGEX }
