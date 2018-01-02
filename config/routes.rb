@@ -15,4 +15,5 @@ Rails.application.routes.draw do
   end
 
   resources :plans, only: [:show]
+  resources :likes, only: [:create, :destroy]
 end

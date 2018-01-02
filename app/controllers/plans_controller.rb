@@ -8,6 +8,7 @@ class PlansController < ApplicationController
   def show
     @plan = Plan.find(params[:id])
     @user = @plan.user
+    @like = Like.find_by(user_id: current_user, plan_id: @plan)
     redirect_to root_path unless @plan.published? || @user == current_user
   end
 end
