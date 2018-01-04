@@ -2,10 +2,16 @@
   %h2= @plan.name
   %p= @plan.description
   .like_field
-    - if @like.present?
-      = render "unlike"
+    - if user_signed_in?
+      - if @like.present?
+        = render "unlike"
+      - else
+        = render "like"
     - else
-      = render "like"
+      .like
+        = link_to like_path(@plan), method: :delete do
+          = fa_icon "heart-o"
+          = Like.where(plan_id: @plan).count
   - if @plan.user == current_user
     = link_to t("link.edit"), edit_users_plan_path(@plan), class: "btn btn-success"
     = link_to t("link.delete"), users_plan_path(@plan), method: :delete, data: { confirm: t("view.delete_confirm") }, class: "btn btn-danger"
