@@ -3,3 +3,5 @@ ja:
     register_success: 登録しました！
     update_success: 更新しました！
     delete_success: 削除しました！
+    comment_success: コメントしました。
+    comment_failed: コメントに失敗しました。
