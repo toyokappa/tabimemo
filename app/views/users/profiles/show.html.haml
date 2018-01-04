@@ -1,16 +1,29 @@
 .container
   %h2= Profile.model_name.human
-  - if @profile.present?
-    %p= image_tag @profile.image.present? ? @profile.image.thumb.url : "no_user_image.svg", size: "200x200"
-    %p= "#{Profile.human_attribute_name :name}: #{@profile.name}"
-    %p= "#{Profile.human_attribute_name :description}: #{@profile.description}"
-    %p= "#{Profile.human_attribute_name :location}: #{@profile.location}"
-    %p
-      = "#{Profile.human_attribute_name :url}: "
-      = link_to @profile.url, @profile.url
-    %p= "#{Profile.human_attribute_name :gender}: #{@profile.gender_text}"
-    %p= "#{Profile.human_attribute_name :birthday}: #{l(@profile.birthday, format: :long)}"
-    %p= link_to t("link.edit_profile"), edit_users_profile_path, class: "btn btn-primary" if @user == current_user
-  - else
-    %p= t("view.no_profile")
-    %p= link_to t("link.register_profile"), new_users_profile_path, class: "btn btn-primary" if @user == current_user
+  .row
+    .profile-area.col-sm-3
+      - if @profile.present?
+        %p= image_tag @profile.image.present? ? @profile.image.thumb.url : "no_user_image.svg", size: "200x200"
+        %p= "#{Profile.human_attribute_name :name}: #{@profile.name}"
+        %p= "#{Profile.human_attribute_name :description}: #{@profile.description}"
+        %p= "#{Profile.human_attribute_name :location}: #{@profile.location}"
+        %p
+          = "#{Profile.human_attribute_name :url}: "
+          = link_to @profile.url, @profile.url
+        %p= "#{Profile.human_attribute_name :gender}: #{@profile.gender_text}"
+        %p= "#{Profile.human_attribute_name :birthday}: #{l(@profile.birthday, format: :long)}"
+        %p= link_to t("link.edit_profile"), edit_users_profile_path, class: "btn btn-primary" if @user == current_user
+      - else
+        %p= t("view.no_profile")
+        %p= link_to t("link.register_profile"), new_users_profile_path, class: "btn btn-primary" if @user == current_user
+    .plan-index-area.col-sm-9
+      - if @plans.present?
+        .row.flex
+          - @plans.each do |plan|
+            .col-sm-4.plan-item
+              .plan-image
+                = link_to image_tag(plan.spots.first&.photos.present? ? plan.spots.first.photos.first.image.thumb.url : "no_plan_image.png"), plan
+              %h3.plan-name= link_to plan.name, plan
+              .plan-description= plan.description
+      - else
+        = t("view.no_plans")

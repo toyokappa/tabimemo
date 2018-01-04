@@ -5,6 +5,7 @@ class Users::ProfilesController < ApplicationController
   def show
     @user = User.find_by(name: params[:user_name])
     @profile = @user.profile
+    @plans = @user.plans.with_status(:published)
   end
 
   def new
