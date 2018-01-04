@@ -1,8 +1,8 @@
 .spot-form.jumbotron
   = f.hidden_field :id, class: "spot-field-id"
   = f.hidden_field :_destroy, class: "destroy-spot"
-  = f.input :name
-  = f.input :description, input_html: { rows: 5 }
+  = f.input :name, placeholder: t("form.maximum_length", length: 50), hint: t("form.spot_name_hint")
+  = f.input :description, input_html: { rows: 5 }, placeholder: t("form.maximum_length", length: 1000), hint: t("form.spot_description_hint")
   .form-group{ class: "#{'has-error' if f.object.errors.present?}" }
     = f.label :photos, Photo.model_name.human, class: "control-label"
     - photo_error_messages = []

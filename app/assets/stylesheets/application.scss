@@ -131,8 +131,15 @@ ul {
 
 form {
   .btn-success {
-   margin-bottom: 20px;
- }
+    margin-bottom: 20px;
+  }
+  .required-input {
+    color: white;
+    background-color: crimson;
+    padding: 3px 5px;
+    border-radius: 3px;
+    margin-left: 3px;
+  }
 }
 
 /*    image   */

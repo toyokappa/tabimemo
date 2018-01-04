@@ -10,3 +10,5 @@ ja:
     edit_profile: プロフィールを編集する
   view:
     no_profile: プロフィールが登録されていません。
+  form:
+    profile_name_hint: "他のユーザーに表示される名前です。未登録の場合、ユーザー名（%{user_name}）が表示されます。"

@@ -16,7 +16,8 @@ ja:
     edit: 編集
     delete: 削除
   form:
-    minimum_length: "%{minimum_length}文字以上で入力してください"
+    maximum_length: "%{length}文字以内で入力してください"
+    minimum_length: "%{length}文字以上で入力してください"
     select_item: "%{item}を選択"
   date:
     formats:
