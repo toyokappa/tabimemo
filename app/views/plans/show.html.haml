@@ -28,7 +28,6 @@
     %p= comment.content
     %p= link_to t("link.delete"), comment_path(comment), method: :delete, data: { confirm: t("view.delete_confirm") }
   = simple_form_for Comment.new do |f|
-    = f.hidden_field :user_id, value: current_user.id
     = f.hidden_field :plan_id, value: @plan.id
     = f.input :content, required: false
     = f.button :submit, class: "btn-primary"
