@@ -1,0 +1,23 @@
+.profile-area {
+  margin-top: 20px;
+  .profile-image {
+    margin-bottom: 15px;
+    img {
+      border-radius: 50%;
+    }
+  }
+  .profile-name {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0 0 15px;
+  }
+  .profile-description {
+    margin-bottom: 15px;
+  }
+  .profile-item {
+    margin-bottom: 15px;
+    i {
+      width: 18px;
+    }
+  }
+}
