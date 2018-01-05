@@ -10,6 +10,10 @@ class CommentsController < ApplicationController
   end
 
   def destroy
+    comment = Comment.find(params[:id])
+    plan = comment.plan
+    comment.destroy
+    redirect_to plan, notice: t("flash.delete_success")
   end
 
   private
