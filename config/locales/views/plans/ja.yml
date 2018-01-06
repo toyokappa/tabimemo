@@ -5,3 +5,7 @@ ja:
   link:
     register_plan: プランを登録する
     sign_up: まずはユーザー登録
+  view:
+    plan_user: "投稿者:"
+  form:
+    input_comment: コメントを入力してください

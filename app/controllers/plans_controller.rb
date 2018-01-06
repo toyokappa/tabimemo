@@ -9,6 +9,7 @@ class PlansController < ApplicationController
     @plan = Plan.find(params[:id])
     @user = @plan.user
     @like = Like.find_by(user_id: current_user, plan_id: @plan)
+    @comments = @plan.comments
     redirect_to root_path unless @plan.published? || @user == current_user
   end
 end

@@ -1,29 +1,46 @@
 .container
-  %h2= @plan.name
-  %p= @plan.description
-  .like_field
-    - if user_signed_in?
-      - if @like.present?
-        = render "unlike"
+  .plan-field
+    %h2= @plan.name
+    %p= @plan.description
+    .like_field
+      - if user_signed_in?
+        - if @like.present?
+          = render "unlike"
+        - else
+          = render "like"
       - else
-        = render "like"
-    - else
-      .like
-        = link_to like_path(@plan), method: :delete do
-          = fa_icon "heart-o"
-          = Like.where(plan_id: @plan).count
-  - if @plan.user == current_user
-    = link_to t("link.edit"), edit_users_plan_path(@plan), class: "btn btn-success"
-    = link_to t("link.delete"), users_plan_path(@plan), method: :delete, data: { confirm: t("view.delete_confirm") }, class: "btn btn-danger"
-  - @plan.spots.each do |spot|
-    .jumbotron
-      %h2= spot.name
-      - if spot.photos.any?
-        %ul.image-area
-          - spot.photos.each do |photo|
-            %li= image_tag photo.image.thumb.url
-      = spot.description
-  %p
-    投稿者:
-    = link_to @user.profile.present? ? @user.profile.name : @user.name, user_profile_path(@user.name)
-    = image_tag @user.profile&.image.present? ? @user.profile.image.mini_thumb.url : "no_user_image.svg", size: "50x50"
+        .like
+          = link_to like_path(@plan), method: :delete do
+            = fa_icon "heart-o"
+            = Like.where(plan_id: @plan).count
+    - if @plan.user == current_user
+      = link_to t("link.edit"), edit_users_plan_path(@plan), class: "btn btn-success"
+      = link_to t("link.delete"), users_plan_path(@plan), method: :delete, data: { confirm: t("view.delete_confirm") }, class: "btn btn-danger"
+    - @plan.spots.each do |spot|
+      .jumbotron
+        %h2= spot.name
+        - if spot.photos.any?
+          %ul.image-area
+            - spot.photos.each do |photo|
+              %li= image_tag photo.image.thumb.url
+        = spot.description
+    %p
+      = t("view.plan_user")
+      = link_to @user.profile.present? ? @user.profile.name : @user.name, user_profile_path(@user.name)
+      = image_tag @user.profile&.image.present? ? @user.profile.image.mini_thumb.url : "no_user_image.svg", size: "50x50"
+  .comment-field
+    - @comments.each do |comment|
+      .comment-item
+        .comment-header
+          = link_to user_profile_path(comment.user.name), class: "comment-user" do
+            = image_tag comment.user.profile&.image.present? ? comment.user.profile.image.thumb.url : "no_user_image.svg", size: "50x50"
+            = comment.user.profile.present? ? comment.user.profile.name : comment.user.name
+          .comment-at= comment.created_at.strftime("%Y-%m-%d %H:%M")
+        .comment-content= comment.content
+        -if current_user == comment.user
+          .comment-delete= link_to t("link.delete"), comment_path(comment), method: :delete, data: { confirm: t("view.delete_confirm") }
+    -if user_signed_in?
+      = simple_form_for Comment.new do |f|
+        = f.hidden_field :plan_id, value: @plan.id
+        = f.input :content, required: false, placeholder: t("form.input_comment"), input_html: { rows: 3 }
+        = f.button :submit, class: "btn-primary"
