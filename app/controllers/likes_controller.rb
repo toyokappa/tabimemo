@@ -1,7 +1,7 @@
 class LikesController < ApplicationController
   def create
     @plan = Plan.find(params[:plan_id])
-    Like.create(user_id: current_user.id, plan_id: @plan.id)
+    current_user.likes.create(plan_id: @plan.id)
     respond_to do |format|
       format.html { redirect_to @plan }
       format.js
@@ -10,7 +10,7 @@ class LikesController < ApplicationController
 
   def destroy
     @plan = Plan.find(params[:id])
-    Like.find_by(user_id: current_user, plan_id: @plan).destroy
+    current_user.likes.find_by(plan_id: @plan).destroy
     respond_to do |format|
       format.html { redirect_to @plan }
       format.js
