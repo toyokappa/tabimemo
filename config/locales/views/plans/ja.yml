@@ -9,3 +9,5 @@ ja:
     plan_user: "投稿者:"
   form:
     input_comment: コメントを入力してください
+    label_comment: コメントを投稿する
+    submit_comment: 投稿する

@@ -2,4 +2,4 @@ ja:
   activerecord:
     attributes:
       comment:
-        content: コメントを投稿する
+        content: コメント
