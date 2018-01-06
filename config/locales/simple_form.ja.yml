@@ -1,0 +1,4 @@
+ja:
+  simple_form:
+    required:
+      html: '<span class="required-input">必須</span>'

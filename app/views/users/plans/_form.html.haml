@@ -1,6 +1,6 @@
 = simple_form_for @plan, url: url do |f|
-  = f.input :name
-  = f.input :description, input_html: { rows:5 }
+  = f.input :name, placeholder: t("form.maximum_length", length: 50), hint: t("form.plan_name_hint")
+  = f.input :description, input_html: { rows: 5 }, placeholder: t("form.maximum_length", length: 1000), hint: t("form.plan_description_hint")
   %h2= t("form.register_spot")
   .spot-container
     .spot-field
