@@ -36,32 +36,90 @@
 
 /*    show    */
 
-.unlike {
-  font-size: 18px;
-  a {
-    color: crimson;
-    &:hover {
+.plan-field {
+  padding-bottom: 30px;
+  border-bottom: solid 1px lightgray;
+  margin-bottom: 30px;
+  .unlike {
+    font-size: 18px;
+    a {
       color: crimson;
-      text-decoration: none;
+      &:hover {
+        color: crimson;
+        text-decoration: none;
+      }
+      &:active {
+        color: crimson;
+        text-decoration: none;
+      }
     }
-    &:active {
-      color: crimson;
-      text-decoration: none;
+  }
+  .like {
+    font-size: 18px;
+    a {
+      color: gray;
+      &:hover {
+        color: gray;
+        text-decoration: none;
+      }
+      &:active {
+        color: gray;
+        text-decoration: none;
+      }
     }
   }
 }
 
-.like {
-  font-size: 18px;
-  a {
+.comment-item {
+  margin-bottom: 20px;
+  .comment-user {
+    float: left;
+    display: block;
+    margin-bottom: 10px;
+    img {
+      width: 50px;
+      height: auto;
+      border-radius: 50%;
+      margin-right: 5px;
+    }
+  }
+  .comment-at {
+    float: right;
     color: gray;
-    &:hover {
-      color: gray;
-      text-decoration: none;
+    line-height: 20px;
+    position: relative;
+    top: 30px;
+  }
+  .comment-content {
+    clear: both;
+    position: relative;
+    color: gray;
+    border: solid 1px gray;
+    border-radius: 3px;
+    padding: 20px;
+    margin-bottom: 5px;
+    &:before {
+      content: "";
+      position: absolute;
+      top: -10px;
+      left: 12px;
+      border-left: solid 10px transparent;
+      border-right: solid 10px transparent;
+      border-bottom: solid 10px gray;
+      z-index: 1;
     }
-    &:active {
-      color: gray;
-      text-decoration: none;
+    &:after {
+      content: "";
+      position: absolute;
+      top: -8px;
+      left: 12px;
+      border-left: solid 10px transparent;
+      border-right: solid 10px transparent;
+      border-bottom: solid 10px white;
+      z-index: 2;
     }
+  }
+  .comment-delete {
+    text-align: right;
   }
 }
