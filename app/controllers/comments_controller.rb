@@ -1,10 +1,17 @@
 class CommentsController < ApplicationController
   def create
-    comment = current_user.comments.build(comment_params)
-    if comment.save
-      redirect_to comment.plan, notice: t("flash.comment_success")
+    @comment = current_user.comments.build(comment_params)
+
+    # エラー時のレンダリング用
+    @plan = @comment.plan
+    @user = @plan.user
+    @like = current_user.likes.find_by(plan_id: @plan)
+    @comments = @plan.comments
+
+    if @comment.save
+      redirect_to @plan, notice: t("flash.comment_success")
     else
-      redirect_to comment.plan, alert: t("flash.comment_failed")
+      render "plans/show"
     end
   end
 

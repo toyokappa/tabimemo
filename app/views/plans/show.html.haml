@@ -5,9 +5,9 @@
     .like_field
       - if user_signed_in?
         - if @like.present?
-          = render "unlike"
+          = render "plans/unlike"
         - else
-          = render "like"
+          = render "plans/like"
       - else
         .like
           = link_to like_path(@plan), method: :delete do
@@ -40,7 +40,7 @@
         -if current_user == comment.user
           .comment-delete= link_to t("link.delete"), comment_path(comment), method: :delete, data: { confirm: t("view.delete_confirm") }
     -if user_signed_in?
-      = simple_form_for Comment.new do |f|
+      = simple_form_for @comment do |f|
         = f.hidden_field :plan_id, value: @plan.id
-        = f.input :content, required: false, placeholder: t("form.input_comment"), input_html: { rows: 3 }
-        = f.button :submit, class: "btn-primary"
+        = f.input :content, required: false, placeholder: t("form.input_comment"), input_html: { rows: 3 }, label: t("form.label_comment")
+        = f.button :submit, value: t("form.submit_comment"), class: "btn-primary"
