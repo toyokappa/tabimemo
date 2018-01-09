@@ -1,3 +1,8 @@
+=begin
+  require 'net/http'
+  require 'uri'
+  require 'json'
+=end
 class Users::PlansController < ApplicationController
   before_action :set_plan, only: [:edit, :update, :destroy]
   before_action :is_current_user?, only: [:edit, :update, :destroy]
@@ -44,6 +49,22 @@ class Users::PlansController < ApplicationController
     plan = Plan.find(params[:plan_id])
     @spot = plan.spots.create
     render json: @spot.id
+  end
+
+  def suggest_spot
+    url = "https://maps.googleapis.com/maps/api/place/autocomplete/json?"
+    key = "AIzaSyDBlYdxJipM-Gablze4G84BoPagcYp4k-8"
+    input = params[:input]
+    params = URI.encode_www_form({ input: input, key: key })
+    uri = URI.parse "#{url}#{params}"
+
+    request = Net::HTTP::Get.new(uri.request_uri)
+    response = Net::HTTP.start(uri.host, uri.port, use_ssl: uri.scheme == "https") do |http|
+      http.request(request)
+    end
+
+    body = JSON.parse response.body
+    render json: body
   end
 
   private

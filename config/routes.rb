@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     put "/password", to: "passowrds#update"
     patch "/password", to: "passwords#update"
     get "/create_spot", to: "plans#create_spot"
+    get "/suggest_spot", to: "plans#suggest_spot"
   end
 
   resources :users, param: :name, path: "/", only: [] do
