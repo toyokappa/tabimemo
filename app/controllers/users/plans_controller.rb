@@ -1,8 +1,3 @@
-=begin
-  require 'net/http'
-  require 'uri'
-  require 'json'
-=end
 class Users::PlansController < ApplicationController
   before_action :set_plan, only: [:edit, :update, :destroy]
   before_action :is_current_user?, only: [:edit, :update, :destroy]
