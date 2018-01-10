@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     patch "/password", to: "passwords#update"
     get "/create_spot", to: "plans#create_spot"
     get "/suggest_spot", to: "plans#suggest_spot"
+    get "/set_geometry", to: "plans#set_geometry"
   end
 
   resources :users, param: :name, path: "/", only: [] do
