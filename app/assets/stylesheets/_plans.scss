@@ -34,6 +34,30 @@
   }
 }
 
+.ui-menu {
+  li {
+    display: block;
+    border-bottom: solid 1px lightgray;
+    &:last-child {
+      border: none;
+    }
+    a {
+      display: block;
+      &:hover {
+        text-decoration: none;
+      }
+      .place-title {
+        padding: 5px;
+        font-weight: bold;
+      }
+      .place-description {
+        padding: 0 5px 5px;
+        font-size: 11px;
+      }
+    }
+  }
+}
+
 /*    show    */
 
 .plan-field {

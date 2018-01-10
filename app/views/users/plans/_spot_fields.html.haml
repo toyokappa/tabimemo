@@ -4,7 +4,7 @@
   = f.hidden_field :latitude, class: "spot-latitude"
   = f.hidden_field :longitude, class: "spot-longitude"
   = hidden_field_tag :place_id, "a", class: "place-id"
-  = f.input :name, placeholder: t("form.maximum_length", length: 50), hint: t("form.spot_name_hint"), input_html: { class: "spot-name" }
+  = f.input :name, placeholder: t("form.maximum_length", length: 50), hint: t("form.spot_name_hint"), input_html: { class: "spot-name", autocomplete: "nope" }
   = f.input :description, input_html: { rows: 5 }, placeholder: t("form.maximum_length", length: 1000), hint: t("form.spot_description_hint")
   .form-group{ class: "#{'has-error' if f.object.errors.present?}" }
     = f.label :photos, Photo.model_name.human, class: "control-label"
