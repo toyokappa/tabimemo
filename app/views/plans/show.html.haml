@@ -17,10 +17,17 @@
       = link_to t("link.edit"), edit_users_plan_path(@plan), class: "btn btn-success"
       = link_to t("link.delete"), users_plan_path(@plan), method: :delete, data: { confirm: t("view.delete_confirm") }, class: "btn btn-danger"
     .spot-field
-      - @plan.spots.each do |spot|
+      - @plan.spots.each_with_index do |spot, i|
         .jumbotron
-          = hidden_field_tag :latitude, spot.latitude, class: "spot-latitude"
-          = hidden_field_tag :longitude, spot.longitude, class: "spot-longitude"
+          - if i == 0
+            = hidden_field_tag :latitude, spot.latitude, class: "first-spot-latitude"
+            = hidden_field_tag :longitude, spot.longitude, class: "first-spot-longitude"
+          - elsif i == @plan.spots.length - 1
+            = hidden_field_tag :latitude, spot.latitude, class: "last-spot-latitude"
+            = hidden_field_tag :longitude, spot.longitude, class: "last-spot-longitude"
+          - else
+            = hidden_field_tag :latitude, spot.latitude, class: "spot-latitude"
+            = hidden_field_tag :longitude, spot.longitude, class: "spot-longitude"
           %h2= spot.name
           - if spot.photos.any?
             %ul.image-area

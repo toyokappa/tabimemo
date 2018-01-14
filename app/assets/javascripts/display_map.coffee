@@ -14,19 +14,21 @@ class displayMap
   setDirection: (map)=>
     directionsService = new google.maps.DirectionsService()
     directionsRenderer = new google.maps.DirectionsRenderer()
-    ini_lats = @$root.find(".spot-latitude")
-    ini_lngs = @$root.find(".spot-longitude")
-    latitudes = _.map ini_lats, (lat)=> lat.value
-    longitudes = _.map ini_lngs, (lng)=> lng.value
+    origin = new google.maps.LatLng(@$root.find(".first-spot-latitude").val(), @$root.find(".first-spot-longitude").val())
+    destination = new google.maps.LatLng(@$root.find(".last-spot-latitude").val(), @$root.find(".last-spot-longitude").val())
+    latitudes = _.map @$root.find(".spot-latitude"), (lat)=> lat.value
+    longitudes = _.map @$root.find(".spot-longitude"), (lng)=> lng.value
     iteration = _.range latitudes.length
-    points = _.map iteration, (i)=> new google.maps.LatLng(latitudes[i], longitudes[i])
+    waypoints = _.map iteration, (i)=> { location: "#{latitudes[i]}, #{longitudes[i]}" }
     request =
-      origin: _.head points
-      destination: _.last points
+      origin: origin
+      destination: destination
       travelMode: "WALKING"
+      waypoints: waypoints
     directionsService.route request, (result, status)->
-      directionsRenderer.setDirections(result)
-      directionsRenderer.setMap(map)
+      if status == "OK"
+        directionsRenderer.setDirections(result)
+        directionsRenderer.setMap(map)
     return
 
 $(document).on "turbolinks:load", ->
