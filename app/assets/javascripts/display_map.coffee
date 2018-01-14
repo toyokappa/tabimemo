@@ -19,7 +19,10 @@ class displayMap
     latitudes = _.map @$root.find(".spot-latitude"), (lat)=> lat.value
     longitudes = _.map @$root.find(".spot-longitude"), (lng)=> lng.value
     iteration = _.range latitudes.length
-    waypoints = _.map iteration, (i)=> { location: "#{latitudes[i]}, #{longitudes[i]}" }
+    waypoints = _.compact(
+      _.map iteration, (i)=> { location: "#{latitudes[i]}, #{longitudes[i]}" } unless latitudes[i] == ""
+    )
+    console.log waypoints
     request =
       origin: origin
       destination: destination
@@ -32,4 +35,4 @@ class displayMap
     return
 
 $(document).on "turbolinks:load", ->
-  new displayMap $(".spot-field")
+  new displayMap $(".spot-field") unless $(".spot-field").val() is undefined

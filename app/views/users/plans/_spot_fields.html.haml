@@ -1,8 +1,15 @@
 .spot-form.jumbotron
   = f.hidden_field :id, class: "spot-field-id"
   = f.hidden_field :_destroy, class: "destroy-spot"
-  = f.hidden_field :latitude, class: "spot-latitude"
-  = f.hidden_field :longitude, class: "spot-longitude"
+  - if f.index == 0
+    = f.hidden_field :latitude, class: "first-spot-latitude"
+    = f.hidden_field :longitude, class: "first-spot-longitude"
+  - elsif f.index == @plan.spots.length - 1
+    = f.hidden_field :latitude, class: "last-spot-latitude"
+    = f.hidden_field :longitude, class: "last-spot-longitude"
+  - else
+    = f.hidden_field :latitude, class: "spot-latitude"
+    = f.hidden_field :longitude, class: "spot-longitude"
   = hidden_field_tag :place_id, "", class: "place-id"
   = f.input :name, placeholder: t("form.maximum_length", length: 50), hint: t("form.spot_name_hint"), input_html: { class: "spot-name", autocomplete: "nope" }
   = f.input :description, input_html: { rows: 5 }, placeholder: t("form.maximum_length", length: 1000), hint: t("form.spot_description_hint")
