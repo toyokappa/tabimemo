@@ -14,15 +14,15 @@ class displayMap
   setDirection: (map)=>
     directionsService = new google.maps.DirectionsService()
     directionsRenderer = new google.maps.DirectionsRenderer()
-    origin = new google.maps.LatLng(@$root.find(".first-spot-latitude").val(), @$root.find(".first-spot-longitude").val())
-    destination = new google.maps.LatLng(@$root.find(".last-spot-latitude").val(), @$root.find(".last-spot-longitude").val())
     latitudes = _.map @$root.find(".spot-latitude"), (lat)=> lat.value
     longitudes = _.map @$root.find(".spot-longitude"), (lng)=> lng.value
     iteration = _.range latitudes.length
-    waypoints = _.compact(
-      _.map iteration, (i)=> { location: "#{latitudes[i]}, #{longitudes[i]}" } unless latitudes[i] == ""
+    points = _.compact(
+      _.map iteration, (i)=> "#{latitudes[i]}, #{longitudes[i]}" unless latitudes[i] == ""
     )
-    console.log waypoints
+    origin = points.shift()
+    destination = points.pop()
+    waypoints = _.map points, (point)=> {location: point}
     request =
       origin: origin
       destination: destination

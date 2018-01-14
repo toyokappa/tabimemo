@@ -19,15 +19,8 @@
     .spot-field
       - @plan.spots.each_with_index do |spot, i|
         .jumbotron
-          - if i == 0
-            = hidden_field_tag :latitude, spot.latitude, class: "first-spot-latitude"
-            = hidden_field_tag :longitude, spot.longitude, class: "first-spot-longitude"
-          - elsif i == @plan.spots.length - 1
-            = hidden_field_tag :latitude, spot.latitude, class: "last-spot-latitude"
-            = hidden_field_tag :longitude, spot.longitude, class: "last-spot-longitude"
-          - else
-            = hidden_field_tag :latitude, spot.latitude, class: "spot-latitude"
-            = hidden_field_tag :longitude, spot.longitude, class: "spot-longitude"
+          = hidden_field_tag :latitude, spot.latitude, class: "spot-latitude"
+          = hidden_field_tag :longitude, spot.longitude, class: "spot-longitude"
           %h2= spot.name
           - if spot.photos.any?
             %ul.image-area
