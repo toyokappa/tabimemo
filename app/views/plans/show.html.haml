@@ -27,7 +27,9 @@
               - spot.photos.each do |photo|
                 %li= image_tag photo.image.thumb.url
           = spot.description
-      .map
+      - lat_length = @plan.spots.map { |spot| spot.latitude }.compact.length
+      - if lat_length > 1
+        .map
     %p
       = t("view.plan_user")
       = link_to @user.profile.present? ? @user.profile.name : @user.name, user_profile_path(@user.name)
