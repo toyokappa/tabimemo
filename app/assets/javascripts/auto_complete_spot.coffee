@@ -49,9 +49,8 @@ class autoCompleteSpot
       dataType: "json"
       success: (data)=>
         location = data.result.geometry.location
-        console.log location
         $latitude.val location.lat
-        $longitude.val location.lng
+        $longitude.val(location.lng).change()
     return
 
   bind: =>

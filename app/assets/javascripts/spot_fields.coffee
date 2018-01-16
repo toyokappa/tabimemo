@@ -6,13 +6,13 @@ class spotFields
     e.preventDefault()
     $target = $(e.target)
     data = $target.data()
-    $map = @$root.find ".map"
+    $spot_button = @$root.find ".create-spot-btn"
     $.get(
       "/users/create_spot"
       plan_id: data.planId
       (res) =>
         regexp = new RegExp data.id, "g"
-        $map.before data.fields.replace(regexp, res)
+        $spot_button.before data.fields.replace(regexp, res)
         @$root.find(".spot-field-id").last().val(res)
       "json"
     )
@@ -23,6 +23,8 @@ class spotFields
     $target = $(e.target)
     $spot_form = $target.closest ".spot-form"
     $spot_form.find(".destroy-spot").val(true)
+    $spot_form.find(".spot-latitude").val("")
+    $spot_form.find(".spot-longitude").val("").change()
     $spot_form.hide()
     return
 

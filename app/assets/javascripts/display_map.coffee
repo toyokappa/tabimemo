@@ -1,6 +1,7 @@
 class displayMap
   constructor: (@$root)->
     @initMap()
+    @bind()
 
   initMap: =>
     map = new google.maps.Map @$root.find(".map")[0],
@@ -8,10 +9,7 @@ class displayMap
         lat: 36.489471
         lng: 139.000448
       zoom: 6
-    @setDirection(map)
-    return
 
-  setDirection: (map)=>
     directionsService = new google.maps.DirectionsService()
     directionsRenderer = new google.maps.DirectionsRenderer()
     latitudes = _.map @$root.find(".spot-latitude"), (lat)=> lat.value
@@ -23,15 +21,23 @@ class displayMap
     origin = points.shift()
     destination = points.pop()
     waypoints = _.map points, (point)=> {location: point}
+
     request =
       origin: origin
       destination: destination
       travelMode: "WALKING"
       waypoints: waypoints
+
     directionsService.route request, (result, status)->
       if status == "OK"
         directionsRenderer.setDirections(result)
         directionsRenderer.setMap(map)
+      else
+        console.log status
+    return
+
+  bind: =>
+    @$root.on "change", ".spot-longitude", @initMap
     return
 
 $(document).on "turbolinks:load", ->
