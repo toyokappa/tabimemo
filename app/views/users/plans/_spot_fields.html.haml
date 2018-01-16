@@ -22,4 +22,5 @@
     = f.file_field :photos, multiple: true, class: "preview-photo"
     - photo_error_messages.each do |msg|
       .help-block= msg
+  .preview-maps
   = link_to t("form.destroy_spot"), "javascript:void(0);", class: "btn btn-danger destroy-spot-btn"
