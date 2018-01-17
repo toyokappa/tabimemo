@@ -3,7 +3,7 @@
   = f.hidden_field :_destroy, class: "destroy-spot"
   = f.hidden_field :latitude, class: "spot-latitude"
   = f.hidden_field :longitude, class: "spot-longitude"
-  = hidden_field_tag :place_id, "a", class: "place-id"
+  = hidden_field_tag :place_id, "", class: "place-id"
   = f.input :name, placeholder: t("form.maximum_length", length: 50), hint: t("form.spot_name_hint"), input_html: { class: "spot-name", autocomplete: "nope" }
   = f.input :description, input_html: { rows: 5 }, placeholder: t("form.maximum_length", length: 1000), hint: t("form.spot_description_hint")
   .form-group{ class: "#{'has-error' if f.object.errors.present?}" }
@@ -22,4 +22,7 @@
     = f.file_field :photos, multiple: true, class: "preview-photo"
     - photo_error_messages.each do |msg|
       .help-block= msg
+  - if f.object.latitude.blank?
+    .text-danger.preview-maps-rule= t("form.preview_maps_rule")
+  .preview-maps
   = link_to t("form.destroy_spot"), "javascript:void(0);", class: "btn btn-danger destroy-spot-btn"

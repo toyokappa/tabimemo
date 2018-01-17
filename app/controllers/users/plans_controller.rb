@@ -62,22 +62,6 @@ class Users::PlansController < ApplicationController
     render json: body
   end
 
-  def set_geometry
-    url = "https://maps.googleapis.com/maps/api/place/details/json?"
-    key = "AIzaSyDBlYdxJipM-Gablze4G84BoPagcYp4k-8"
-    place_id = params[:place_id]
-    params = URI.encode_www_form({ key: key, place_id: place_id })
-    uri = URI.parse "#{url}#{params}"
-
-    request = Net::HTTP::Get.new(uri.request_uri)
-    response = Net::HTTP.start(uri.host, uri.port, use_ssl: uri.scheme == "https") do |http|
-      http.request(request)
-    end
-
-    body = JSON.parse response.body
-    render json: body
-  end
-
   private
 
     def new_plan_params

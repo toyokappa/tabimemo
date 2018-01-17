@@ -1,6 +1,15 @@
 class autoCompleteSpot
   constructor: (@$root)->
+    @initMap()
     @bind()
+
+  initMap: =>
+    @map = new google.maps.Map @$root.find(".map")[0],
+      center:
+        lat: 36.489471
+        lng: 139.000448
+      zoom: 6
+    return
 
   suggestSpot: (e)=>
     $target = $(e.target)
@@ -37,21 +46,18 @@ class autoCompleteSpot
 
   setGeometry: (e)=>
     $target = $(e.target)
-    place_id = $target.val()
+    request = { placeId: $target.val() }
     $spot_form = $target.closest(".spot-form")
     $latitude = $spot_form.find(".spot-latitude")
     $longitude = $spot_form.find(".spot-longitude")
-    $.ajax
-      url: "/users/set_geometry"
-      type: "GET"
-      data:
-        place_id: place_id
-      dataType: "json"
-      success: (data)=>
-        location = data.result.geometry.location
-        console.log location
-        $latitude.val location.lat
-        $longitude.val location.lng
+    service = new google.maps.places.PlacesService(@map)
+    service.getDetails request, (place, status)=>
+      if status == "OK"
+        location = place.geometry.location
+        $latitude.val location.lat()
+        $longitude.val(location.lng()).change()
+      else
+        console.log status
     return
 
   bind: =>
@@ -59,4 +65,4 @@ class autoCompleteSpot
     @$root.on "change", ".place-id", @setGeometry
 
 $(document).on "turbolinks:load", ->
-  new autoCompleteSpot $(".spot-container")
+  new autoCompleteSpot $(".spot-container") unless $(".spot-container").val() is undefined
