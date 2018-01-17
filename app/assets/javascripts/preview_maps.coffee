@@ -29,6 +29,7 @@ class PreviewMaps
   changeMarker: (e)=>
     unless e.target.value == ""
       $target = $(e.target)
+      $target.parent().find(".preview-maps-rule").hide()
       lat = parseFloat $target.parent().find(".spot-latitude").val()
       lng = parseFloat $target.val()
       $preview = $target.parent().find(".preview-maps")

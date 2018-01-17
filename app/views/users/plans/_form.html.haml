@@ -7,7 +7,7 @@
       = f.simple_fields_for :spots do |spot|
         = render "spot_fields", f: spot
       = link_to t("form.create_spot"), "javascript:void(0);", class: "btn btn-success create-spot-btn", data: new_spot_field(f)
-      .text-danger.map-rule ※ルートマップ機能を使用するには2つ以上のスポットの設定が必要です(投稿後もマップは表示されません)
+      .text-danger.map-rule= t("form.map_rule")
       .map
   = f.button :submit, t("form.published"), class: "btn-primary"
   = f.button :submit, t("form.draft"), class: "btn-primary", name: :draft
