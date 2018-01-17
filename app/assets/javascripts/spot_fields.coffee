@@ -6,14 +6,18 @@ class spotFields
     e.preventDefault()
     $target = $(e.target)
     data = $target.data()
-    $spot_button = @$root.find ".create-spot-btn"
     $.get(
       "/users/create_spot"
       plan_id: data.planId
       (res) =>
         regexp = new RegExp data.id, "g"
-        $spot_button.before data.fields.replace(regexp, res)
+        $target.before data.fields.replace(regexp, res)
         @$root.find(".spot-field-id").last().val(res)
+        new google.maps.Map @$root.find(".preview-maps").last()[0],
+          center:
+            lat: 36.489471
+            lng: 139.000448
+          zoom: 6
       "json"
     )
     return
