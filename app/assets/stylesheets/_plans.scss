@@ -24,12 +24,22 @@
 
 .spot-container {
   .photo-field {
-    .photo, .preview {
-      margin-bottom: 20px;
-      img {
+    margin-bottom: 20px;
+    .photo-area {
+      position: relative;
+      .preview-photos {
         width: 100%;
         height: auto;
       }
+      .destroy-photo-btn {
+        position: absolute;
+        top: 5px;
+        right: 20px;
+      }
+    }
+    .add-photos {
+      width: 100%;
+      height: auto;
     }
   }
 }
