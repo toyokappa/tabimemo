@@ -40,8 +40,7 @@ class spotFields
     $photo_area.hide()
 
   openFileField: (e)=>
-    $photo_field = $(e.target).closest ".photo-field"
-    $photo_field.find(".spot-photos").click()
+    $(e.target).closest(".photo-field").find(".spot-photos").click()
     return
 
   createPhotos: (e)=>
@@ -65,7 +64,7 @@ class spotFields
       _.forEach photos, (photo)=>
         $fragment = $(document.createDocumentFragment())
         $fragment.append data.fields.replace(regexp, photo.id)
-        $fragment.find(".photo-id").val(photo.id)
+        $fragment.find(".photo-id").val photo.id
         $fragment.find(".preview-photo").attr("src", photo.image.thumb.url)
         $photo_input.before $fragment
 
