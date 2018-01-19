@@ -1,0 +1,5 @@
+.col-sm-4.photo-area
+  = f.hidden_field :id
+  = f.hidden_field :_destroy, class: "photo-destroy"
+  = image_tag f.object.image.present? ? f.object.image.thumb.url : "", class: "preview-photos"
+  = fa_stacked_icon "times-circle 2x",base: "circle inverse 2x", class: "destroy-photo-btn"

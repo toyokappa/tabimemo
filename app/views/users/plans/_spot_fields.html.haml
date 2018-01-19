@@ -8,14 +8,10 @@
   = f.input :description, input_html: { rows: 5 }, placeholder: t("form.maximum_length", length: 1000), hint: t("form.spot_description_hint")
   .row.flex.photo-field
     = f.simple_fields_for :photos do |photo_f|
-      .col-sm-4.photo-area
-        = photo_f.hidden_field :id
-        = photo_f.hidden_field :_destroy, class: "photo-destroy"
-        = image_tag photo_f.object.image.url, class: "preview-photos"
-        = fa_stacked_icon "times-circle 2x",base: "circle inverse 2x", class: "destroy-photo-btn"
+      = render "photo_fields", f: photo_f
     .col-sm-4
       = file_field :photo, :image, multiple: true, class: "spot-photos", style: "display: none"
-      = image_tag "add_photos.png", class: "add-photos"
+      = image_tag "add_photos.png", class: "add-photos", data: new_photo_field(f)
   - if f.object.latitude.blank?
     .text-danger.preview-maps-rule= t("form.preview_maps_rule")
   .preview-maps
