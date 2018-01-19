@@ -37,6 +37,26 @@
         right: 20px;
       }
     }
+    .photo-loading {
+      display: none;
+      margin-bottom: 20px;
+      .loading-wrap {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        background-color: #b9b9b9;
+        .loading-icon {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          margin: auto;
+          width: 50px;
+          height: 50px;
+        }
+      }
+    }
     .photo-input {
       margin-bottom: 20px;
       .add-photos {

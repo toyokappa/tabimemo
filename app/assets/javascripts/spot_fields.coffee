@@ -46,11 +46,12 @@ class spotFields
   createPhotos: (e)=>
     $target = $(e.target)
     $spot_form = $target.closest ".spot-form"
-    $photo_input = $spot_form.find ".photo-input"
+    $photo_loading = $spot_form.find ".photo-loading"
     formData = new FormData()
     data = $target.data()
-    _.forEach $target.prop("files"), (file)=> formData.append("photo[images][]", file)
     formData.append("spot_id", $spot_form.find(".spot-field-id").val())
+    _.forEach $target.prop("files"), (file)=> formData.append("photo[images][]", file)
+    $photo_loading.show()
     $.ajax(
       type: "POST"
       url: "/users/photos"
@@ -59,14 +60,16 @@ class spotFields
       contentType: false
       dataType: "json"
     )
-    .then (photos)=>
+    .done (photos)=>
       regexp = new RegExp data.id, "g"
       _.forEach photos, (photo)=>
         $fragment = $(document.createDocumentFragment())
         $fragment.append data.fields.replace(regexp, photo.id)
         $fragment.find(".photo-id").val photo.id
         $fragment.find(".preview-photo").attr("src", photo.image.thumb.url)
-        $photo_input.before $fragment
+        $photo_loading.before $fragment
+    .always (res)=>
+      $photo_loading.hide()
 
   bind: =>
     @$root.on "click", ".create-spot-btn", @createSpotField

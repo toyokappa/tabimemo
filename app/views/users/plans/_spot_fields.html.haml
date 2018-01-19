@@ -9,6 +9,9 @@
   .row.flex.photo-field
     = f.simple_fields_for :photos do |photo_f|
       = render "photo_fields", f: photo_f
+    .col-sm-4.photo-loading
+      .loading-wrap
+        = image_tag "oval.svg", class: "loading-icon"
     .col-sm-4.photo-input
       = file_field :photo, :image, multiple: true, class: "spot-photos", style: "display: none", data: new_photo_field(f)
       = image_tag "add_photos.png", class: "add-photos"
