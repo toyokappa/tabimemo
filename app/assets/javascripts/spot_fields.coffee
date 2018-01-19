@@ -44,11 +44,37 @@ class spotFields
     $photo_field.find(".spot-photos").click()
     return
 
+  createPhotos: (e)=>
+    $target = $(e.target)
+    $spot_form = $target.closest ".spot-form"
+    $photo_input = $spot_form.find ".photo-input"
+    formData = new FormData()
+    data = $target.data()
+    _.forEach $target.prop("files"), (file)=> formData.append("photo[images][]", file)
+    formData.append("spot_id", $spot_form.find(".spot-field-id").val())
+    $.ajax(
+      type: "POST"
+      url: "/users/photos"
+      data: formData
+      processData: false
+      contentType: false
+      dataType: "json"
+    )
+    .then (photos)=>
+      regexp = new RegExp data.id, "g"
+      _.forEach photos, (photo)=>
+        $fragment = $(document.createDocumentFragment())
+        $fragment.append data.fields.replace(regexp, photo.id)
+        $fragment.find(".photo-id").val(photo.id)
+        $fragment.find(".preview-photo").attr("src", photo.image.thumb.url)
+        $photo_input.before $fragment
+
   bind: =>
     @$root.on "click", ".create-spot-btn", @createSpotField
           .on "click", ".destroy-spot-btn", @destroySpotField
           .on "click", ".destroy-photo-btn", @destroyPhoto
           .on "click", ".add-photos", @openFileField
+          .on "change", ".spot-photos", @createPhotos
     return
 
 $(document).on "turbolinks:load", ->
