@@ -47,29 +47,46 @@ class spotFields
     $target = $(e.target)
     $spot_form = $target.closest ".spot-form"
     $photo_loading = $spot_form.find ".photo-loading"
-    formData = new FormData()
     data = $target.data()
-    formData.append("spot_id", $spot_form.find(".spot-field-id").val())
-    _.forEach $target.prop("files"), (file)=> formData.append("photo[images][]", file)
+    formData = new FormData()
+    deferred_list = []
+    error_messages = []
     $photo_loading.show()
-    $.ajax(
-      type: "POST"
-      url: "/users/photos"
-      data: formData
-      processData: false
-      contentType: false
-      dataType: "json"
-    )
-    .done (photos)=>
-      regexp = new RegExp data.id, "g"
-      _.forEach photos, (photo)=>
-        $fragment = $(document.createDocumentFragment())
-        $fragment.append data.fields.replace(regexp, photo.id)
-        $fragment.find(".photo-id").val photo.id
-        $fragment.find(".preview-photo").attr("src", photo.image.thumb.url)
-        $photo_loading.before $fragment
-    .always (res)=>
+    formData.append("spot_id", $spot_form.find(".spot-field-id").val())
+    _.forEach $target.prop("files"), (file)=>
+      formData.append("photo[image]", file)
+      $ajax = @deferAjax(
+        type: "POST"
+        url: "/users/photos"
+        data: formData
+        processData: false
+        contentType: false
+        dataType: "json"
+      )
+      .done (res, status)=>
+        if status is "success"
+          regexp = new RegExp data.id, "g"
+          $fragment = $(document.createDocumentFragment())
+          $fragment.append data.fields.replace(regexp, res.id)
+          $fragment.find(".photo-id").val res.id
+          $fragment.find(".preview-photo").attr("src", res.image.thumb.url)
+          $photo_loading.before $fragment
+        else
+          error_messages.push res.responseJSON[0]
+      deferred_list.push $ajax
+    $.when.apply(null, deferred_list).done ()=>
       $photo_loading.hide()
+      if error_messages.length > 0
+        console.log _.countBy error_messages
+
+  deferAjax: (opt)=>
+    $ajax = $.ajax(opt)
+    $defer = new $.Deferred()
+    $ajax.done (data, status, $ajax)=>
+      $defer.resolveWith this, arguments
+    $ajax.fail (data, status, $ajax)=>
+      $defer.resolveWith this, arguments
+    return $.extend {}, $ajax, $defer.promise()
 
   bind: =>
     @$root.on "click", ".create-spot-btn", @createSpotField

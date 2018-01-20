@@ -9,16 +9,6 @@ class Spot < ApplicationRecord
 
   before_save :set_default_name_with_blank
 
-  def create_photos_by(photo_params)
-    photos_array = []
-    Photo.transaction do
-      photo_params[:images].each do |image|
-        return unless photos_array.push(photos.create(image: image))
-      end
-    end
-    return photos_array
-  end
-
   private
 
     def set_default_name_with_blank
