@@ -1,3 +1,11 @@
 .container
   %h2= t(".title")
   = render "form", url: users_plan_path(@plan)
+.error-modal
+  .modal.fade
+    .modal-dialog
+      .modal-content
+        .modal-header アップロードエラー
+        .modal-body.text-danger
+          .error-header
+          %ul.error-body
