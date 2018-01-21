@@ -40,12 +40,6 @@ class Users::PlansController < ApplicationController
     redirect_to users_plans_path, notice: t(:delete_success, scope: :flash)
   end
 
-  def create_spot
-    plan = Plan.find(params[:plan_id])
-    @spot = plan.spots.create
-    render json: @spot.id
-  end
-
   def suggest_spot
     url = "https://maps.googleapis.com/maps/api/place/autocomplete/json?"
     key = "AIzaSyDBlYdxJipM-Gablze4G84BoPagcYp4k-8"

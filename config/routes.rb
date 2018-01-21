@@ -7,8 +7,8 @@ Rails.application.routes.draw do
     get "/password", to: "passwords#edit"
     put "/password", to: "passowrds#update"
     patch "/password", to: "passwords#update"
-    get "/create_spot", to: "plans#create_spot"
     get "/suggest_spot", to: "plans#suggest_spot"
+    post "/spots", to: "spots#create"
     post "/photos", to: "photos#create"
   end
 
