@@ -6,8 +6,8 @@ class spotFields
     e.preventDefault()
     $target = $(e.target)
     data = $target.data()
-    $.get(
-      "/users/create_spot"
+    $.post(
+      "/users/spots"
       plan_id: data.planId
       (res) =>
         regexp = new RegExp data.id, "g"
@@ -26,7 +26,7 @@ class spotFields
     e.preventDefault()
     $target = $(e.target)
     $spot_form = $target.closest ".spot-form"
-    $spot_form.find(".spot-destory").val(true)
+    $spot_form.find(".spot-destroy").val(true)
     $spot_form.find(".spot-latitude").val("")
     $spot_form.find(".spot-longitude").val("").change()
     $spot_form.hide()
@@ -68,7 +68,7 @@ class spotFields
           regexp = new RegExp data.id, "g"
           $fragment = $(document.createDocumentFragment())
           $fragment.append data.fields.replace(regexp, res.photo.id)
-          $fragment.find(".photo-id").val res.id
+          $fragment.find(".photo-id").val res.photo.id
           $fragment.find(".preview-photo").attr("src", res.photo.image.thumb.url)
           $photo_loading.before $fragment
         else
