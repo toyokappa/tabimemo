@@ -64,20 +64,27 @@ class spotFields
         dataType: "json"
       )
       .done (res, status)=>
-        if status is "success"
+        if res.status is "OK"
           regexp = new RegExp data.id, "g"
           $fragment = $(document.createDocumentFragment())
-          $fragment.append data.fields.replace(regexp, res.id)
+          $fragment.append data.fields.replace(regexp, res.photo.id)
           $fragment.find(".photo-id").val res.id
-          $fragment.find(".preview-photo").attr("src", res.image.thumb.url)
+          $fragment.find(".preview-photo").attr("src", res.photo.image.thumb.url)
           $photo_loading.before $fragment
         else
-          error_messages.push res.responseJSON[0]
+          error_messages.push res.message[0]
       deferred_list.push $ajax
     $.when.apply(null, deferred_list).done ()=>
       $photo_loading.hide()
       if error_messages.length > 0
-        console.log _.countBy error_messages
+        errors = _.countBy error_messages
+        $fragment = $(document.createDocumentFragment())
+        $modal = $(".error-modal .modal")
+        $modal.find(".error-header").text "#{error_messages.length}件のアップロードに失敗しました"
+        _.forEach errors, (key, value)=>
+          $fragment.append $("<li></li>").text("#{value}（#{key}件）")
+        $modal.find(".error-body").html $fragment
+        $modal.modal()
 
   deferAjax: (opt)=>
     $ajax = $.ajax(opt)

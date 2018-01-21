@@ -3,10 +3,10 @@ class Users::PhotosController < ApplicationController
     spot = Spot.find(params[:spot_id].to_i)
     photo = spot.photos.build(photo_params)
     if photo.save
-      render json: photo, status: :created
+      render json: { photo: photo, status: "OK" }
     else
       message = photo.errors.full_messages
-      render json: message, status: :unprocessable_entity
+      render json: { message: message, status: "INVALID" }
     end
   end
 
