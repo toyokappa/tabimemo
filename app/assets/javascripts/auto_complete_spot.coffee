@@ -48,14 +48,15 @@ class autoCompleteSpot
     $target = $(e.target)
     request = { placeId: $target.val() }
     $spot_form = $target.closest(".spot-form")
-    $latitude = $spot_form.find(".spot-latitude")
-    $longitude = $spot_form.find(".spot-longitude")
     service = new google.maps.places.PlacesService(@map)
     service.getDetails request, (place, status)=>
       if status == "OK"
+        address = place.formatted_address
+        address = address.slice(13) if address.indexOf("日本") == 0
         location = place.geometry.location
-        $latitude.val location.lat()
-        $longitude.val(location.lng()).change()
+        $spot_form.find(".spot-address").val address
+        $spot_form.find(".spot-latitude").val location.lat()
+        $spot_form.find(".spot-longitude").val(location.lng()).change()
       else
         console.log status
     return

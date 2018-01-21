@@ -1,6 +1,7 @@
 .spot-form.jumbotron
   = f.hidden_field :id, class: "spot-field-id"
   = f.hidden_field :_destroy, class: "spot-destroy"
+  = f.hidden_field :address, class: "spot-address"
   = f.hidden_field :latitude, class: "spot-latitude"
   = f.hidden_field :longitude, class: "spot-longitude"
   = hidden_field_tag :place_id, "", class: "place-id"
