@@ -114,6 +114,16 @@
   margin-bottom: 20px;
 }
 
+.order-modal {
+  .modal-header {
+    color: white;
+    background-color: #5cb85c;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px 5px 0 0;
+  }
+}
+
 .error-modal {
   .modal-header {
     color: white;
