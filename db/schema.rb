@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180103133356) do
+ActiveRecord::Schema.define(version: 20180122083022) do
 
   create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.text "content"
@@ -73,6 +73,7 @@ ActiveRecord::Schema.define(version: 20180103133356) do
     t.bigint "plan_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "position"
     t.index ["plan_id"], name: "index_spots_on_plan_id"
   end
 
