@@ -1,5 +1,6 @@
 class spotFields
   constructor: (@$root)->
+    @countSpotPosition()
     @bind()
 
   createSpotField: (e)=>
@@ -10,14 +11,17 @@ class spotFields
       "/users/spots"
       plan_id: data.planId
       (res) =>
+        $fragment = $(document.createDocumentFragment())
         regexp = new RegExp data.id, "g"
-        $target.before data.fields.replace(regexp, res)
-        @$root.find(".spot-field-id").last().val(res)
+        $fragment.append data.fields.replace(regexp, res)
+        $fragment.find(".spot-field-id").val(res)
+        $target.before $fragment
         new google.maps.Map @$root.find(".preview-maps").last()[0],
           center:
             lat: 36.489471
             lng: 139.000448
           zoom: 6
+        @countSpotPosition()
       "json"
     )
     return
@@ -29,7 +33,19 @@ class spotFields
     $spot_form.find(".spot-destroy").val(true)
     $spot_form.find(".spot-latitude").val("")
     $spot_form.find(".spot-longitude").val("").change()
+    $spot_form.find(".spot-position").addClass("deleted")
+    $spot_form.find(".spot-position-num").addClass("deleted")
     $spot_form.hide()
+    @countSpotPosition()
+    return
+
+  countSpotPosition: =>
+    $position = @$root.find(".spot-position").not(".deleted")
+    $number = @$root.find(".spot-position-num").not(".deleted")
+    iteration = _.range $position.length
+    _.forEach iteration, (i)=>
+      $($position[i]).val(i + 1)
+      $($number[i]).text(i + 1)
     return
 
   destroyPhoto: (e)=>

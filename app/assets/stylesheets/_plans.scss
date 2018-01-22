@@ -23,6 +23,20 @@
 /*    edit    */
 
 .spot-container {
+  .spot-form {
+    .spot-position-num {
+      color: white;
+      background-color: #5cb85c;
+      font-size: 24px;
+      text-align: center;
+      width: 36px;
+      height: 36px;
+      line-height: 36px;
+      border-radius: 50%;
+      margin-top: -10px;
+      margin-bottom: 10px;
+    }
+  }
   .photo-field {
     .photo-area {
       position: relative;
@@ -155,6 +169,21 @@
         text-decoration: none;
       }
     }
+  }
+  .spot-position-num {
+    color: white;
+    background-color: #5cb85c;
+    font-size: 24px;
+    text-align: center;
+    width: 36px;
+    height: 36px;
+    display: inline-block;
+    line-height: 36px;
+    border-radius: 50%;
+  }
+  .spot-name {
+    display: inline-block;
+    vertical-align: middle;
   }
 }
 

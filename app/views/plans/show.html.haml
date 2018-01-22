@@ -21,7 +21,10 @@
         .jumbotron
           = hidden_field_tag :latitude, spot.latitude, class: "spot-latitude"
           = hidden_field_tag :longitude, spot.longitude, class: "spot-longitude"
-          %h2= spot.name
+          = hidden_field_tag :position, spot.position, class: "spot-position"
+          %h2
+            .spot-position-num= spot.position
+            .spot-name= spot.name
           - if spot.photos.any?
             %ul.image-area
               - spot.photos.each do |photo|
