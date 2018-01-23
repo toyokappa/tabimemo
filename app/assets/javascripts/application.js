@@ -15,6 +15,7 @@
 //= require jquery_ujs
 //= require jquery-ui
 //= require jquery-ui/widgets/autocomplete
+//= require jquery-ui/widgets/sortable
 //= require lodash
 //= require turbolinks
 //= require bootstrap

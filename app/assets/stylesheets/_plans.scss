@@ -114,7 +114,7 @@
   margin-bottom: 20px;
 }
 
-.order-modal {
+.sortable-modal {
   .modal-header {
     color: white;
     background-color: #5cb85c;
@@ -123,12 +123,13 @@
     border-radius: 5px 5px 0 0;
   }
   .modal-body {
-    .order-item {
+    .sortable-item {
+      background-color: white;
       padding: 10px;
       border: 1px solid lightgray;
       border-radius: 5px;
       margin: 5px 0;
-      .order-position {
+      .sortable-position {
         display: inline-block;
         color: white;
         background-color: #5cb85c;
@@ -140,7 +141,7 @@
         border-radius: 50%;
         margin-right: 8px;
       }
-      .order-name {
+      .sortable-name {
         display: inline-block;
       }
     }

@@ -7,7 +7,7 @@
       = f.simple_fields_for :spots do |spot|
         = render "spot_fields", f: spot
       = button_tag t("form.create_spot"), type: :button, class: "btn btn-success create-spot-btn", data: new_spot_field(f)
-      = button_tag "スポットを並び替え", type: :button, class: "btn btn-success order-spot-btn"
+      = button_tag "スポットを並び替え", type: :button, class: "btn btn-success sortable-spot-btn"
       .text-danger.map-rule= t("form.map_rule")
       .map
   = f.button :submit, t("form.published"), class: "btn-primary"
