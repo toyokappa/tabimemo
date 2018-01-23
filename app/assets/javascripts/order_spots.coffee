@@ -17,8 +17,14 @@ class SortableSpots
       $fragment.append $item
     $modal_body = $modal.find(".modal-body")
     $modal_body.html $fragment
-    $modal_body.sortable { item: ".sortable-item" }
     $modal.modal()
+    $modal_body.sortable
+      axis: "y"
+      item: ".sortable-item"
+      update: (e, ui)->
+        items = $modal_body.find(".sortable-item")
+        iteration = _.range items.length
+        _.forEach iteration, (i)=> $(items[i]).attr("data-position", i + 1)
 
   bind: =>
     @$root.on "click", ".sortable-spot-btn", @openSortableModal
