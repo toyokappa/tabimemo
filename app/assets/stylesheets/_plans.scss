@@ -122,6 +122,29 @@
     font-weight: bold;
     border-radius: 5px 5px 0 0;
   }
+  .modal-body {
+    .order-item {
+      padding: 10px;
+      border: 1px solid lightgray;
+      border-radius: 5px;
+      margin: 5px 0;
+      .order-position {
+        display: inline-block;
+        color: white;
+        background-color: #5cb85c;
+        font-size: 18px;
+        text-align: center;
+        width: 26px;
+        height: 26px;
+        line-height: 26px;
+        border-radius: 50%;
+        margin-right: 8px;
+      }
+      .order-name {
+        display: inline-block;
+      }
+    }
+  }
 }
 
 .error-modal {

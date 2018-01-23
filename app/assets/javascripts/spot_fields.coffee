@@ -30,18 +30,18 @@ class spotFields
     e.preventDefault()
     $target = $(e.target)
     $spot_form = $target.closest ".spot-form"
+    $spot_form.addClass "deleted"
     $spot_form.find(".spot-destroy").val(true)
     $spot_form.find(".spot-latitude").val("")
     $spot_form.find(".spot-longitude").val("").change()
-    $spot_form.find(".spot-position").addClass("deleted")
-    $spot_form.find(".spot-position-num").addClass("deleted")
     $spot_form.hide()
     @countSpotPosition()
     return
 
   countSpotPosition: =>
-    $position = @$root.find(".spot-position").not(".deleted")
-    $number = @$root.find(".spot-position-num").not(".deleted")
+    $spot_form = @$root.find(".spot-form").not(".deleted")
+    $position = $spot_form.find(".spot-position")
+    $number = $spot_form.find(".spot-position-num")
     iteration = _.range $position.length
     _.forEach iteration, (i)=>
       $($position[i]).val(i + 1)
