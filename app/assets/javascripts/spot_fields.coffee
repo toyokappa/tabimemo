@@ -7,9 +7,12 @@ class spotFields
     e.preventDefault()
     $target = $(e.target)
     data = $target.data()
+    $spot_form = @$root.find(".spot-form")
+    position = $spot_form.find(".spot-position").length
     $.post(
       "/users/spots"
       plan_id: data.planId
+      position: position + 1
       (res) =>
         $fragment = $(document.createDocumentFragment())
         regexp = new RegExp data.id, "g"
