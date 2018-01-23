@@ -21,13 +21,20 @@ class SortableSpots
     $modal_body.sortable
       axis: "y"
       item: ".sortable-item"
-      update: (e, ui)->
-        items = $modal_body.find(".sortable-item")
-        iteration = _.range items.length
-        _.forEach iteration, (i)=> $(items[i]).attr("data-position", i + 1)
+    return
+
+  submitSortable: =>
+    $modal = $(".sortable-modal .modal")
+    sortables = _.map $modal.find(".sortable-item"), (item)=> $(item).data("position")
+    $positions = @$root.find(".spot-form").not(".deleted").find(".spot-position")
+    iteration = _.range sortables.length
+    _.forEach iteration, (i)=> $positions[i].value = sortables[i]
+    $(".submit-sortable").click()
+    return
 
   bind: =>
     @$root.on "click", ".sortable-spot-btn", @openSortableModal
+    $(".confirm-sortable-btn").on "click", @submitSortable
 
 $(document).on "turbolinks:load", ->
   new SortableSpots $(".spot-container")

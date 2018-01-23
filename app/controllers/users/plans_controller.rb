@@ -27,9 +27,14 @@ class Users::PlansController < ApplicationController
   end
 
   def update
-    @plan.status = params[:draft] ? :draft : :published
+    @plan.status = :published if params[:published]
+    @plan.status = :draft if params[:draft]
     if @plan.update(edit_plan_params)
-      redirect_to plan_path(@plan), notice: t(:update_success, scope: :flash)
+      if params[:sortable]
+        redirect_to edit_users_plan_path(@plan), notice: t(:update_success, scope: :flash)
+      else
+        redirect_to plan_path(@plan), notice: t(:update_success, scope: :flash)
+      end
     else
       render "edit"
     end
