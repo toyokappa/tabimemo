@@ -1,12 +1,46 @@
 /*    index    */
 
+.page-top {
+  width: 100%;
+  height: calc(100vh - 80px);
+  background-image: url("top_bg_1.jpg");
+  background-position: center center;
+  background-size: cover;
+  text-align: center;
+  display: table;
+  margin-bottom: 20px;
+  .page-top-contents{
+    display: table-cell;
+    vertical-align: middle;
+    background-color: rgba(0, 0, 0, 0.2);
+    .page-top-title {
+      color: white;
+    }
+    .page-top-sub {
+      color: white;
+      margin-bottom: 20px;
+    }
+  }
+}
+
 .plan-index-area {
+  h2 {
+    color: #444444;
+    font-size: 28px;
+    margin-bottom: 10px;
+  }
   .plan-item {
     margin-bottom: 20px;
-    .plan-image {
-      img {
-        width: 100%;
-        border-radius: 5px;
+    a {
+      color: #444444;
+      &:hover {
+        text-decoration: none;
+      }
+      .plan-image {
+        img {
+          width: 100%;
+          border-radius: 5px;
+        }
       }
     }
     .plan-name {
@@ -16,6 +50,18 @@
     }
     .plan-description {
       font-size: 14px;
+    }
+    .plan-reactions {
+      font-size: 16px;
+      .plan-like {
+        display: inline-block;
+        color: crimson;
+        margin-right: 10px;
+      }
+      .plan-comment {
+        display: inline-block;
+        color: #5cb85c;
+      }
     }
   }
 }
