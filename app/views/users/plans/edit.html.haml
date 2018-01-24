@@ -1,11 +1,20 @@
 .container
   %h2= t(".title")
   = render "form", url: users_plan_path(@plan)
+.sortable-modal
+  .modal.fade
+    .modal-dialog
+      .modal-content
+        .modal-header= t("form.sortable_spots")
+        .modal-body
+        .modal-footer
+          = button_tag t("form.cancel"),  type: :button, class: "btn btn-danger", data: { dismiss: "modal" }
+          = button_tag t("form.confirm"), type: :button, class: "btn btn-success confirm-sortable-btn"
 .error-modal
   .modal.fade
     .modal-dialog
       .modal-content
-        .modal-header アップロードエラー
+        .modal-header= t("form.upload_error")
         .modal-body.text-danger
           .error-header
           %ul.error-body

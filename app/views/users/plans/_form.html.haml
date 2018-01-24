@@ -6,8 +6,10 @@
     .spot-field
       = f.simple_fields_for :spots do |spot|
         = render "spot_fields", f: spot
-      = link_to t("form.create_spot"), "javascript:void(0);", class: "btn btn-success create-spot-btn", data: new_spot_field(f)
+      = button_tag t("form.create_spot"), type: :button, class: "btn btn-success create-spot-btn", data: new_spot_field(f)
+      = button_tag t("form.sortable_spots"), type: :button, class: "btn btn-success sortable-spot-btn"
       .text-danger.map-rule= t("form.map_rule")
       .map
-  = f.button :submit, t("form.published"), class: "btn-primary"
+  = f.button :submit, t("form.published"), class: "btn-primary", name: :published
   = f.button :submit, t("form.draft"), class: "btn-primary", name: :draft
+  = f.button :submit, class: "submit-sortable", name: :sortable, style: "display: none"

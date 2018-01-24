@@ -4,12 +4,13 @@ class spotFields
     @bind()
 
   createSpotField: (e)=>
-    e.preventDefault()
     $target = $(e.target)
     data = $target.data()
+    position = @$root.find(".spot-position").length
     $.post(
       "/users/spots"
       plan_id: data.planId
+      position: position + 1
       (res) =>
         $fragment = $(document.createDocumentFragment())
         regexp = new RegExp data.id, "g"
@@ -27,29 +28,27 @@ class spotFields
     return
 
   destroySpotField: (e)=>
-    e.preventDefault()
     $target = $(e.target)
     $spot_form = $target.closest ".spot-form"
+    $spot_form.addClass "deleted"
     $spot_form.find(".spot-destroy").val(true)
     $spot_form.find(".spot-latitude").val("")
     $spot_form.find(".spot-longitude").val("").change()
-    $spot_form.find(".spot-position").addClass("deleted")
-    $spot_form.find(".spot-position-num").addClass("deleted")
     $spot_form.hide()
     @countSpotPosition()
     return
 
   countSpotPosition: =>
-    $position = @$root.find(".spot-position").not(".deleted")
-    $number = @$root.find(".spot-position-num").not(".deleted")
-    iteration = _.range $position.length
+    $spot_form = @$root.find(".spot-form").not(".deleted")
+    $positions = $spot_form.find(".spot-position")
+    $numbers = $spot_form.find(".spot-position-num")
+    iteration = _.range $positions.length
     _.forEach iteration, (i)=>
-      $($position[i]).val(i + 1)
-      $($number[i]).text(i + 1)
+      $($positions[i]).val(i + 1)
+      $($numbers[i]).text(i + 1)
     return
 
   destroyPhoto: (e)=>
-    e.preventDefault()
     $target = $(e.target)
     $photo_area = $target.closest ".photo-area"
     $photo_area.find(".photo-destroy").val(true)

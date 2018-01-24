@@ -21,4 +21,4 @@
   - if f.object.latitude.blank?
     .text-danger.preview-maps-rule= t("form.preview_maps_rule")
   .preview-maps
-  = link_to t("form.destroy_spot"), "javascript:void(0);", class: "btn btn-danger destroy-spot-btn"
+  = button_tag t("form.destroy_spot"), type: :button, class: "btn btn-danger destroy-spot-btn"

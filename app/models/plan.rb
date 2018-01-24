@@ -3,7 +3,7 @@ class Plan < ApplicationRecord
   enumerize :status, in: { draft: 0, published: 1 }, scope: true, predicates: true
 
   belongs_to :user
-  has_many :spots, inverse_of: :plan, dependent: :destroy
+  has_many :spots, -> { order(:position) }, inverse_of: :plan, dependent: :destroy
   accepts_nested_attributes_for :spots, reject_if: :all_blank, allow_destroy: true
   has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
