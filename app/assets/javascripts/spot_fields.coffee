@@ -4,11 +4,9 @@ class spotFields
     @bind()
 
   createSpotField: (e)=>
-    e.preventDefault()
     $target = $(e.target)
     data = $target.data()
-    $spot_form = @$root.find(".spot-form")
-    position = $spot_form.find(".spot-position").length
+    position = @$root.find(".spot-position").length
     $.post(
       "/users/spots"
       plan_id: data.planId
@@ -30,7 +28,6 @@ class spotFields
     return
 
   destroySpotField: (e)=>
-    e.preventDefault()
     $target = $(e.target)
     $spot_form = $target.closest ".spot-form"
     $spot_form.addClass "deleted"
@@ -43,16 +40,15 @@ class spotFields
 
   countSpotPosition: =>
     $spot_form = @$root.find(".spot-form").not(".deleted")
-    $position = $spot_form.find(".spot-position")
-    $number = $spot_form.find(".spot-position-num")
-    iteration = _.range $position.length
+    $positions = $spot_form.find(".spot-position")
+    $numbers = $spot_form.find(".spot-position-num")
+    iteration = _.range $positions.length
     _.forEach iteration, (i)=>
-      $($position[i]).val(i + 1)
-      $($number[i]).text(i + 1)
+      $($positions[i]).val(i + 1)
+      $($numbers[i]).text(i + 1)
     return
 
   destroyPhoto: (e)=>
-    e.preventDefault()
     $target = $(e.target)
     $photo_area = $target.closest ".photo-area"
     $photo_area.find(".photo-destroy").val(true)
