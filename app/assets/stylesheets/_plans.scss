@@ -218,6 +218,28 @@
 
 /*    show    */
 
+.plan-top {
+  position: relative;
+  overflow: hidden;
+  height: 400px;
+  .plan-top-image {
+    position: absolute;
+    background-position: center center;
+    background-size: cover;
+    position: absolute;
+    top: -5px;
+    bottom: -5px;
+    left: -5px;
+    right: -5px;
+    filter: blur(5px);
+  }
+  .no-plan-top-image {
+    height: 400px;
+    background-position: center center;
+    background-size: cover;
+  }
+}
+
 .plan-field {
   padding-bottom: 30px;
   border-bottom: solid 1px lightgray;

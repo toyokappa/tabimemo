@@ -1,3 +1,8 @@
+.plan-top
+  - if @photo.present?
+    .plan-top-image{ style: "background-image: url(#{@photo.image.url})" }
+  - else
+    .no-plan-top-image{ style: "background-image: url(/assets/no_plan_top_image.jpg)" }
 .container
   .plan-field
     %h2= @plan.name

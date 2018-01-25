@@ -7,6 +7,7 @@ class PlansController < ApplicationController
 
   def show
     @plan = Plan.find(params[:id])
+    @photo = @plan.spots.map { |spot| spot.photos }.flatten.first
     @user = @plan.user
     @like = current_user&.likes&.find_by(plan_id: @plan)
     @comment = current_user&.comments&.build
