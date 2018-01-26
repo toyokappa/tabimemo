@@ -2,53 +2,62 @@
   - if @photo.present?
     .plan-top-image{ style: "background-image: url(#{@photo.image.url})" }
   - else
-    .no-plan-top-image{ style: "background-image: url(/assets/no_plan_top_image.jpg)" }
+    .no-plan-top-image
 .container
   .plan-field
-    %h2= @plan.name
-    %p= @plan.description
-    .like_field
-      - if user_signed_in?
-        - if @like.present?
-          = render "plans/unlike"
-        - else
-          = render "plans/like"
-      - else
-        .like
-          = link_to like_path(@plan), method: :delete do
-            = fa_icon "heart-o"
-            = Like.where(plan_id: @plan).count
-    - if @plan.user == current_user
-      = link_to t("link.edit"), edit_users_plan_path(@plan), class: "btn btn-success"
-      = link_to t("link.delete"), users_plan_path(@plan), method: :delete, data: { confirm: t("view.delete_confirm") }, class: "btn btn-danger"
+    .plan-header
+      %h2.plan-name= @plan.name
+      .plan-description= @plan.description
+      .reaction-field
+        .like-area
+          - if user_signed_in?
+            - if @like.present?
+              = render "plans/unlike"
+            - else
+              = render "plans/like"
+          - else
+            .like
+              = link_to like_path(@plan), method: :delete do
+                = fa_icon "heart-o"
+                = Like.where(plan_id: @plan).count
+        .comment
+          = link_to "#comment-field" do
+            = fa_icon "comment-o"
+            = Comment.where(plan_id: @plan).count
+      - if @plan.user == current_user
+        .plan-menu
+          = link_to t("link.edit"), edit_users_plan_path(@plan), class: "btn btn-success"
+          = link_to t("link.delete"), users_plan_path(@plan), method: :delete, data: { confirm: t("view.delete_confirm") }, class: "btn btn-danger"
+      .clear
     .spot-field
       - @plan.spots.each_with_index do |spot, i|
-        .jumbotron
+        .spot-item
           = hidden_field_tag :latitude, spot.latitude, class: "spot-latitude"
           = hidden_field_tag :longitude, spot.longitude, class: "spot-longitude"
           = hidden_field_tag :position, spot.position, class: "spot-position"
-          %h2
+          %h2.spot-header
             .spot-position-num= spot.position
             .spot-name= spot.name
           - if spot.photos.any?
-            %ul.image-area
+            %ul.image-area.row
               - spot.photos.each do |photo|
-                %li= image_tag photo.image.thumb.url
-          = spot.description
+                %li.col-sm-4.flex= image_tag photo.image.thumb.url
+          .spot-description= spot.description
       - lat_length = @plan.spots.map { |spot| spot.latitude }.compact.length
       - if lat_length > 1
         .map
-    %p
+    .author-field
       = t("view.plan_user")
-      = link_to @user.profile.present? ? @user.profile.name : @user.name, user_profile_path(@user.name)
-      = image_tag @user.profile&.image.present? ? @user.profile.image.mini_thumb.url : "no_user_image.svg", size: "50x50"
-  .comment-field
+      = link_to user_profile_path(@user.name), class: "author" do
+        .author-image= image_tag @user.profile&.image ? @user.profile.image.thumb.url : "no_user_image.svg"
+        .author-name= @user.profile ? @user.profile.name : @user.name
+  #comment-field.comment-field
     - @comments.each do |comment|
       .comment-item
         .comment-header
           = link_to user_profile_path(comment.user.name), class: "comment-user" do
-            = image_tag comment.user.profile&.image.present? ? comment.user.profile.image.thumb.url : "no_user_image.svg", size: "50x50"
-            = comment.user.profile.present? ? comment.user.profile.name : comment.user.name
+            .comment-user-image= image_tag comment.user.profile&.image ? comment.user.profile.image.thumb.url : "no_user_image.svg"
+            .comment-user-name= comment.user.profile ? comment.user.profile.name : comment.user.name
           .comment-at= comment.created_at.strftime("%Y-%m-%d %H:%M")
         .comment-content= comment.content
         -if current_user == comment.user
@@ -57,4 +66,4 @@
       = simple_form_for @comment do |f|
         = f.hidden_field :plan_id, value: @plan.id
         = f.input :content, required: false, placeholder: t("form.input_comment"), input_html: { rows: 3 }, label: t("form.label_comment")
-        = f.button :submit, value: t("form.submit_comment"), class: "btn-primary"
+        = f.button :submit, value: t("form.submit_comment"), class: "btn-success"

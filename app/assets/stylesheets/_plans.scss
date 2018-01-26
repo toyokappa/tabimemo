@@ -221,7 +221,7 @@
 .plan-top {
   position: relative;
   overflow: hidden;
-  height: 400px;
+  height: 500px;
   .plan-top-image {
     position: absolute;
     background-position: center center;
@@ -234,7 +234,8 @@
     filter: blur(5px);
   }
   .no-plan-top-image {
-    height: 400px;
+    height: 500px;
+    background-image: url("no_plan_top_image.jpg");
     background-position: center center;
     background-size: cover;
   }
@@ -244,101 +245,160 @@
   padding-bottom: 30px;
   border-bottom: solid 1px lightgray;
   margin-bottom: 30px;
-  .unlike {
-    font-size: 18px;
-    a {
-      color: crimson;
-      &:hover {
-        color: crimson;
-        text-decoration: none;
+  .plan-header {
+    padding-bottom: 10px;
+    border-bottom: 1px solid lightgray;
+    margin-bottom: 20px;
+    .plan-name {
+      font-size: 30px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    .plan-description {
+      margin-bottom: 10px;
+    }
+    .reaction-field {
+      float: left;
+      font-size: 20px;
+      line-height: 34px;
+      .like-area {
+        display: inline-block;
+        margin-right: 15px;
+        .unlike a {
+          color: crimson;
+          text-decoration: none;
+        }
+        .like a {
+          color: gray;
+          text-decoration: none;
+        }
       }
-      &:active {
-        color: crimson;
-        text-decoration: none;
+      .comment {
+        display: inline-block;
+        a {
+          color: #5cb85c;
+          text-decoration: none;
+        }
       }
     }
-  }
-  .like {
-    font-size: 18px;
-    a {
-      color: gray;
-      &:hover {
-        color: gray;
-        text-decoration: none;
-      }
-      &:active {
-        color: gray;
-        text-decoration: none;
-      }
+    .plan-menu {
+      float: right;
     }
   }
-  .spot-position-num {
-    color: white;
-    background-color: #5cb85c;
-    font-size: 24px;
-    text-align: center;
-    width: 36px;
-    height: 36px;
-    display: inline-block;
-    line-height: 36px;
-    border-radius: 50%;
-  }
-  .spot-name {
-    display: inline-block;
-    vertical-align: middle;
+  .spot-field {
+    .spot-item {
+      padding: 30px 40px;
+      border: 1px solid lightgray;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      .spot-header{
+        margin-top: 0;
+        .spot-position-num {
+          color: white;
+          background-color: #5cb85c;
+          font-size: 24px;
+          text-align: center;
+          width: 36px;
+          height: 36px;
+          display: inline-block;
+          line-height: 36px;
+          border-radius: 50%;
+        }
+        .spot-name {
+          display: inline-block;
+          vertical-align: middle;
+        }
+      }
+    }
   }
 }
 
-.comment-item {
-  margin-bottom: 20px;
-  .comment-user {
-    float: left;
+.author-field {
+  .author {
+    text-decoration: none;
+    .author-image {
+      display: inline-block;
+      img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50px;
+        margin-right: 5px;
+      }
+    }
+    .author-name {
+      display: inline-block;
+    }
+  }
+}
+
+.comment-field {
+  &:before {
+    content: "";
+    margin-top: -110px;
+    height: 110px;
     display: block;
-    margin-bottom: 10px;
-    img {
-      width: 50px;
-      height: auto;
-      border-radius: 50%;
-      margin-right: 5px;
-    }
+    visibility: hidden;
   }
-  .comment-at {
-    float: right;
-    color: gray;
-    line-height: 20px;
-    position: relative;
-    top: 30px;
-  }
-  .comment-content {
-    clear: both;
-    position: relative;
-    color: gray;
-    border: solid 1px gray;
-    border-radius: 3px;
-    padding: 20px;
-    margin-bottom: 5px;
-    &:before {
-      content: "";
-      position: absolute;
-      top: -10px;
-      left: 12px;
-      border-left: solid 10px transparent;
-      border-right: solid 10px transparent;
-      border-bottom: solid 10px gray;
-      z-index: 1;
+  .comment-item {
+    margin-bottom: 20px;
+    .comment-header {
+      .comment-user {
+        float: left;
+        display: block;
+        text-decoration: none;
+        margin-bottom: 10px;
+        .comment-user-image {
+          display: inline-block;
+          img {
+            width: 50px;
+            height: auto;
+            border-radius: 50%;
+            margin-right: 5px;
+          }
+        }
+        .comment-user-name {
+          display: inline-block;
+        }
+      }
+      .comment-at {
+        float: right;
+        color: gray;
+        line-height: 20px;
+        position: relative;
+        top: 30px;
+      }
     }
-    &:after {
-      content: "";
-      position: absolute;
-      top: -8px;
-      left: 12px;
-      border-left: solid 10px transparent;
-      border-right: solid 10px transparent;
-      border-bottom: solid 10px white;
-      z-index: 2;
+    .comment-content {
+      clear: both;
+      position: relative;
+      color: gray;
+      border: solid 1px gray;
+      border-radius: 3px;
+      padding: 20px;
+      margin-bottom: 5px;
+      &:before {
+        content: "";
+        position: absolute;
+        top: -10px;
+        left: 12px;
+        border-left: solid 10px transparent;
+        border-right: solid 10px transparent;
+        border-bottom: solid 10px gray;
+        z-index: 1;
+      }
+      &:after {
+        content: "";
+        position: absolute;
+        top: -8px;
+        left: 12px;
+        border-left: solid 10px transparent;
+        border-right: solid 10px transparent;
+        border-bottom: solid 10px white;
+        z-index: 2;
+      }
     }
-  }
-  .comment-delete {
-    text-align: right;
+    .comment-delete {
+      text-align: right;
+    }
   }
 }
