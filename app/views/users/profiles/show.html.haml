@@ -1,6 +1,6 @@
 .container
   .row
-    .profile-area.col-sm-3
+    .profile-area.col-lg-3.col-md-4.col-sm-6
       - if @profile.present?
         .profile-image= image_tag @profile.image.present? ? @profile.image.thumb.url : "no_user_image.svg", size: "200x200"
         %h3.profile-name= @profile.name
@@ -21,16 +21,25 @@
       - else
         %p= t("view.no_profile")
         %p= link_to t("link.register_profile"), new_users_profile_path, class: "btn btn-primary" if @user == current_user
-    .plan-index-area.col-sm-9
+    .plan-index-area.col-lg-9.col-md-8.col-sm-6
       %h2= t("view.user_plan")
       - if @plans.present?
         .row.flex
           - @plans.each do |plan|
-            .col-sm-4.plan-item
-              .plan-image
-                - photo = plan.spots.map { |spot| spot.photos }.flatten.first
-                = link_to image_tag(photo.present? ? photo.image.thumb.url : "no_plan_image.png"), plan
-              %h3.plan-name= link_to plan.name, plan
-              .plan-description= plan.description
+            
+            .col-lg-4.col-md-6.col-sm-12.plan-item
+              = link_to plan do
+                .plan-image
+                  - photo = plan.spots.map { |spot| spot.photos }.flatten.first
+                  = image_tag photo ? photo.image.thumb.url : "no_plan_image.png"
+                %h3.plan-name= plan.name
+                .plan-description= plan.description
+                .plan-reactions
+                  .plan-like
+                    = fa_icon "heart-o"
+                    = plan.likes.count
+                  .plan-comment
+                    = fa_icon "comment-o"
+                    = plan.comments.count
       - else
         = t("view.no_plans")
