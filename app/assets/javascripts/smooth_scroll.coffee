@@ -11,7 +11,7 @@ class SmoothScroll
     false
 
   bind: =>
-    $("a[href^='#']").on "click", @scrollTo
+    $(".smooth-scroll").on "click", @scrollTo
 
 $(document).on "turbolinks:load", ->
   new SmoothScroll

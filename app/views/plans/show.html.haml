@@ -21,7 +21,7 @@
                 = fa_icon "heart-o"
                 = Like.where(plan_id: @plan).count
         .comment
-          = link_to "#comment-field" do
+          = link_to "#comment-field", class: "smooth-scroll"  do
             = fa_icon "comment-o"
             = Comment.where(plan_id: @plan).count
       - if @plan.user == current_user
