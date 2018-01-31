@@ -1,0 +1,32 @@
+%table.table
+  %thead
+    %tr
+      %th プラン名
+      %th スポット数
+      %th いいね数
+      %th コメント数
+      %th 作成日
+  %tbody
+    - if @plans.present?
+      - @plans.each do |plan|
+        %tr.plan-item
+          %td.plan-title
+            %h3.plan-name= link_to plan.name, plan_path(plan)
+            .plan-status{ class: plan.status }
+              = plan.status_text
+            .plan-description= plan.description
+          %td.plan-spot-count
+            = plan.spots.count
+          %td.plan-likes
+            = plan.likes.count
+          %td.plan-comments
+            = plan.comments.count
+          %td.plan-created-at
+            = l(plan.created_at, format: :default)
+    - else
+      %tr.plan-item
+        %td.plan-title= t("view.no_plans")
+        %td.plan-spot-count -
+        %td.plan-likes -
+        %td.plan-comments -
+        %td.plan-created-at -

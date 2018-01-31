@@ -10,4 +10,8 @@ class Plan < ApplicationRecord
 
   validates :name, presence: true, length: { maximum: 50 }
   validates :description, length: { maximum: 1000 }
+
+  scope :default_order, -> { order(id: :desc) }
+  scope :published, -> { with_status(:published).default_order }
+  scope :draft, -> { with_status(:draft).default_order }
 end

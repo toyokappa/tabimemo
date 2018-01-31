@@ -1,36 +1,49 @@
 .container
   .row
-    .profile-area.col-sm-3
-      - if @profile.present?
-        .profile-image= image_tag @profile.image.present? ? @profile.image.thumb.url : "no_user_image.svg", size: "200x200"
-        %h3.profile-name= @profile.name
-        .profile-description= @profile.description
+    .profile-area.col-lg-3.col-md-4.col-sm-6
+      .profile-image= image_tag @profile&.image ? @profile.image.thumb.url : "no_user_image.svg"
+      %h3.profile-name= @profile&.name ? @profile.name : @user.name
+      .profile-description= @profile&.description
+      - if @profile&.location
         .profile-item
           = fa_icon "map-pin"
           = @profile.location
+      - if @profile&.url
         .profile-item
           = fa_icon "link"
           = link_to @profile.url, @profile.url
+      - if @profile&.gender
         .profile-item
           = fa_icon "user-circle-o"
           = @profile.gender_text
+      - if @profile&.birthday
         .profile-item
           = fa_icon "birthday-cake"
           = l(@profile.birthday, format: :long)
-        %p= link_to t("link.edit_profile"), edit_users_profile_path, class: "btn btn-primary" if @user == current_user
-      - else
-        %p= t("view.no_profile")
-        %p= link_to t("link.register_profile"), new_users_profile_path, class: "btn btn-primary" if @user == current_user
-    .plan-index-area.col-sm-9
+      - if @user == current_user
+        - if @profile&.present?
+          %p= link_to t("link.edit_profile"), edit_users_profile_path, class: "btn btn-success"
+        - else
+          %p= link_to t("link.register_profile"), new_users_profile_path, class: "btn btn-success"
+    .plan-index-area.col-lg-9.col-md-8.col-sm-6
       %h2= t("view.user_plan")
       - if @plans.present?
         .row.flex
           - @plans.each do |plan|
-            .col-sm-4.plan-item
-              .plan-image
-                - photo = plan.spots.map { |spot| spot.photos }.flatten.first
-                = link_to image_tag(photo.present? ? photo.image.thumb.url : "no_plan_image.png"), plan
-              %h3.plan-name= link_to plan.name, plan
-              .plan-description= plan.description
+            
+            .col-lg-4.col-md-6.col-sm-12.plan-item
+              = link_to plan do
+                .plan-image
+                  - photo = plan.spots.map { |spot| spot.photos }.flatten.first
+                  = image_tag photo ? photo.image.thumb.url : "no_plan_image.png"
+                %h3.plan-name= plan.name
+                .plan-description= plan.description
+                .plan-reactions
+                  .plan-like
+                    = fa_icon "heart-o"
+                    = plan.likes.count
+                  .plan-comment
+                    = fa_icon "comment-o"
+                    = plan.comments.count
       - else
         = t("view.no_plans")

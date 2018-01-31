@@ -1,24 +1,32 @@
 - if params[:page].blank?
   .page-top
-    .v-align-center
-      %h1 旅の思い出をシェアしよう
-      %p あなたのオリジナルのプランをみんなに見てもらおう
+    .page-top-contents
+      %h1.page-top-title= t(".page-top-title")
+      .page-top-sub= t(".page-top-sub")
       - if user_signed_in?
-        = link_to t("link.register_plan"), new_users_plan_path, class: "btn btn-info"
+        = link_to t("link.register_plan"), new_users_plan_path, class: "btn btn-success btn-lg"
       - else
-        = link_to t("link.sign_up"), new_user_registration_path, class: "btn btn-info"
+        = link_to t("link.sign_up"), new_user_registration_path, class: "btn btn-success btn-lg"
 .container
   .plan-index-area
     %h2= t(".title")
     - if @plans.present?
       .row.flex
         - @plans.each do |plan|
-          .col-sm-3.plan-item
-            .plan-image
-              - photo = plan.spots.map { |spot| spot.photos }.flatten.first
-              = link_to image_tag(photo.present? ? photo.image.thumb.url : "no_plan_image.png"), plan
-            %h3.plan-name= link_to plan.name, plan
-            .plan-description= plan.description
+          .col-lg-3.col-md-4.col-xs-6.plan-item
+            = link_to plan do
+              .plan-image
+                - photo = plan.spots.map { |spot| spot.photos }.flatten.first
+                = image_tag photo.present? ? photo.image.thumb.url : "no_plan_image.png"
+              %h3.plan-name= plan.name
+              .plan-description= plan.description
+              .plan-reactions
+                .plan-like
+                  = fa_icon "heart-o"
+                  = plan.likes.count
+                .plan-comment
+                  = fa_icon "comment-o"
+                  = plan.comments.count
     - else
       = t("view.no_plans")
     = paginate @plans
