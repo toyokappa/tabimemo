@@ -3,8 +3,25 @@ class Users::PlansController < ApplicationController
   before_action :is_current_user?, only: [:edit, :update, :destroy]
 
   def index
-    @user = current_user
-    @plans = @user.plans.page(params[:page])
+    @plans = current_user.plans.order(id: :desc).page(params[:page])
+    respond_to do |format|
+      format.html
+      format.js { render "plan_list" }
+    end
+  end
+
+  def published
+    @plans = current_user.plans.with_status(:published).order(id: :desc).page(params[:page])
+    respond_to do |format|
+      format.js { render "plan_list" }
+    end
+  end
+
+  def draft
+    @plans = current_user.plans.with_status(:draft).order(id: :desc).page(params[:page])
+    respond_to do |format|
+      format.js { render "plan_list" }
+    end
   end
 
   def new
@@ -13,8 +30,7 @@ class Users::PlansController < ApplicationController
   end
 
   def create
-    user = current_user
-    @plan = user.plans.build(new_plan_params)
+    @plan = current_user.plans.build(new_plan_params)
     if @plan.save
       redirect_to edit_users_plan_path(@plan)
     else
@@ -72,8 +88,7 @@ class Users::PlansController < ApplicationController
     end
 
     def set_plan
-      @user = current_user
-      @plan = @user.plans.find(params[:id])
+      @plan = current_user.plans.find(params[:id])
     end
 
     def is_current_user?
