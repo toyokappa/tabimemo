@@ -3,7 +3,7 @@ class Users::PlansController < ApplicationController
   before_action :is_current_user?, only: [:edit, :update, :destroy]
 
   def index
-    @plans = current_user.plans.order(id: :desc).page(params[:page])
+    @plans = current_user.plans.default_order.page(params[:page])
     respond_to do |format|
       format.html
       format.js { render "plan_list" }
@@ -11,14 +11,14 @@ class Users::PlansController < ApplicationController
   end
 
   def published
-    @plans = current_user.plans.with_status(:published).order(id: :desc).page(params[:page])
+    @plans = current_user.plans.published.page(params[:page])
     respond_to do |format|
       format.js { render "plan_list" }
     end
   end
 
   def draft
-    @plans = current_user.plans.with_status(:draft).order(id: :desc).page(params[:page])
+    @plans = current_user.plans.draft.page(params[:page])
     respond_to do |format|
       format.js { render "plan_list" }
     end

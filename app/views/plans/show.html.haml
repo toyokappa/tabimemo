@@ -17,7 +17,7 @@
               = render "plans/like"
           - else
             .like
-              = link_to like_path(@plan), method: :delete do
+              = link_to new_user_session_path do
                 = fa_icon "heart-o"
                 = Like.where(plan_id: @plan).count
         .comment
