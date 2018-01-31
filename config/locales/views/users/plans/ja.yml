@@ -26,3 +26,12 @@ ja:
     preview_maps_rule: ※プレビューマップ機能を使用するにはスポット名を予測変換の候補から選択する必要があります
     sortable_spots: スポットの並び替え
     upload_error: アップロードエラー
+  view:
+    plan_name: プラン名
+    spot_count: スポット数
+    plan_likes: いいね数
+    plan_comments: コメント数
+    plan_created_at: 作成日
+    status_all: すべて
+    published: 公開中
+    draft: 下書き

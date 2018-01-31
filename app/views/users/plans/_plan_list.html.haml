@@ -1,11 +1,11 @@
 %table.table
   %thead
     %tr
-      %th プラン名
-      %th スポット数
-      %th いいね数
-      %th コメント数
-      %th 作成日
+      %th= t("view.plan_name")
+      %th= t("view.spot_count")
+      %th= t("view.plan_likes")
+      %th= t("view.plan_comments")
+      %th= t("view.plan_created_at")
   %tbody
     - if @plans.present?
       - @plans.each do |plan|

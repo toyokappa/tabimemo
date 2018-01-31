@@ -1,9 +1,9 @@
 .container
   %h2= t(".title")
   %ul.plan-status-menu
-    %li= link_to "すべて", users_plans_path, remote: true, class: "active"
-    %li= link_to "公開中", users_plans_published_path, remote: true
-    %li= link_to "下書き", users_plans_draft_path, remote: true
+    %li= link_to t("view.status_all"), users_plans_path, remote: true, class: "active"
+    %li= link_to t("view.published"), users_plans_published_path, remote: true
+    %li= link_to t("view.draft"), users_plans_draft_path, remote: true
   .plan-list
     = render "plan_list"
   = paginate @plans
