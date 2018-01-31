@@ -454,3 +454,60 @@
     }
   }
 }
+
+/*    management    */
+
+.plan-status-menu {
+  padding: 0;
+  border-bottom: 1px solid lightgray;
+  margin: 20px 0;
+  li {
+    display: inline-block;
+    a {
+      display: block;
+      color: gray;
+      font-weight: bold;
+      padding: 8px 10px;
+      text-decoration: none;
+      &:hover {
+        color: #5cb85c;
+      }
+      &.active {
+        color: #5cb85c;
+        border-bottom: 3px solid #5cb85c;
+      }
+    }
+  }
+}
+
+.plan-item {
+  td {
+    padding: 15px 8px !important;
+  }
+  .plan-title {
+    .plan-name {
+      display: inline-block;
+      font-size: 18px;
+      vertical-align: middle;
+      margin: 0 3px 5px 0;
+    }
+    .plan-status {
+      display: inline-block;
+      vertical-align: middle;
+      font-size: 11px;
+      color: white;
+      padding: 3px 7px;
+      border-radius: 3px;
+      margin-bottom: 5px;
+      &.published {
+        background-color: #5cb85c;
+      }
+      &.draft {
+        background-color: gray;
+      }
+    }
+  }
+  .plan-spot-count, .plan-likes, .plan-comments, .plan-created-at {
+    vertical-align: middle;
+  }
+}

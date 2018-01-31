@@ -1,12 +1,34 @@
 .container
   %h2= t(".title")
-  - if @plans.present?
-    %ul
-      - @plans.each do |plan|
-        %li
-          %h2= link_to plan.name, plan_path(plan)
-          %p= plan.description
-          %p= plan.status_text
-  - else
-    = t("view.no_plans")
+  %ul.plan-status-menu
+    %li= link_to "すべて", users_plans_path, class: "active"
+    %li= link_to "公開中", "#"
+    %li= link_to "下書き", "#"
+  %table.table
+    %thead
+      %tr
+        %th プラン名
+        %th スポット数
+        %th いいね数
+        %th コメント数
+        %th 作成日
+    %tbody
+      - if @plans.present?
+        - @plans.each do |plan|
+          %tr.plan-item
+            %td.plan-title
+              %h3.plan-name= link_to plan.name, plan_path(plan)
+              .plan-status{ class: plan.status }
+                = plan.status_text
+              .plan-description= plan.description
+            %td.plan-spot-count
+              = plan.spots.count
+            %td.plan-likes
+              = plan.likes.count
+            %td.plan-comments
+              = plan.comments.count
+            %td.plan-created-at
+              = l(plan.created_at, format: :default)
+      - else
+        = t("view.no_plans")
   = paginate @plans
