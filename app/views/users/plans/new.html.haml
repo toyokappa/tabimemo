@@ -1,31 +1,4 @@
 .container
-  .step-field
-    .step-item.active
-      .step-header
-        STEP
-        %span.step-number 1
-      .step-body
-        プラン登録
-      .step-footer
-        プラン名とプラン説明を入力してください
-    .step-vector
-    .step-item
-      .step-header
-        STEP
-        %span.step-number 2
-      .step-body
-        スポット登録
-      .step-footer
-        観光スポットの情報を複数登録してください
-    .step-vector
-    .step-item
-      .step-header
-        STEP
-        %span.step-number 3
-      .step-body
-        登録完了
-      .step-footer
-        プラン / スポットの登録が完了しました
   %h2= t(".title")
   = simple_form_for @plan, url: users_plans_path do |f|
     = f.input :name, placeholder: t("form.maximum_length", length: 50), hint: t("form.plan_name_hint")
