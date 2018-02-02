@@ -1,6 +1,10 @@
 - if params[:page].blank?
   .page-top
     .page-top-contents
+      .slide{ style: "background-image: url(assets/top_bg_1.jpg);" }
+      .slide{ style: "background-image: url(assets/top_bg_2.jpg);" }
+      .slide{ style: "background-image: url(assets/top_bg_3.jpg);" }
+      .slide{ style: "background-image: url(assets/top_bg_4.jpg);" }
       %h1.page-top-title= t(".page-top-title")
       .page-top-sub= t(".page-top-sub")
       - if user_signed_in?
