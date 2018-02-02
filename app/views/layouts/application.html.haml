@@ -3,6 +3,7 @@
   %head
     %title= t("app.title")
     = csrf_meta_tags
+    %meta{ name: "turbolinks-cache-control", content: "no-preview" }
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
     %script{ src: "//maps.google.com/maps/api/js?key=AIzaSyDBlYdxJipM-Gablze4G84BoPagcYp4k-8&libraries=places", defer: true }

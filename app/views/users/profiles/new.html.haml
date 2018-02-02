@@ -1,3 +1,9 @@
 .container
-  %h2= t(".title")
+  - if request.referer == user_registration_url
+    .registration-step
+      %h2= t("view.registration_step")
+      %span.text-muted= t("view.suggestion_register_profile")
+      = link_to t("link.skip_profile"), root_path
+  - else
+    %h2= t(".title")
   = render "form"

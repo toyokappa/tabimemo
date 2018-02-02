@@ -8,8 +8,11 @@ ja:
   link:
     register_profile: プロフィールを登録する
     edit_profile: プロフィールを編集する
+    skip_profile: あとで登録する
   view:
     no_profile: プロフィールが登録されていません。
     user_plan: このユーザーのプラン
+    registration_step: 続いてプロフィールを登録しましょう
+    suggestion_register_profile: プロフィールを登録することで、プランを登録した際に他のユーザーから感心を持ってもらいやすくなります。
   form:
     profile_name_hint: "他のユーザーに表示される名前です。未登録の場合、ユーザー名（%{user_name}）が表示されます。"
