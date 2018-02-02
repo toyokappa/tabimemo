@@ -1,11 +1,9 @@
 /*    index    */
 
 .page-top {
+  position: relative;
   width: 100%;
   height: calc(100vh - 80px);
-  background-image: url("top_bg_1.jpg");
-  background-position: center center;
-  background-size: cover;
   text-align: center;
   display: table;
   margin-bottom: 20px;
@@ -19,6 +17,19 @@
     .page-top-sub {
       color: white;
       margin-bottom: 20px;
+    }
+    .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-position: center center;
+      background-size: cover;
+      z-index: -1;
+      &:not(:first-child) {
+        display: none;
+      }
     }
   }
 }
