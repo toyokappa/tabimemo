@@ -1,9 +1,9 @@
 .container
   - if request.referer == user_registration_url
     .registration-step
-      %h2 続いてプロフィールを登録しましょう
-      %span.text-muted プロフィールを登録することで、プランを登録した際に他のユーザーから感心を持ってもらいやすくなります。
-      = link_to "あとで登録する", root_path
+      %h2= t("view.registration_step")
+      %span.text-muted= t("view.suggestion_register_profile")
+      = link_to t("link.skip_profile"), root_path
   - else
     %h2= t(".title")
   = render "form"
