@@ -25,6 +25,9 @@
               %h3.plan-name= plan.name
               .plan-description= plan.description
               .plan-reactions
+                .plan-pageviews
+                  = fa_icon "eye"
+                  = plan.show_pv
                 .plan-like
                   = fa_icon "heart-o"
                   = plan.likes.count

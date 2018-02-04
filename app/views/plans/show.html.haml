@@ -9,6 +9,9 @@
       %h2.plan-name= @plan.name
       .plan-description= @plan.description
       .reaction-field
+        .pageviews
+          = fa_icon "eye"
+          = @pageviews
         .like-area
           - if user_signed_in?
             - if @like.present?
