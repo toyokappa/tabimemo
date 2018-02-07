@@ -22,6 +22,7 @@ class Plan < ApplicationRecord
   accepts_nested_attributes_for :spots, reject_if: :all_blank, allow_destroy: true
   has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :page_views, dependent: :destroy
 
   validates :name, presence: true, length: { maximum: 50 }
   validates :description, length: { maximum: 1000 }
