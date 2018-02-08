@@ -61,9 +61,15 @@
     }
     .plan-description {
       font-size: 14px;
+      margin-bottom: 6px;
     }
     .plan-reactions {
       font-size: 16px;
+      .plan-pageviews {
+        display: inline-block;
+        color: #4dadf7;
+        margin-right: 10px;
+      }
       .plan-like {
         display: inline-block;
         color: crimson;
@@ -324,6 +330,11 @@
       float: left;
       font-size: 20px;
       line-height: 34px;
+      .pageviews {
+        display: inline-block;
+        color: #4dadf7;
+        margin-right: 15px;
+      }
       .like-area {
         display: inline-block;
         margin-right: 15px;
