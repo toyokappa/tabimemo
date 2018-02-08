@@ -11,7 +11,7 @@
       .reaction-field
         .pageviews
           = fa_icon "eye"
-          = @pageviews
+          = @pv
         .like-area
           - if user_signed_in?
             - if @like.present?
