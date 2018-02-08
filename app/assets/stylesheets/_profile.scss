@@ -1,7 +1,4 @@
-.registration-step {
-  margin-bottom: 20px;
-}
-
+/*    show    */
 .profile-area {
   margin-top: 20px;
   .profile-image {
@@ -24,6 +21,16 @@
     margin-bottom: 15px;
     i {
       width: 18px;
+    }
+  }
+}
+
+/*    new    */
+.image-field {
+  .profile_image {
+    img {
+      height: 200px;
+      width: auto;
     }
   }
 }
