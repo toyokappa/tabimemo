@@ -13,11 +13,13 @@ class Plan < ApplicationRecord
   sorted_set :display_pv, global: true
 
   def increment_pv
+    set_pv_keys
     self.class.send(@@today).increment(id)
     self.class.display_pv.increment(id)
   end
 
   def show_pv
+    set_pv_keys
     self.class.display_pv[id].to_i
   end
 
@@ -34,4 +36,15 @@ class Plan < ApplicationRecord
   scope :default_order, -> { order(id: :desc) }
   scope :published, -> { with_status(:published).default_order }
   scope :draft, -> { with_status(:draft).default_order }
+
+  private
+
+    def set_pv_keys
+      if @@today != "pv#{Date.today.strftime('%Y_%m_%d')}"
+        @@yesterday = "pv#{Date.yesterday.strftime('%Y_%m_%d')}"
+        @@today = "pv#{Date.today.strftime('%Y_%m_%d')}"
+        sorted_set @@yesterday, global: true
+        sorted_set @@today, global: true
+      end
+    end
 end
