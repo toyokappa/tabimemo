@@ -26,7 +26,6 @@ class Users::PlansController < ApplicationController
 
   def new
     @plan = current_user.plans.build
-    @plan.spots.build
   end
 
   def create
@@ -65,7 +64,7 @@ class Users::PlansController < ApplicationController
     url = "https://maps.googleapis.com/maps/api/place/autocomplete/json?"
     key = "AIzaSyDBlYdxJipM-Gablze4G84BoPagcYp4k-8"
     input = params[:input]
-    params = URI.encode_www_form({ key: key, input: input })
+    params = URI.encode_www_form({ key: key, input: input, language: :ja})
     uri = URI.parse "#{url}#{params}"
 
     request = Net::HTTP::Get.new(uri.request_uri)
