@@ -7,7 +7,7 @@
   .plan-field
     .plan-header
       %h2.plan-name= @plan.name
-      .plan-description= @plan.description
+      .plan-description= simple_format h(@plan.description)
       .reaction-field
         .pageviews
           = fa_icon "eye"
@@ -45,7 +45,7 @@
             %ul.image-area.row
               - spot.photos.each do |photo|
                 %li.col-sm-4.flex= image_tag photo.image.thumb.url
-          .spot-description= spot.description
+          .spot-description= simple_format h(spot.description)
       - lat_length = @plan.spots.map { |spot| spot.latitude }.compact.length
       - if lat_length > 1
         .map
@@ -62,7 +62,7 @@
             .comment-user-image= image_tag comment.user.profile&.image ? comment.user.profile.image.thumb.url : "no_user_image.svg"
             .comment-user-name= comment.user.profile ? comment.user.profile.name : comment.user.name
           .comment-at= comment.created_at.strftime("%Y-%m-%d %H:%M")
-        .comment-content= comment.content
+        .comment-content= simple_format h(comment.content)
         -if current_user == comment.user
           .comment-delete= link_to t("link.delete"), comment_path(comment), method: :delete, data: { confirm: t("view.delete_confirm") }
     -if user_signed_in?
