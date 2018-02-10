@@ -16,6 +16,8 @@ class SavePageViewsJob < ApplicationJob
 
     # 当日のPVを表示用PVにコピー
     display_pv.clear
-    display_pv.merge today_pv.value(with_scores: true)
+    if today_pv.present?
+      display_pv.merge today_pv.value(with_scores: true)
+    end
   end
 end
