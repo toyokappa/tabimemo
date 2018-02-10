@@ -144,3 +144,10 @@ form {
     margin-right: 10px;
   }
 }
+
+/*    simple_format(h(object))対策    */
+.plan-description, .spot-description, .comment-content {
+  p {
+    margin-bottom: 0;
+  }
+}
