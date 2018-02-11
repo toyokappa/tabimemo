@@ -13,3 +13,10 @@ development:
 test:
   <<: *default
   database: tabimemo_test
+
+production:
+  <<: *default
+  database: tabimemo_production
+  host: <%= ENV["RDS_HOSTNAME"] %>
+  username: <%= ENV["RDS_USERNAME"] %>
+  password: <%= ENV["RDS_PASSWORD"] %>
