@@ -7,7 +7,7 @@ timeout = 30
 stderr_path File.expand_path("../../log/unicorn_stderr.log", __FILE__)
 stdout_path File.expand_path("../../log/unicorn_stdout.log", __FILE__)
 
-listen File.expand_path("../../tmp/sockets/unicorn.sock", __FILE__)
+listen File.expand_path("../../tmp/sockets/.unicorn.sock", __FILE__)
 pid File.expand_path("../../tmp/pids/unicorn.pid", __FILE__)
 
 preload_app true

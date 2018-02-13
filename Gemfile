@@ -30,6 +30,7 @@ gem "sass-rails", "~> 5.0"
 gem "simple_form"
 gem "turbolinks", "~> 5"
 gem "uglifier", ">= 1.3.0"
+gem "unicorn"
 gem "whenever", require: false
 
 group :development, :test do
@@ -56,10 +57,6 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "shoulda-matchers"
-end
-
-group :production do
-  gem "unicorn"
 end
 
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
