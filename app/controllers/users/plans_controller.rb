@@ -62,9 +62,9 @@ class Users::PlansController < ApplicationController
 
   def suggest_spot
     url = "https://maps.googleapis.com/maps/api/place/autocomplete/json?"
-    key = "AIzaSyDBlYdxJipM-Gablze4G84BoPagcYp4k-8"
+    key = Rails.configuration.x.google_apis[:map]
     input = params[:input]
-    params = URI.encode_www_form({ key: key, input: input, language: :ja})
+    params = URI.encode_www_form({ key: key, input: input})
     uri = URI.parse "#{url}#{params}"
 
     request = Net::HTTP::Get.new(uri.request_uri)
