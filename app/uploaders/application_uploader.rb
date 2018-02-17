@@ -11,6 +11,14 @@ class ApplicationUploader < CarrierWave::Uploader::Base
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
+  def cache_dir
+    if Rails.env.production?
+      "uploads/cache/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+    else
+      "tmp/cache/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+    end
+  end
+
   def extension_whitelist
     %w[jpg jpeg gif png]
   end
