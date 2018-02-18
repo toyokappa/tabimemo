@@ -46,6 +46,11 @@ end
 
 group :development do
   gem "annotate", require: false
+  gem "capistrano"
+  gem "capistrano-bundler"
+  gem "capistrano-rails"
+  gem "capistrano-rbenv"
+  gem "capistrano-unicorn-nginx"
   gem "i18n-tasks"
   gem "listen", ">= 3.0.5", "< 3.2"
   gem "onkcop", require: false
