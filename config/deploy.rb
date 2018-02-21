@@ -4,11 +4,33 @@ lock "~> 3.10.1"
 set :application, "tabimemo"
 set :repo_url, "git@github.com:toyokappa/tabimemo.git"
 set :rbenv_ruby, "2.4.1"
+set :pty, true
 
+set :unicorn_config_path, "#{current_path}/config/unicorn.rb"
+set :whenever_indentifier, "#{fetch(:application)}_#{fetch(:stage)}"
+
+append :linked_files, "config/database.yml", "config/secrets.yml", ".env"
 append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "vendor/bundle", "public/system"
 
 namespace :deploy do
-  after :publishing, "unicorn:restart"
+  desc "Upload eviroment files"
+  task :upload do
+    on roles(:app) do |host|
+      if test "[ ! -d #{shared_path}/config ]"
+        execute "mkdir -p #{shared_path}/config"
+      end
+      upload!(".env", "#{shared_path}/.env")
+      upload!("config/database.yml", "#{shared_path}/config/database.yml")
+      upload!("config/secrets.yml", "#{shared_path}/config/secrets.yml")
+    end
+  end
+
+  desc "Restart unicorn"
+  task :restart do
+    invoke "unicorn:restart"
+  end
+
+  after :publishing, :restart
 end
 
 # Default branch is :master

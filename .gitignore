@@ -22,3 +22,6 @@ public/uploads
 vendor/bundle
 .DS_Store
 dump.rdb
+config/database.yml
+config/secrets.yml
+.env

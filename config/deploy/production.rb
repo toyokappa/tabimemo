@@ -10,6 +10,7 @@ server "54.65.173.60", user: "toyokappa", roles: %w{app db web}
 # For available Capistrano configuration variables see the documentation page.
 # http://capistranorb.com/documentation/getting-started/configuration/
 # Feel free to add new variables to customise your setup.
+
 # Custom SSH Options
 # ==================
 # You may pass any option but keep in mind that net/ssh understands a
