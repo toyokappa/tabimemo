@@ -7,6 +7,7 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
     %script{ src: "//maps.google.com/maps/api/js?key=#{Rails.configuration.x.google_apis[:map]}&libraries=places", defer: true }
+    = analytics_init if Rails.env.production?
   %body
     %header.navbar.navbar-fixed-top
       %nav.container

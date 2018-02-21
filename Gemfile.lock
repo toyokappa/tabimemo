@@ -287,6 +287,7 @@ GEM
     formatador (0.2.5)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
+    google-analytics-rails (1.1.1)
     hamlit (2.8.4)
       temple (>= 0.8.0)
       thor
@@ -565,6 +566,7 @@ DEPENDENCIES
   faker
   fog
   font-awesome-rails
+  google-analytics-rails
   hamlit-rails
   i18n-tasks
   jbuilder (~> 2.5)
