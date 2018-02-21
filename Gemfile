@@ -51,7 +51,7 @@ group :development do
   gem "capistrano-bundler"
   gem "capistrano-rails"
   gem "capistrano-rbenv"
-  gem "capistrano-unicorn-nginx"
+  gem "capistrano3-unicorn"
   gem "i18n-tasks"
   gem "listen", ">= 3.0.5", "< 3.2"
   gem "onkcop", require: false
