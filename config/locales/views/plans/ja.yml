@@ -1,12 +1,8 @@
 ja:
   plans:
     index:
-      page-top-title: どこ行こ？そこ行こ！の体験を
-      page-top-sub: あなたのオリジナルのプランをみんなにシェアしよう
-      title: 最新のプラン
-  link:
-    register_plan: プランを登録する
-    sign_up: まずはユーザー登録
+      latest_plans: 最新のプラン
+      popular_plans: 人気のプラン
   view:
     plan_user: "投稿者:"
   form:

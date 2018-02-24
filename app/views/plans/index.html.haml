@@ -1,40 +1,31 @@
-- if params[:page].blank?
-  .page-top
-    .page-top-contents
-      .slide{ style: "background-image: url(#{asset_path 'top_bg_1.jpg'})" }
-      .slide{ style: "background-image: url(#{asset_path 'top_bg_2.jpg'})" }
-      .slide{ style: "background-image: url(#{asset_path 'top_bg_3.jpg'})" }
-      .slide{ style: "background-image: url(#{asset_path 'top_bg_4.jpg'})" }
-      %h1.page-top-title= t(".page-top-title")
-      .page-top-sub= t(".page-top-sub")
-      - if user_signed_in?
-        = link_to t("link.register_plan"), new_users_plan_path, class: "btn btn-success btn-lg"
-      - else
-        = link_to t("link.sign_up"), new_user_registration_path, class: "btn btn-success btn-lg"
 .container
   .plan-index-area
-    %h2= t(".title")
-    - if @plans.present?
-      .row.flex
-        - @plans.each do |plan|
-          .col-lg-3.col-md-4.col-xs-6.plan-item
-            = link_to plan do
-              .plan-image
-                - photo = plan.spots.map { |spot| spot.photos }.flatten.first
-                = image_tag photo.present? ? photo.image.thumb.url : "no_plan_image.png"
-              %h3.plan-name= plan.name
-              .plan-description= plan.description
-              .plan-reactions
-                .plan-pageviews
-                  = fa_icon "eye"
-                  - pv = plan.show_pv + plan.page_views.sum(:count)
-                  = pv
-                .plan-like
-                  = fa_icon "heart-o"
-                  = plan.likes.count
-                .plan-comment
-                  = fa_icon "comment-o"
-                  = plan.comments.count
-    - else
-      = t("view.no_plans")
-    = paginate @plans
+    .plan-index-group
+      - if params[:type] == "popular"
+        %h2= t(".popular_plans")
+      - else
+        %h2= t(".latest_plans")
+      - if @plans.present?
+        .row.flex
+          - @plans.each do |plan|
+            .col-lg-3.col-md-4.col-xs-6.plan-item
+              = link_to plan do
+                .plan-image
+                  - photo = plan.spots.map { |spot| spot.photos }.flatten.first
+                  = image_tag photo.present? ? photo.image.thumb.url : "no_plan_image.png"
+                %h3.plan-name= plan.name
+                .plan-description= plan.description
+                .plan-reactions
+                  .plan-pageviews
+                    = fa_icon "eye"
+                    - pv = plan.show_pv + plan.page_views.sum(:count)
+                    = pv
+                  .plan-like
+                    = fa_icon "heart-o"
+                    = plan.likes.count
+                  .plan-comment
+                    = fa_icon "comment-o"
+                    = plan.comments.count
+        = paginate @plans
+      - else
+        = t("view.no_plans")
