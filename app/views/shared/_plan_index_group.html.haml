@@ -10,8 +10,7 @@
         .plan-reactions
           .plan-pageviews
             = fa_icon "eye"
-            - pv = plan.show_pv + plan.page_views.sum(:count)
-            = pv
+            = plan.total_pv
           .plan-like
             = fa_icon "heart-o"
             = plan.likes.count

@@ -23,6 +23,10 @@ class Plan < ApplicationRecord
     self.class.display_pv[id].to_i
   end
 
+  def total_pv
+    show_pv + page_views.sum(:count)
+  end
+
   belongs_to :user
   has_many :spots, -> { order(:position) }, inverse_of: :plan, dependent: :destroy
   accepts_nested_attributes_for :spots, reject_if: :all_blank, allow_destroy: true
