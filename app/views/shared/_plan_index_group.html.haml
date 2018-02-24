@@ -1,6 +1,6 @@
 .row.flex
   - plans.each do |plan|
-    .col-lg-3.col-md-4.col-xs-6.plan-item
+    .plan-item{ class: "#{size == "sm" ? "col-lg-4 col-md-6 col-xs-12" : "col-lg-3 col-md-4 col-xs-6"}" }
       = link_to plan do
         .plan-image
           - photo = plan.spots.map { |spot| spot.photos }.flatten.first
@@ -10,8 +10,7 @@
         .plan-reactions
           .plan-pageviews
             = fa_icon "eye"
-            - pv = plan.show_pv + plan.page_views.sum(:count)
-            = pv
+            = plan.total_pv
           .plan-like
             = fa_icon "heart-o"
             = plan.likes.count

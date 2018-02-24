@@ -3,7 +3,7 @@
     .plan-index-group
       %h2= params[:type] == "popular" ? t(".popular_plans") : t(".latest_plans")
       - if @plans.present?
-        = render "shared/plan_index_group", plans: @plans
+        = render "shared/plan_index_group", plans: @plans, size: "lg"
         = paginate @plans, params: { type: params[:type] == "popular" ? :popular : :latest }
       - else
         = t("view.no_plans")

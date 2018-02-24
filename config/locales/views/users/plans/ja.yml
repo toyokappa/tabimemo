@@ -29,6 +29,7 @@ ja:
   view:
     plan_name: プラン名
     spot_count: スポット数
+    plan_pvs: PV数
     plan_likes: いいね数
     plan_comments: コメント数
     plan_created_at: 作成日

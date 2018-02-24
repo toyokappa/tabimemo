@@ -535,7 +535,11 @@
       }
     }
   }
-  .plan-spot-count, .plan-likes, .plan-comments, .plan-created-at {
+  .h-plan-spot-count, .h-plan-pvs, .h-plan-likes, .h-plan-comments, .h-plan-created-at {
+    text-align: center;
+  }
+  .plan-spot-count, .plan-pvs, .plan-likes, .plan-comments, .plan-created-at {
+    text-align: center;
     vertical-align: middle;
   }
 }
