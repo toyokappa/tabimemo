@@ -15,26 +15,7 @@
     .plan-index-group
       %h2= t(".latest_plans")
       - if @plans.present?
-        .row.flex
-          - @plans.each do |plan|
-            .col-lg-3.col-md-4.col-xs-6.plan-item
-              = link_to plan do
-                .plan-image
-                  - photo = plan.spots.map { |spot| spot.photos }.flatten.first
-                  = image_tag photo.present? ? photo.image.thumb.url : "no_plan_image.png"
-                %h3.plan-name= plan.name
-                .plan-description= plan.description
-                .plan-reactions
-                  .plan-pageviews
-                    = fa_icon "eye"
-                    - pv = plan.show_pv + plan.page_views.sum(:count)
-                    = pv
-                  .plan-like
-                    = fa_icon "heart-o"
-                    = plan.likes.count
-                  .plan-comment
-                    = fa_icon "comment-o"
-                    = plan.comments.count
+        = render "shared/plan_index_group", plans: @plans
         - if Plan.published.length > 8
           = link_to t("link.more_plans"), plans_path(type: :latest)
       - else
@@ -42,25 +23,6 @@
     - if @pop_plans.present?
       .plan-index-group
         %h2= t(".popular_plans")
-        .row.flex
-          - @pop_plans.each do |plan|
-            .col-lg-3.col-md-4.col-xs-6.plan-item
-              = link_to plan do
-                .plan-image
-                  - photo = plan.spots.map { |spot| spot.photos }.flatten.first
-                  = image_tag photo.present? ? photo.image.thumb.url : "no_plan_image.png"
-                %h3.plan-name= plan.name
-                .plan-description= plan.description
-                .plan-reactions
-                  .plan-pageviews
-                    = fa_icon "eye"
-                    - pv = plan.show_pv + plan.page_views.sum(:count)
-                    = pv
-                  .plan-like
-                    = fa_icon "heart-o"
-                    = plan.likes.count
-                  .plan-comment
-                    = fa_icon "comment-o"
-                    = plan.comments.count
+        = render "shared/plan_index_group", plans: @pop_plans
         - if Plan.with_popular.length > 8
           = link_to t("link.more_plans"), plans_path(type: :popular)
