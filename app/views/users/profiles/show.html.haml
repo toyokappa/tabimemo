@@ -29,21 +29,6 @@
       .plan-index-group
         %h2= t("view.user_plan")
         - if @plans.present?
-          .row.flex
-            - @plans.each do |plan|
-              .col-lg-4.col-md-6.col-sm-12.plan-item
-                = link_to plan do
-                  .plan-image
-                    - photo = plan.spots.map { |spot| spot.photos }.flatten.first
-                    = image_tag photo ? photo.image.thumb.url : "no_plan_image.png"
-                  %h3.plan-name= plan.name
-                  .plan-description= plan.description
-                  .plan-reactions
-                    .plan-like
-                      = fa_icon "heart-o"
-                      = plan.likes.count
-                    .plan-comment
-                      = fa_icon "comment-o"
-                      = plan.comments.count
+          = render "shared/plan_index_group", plans: @plans, size: "sm"
         - else
           = t("view.no_plans")
