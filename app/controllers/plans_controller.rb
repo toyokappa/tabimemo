@@ -2,7 +2,11 @@ class PlansController < ApplicationController
   skip_before_action :authenticate_user!
 
   def index
-    @plans = Plan.published.page(params[:page])
+    if params[:type] == "popular"
+      @plans = Plan.with_popular.page(params[:page])
+    else
+      @plans = Plan.published.page(params[:page])
+    end
   end
 
   def show

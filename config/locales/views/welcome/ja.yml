@@ -1,0 +1,11 @@
+ja:
+  welcome:
+    index:
+      page_top_title: どこ行こ？そこ行こ！の体験を
+      page_top_sub: あなたのオリジナルのプランをみんなにシェアしよう
+      latest_plans: 最新のプラン
+      popular_plans: 人気のプラン
+  link:
+    register_plan: プランを登録する
+    sign_up: まずはユーザー登録
+    more_plans: もっとプランを見る

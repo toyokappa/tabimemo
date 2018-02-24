@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root "plans#index"
+  root "welcome#index"
   devise_for :users, controllers: { registrations: "users/registrations" }
   namespace :users do
     resources :plans, only: [:index, :new, :create, :edit, :update, :destroy]
@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     resource :profile, only: [:show], controller: "users/profiles"
   end
 
-  resources :plans, only: [:show]
+  resources :plans, only: [:index, :show]
   resources :likes, only: [:create, :destroy]
   resources :comments, only: [:create, :destroy]
 end

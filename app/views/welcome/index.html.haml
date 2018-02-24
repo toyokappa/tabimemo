@@ -1,0 +1,28 @@
+.page-top
+  .page-top-contents
+    .slide{ style: "background-image: url(#{asset_path 'top_bg_1.jpg'})" }
+    .slide{ style: "background-image: url(#{asset_path 'top_bg_2.jpg'})" }
+    .slide{ style: "background-image: url(#{asset_path 'top_bg_3.jpg'})" }
+    .slide{ style: "background-image: url(#{asset_path 'top_bg_4.jpg'})" }
+    %h1.page-top-title= t(".page_top_title")
+    .page-top-sub= t(".page_top_sub")
+    - if user_signed_in?
+      = link_to t("link.register_plan"), new_users_plan_path, class: "btn btn-success btn-lg"
+    - else
+      = link_to t("link.sign_up"), new_user_registration_path, class: "btn btn-success btn-lg"
+.container
+  .plan-index-area
+    .plan-index-group
+      %h2= t(".latest_plans")
+      - if @plans.present?
+        = render "shared/plan_index_group", plans: @plans
+        - if Plan.published.length > 8
+          = link_to t("link.more_plans"), plans_path(type: :latest)
+      - else
+        = t("view.no_plans")
+    - if @pop_plans.present?
+      .plan-index-group
+        %h2= t(".popular_plans")
+        = render "shared/plan_index_group", plans: @pop_plans
+        - if Plan.with_popular.length > 8
+          = link_to t("link.more_plans"), plans_path(type: :popular)
