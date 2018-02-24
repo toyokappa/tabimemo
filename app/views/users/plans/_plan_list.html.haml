@@ -1,11 +1,12 @@
 %table.table
   %thead
-    %tr
-      %th= t("view.plan_name")
-      %th= t("view.spot_count")
-      %th= t("view.plan_likes")
-      %th= t("view.plan_comments")
-      %th= t("view.plan_created_at")
+    %tr.plan-item
+      %th.h-plan-title= t("view.plan_name")
+      %th.h-plan-spot-count= t("view.spot_count")
+      %th.h-plan-pvs= t("view.plan_pvs")
+      %th.h-plan-likes= t("view.plan_likes")
+      %th.h-plan-comments= t("view.plan_comments")
+      %th.h-plan-created-at= t("view.plan_created_at")
   %tbody
     - if @plans.present?
       - @plans.each do |plan|
@@ -17,6 +18,8 @@
             .plan-description= plan.description
           %td.plan-spot-count
             = plan.spots.count
+          %td.plan-pvs
+            = plan.total_pv
           %td.plan-likes
             = plan.likes.count
           %td.plan-comments
@@ -27,6 +30,7 @@
       %tr.plan-item
         %td.plan-title= t("view.no_plans")
         %td.plan-spot-count -
+        %td.plan-pvs -
         %td.plan-likes -
         %td.plan-comments -
         %td.plan-created-at -
