@@ -1,0 +1,22 @@
+/*    terms    */
+
+.terms-field {
+  h2 {
+    padding-bottom: 25px;
+  }
+  h3 {
+    padding-bottom: 10px;
+  }
+  .sentence {
+    padding-bottom: 20px;
+    ol {
+      -webkit-padding-start: 2rem;
+      li {
+        margin-bottom: 10px;
+      }
+    }
+    .sub-sentence {
+      margin-top: 15px;
+    }
+  }
+}
