@@ -21,4 +21,6 @@ Rails.application.routes.draw do
   resources :plans, only: [:index, :show]
   resources :likes, only: [:create, :destroy]
   resources :comments, only: [:create, :destroy]
+  get "/terms", to: "static#terms"
+  get "/privacy_policy", to: "static#privacy_policy"
 end

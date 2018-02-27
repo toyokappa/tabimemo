@@ -9,6 +9,9 @@ ja:
     manage_plan: プラン管理
     user_info: ユーザー情報
     edit_password: パスワード変更
+    terms: 利用規約
+    privacy_policy: プライバシーポリシー
+    blog: 運営者ブログ
   view:
     no_plans: 表示できるプランはありません。
     delete_confirm: 削除しますか？
