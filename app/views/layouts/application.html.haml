@@ -31,4 +31,13 @@
       - flash.each do |message_type, message|
         .flash-message-container
           = content_tag :div, message, class: "alert alert-#{message_type}"
-    = yield
+    .wrapper
+      = yield
+    %footer.footer
+      .container
+        %ul
+          %li= link_to "利用規約", terms_path
+          %li= link_to "プライバシーポリシー", privacy_policy_path
+          %li= link_to "運営者ブログ", "http://toyokappa.hatenablog.com/"
+        .copyrights
+          2018 &copy; Toyokappa, All Rights Reserved.

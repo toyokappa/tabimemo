@@ -57,7 +57,6 @@
 body {
   color: #484848;
   padding-top: 80px;
-  margin-bottom: 50px;
 }
 
 .navbar {
@@ -115,6 +114,34 @@ ul {
       }
       a {
         padding: 15px 0 15px 15px;
+      }
+    }
+  }
+}
+
+/*    wrapper    */
+
+.wrapper {
+  margin-bottom: 30px;
+}
+
+/*    footer    */
+
+.footer {
+  width: 100%;
+  text-align: center;
+  color: white;
+  background-color: #484848;
+  padding: 50px 0;
+  ul {
+    padding-bottom: 25px;
+    border-bottom: 1px solid white;
+    margin-bottom: 25px;
+    li {
+      display: inline;
+      margin: 0 20px;
+      a {
+        color: white;
       }
     }
   }
