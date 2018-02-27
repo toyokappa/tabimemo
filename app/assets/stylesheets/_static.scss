@@ -17,6 +17,16 @@
     }
     .sub-sentence {
       margin-top: 15px;
+      .extra-sentence {
+        font-size: 12px;
+        margin-top: 15px;
+        ol {
+          list-style-type: lower-roman;
+        }
+      }
     }
+  }
+  .end-of-terms {
+    text-align: right;
   }
 }
