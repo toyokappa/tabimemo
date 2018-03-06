@@ -5,3 +5,8 @@ ja:
         title: ユーザー登録
       edit:
         title: ユーザー情報
+  validation:
+    agreement: に同意が必要です
+  form:
+    and: 及び
+    agree: に同意する
