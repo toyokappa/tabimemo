@@ -1,0 +1,3 @@
+= search_form_for @search, url: search_path, class: "navbar-form navbar-left" do |f|
+  .form-group
+    = f.search_field :keyword_all, value: @keyword, class: "form-control", placeholder: "「群馬」などの地域を入力"

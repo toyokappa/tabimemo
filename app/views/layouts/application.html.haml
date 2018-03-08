@@ -13,6 +13,7 @@
       %nav.container
         .navbar-header
           = link_to t("app.title"), root_path, class: "navbar-brand"
+        = render "layouts/search_form"
         %ul.nav.navbar-nav.navbar-right
           - if user_signed_in?
             %li= link_to t("menu.register_plan"), new_users_plan_path
