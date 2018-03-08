@@ -4,6 +4,6 @@
       %h2= t("title.search")
       - if @plans.present?
         = render "shared/plan_index_group", plans: @plans, size: "lg"
-        = paginate @plans
+        = paginate @plans, params: { q: { keyword_all: @keyword } }
       - else
         = "「#{@keyword}」#{t('view.no_search_result')}"
