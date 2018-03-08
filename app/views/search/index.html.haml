@@ -1,0 +1,9 @@
+.container
+  .plan-index-area
+    .plan-index-group
+      %h2= "検索結果"
+      - if @plans.present?
+        = render "shared/plan_index_group", plans: @plans, size: "lg"
+        = paginate @plans
+      - else
+        キーワードに一致するプランがありませんでした。
