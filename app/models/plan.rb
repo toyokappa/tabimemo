@@ -50,6 +50,8 @@ class Plan < ApplicationRecord
     self.where(id: sorted_scores.keys)
   }
 
+  ransack_alias :keyword, :name_or_description_or_spots_name_or_spots_description_or_spots_address
+
   private
 
     def set_pv_keys

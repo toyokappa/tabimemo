@@ -1,0 +1,7 @@
+ja:
+  title:
+    search: 検索結果
+  form:
+    search_placeholder: 「群馬」などの地域を入力
+  view:
+    no_search_result: に一致するプランはありませんでした。

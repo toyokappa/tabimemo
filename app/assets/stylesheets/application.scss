@@ -88,6 +88,20 @@ ul {
     font-weight: bold;
     padding: 30px 15px;
   }
+  .search-form {
+    margin-top: 20px;
+    margin-bottom: 0;
+    .keyword-input {
+      font-size: 18px;
+      color: #888888;
+      height: inherit;
+      width: 400px;
+      border-radius: 3px;
+      padding: 7px 10px 7px 46px;
+      background: image-url("search.png") no-repeat 10px 8px;
+      background-size: 24px;
+    }
+  }
   .nav > li > a {
     color: gray;
     padding: 30px 15px;

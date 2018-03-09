@@ -1,0 +1,9 @@
+.container
+  .plan-index-area
+    .plan-index-group
+      %h2= t("title.search")
+      - if @results.present?
+        = render "shared/plan_index_group", plans: @results, size: "lg"
+        = paginate @results, params: { q: { keyword_all: @keyword } }
+      - else
+        = "「#{@keyword}」#{t('view.no_search_result')}"
