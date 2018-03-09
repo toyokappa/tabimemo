@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
     def set_search
       @keyword = params[:q] ? params[:q][:keyword_all] : ""
       @search = Plan.ransack(params[:q])
-      @plans = @search.result.distinct.page(params[:page])
+      @results = @search.result.distinct.page(params[:page])
     end
 
   protected
