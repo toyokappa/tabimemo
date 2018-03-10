@@ -42,9 +42,8 @@
             .spot-position-num= spot.position
             .spot-name= spot.name
           - if spot.photos.any?
-            %ul.image-area.row
-              - spot.photos.each do |photo|
-                %li.col-sm-4.flex= image_tag photo.image.thumb.url
+            .image-area
+              = render "plans/photo_grid", spot: spot
           .spot-description= simple_format h(spot.description)
       - lat_length = @plan.spots.map { |spot| spot.latitude }.compact.length
       - if lat_length > 1

@@ -1,0 +1,10 @@
+- photos_length = spot.photos.length
+.grid-container{ class: "grid-style-#{photos_length < 5 ? photos_length : 5}" }
+  - spot.photos.each.with_index(1) do |photo, i|
+    = content_tag :div, "", class: "grid-item", style: "background-image: url(#{photo.image.thumb.url});"
+    - break if i == 4
+  - if photos_length >= 5
+    = content_tag :div, class: "grid-item", style: "background-image: url(#{spot.photos[4].image.thumb.url});" do
+      - if photos_length > 5
+        .gray-back
+          .more-image= "+#{photos_length - 5}"
