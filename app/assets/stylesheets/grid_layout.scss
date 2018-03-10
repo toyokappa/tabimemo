@@ -3,6 +3,8 @@
   display: grid;
   grid-gap: 3px;
   .grid-item {
+    display: block;
+    text-decoration: none;
     background-size: cover;
     background-position: center center;
   }
@@ -46,7 +48,7 @@
       &:nth-child(4) {
         grid-row: 2 / 4;
       }
-      &:last-child {
+      &:nth-child(5) {
         .gray-back {
           display: flex;
           justify-content: center;
