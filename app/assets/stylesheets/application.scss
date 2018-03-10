@@ -20,6 +20,7 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "font-awesome";
+@import "baguetteBox.min";
 
 /*    alert   */
 
@@ -173,16 +174,6 @@ form {
     padding: 3px 5px;
     border-radius: 3px;
     margin-left: 3px;
-  }
-}
-
-/*    image   */
-
-.image-area {
-  padding-left: 0;
-  li {
-    display: inline;
-    margin-right: 10px;
   }
 }
 
