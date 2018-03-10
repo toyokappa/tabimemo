@@ -4,9 +4,11 @@ class CommentsController < ApplicationController
 
     # エラー時のレンダリング用
     @plan = @comment.plan
+    @photo = @plan.spots.map { |spot| spot.photos }.flatten.first
     @user = @plan.user
     @like = current_user.likes.find_by(plan_id: @plan)
     @comments = @plan.comments
+    @pv = @plan.show_pv + @plan.page_views.sum(:count)
 
     if @comment.save
       redirect_to @plan, notice: t("flash.comment_success")
