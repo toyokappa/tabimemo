@@ -14,7 +14,7 @@ class autoCompleteSpot
   suggestSpot: (e)=>
     $target = $(e.target)
     input = $target.val()
-    $place_id = $target.closest(".spot-form").find(".place-id")
+    $spot_form = $target.closest(".spot-form")
     @useHtml()
     $target.autocomplete
       source: (req, res)->
@@ -25,45 +25,27 @@ class autoCompleteSpot
             input: input
           dataType: "json"
           success: (data)=>
-            places = []
-            for prediction in data.predictions
-              place_id = prediction.place_id
-              place = prediction.structured_formatting.main_text
-              description = prediction.structured_formatting.secondary_text
-              description = description.slice(2) if description.indexOf("日本") == 0
-              places.push {place_id: "#{place_id}", label: "<div class='place-title'>#{place}</div><div class='place-description'>#{description}</div>", value: "#{place}"}
+            places = _.map data, (place)=>
+              label: "<div class='place-title'>#{place.name}</div><div class='place-description'>#{place.address}</div>"
+              value: place.name
+              address: place.address
+              lat: place.lat
+              lng: place.lng
             res places
       select: (event, ui)->
         $target.val ui.item.value
-        $place_id.val(ui.item.place_id).change()
+        $spot_form.find(".spot-address").val ui.item.address
+        $spot_form.find(".spot-latitude").val ui.item.lat
+        $spot_form.find(".spot-longitude").val ui.item.lng
       autoFocus: true
-      delay: 200
     return
 
   useHtml: ->
     $.ui.autocomplete.prototype._renderItem = (ul, item)->
       return $("<li></li>").data("item.complete", item).append($("<a></a>").html(item.label)).appendTo(ul)
 
-  setGeometry: (e)=>
-    $target = $(e.target)
-    request = { placeId: $target.val() }
-    $spot_form = $target.closest(".spot-form")
-    service = new google.maps.places.PlacesService(@map)
-    service.getDetails request, (place, status)=>
-      if status == "OK"
-        address = place.formatted_address
-        address = address.slice(13) if address.indexOf("日本") == 0
-        location = place.geometry.location
-        $spot_form.find(".spot-address").val address
-        $spot_form.find(".spot-latitude").val location.lat()
-        $spot_form.find(".spot-longitude").val(location.lng()).change()
-      else
-        console.log status
-    return
-
   bind: =>
     @$root.on "keyup", ".spot-name", @suggestSpot
-    @$root.on "change", ".place-id", @setGeometry
 
 $(document).on "turbolinks:load", ->
-  new autoCompleteSpot $(".spot-container") unless $(".spot-container").val() is undefined
+  new autoCompleteSpot $(".spot-container") if $(".spot-container")[0]
