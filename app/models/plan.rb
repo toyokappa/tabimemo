@@ -45,7 +45,7 @@ class Plan < ApplicationRecord
     likes = Like.between_1_month.except_plan_user.group(:plan_id).count
     comments = Comment.between_1_month.except_plan_user.group(:plan_id).count
     pvs = PageView.between_1_month.group(:plan_id).sum(:count)
-    scores = plan_ids.map { |plan_id| [plan_id, pvs[plan_id] > 0 ? ((likes[plan_id] || 0) * 0.7 + (comments[plan_id] || 0) * 0.3) / pvs[plan_id] : 0] }.to_h
+    scores = plan_ids.map { |plan_id| [plan_id, pvs[plan_id].to_i > 0 ? ((likes[plan_id] || 0) * 0.7 + (comments[plan_id] || 0) * 0.3) / pvs[plan_id] : 0] }.to_h
     sorted_scores = scores.delete_if { |_,v| v <= 0 }.sort_by { |_,v| -v }.to_h
     self.where(id: sorted_scores.keys)
   }
