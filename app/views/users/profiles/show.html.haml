@@ -4,19 +4,19 @@
       .profile-image= image_tag @profile&.image ? @profile.image.thumb.url : "no_user_image.svg"
       %h3.profile-name= @profile&.name ? @profile.name : @user.name
       .profile-description= @profile&.description
-      - if @profile&.location
+      - if @profile&.location.present?
         .profile-item
           = fa_icon "map-pin"
           = @profile.location
-      - if @profile&.url
+      - if @profile&.url.present?
         .profile-item
           = fa_icon "link"
           = link_to @profile.url, @profile.url
-      - if @profile&.gender
+      - if @profile&.gender.present?
         .profile-item
           = fa_icon "user-circle-o"
           = @profile.gender_text
-      - if @profile&.birthday
+      - if @profile&.birthday.present?
         .profile-item
           = fa_icon "birthday-cake"
           = l(@profile.birthday, format: :long)
