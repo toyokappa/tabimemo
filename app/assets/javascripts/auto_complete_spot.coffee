@@ -36,7 +36,7 @@ class autoCompleteSpot
         $target.val ui.item.value
         $spot_form.find(".spot-address").val ui.item.address
         $spot_form.find(".spot-latitude").val ui.item.lat
-        $spot_form.find(".spot-longitude").val ui.item.lng
+        $spot_form.find(".spot-longitude").val(ui.item.lng).change()
       autoFocus: true
     return
 
