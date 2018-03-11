@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
       @search = Plan.ransack(params[:q])
       @results = @search.result.default_order.distinct.page(params[:page])
     end
-
+    
   protected
     def configure_permitted_parameters
       devise_parameter_sanitizer.permit(:sign_up) { |u| u.permit(:name, :email, :password, :password_confirmation, :agreement, :remember_me) }

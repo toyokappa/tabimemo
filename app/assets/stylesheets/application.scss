@@ -149,6 +149,7 @@ ul {
   background-color: #484848;
   padding: 50px 0;
   ul {
+    padding-left: 0;
     padding-bottom: 25px;
     border-bottom: 1px solid white;
     margin-bottom: 25px;
@@ -158,6 +159,13 @@ ul {
       a {
         color: white;
       }
+    }
+  }
+  .opinion-form {
+    width: 600px;
+    margin: 0 auto;
+    .btn {
+      width: 100%;
     }
   }
 }
