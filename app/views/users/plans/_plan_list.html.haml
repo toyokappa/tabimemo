@@ -7,6 +7,7 @@
       %th.h-plan-likes= t("view.plan_likes")
       %th.h-plan-comments= t("view.plan_comments")
       %th.h-plan-created-at= t("view.plan_created_at")
+      %th.h-plan-menu
   %tbody
     - if @plans.present?
       - @plans.each do |plan|
@@ -26,6 +27,8 @@
             = plan.comments.count
           %td.plan-created-at
             = l(plan.created_at, format: :default)
+          %td.plan-menu
+            = link_to t("link.edit"), edit_users_plan_path(plan), class: "btn btn-success"
     - else
       %tr.plan-item
         %td.plan-title= t("view.no_plans")

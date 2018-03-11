@@ -13,9 +13,11 @@
     background-color: rgba(0, 0, 0, 0.2);
     .page-top-title {
       color: white;
+      font-size: 36px;
     }
     .page-top-sub {
       color: white;
+      font-size: 18px;
       margin-bottom: 20px;
     }
     .slide {
@@ -541,7 +543,7 @@
   .h-plan-spot-count, .h-plan-pvs, .h-plan-likes, .h-plan-comments, .h-plan-created-at {
     text-align: center;
   }
-  .plan-spot-count, .plan-pvs, .plan-likes, .plan-comments, .plan-created-at {
+  .plan-spot-count, .plan-pvs, .plan-likes, .plan-comments, .plan-created-at, .plan-menu {
     text-align: center;
     vertical-align: middle;
   }
