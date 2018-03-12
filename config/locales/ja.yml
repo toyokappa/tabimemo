@@ -24,6 +24,7 @@ ja:
     select_item: "%{item}を選択"
     cancel: キャンセル
     confirm: 変更を保存
+    send: 送信する
   date:
     formats:
       long: ! "%Y年%m月%d日"

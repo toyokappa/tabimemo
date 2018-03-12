@@ -46,7 +46,7 @@
               = f.hidden_field :user, value: current_user.name
               = f.hidden_field :email, value: current_user.email
               .form-group
-                = f.text_area :content, class: "form-control", placeholder: "ご意見ボックスです。Tabimemoへのご意見お待ちしてます。", rows: 5
-              = f.submit "送信する", class: "btn btn-success"
+                = f.text_area :content, class: "form-control", placeholder: t("view.opinion_description"), rows: 5
+              = f.submit t("form.send"), class: "btn btn-success"
         .copyrights
           2018 &copy; Toyokappa, All Rights Reserved.

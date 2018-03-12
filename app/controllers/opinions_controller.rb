@@ -4,9 +4,9 @@ class OpinionsController < ApplicationController
   def create
     opinion = Opinion.new(opinion_params)
     if opinion.valid? && OpinionMailer.email(opinion).deliver
-      redirect_to root_path, notice: "ご意見ボックスを送信しました"
+      redirect_to root_path, notice: t("flash.mail_success")
     else
-      redirect_to root_path, alert: "ご意見ボックスの送信に失敗しました"
+      redirect_to root_path, alert: t("flash.mail_success")
     end
   end
 
