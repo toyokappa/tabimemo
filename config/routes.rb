@@ -24,4 +24,9 @@ Rails.application.routes.draw do
   get "/search", to: "search#index"
   get "/terms", to: "static#terms"
   get "/privacy_policy", to: "static#privacy_policy"
+  post "/opinions", to: "opinions#create"
+
+  if Rails.env.development?
+    mount LetterOpenerWeb::Engine, at: "/letter_opener"
+  end
 end

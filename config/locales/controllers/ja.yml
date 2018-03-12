@@ -6,3 +6,5 @@ ja:
     comment_success: コメントしました。
     comment_failed: コメントに失敗しました。
     sort_success: スポットを並び替えました。
+    mail_success: ご意見ボックスを送信しました。
+    mail_failed: ご意見ボックスの送信に失敗しました。

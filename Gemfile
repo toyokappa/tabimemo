@@ -55,6 +55,8 @@ group :development do
   gem "capistrano-rbenv"
   gem "capistrano3-unicorn"
   gem "i18n-tasks"
+  gem "letter_opener"
+  gem "letter_opener_web"
   gem "listen", ">= 3.0.5", "< 3.2"
   gem "onkcop", require: false
   gem "rubocop", require: false
