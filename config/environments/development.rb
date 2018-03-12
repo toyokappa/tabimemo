@@ -55,7 +55,8 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   # Custom configure
-  config.x.mail.info = "info@example.com"
+  config.x.mail.noreply = "noreply@example.com"
+  config.x.mail.to = "kppg42@gmail.com"
 
   ENV["REDIS"] = "localhost:6379"
 end

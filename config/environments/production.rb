@@ -61,6 +61,19 @@ Rails.application.configure do
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "tabimemo_#{Rails.env}"
   config.action_mailer.perform_caching = false
+  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.perform_caching = false
+  config.action_mailer.default_url_options = { host: "tabimemo.fun", protocol: "https" }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    user_name: ENV["MAIL_USERNAME"],
+    password: ENV["MAIL_PASSWORD"],
+    domain: "tabimemo.fun",
+    address: "smtp.sendgrid.net",
+    port: 587,
+    authentication: :plain,
+    enable_starttls_auto: true
+  }
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
@@ -91,4 +104,8 @@ Rails.application.configure do
 
   # Google Analytics Tracking ID
   GA.tracker = "UA-100430187-2"
+
+  # Custom configure
+  config.x.mail.noreply = "noreply@tabimemo.fun"
+  config.x.mail.to = "kppg42@gmail.com"
 end
