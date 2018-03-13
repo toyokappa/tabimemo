@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
 
     # エラー時のレンダリング用
     @plan = @comment.plan
-    @photo = @plan.spots.map { |spot| spot.photos }.flatten.first
+    @photo = @plan.photos.first
     @user = @plan.user
     @like = current_user.likes.find_by(plan_id: @plan)
     @comments = @plan.comments
