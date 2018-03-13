@@ -50,6 +50,11 @@ GEM
     ast (2.3.0)
     autoprefixer-rails (7.1.4)
       execjs
+    aws-ses (0.6.0)
+      builder
+      mail (> 2.2.5)
+      mime-types
+      xml-simple
     bcrypt (3.1.11)
     bindex (0.5.0)
     binding_of_caller (0.7.2)
@@ -566,6 +571,7 @@ PLATFORMS
 
 DEPENDENCIES
   annotate
+  aws-ses
   bootstrap-sass
   capistrano
   capistrano-bundler
