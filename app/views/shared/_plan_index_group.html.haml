@@ -5,7 +5,8 @@
         .plan-image
           = image_tag plan.photos.present? ? plan.photos.first.image.thumb.url : "no_plan_image.png"
         %h3.plan-name= plan.name
-        .plan-description= plan.description
+        .plan-description
+          = plan.description.truncate(54)
         .plan-reactions
           .plan-pageviews
             = fa_icon "eye"
