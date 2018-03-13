@@ -30,6 +30,7 @@ class Plan < ApplicationRecord
   belongs_to :user
   has_many :spots, -> { order(:position) }, inverse_of: :plan, dependent: :destroy
   accepts_nested_attributes_for :spots, reject_if: :all_blank, allow_destroy: true
+  has_many :photos, through: :spots
   has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :page_views, dependent: :destroy
