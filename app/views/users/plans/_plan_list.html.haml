@@ -13,10 +13,12 @@
       - @plans.each do |plan|
         %tr.plan-item
           %td.plan-title
-            %h3.plan-name= link_to plan.name, plan_path(plan)
+            %h3.plan-name
+              = link_to plan.name, plan_path(plan)
             .plan-status{ class: plan.status }
               = plan.status_text
-            .plan-description= plan.description
+            .plan-description
+              = plan.description.truncate(100)
           %td.plan-spot-count
             = plan.spots.count
           %td.plan-pvs
