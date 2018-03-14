@@ -59,6 +59,7 @@ class Plan < ApplicationRecord
       if @@today != "pv#{Date.today.strftime('%Y_%m_%d')}"
         @@yesterday = "pv#{Date.yesterday.strftime('%Y_%m_%d')}"
         @@today = "pv#{Date.today.strftime('%Y_%m_%d')}"
+        sorted_set @@today, global: true
       end
     end
 end
