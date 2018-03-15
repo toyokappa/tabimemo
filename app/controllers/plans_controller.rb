@@ -11,7 +11,7 @@ class PlansController < ApplicationController
 
   def show
     @plan = Plan.find(params[:id])
-    @photo = @plan.photos.first
+    @photo = @plan.get_header_image
     @user = @plan.user
     @like = current_user&.likes&.find_by(plan_id: @plan)
     @comment = current_user&.comments&.build

@@ -53,6 +53,10 @@ class Plan < ApplicationRecord
 
   ransack_alias :keyword, :name_or_description_or_spots_name_or_spots_description_or_spots_address
 
+  def get_header_image
+    photos.find_by(is_header: true) || photos.first
+  end
+
   private
 
     def set_pv_keys

@@ -172,6 +172,14 @@
         right: 20px;
         cursor: pointer;
       }
+      .set-header-btn {
+        position: absolute;
+        bottom: -13px;
+        right: 22px;
+      }
+      .header-image {
+        border: 4px solid #5cb85c;
+      }
     }
     .photo-loading {
       display: none;
