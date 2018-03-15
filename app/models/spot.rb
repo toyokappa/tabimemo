@@ -1,5 +1,5 @@
 class Spot < ApplicationRecord
-  has_many :photos, inverse_of: :spot, dependent: :destroy
+  has_many :photos, -> { order(:position) }, inverse_of: :spot, dependent: :destroy
   accepts_nested_attributes_for :photos, allow_destroy: true
 
   belongs_to :plan
