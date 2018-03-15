@@ -17,4 +17,8 @@ module ApplicationHelper
     end
     { fields: fields.gsub("\n", ""), id: id }
   end
+  
+  def url_without_protocol(url)
+    url_without_protocol = url.split("/").drop(2).join("/")
+  end
 end

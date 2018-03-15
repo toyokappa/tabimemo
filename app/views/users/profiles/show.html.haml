@@ -12,7 +12,7 @@
       - if @profile&.url.present?
         .profile-item
           = fa_icon "link"
-          = link_to @profile.url, @profile.url
+          = link_to url_without_protocol(@profile.url), @profile.url, target: "_blank"
       - if @profile&.gender.present?
         .profile-item
           = fa_icon "user-circle-o"

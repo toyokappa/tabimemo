@@ -6,6 +6,8 @@ class Profile < ApplicationRecord
   before_create -> { self.id = user.id }
   belongs_to :user, foreign_key: "id"
 
+  URL_FORMAT = /\A#{URI::regexp(%w(http https))}\z/
+  validates :url, format: URL_FORMAT
   validate :max_file_size
 
   private
