@@ -140,11 +140,17 @@ class spotFields
     return
 
   setHeaderImage: (e)=>
-    $header_target = $(e.target).closest(".photo-item").find(".photo-is-header")
+    $target = $(e.target)
+    $photo_item = $target.closest(".photo-item")
     $photo_is_headers = @$root.find(".photo-is-header")
     _.forEach $photo_is_headers, (is_header)=>
-      $(is_header).val false if $(is_header).val()
-    $header_target.val true
+      if $(is_header).val()
+        $(is_header).val false
+        $(is_header).closest(".photo-item").find(".preview-photo").removeClass("header-image")
+        $(is_header).closest(".photo-item").find(".set-header-btn").show()
+    $photo_item.find(".photo-is-header").val true
+    $photo_item.find(".preview-photo").addClass("header-image")
+    $target.hide()
     return
 
   bind: =>
