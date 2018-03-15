@@ -139,12 +139,21 @@ class spotFields
     @setPhotoPosition $photo_field
     return
 
+  setHeaderImage: (e)=>
+    $header_target = $(e.target).closest(".photo-item").find(".photo-is-header")
+    $photo_is_headers = @$root.find(".photo-is-header")
+    _.forEach $photo_is_headers, (is_header)=>
+      $(is_header).val false if $(is_header).val()
+    $header_target.val true
+    return
+
   bind: =>
     @$root.on "click", ".create-spot-btn", @createSpotField
           .on "click", ".destroy-spot-btn", @destroySpotField
           .on "click", ".destroy-photo-btn", @destroyPhoto
           .on "click", ".add-photos", @openFileField
           .on "change", ".spot-photos", @createPhotos
+          .on "click", ".set-header-btn", @setHeaderImage
     return
 
 $(document).on "turbolinks:load", ->
