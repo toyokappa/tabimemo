@@ -1,6 +1,7 @@
 class spotFields
   constructor: (@$root)->
     @countSpotPosition()
+    @setSortablePhoto()
     @bind()
 
   createSpotField: (e)=>
@@ -50,9 +51,9 @@ class spotFields
 
   destroyPhoto: (e)=>
     $target = $(e.target)
-    $photo_area = $target.closest ".photo-area"
-    $photo_area.find(".photo-destroy").val(true)
-    $photo_area.hide()
+    $photo_item = $target.closest ".photo-item"
+    $photo_item.find(".photo-destroy").val(true)
+    $photo_item.hide()
 
   openFileField: (e)=>
     $(e.target).closest(".photo-field").find(".spot-photos").click()
@@ -109,6 +110,12 @@ class spotFields
     $ajax.fail (data, status, $ajax)=>
       $defer.resolveWith this, arguments
     return $.extend {}, $ajax, $defer.promise()
+
+  setSortablePhoto: =>
+    $photo_field = @$root.find(".photo-field")
+    $photo_field.sortable
+      items: ".photo-item"
+    return
 
   bind: =>
     @$root.on "click", ".create-spot-btn", @createSpotField

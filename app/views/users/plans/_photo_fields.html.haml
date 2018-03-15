@@ -1,4 +1,4 @@
-.col-sm-4.photo-area
+.col-sm-4.photo-item
   = f.hidden_field :id, class: "photo-id"
   = f.hidden_field :_destroy, class: "photo-destroy"
   = image_tag f.object.image.present? ? f.object.image.thumb.url : "", class: "preview-photo"
