@@ -3,7 +3,8 @@
     .plan-item{ class: "#{size == "sm" ? "col-lg-4 col-md-6 col-xs-12" : "col-lg-3 col-md-4 col-xs-6"}" }
       = link_to plan do
         .plan-image
-          = image_tag plan.photos.present? ? plan.photos.first.image.thumb.url : "no_plan_image.png"
+          - photo = plan.get_header_image
+          = image_tag photo.present? ? photo.image.thumb.url : "no_plan_image.png"
         %h3.plan-name= plan.name
         .plan-description
           = plan.description.truncate(54)
