@@ -1,0 +1,4 @@
+- if plans.present?
+  = render "shared/plan_index_group", plans: plans, size: "sm"
+- else
+  = t("view.no_plans")

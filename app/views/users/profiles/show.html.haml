@@ -29,7 +29,8 @@
     .plan-index-area.col-lg-9.col-md-8.col-sm-6
       .plan-index-group
         %h2= t("view.user_plan")
-        - if @plans.present?
-          = render "shared/plan_index_group", plans: @plans, size: "sm"
-        - else
-          = t("view.no_plans")
+        %ul.plan-status-menu
+          %li= link_to "最新のプラン", user_profile_path(@user.name), remote: true, class: "active"
+          %li= link_to "いいねしたプラン", user_liked_plans_path(@user.name), remote: true
+        .plan-list
+          = render "plan_list", plans: @plans

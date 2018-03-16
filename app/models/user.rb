@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_one :profile, dependent: :destroy, foreign_key: "id"
   has_many :plans, dependent: :destroy
   has_many :likes, dependent: :destroy
+  has_many :liked_plans, through: :likes, source: :plan
   has_many :comments, dependent: :destroy
 
   VALID_NAME_REGEX = /\A[\w+\-]+\z/i
