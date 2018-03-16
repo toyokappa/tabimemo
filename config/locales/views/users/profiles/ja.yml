@@ -5,6 +5,9 @@ ja:
         title: プロフィール登録
       edit:
         title: プロフィール編集
+      show:
+        least_plans: 最新のプラン
+        liked_plans: いいねしたプラン
   link:
     register_profile: プロフィールを登録する
     edit_profile: プロフィールを編集する
