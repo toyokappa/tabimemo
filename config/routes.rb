@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 
   resources :users, param: :name, path: "/", only: [] do
     resource :profile, only: [:show], controller: "users/profiles"
+    get "/liked_plans", to: "users/profiles#liked"
   end
 
   resources :plans, only: [:index, :show]

@@ -1,11 +1,22 @@
 class Users::ProfilesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:show]
+  before_action :set_user, only: [:show, :liked]
   before_action :set_profile, only: [:edit, :update]
 
   def show
-    @user = User.find_by(name: params[:user_name])
     @profile = @user.profile
     @plans = @user.plans.published
+    respond_to do |format|
+      format.html
+      format.js { render "plan_list" }
+    end
+  end
+
+  def liked
+    @plans = @user.liked_plans
+    respond_to do |format|
+      format.js { render "plan_list" }
+    end
   end
 
   def new
@@ -36,6 +47,10 @@ class Users::ProfilesController < ApplicationController
 
     def profile_params
       params.require(:profile).permit(:name, :description, :location, :url, :gender, :birthday, :image)
+    end
+
+    def set_user
+      @user = User.find_by(name: params[:user_name])
     end
 
     def set_profile
