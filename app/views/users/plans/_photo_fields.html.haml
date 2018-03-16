@@ -5,4 +5,4 @@
   = f.hidden_field :_destroy, class: "photo-destroy"
   = image_tag f.object.image.present? ? f.object.image.thumb.url : "", class: "preview-photo #{"header-image" if f.object.is_header?}"
   = fa_stacked_icon "times-circle 2x",base: "circle inverse 2x", class: "destroy-photo-btn"
-  = link_to "ヘッダー画像に設定", "javascript:void(0);", class: "btn btn-xs btn-success set-header-btn", style: "#{"display: none;" if f.object.is_header?}"
+  = link_to t("form.set_header_image"), "javascript:void(0);", class: "btn btn-xs btn-success set-header-btn", style: "#{"display: none;" if f.object.is_header?}"
