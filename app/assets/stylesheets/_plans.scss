@@ -354,12 +354,8 @@
       .like-area {
         display: inline-block;
         margin-right: 15px;
-        .unlike a {
+        a {
           color: crimson;
-          text-decoration: none;
-        }
-        .like a {
-          color: gray;
           text-decoration: none;
         }
       }

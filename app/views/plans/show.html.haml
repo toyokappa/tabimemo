@@ -8,25 +8,26 @@
     .plan-header
       %h2.plan-name= @plan.name
       .plan-description= simple_format h(@plan.description)
-      .reaction-field
-        .pageviews
-          = fa_icon "eye"
-          = @pv
-        .like-area
-          - if user_signed_in?
-            - if @like.present?
-              = render "plans/unlike"
+      - if @plan.published?
+        .reaction-field
+          .pageviews
+            = fa_icon "eye"
+            = @pv
+          .like-area
+            - if user_signed_in?
+              - if @like.present?
+                = render "plans/unlike"
+              - else
+                = render "plans/like"
             - else
-              = render "plans/like"
-          - else
-            .like
-              = link_to new_user_session_path do
-                = fa_icon "heart-o"
-                = Like.where(plan_id: @plan).count
-        .comment
-          = link_to "#comment-field", class: "smooth-scroll"  do
-            = fa_icon "comment-o"
-            = Comment.where(plan_id: @plan).count
+              .like
+                = link_to new_user_session_path do
+                  = fa_icon "heart-o"
+                  = Like.where(plan_id: @plan).count
+          .comment
+            = link_to "#comment-field", class: "smooth-scroll"  do
+              = fa_icon "comment-o"
+              = Comment.where(plan_id: @plan).count
       - if @plan.user == current_user
         .plan-menu
           = link_to t("link.edit"), edit_users_plan_path(@plan), class: "btn btn-success"
@@ -64,7 +65,7 @@
         .comment-content= simple_format h(comment.content)
         -if current_user == comment.user
           .comment-delete= link_to t("link.delete"), comment_path(comment), method: :delete, data: { confirm: t("view.delete_confirm") }
-    -if user_signed_in?
+    -if user_signed_in? && @plan.published?
       = simple_form_for @comment do |f|
         = f.hidden_field :plan_id, value: @plan.id
         = f.input :content, required: false, placeholder: t("form.input_comment"), input_html: { rows: 3 }, label: t("form.label_comment")

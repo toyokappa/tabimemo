@@ -13,7 +13,10 @@
             = fa_icon "eye"
             = plan.total_pv
           .plan-like
-            = fa_icon "heart-o"
+            - if current_user&.likes&.find_by(plan_id: plan).present?
+              = fa_icon "heart"
+            - else
+              = fa_icon "heart-o"
             = plan.likes.count
           .plan-comment
             = fa_icon "comment-o"
