@@ -2,6 +2,7 @@ class Plan < ApplicationRecord
   extend Enumerize
   include Redis::Objects
 
+  attr_accessor :pop_score
   enumerize :status, in: { draft: 0, published: 1 }, scope: true, predicates: true
 
   @@yesterday = "pv#{Date.yesterday.strftime('%Y_%m_%d')}"
@@ -52,8 +53,9 @@ class Plan < ApplicationRecord
       pv = pvs[plan_id].to_i + self.display_pv[plan_id].to_i
       [plan_id, pv > 0 ? (like * 0.7 + comment * 0.3) / pv : 0]
     end
-    sorted_scores = scores.to_h.delete_if { |_,v| v == 0 }.sort_by { |_,v| -v }.to_h
-    self.where(id: sorted_scores.keys)
+    ids = scores.to_h.delete_if { |_,v| v == 0 }.sort_by { |_,v| -v }.to_h.keys
+    binding.pry
+    self.where(id: ids).order("field(id, #{ids.join(',')})")
   }
 
   ransack_alias :keyword, :name_or_description_or_spots_name_or_spots_description_or_spots_address
