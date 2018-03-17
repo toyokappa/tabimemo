@@ -10,7 +10,7 @@
           = fa_icon "map-pin"
           = @profile.location
       - if @profile&.url.present?
-        .profile-item
+        .profile-item{ style: "word-break: break-all;" }
           = fa_icon "link"
           = link_to url_without_protocol(@profile.url), @profile.url, target: "_blank"
       - if @profile&.gender.present?
