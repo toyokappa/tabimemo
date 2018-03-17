@@ -25,10 +25,10 @@ class SortableSpots
 
   submitSortable: =>
     $modal = $(".sortable-modal .modal")
-    sortables = _.map $modal.find(".sortable-item"), (item)=> $(item).data("position")
+    orders = _.map $modal.find(".sortable-item"), (item)=> $(item).data("position") - 1
     $positions = @$root.find(".spot-form").not(".deleted").find(".spot-position")
-    iteration = _.range sortables.length
-    _.forEach iteration, (i)=> $positions[i].value = sortables[i]
+    iteration = _.range orders.length
+    _.forEach iteration, (i)=> $positions[orders[i]].value = i + 1
     $(".submit-sortable").click()
     return
 
