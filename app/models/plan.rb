@@ -54,7 +54,6 @@ class Plan < ApplicationRecord
       [plan_id, pv > 0 ? (like * 0.7 + comment * 0.3) / pv : 0]
     end
     ids = scores.to_h.delete_if { |_,v| v == 0 }.sort_by { |_,v| -v }.to_h.keys
-    binding.pry
     self.where(id: ids).order("field(id, #{ids.join(',')})")
   }
 
