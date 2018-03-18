@@ -1,0 +1,7 @@
+<%= @comment.user.profile&.name.present? ? @comment.user.profile.name : @comment.user.name %>さんがあなたのプランにコメントをしました。
+
+＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+プラン名: <%= @plan.name %>
+コメント:
+<%= @comment.content %>
+＝＝＝＝＝＝＝＝＝＝＝＝＝＝
