@@ -7,7 +7,7 @@
   = f.hidden_field :position, class: "spot-position"
   = hidden_field_tag :place_id, "", class: "place-id"
   .spot-position-num= f.object.position
-  = f.input :name, placeholder: t("form.maximum_length", length: 50), hint: t("form.spot_name_hint"), input_html: { class: "spot-name", autocomplete: "nope" }
+  = f.input :name, placeholder: t("form.maximum_length", length: 30), hint: t("form.spot_name_hint"), input_html: { class: "spot-name", autocomplete: "nope" }
   .row.flex.photo-field
     = f.simple_fields_for :photos do |photo_f|
       = render "photo_fields", f: photo_f
@@ -20,5 +20,5 @@
   - if f.object.latitude.blank?
     .text-danger.preview-maps-rule= t("form.preview_maps_rule")
   .preview-maps
-  = f.input :description, input_html: { rows: 5 }, placeholder: t("form.maximum_length", length: 1000), hint: t("form.spot_description_hint")
+  = f.input :description, input_html: { rows: 5 }, placeholder: t("form.maximum_length", length: 150), hint: t("form.spot_description_hint")
   = button_tag t("form.destroy_spot"), type: :button, class: "btn btn-danger destroy-spot-btn"

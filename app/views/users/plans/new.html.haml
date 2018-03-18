@@ -1,6 +1,6 @@
 .container
   %h2= t(".title")
   = simple_form_for @plan, url: users_plans_path do |f|
-    = f.input :name, placeholder: t("form.maximum_length", length: 50), hint: t("form.plan_name_hint")
-    = f.input :description, input_html: { rows:5 }, placeholder: t("form.maximum_length", length: 1000), hint: t("form.plan_description_hint")
+    = f.input :name, placeholder: t("form.maximum_length", length: 30), hint: t("form.plan_name_hint")
+    = f.input :description, input_html: { rows:3 }, placeholder: t("form.maximum_length", length: 60), hint: t("form.plan_description_hint")
     = f.button :submit, t("form.register_plan"), class: "btn-primary"
