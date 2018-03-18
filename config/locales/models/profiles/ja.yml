@@ -6,7 +6,7 @@ ja:
       profile:
         name: 表示名
         description: 自己紹介
-        location: 場所
+        location: 所在地
         url: ホームページ
         gender: 性別
         birthday: 誕生日
