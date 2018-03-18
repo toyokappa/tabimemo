@@ -3,7 +3,7 @@
     .profile-area.col-lg-3.col-md-4.col-sm-6
       .profile-image
         = image_tag @profile&.image.present? ? @profile.image.thumb.url : "no_user_image.svg"
-      %h3.profile-name= @profile&.name ? @profile.name : @user.name
+      %h3.profile-name= @profile&.name.present? ? @profile.name : @user.name
       .profile-description= @profile&.description
       - if @profile&.location.present?
         .profile-item
