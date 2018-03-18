@@ -3,7 +3,7 @@ class Users::PlansController < ApplicationController
   before_action :is_current_user?, only: [:edit, :update, :destroy]
 
   def index
-    @plans = current_user.plans.default_order.page(params[:page])
+    @plans = current_user.plans.management_order.page(params[:page])
     respond_to do |format|
       format.html
       format.js { render "plan_list" }
@@ -11,14 +11,14 @@ class Users::PlansController < ApplicationController
   end
 
   def published
-    @plans = current_user.plans.published.page(params[:page])
+    @plans = current_user.plans.published.management_order.page(params[:page])
     respond_to do |format|
       format.js { render "plan_list" }
     end
   end
 
   def draft
-    @plans = current_user.plans.draft.page(params[:page])
+    @plans = current_user.plans.draft.management_order.page(params[:page])
     respond_to do |format|
       format.js { render "plan_list" }
     end
@@ -42,8 +42,13 @@ class Users::PlansController < ApplicationController
   end
 
   def update
-    @plan.status = :published if params[:published]
-    @plan.status = :draft if params[:draft]
+    if params[:published]
+      @plan.status = :published
+      @plan.published_at = Time.zone.now if @plan.published_at.blank?
+    elsif params[:draft]
+      @plan.status = :draft
+    end
+
     if @plan.update(edit_plan_params)
       if params[:sortable]
         redirect_to edit_users_plan_path(@plan), notice: t(:sort_success, scope: :flash)
