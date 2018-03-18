@@ -3,9 +3,11 @@ ja:
     registrations:
       new:
         title: ユーザー登録
+        user_name_format: "ログイン時に使用するIDを入力してください（%{length}字以内）"
       edit:
         title: ユーザー情報
   validation:
+    user_name_format: は半角英数字、ハイフン( - )、アンダーバー( _ )、プラス( + )のみ使用可能です
     agreement: に同意が必要です
   form:
     and: 及び

@@ -14,7 +14,7 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
 
   VALID_NAME_REGEX = /\A[\w+\-]+\z/i
-  validates :name, presence: true, length: { maximum: 15 }, uniqueness: { case_sensitive: false }, format: { with: VALID_NAME_REGEX }
+  validates :name, presence: true, length: { maximum: 15 }, uniqueness: { case_sensitive: false }, format: { with: VALID_NAME_REGEX, message: I18n.t("validation.user_name_format") }
   validates :agreement, acceptance: { message: I18n.t("validation.agreement") }
 
   def self.find_first_by_auth_conditions(warden_conditions)
