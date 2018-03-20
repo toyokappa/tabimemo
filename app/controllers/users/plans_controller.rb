@@ -70,39 +70,45 @@ class Users::PlansController < ApplicationController
     input = params[:input]
 
     # オートコンプリート用のクエリ
-    ac_url = "https://maps.googleapis.com/maps/api/place/autocomplete/json?"
-    ac_params = URI.encode_www_form({ key: key, input: input})
-    ac_uri = URI.parse "#{ac_url}#{ac_params}"
+    url = "https://maps.googleapis.com/maps/api/place/autocomplete/json?"
+    params = URI.encode_www_form({ key: key, input: input})
+    uri = URI.parse "#{url}#{params}"
 
-    ac_request = Net::HTTP::Get.new(ac_uri.request_uri)
-    ac_response = Net::HTTP.start(ac_uri.host, ac_uri.port, use_ssl: ac_uri.scheme == "https") do |http|
-      http.request(ac_request)
+    request = Net::HTTP::Get.new(uri.request_uri)
+    response = Net::HTTP.start(uri.host, uri.port, use_ssl: uri.scheme == "https") do |http|
+      http.request(request)
     end
 
-    ac_body = JSON.load ac_response.body
-    place_ids = ac_body["predictions"].map { |prediction| prediction["place_id"] }
+    body = JSON.load response.body
+    place_ids = body["predictions"].map { |prediction| prediction["place_id"] }
+
+    render json: place_ids
+  end
+
+  def translate_spot
+    key = Rails.configuration.x.google_apis[:map]
+    placeid = params[:placeid]
 
     # プレイス詳細用のクエリ(GoogleのAPIがアドレスを日本語で返却してくれないため、一時的に対応)
-    pd_url = "https://maps.googleapis.com/maps/api/place/details/json?"
-    places = place_ids.map do |placeid|
-      pd_params = URI.encode_www_form({ key: key, placeid: placeid, language: :ja })
-      pd_uri = URI.parse "#{pd_url}#{pd_params}"
+    url = "https://maps.googleapis.com/maps/api/place/details/json?"
+    params = URI.encode_www_form({ key: key, placeid: placeid, language: :ja })
+    uri = URI.parse "#{url}#{params}"
 
-      pd_request = Net::HTTP::Get.new(pd_uri.request_uri)
-      pd_response = Net::HTTP.start(pd_uri.host, ac_uri.port, use_ssl: ac_uri.scheme == "https")do |http|
-        http.request(pd_request)
-      end
-
-      pd_body = JSON.load pd_response.body
-      pd_result = pd_body["result"]
-      if pd_result.present?
-        address = pd_result["formatted_address"]
-        address.slice!(/^日本、〒[0-9]{3}-[0-9]{4}\s/)
-        { name: pd_result["name"], address: address, lat: pd_result["geometry"]["location"]["lat"], lng: pd_result["geometry"]["location"]["lng"] }
-      end
+    request = Net::HTTP::Get.new(uri.request_uri)
+    response = Net::HTTP.start(uri.host, uri.port, use_ssl: uri.scheme == "https")do |http|
+      http.request(request)
     end
 
-    render json: places.compact
+    body = JSON.load response.body
+    result = body["result"]
+    if result.present?
+      address = result["formatted_address"]
+      address.slice!(/^日本、〒[0-9]{3}-[0-9]{4}\s/)
+      place = { name: result["name"], address: address, lat: result["geometry"]["location"]["lat"], lng: result["geometry"]["location"]["lng"] }
+      render json: place
+    else
+      render json: ""
+    end
   end
 
   private

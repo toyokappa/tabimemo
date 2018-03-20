@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     get "/plans_published", to: "plans#published"
     get "/plans_draft", to: "plans#draft"
     get "/suggest_spot", to: "plans#suggest_spot"
+    get "/translate_spot", to: "plans#translate_spot"
     post "/spots", to: "spots#create"
     post "/photos", to: "photos#create"
   end

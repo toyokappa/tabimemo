@@ -1,4 +1,4 @@
-class autoCompleteSpot
+class AutoCompleteSpot
   constructor: (@$root)->
     @initMap()
     @bind()
@@ -15,17 +15,15 @@ class autoCompleteSpot
     $target = $(e.target)
     input = $target.val()
     $spot_form = $target.closest(".spot-form")
+    service = new google.maps.places.PlacesService(@map)
     @useHtml()
     $target.autocomplete
       source: (req, res)->
-        $.ajax
-          url: "/users/suggest_spot"
-          type: "GET"
-          data:
-            input: input
-          dataType: "json"
-          success: (data)=>
-            places = _.map data, (place)=>
+        getPlaceIds(input).done (data)->
+          $ajax = _.map data, (place_id)-> getPlaces place_id
+          $.when.apply($, $ajax).then ->
+            places = _.map arguments, (place_data)->
+              place = place_data[0]
               label: "<div class='place-title'>#{place.name}</div><div class='place-description'>#{place.address}</div>"
               value: place.name
               address: place.address
@@ -40,6 +38,29 @@ class autoCompleteSpot
       autoFocus: true
     return
 
+  getPlaceIds = (input)->
+    defer = $.Deferred()
+    $.ajax
+      url: "/users/suggest_spot"
+      type: "GET"
+      data:
+        input: input
+      dataType: "json"
+      success: defer.resolve
+    return defer.promise()
+
+  getPlaces = (place_id)->
+    defer = $.Deferred()
+    $.ajax
+      url: "/users/translate_spot"
+      type: "GET"
+      data:
+        placeid: place_id
+      dataType: "json"
+      success: defer.resolve
+    return defer.promise()
+
+
   useHtml: ->
     $.ui.autocomplete.prototype._renderItem = (ul, item)->
       return $("<li></li>").data("item.complete", item).append($("<a></a>").html(item.label)).appendTo(ul)
@@ -48,4 +69,4 @@ class autoCompleteSpot
     @$root.on "keyup", ".spot-name", @suggestSpot
 
 $(document).on "turbolinks:load", ->
-  new autoCompleteSpot $(".spot-container") if $(".spot-container")[0]
+  new AutoCompleteSpot $(".spot-container") if $(".spot-container")[0]
