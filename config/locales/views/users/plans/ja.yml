@@ -7,7 +7,7 @@ ja:
         title: プラン詳細
       new:
         title: プラン登録
-      edit:
+      form:
         title: プラン情報
   form:
     register_plan: スポット登録に進む

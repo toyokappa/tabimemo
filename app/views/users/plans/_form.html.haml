@@ -1,16 +1,25 @@
-%h2= t(".title")
-= simple_form_for @plan, url: url do |f|
-  = f.input :name, placeholder: t("form.maximum_length", length: 30), hint: t("form.plan_name_hint")
-  = f.input :description, input_html: { rows: 3 }, placeholder: t("form.maximum_length", length: 60), hint: t("form.plan_description_hint")
-  %h2= t("form.register_spot")
-  .spot-container
-    .spot-field
-      = f.simple_fields_for :spots do |spot|
-        = render "spot_fields", f: spot
-      = button_tag t("form.create_spot"), type: :button, class: "btn btn-success create-spot-btn", data: new_spot_field(f)
-      = button_tag t("form.sortable_spots"), type: :button, class: "btn btn-success sortable-spot-btn"
-      .text-danger.map-rule= t("form.map_rule")
-      .map
-  = f.button :submit, t("form.published"), class: "btn-primary", name: :published
-  = f.button :submit, t("form.draft"), class: "btn-primary", name: :draft
-  = f.button :submit, class: "submit-sortable", name: :sortable, style: "display: none"
+.row
+  = simple_form_for @plan, url: url do |f|
+    .col-lg-9.main-field
+      %h2= t(".title")
+      = f.input :name, placeholder: t("form.maximum_length", length: 30), hint: t("form.plan_name_hint")
+      = f.input :description, input_html: { rows: 3 }, placeholder: t("form.maximum_length", length: 60), hint: t("form.plan_description_hint")
+      %h2= t("form.register_spot")
+      .spot-container
+        .spot-field
+          = f.simple_fields_for :spots do |spot|
+            = render "spot_fields", f: spot
+          = button_tag t("form.create_spot"), type: :button, class: "btn btn-success create-spot-btn", data: new_spot_field(f)
+          = button_tag t("form.sortable_spots"), type: :button, class: "btn btn-success sortable-spot-btn"
+          .text-danger.map-rule= t("form.map_rule")
+          .map
+    .col-lg-3.sidebar
+      .menu-box
+        .menu-box-header
+          プランの保存
+        .menu-box-body
+          「公開する」を押して他のユーザーへプランを共有しましょう。「下書きを保存する」を押すと他のユーザーには公開されません。
+        .menu-box-footer
+          = f.button :submit, t("form.published"), class: "btn-success", name: :published
+          = f.button :submit, t("form.draft"), class: "btn-success", name: :draft
+          = f.button :submit, class: "submit-sortable", name: :sortable, style: "display: none"
