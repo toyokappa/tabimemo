@@ -9,11 +9,20 @@
         .spot-field
           = f.simple_fields_for :spots do |spot|
             = render "spot_fields", f: spot
-          = button_tag t("form.create_spot"), type: :button, class: "btn btn-success create-spot-btn", data: new_spot_field(f)
-          = button_tag t("form.sortable_spots"), type: :button, class: "btn btn-success sortable-spot-btn"
+          = button_tag type: :button, class: "btn btn-lg btn-success create-spot-btn", data: new_spot_field(f) do
+            = fa_icon "plus-circle"
+            = t("form.create_spot")
           .text-danger.map-rule= t("form.map_rule")
           .map
     .col-lg-3.sidebar
+      .menu-box
+        .menu-box-header
+          スポットの並び替え
+        .menu-box-body
+          「並べ替える」ボタンをクリックするとスポットの並べ替えウィンドウが立ち上がります。
+        .menu-box-footer
+          = f.button :submit, class: "submit-sortable", name: :sortable, style: "display: none"
+          = button_tag t("form.sortable_spots"), type: :button, class: "btn btn-success sortable-spot-btn"
       .menu-box
         .menu-box-header
           プランの保存
@@ -22,4 +31,3 @@
         .menu-box-footer
           = f.button :submit, t("form.published"), class: "btn-success", name: :published
           = f.button :submit, t("form.draft"), class: "btn-success", name: :draft
-          = f.button :submit, class: "submit-sortable", name: :sortable, style: "display: none"

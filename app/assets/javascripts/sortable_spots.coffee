@@ -33,7 +33,7 @@ class SortableSpots
     return
 
   bind: =>
-    @$root.on "click", ".sortable-spot-btn", @openSortableModal
+    $(".sortable-spot-btn").on "click", @openSortableModal
     $(".confirm-sortable-btn").on "click", @submitSortable
 
 $(document).on "turbolinks:load", ->
