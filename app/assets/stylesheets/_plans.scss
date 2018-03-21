@@ -146,16 +146,24 @@
 .spot-container {
   .spot-form {
     .spot-position-num {
+      display: inline-block;
       color: white;
       background-color: #5cb85c;
       font-size: 24px;
       text-align: center;
+      vertical-align: middle;
       width: 36px;
       height: 36px;
       line-height: 36px;
       border-radius: 50%;
-      margin-top: -10px;
-      margin-bottom: 10px;
+    }
+    .spot-name {
+      display: inline-block;
+      font-size: 18px;
+      vertical-align: middle;
+      height: 38px;
+      width: calc(100% - 45px);
+      margin-left:5px;
     }
   }
   .photo-field {

@@ -6,8 +6,12 @@
   = f.hidden_field :longitude, class: "spot-longitude"
   = f.hidden_field :position, class: "spot-position"
   = hidden_field_tag :place_id, "", class: "place-id"
-  .spot-position-num= f.object.position
-  = f.input :name, placeholder: t("form.maximum_length", length: 30), hint: t("form.spot_name_hint"), input_html: { class: "spot-name", autocomplete: "nope" }
+  .form-group{ class: "#{'has-error' if f.object.errors.full_messages_for(:name).present?}" }
+    .spot-position-num= f.object.position
+    = f.text_field :name, placeholder: t("form.spot_name_hint"), class: "form-control spot-name", autocomplete: "nope"
+    - if f.object.errors.full_messages_for(:name).present?
+      - f.object.errors.full_messages_for(:name).each do |message|
+        .help-block= message
   .row.flex.photo-field
     = f.simple_fields_for :photos do |photo_f|
       = render "photo_fields", f: photo_f
