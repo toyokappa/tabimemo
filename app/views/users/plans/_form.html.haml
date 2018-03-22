@@ -15,19 +15,20 @@
           .text-danger.map-rule= t("form.map_rule")
           .map
     .col-lg-3.sidebar
-      .menu-box
-        .menu-box-header
-          スポットの並び替え
-        .menu-box-body
-          「並べ替える」ボタンをクリックするとスポットの並べ替えウィンドウが立ち上がります。
-        .menu-box-footer
-          = f.button :submit, class: "submit-sortable", name: :sortable, style: "display: none"
-          = button_tag t("form.sortable_spots"), type: :button, class: "btn btn-success sortable-spot-btn"
-      .menu-box
-        .menu-box-header
-          プランの保存
-        .menu-box-body
-          「公開する」を押して他のユーザーへプランを共有しましょう。「下書きを保存する」を押すと他のユーザーには公開されません。
-        .menu-box-footer
-          = f.button :submit, t("form.published"), class: "btn-success", name: :published
-          = f.button :submit, t("form.draft"), class: "btn-success", name: :draft
+      .following-scroll
+        .menu-box
+          .menu-box-header
+            スポットの並び替え
+          .menu-box-body
+            「並べ替える」ボタンをクリックするとスポットの並べ替えウィンドウが立ち上がります。
+          .menu-box-footer
+            = f.button :submit, class: "submit-sortable", name: :sortable, style: "display: none"
+            = button_tag t("form.sortable_spots"), type: :button, class: "btn btn-success sortable-spot-btn"
+        .menu-box
+          .menu-box-header
+            プランの保存
+          .menu-box-body
+            「公開する」を押して他のユーザーへプランを共有しましょう。「下書きを保存する」を押すと他のユーザーには公開されません。
+          .menu-box-footer
+            = f.button :submit, t("form.published"), class: "btn-success", name: :published
+            = f.button :submit, t("form.draft"), class: "btn-success", name: :draft
