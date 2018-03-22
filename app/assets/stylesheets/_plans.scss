@@ -165,6 +165,9 @@
       width: calc(100% - 45px);
       margin-left:5px;
     }
+    .destroy-spot-btn {
+      float: right;
+    }
   }
   .photo-field {
     .photo-item {
@@ -182,7 +185,7 @@
       }
       .set-header-btn {
         position: absolute;
-        bottom: -13px;
+        bottom: 7px;
         right: 22px;
       }
       .header-image {
