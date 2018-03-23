@@ -30,17 +30,17 @@
           .menu-box-body
             「公開する」を押して他のユーザーへプランを共有しましょう。「下書きで保存する」を押すと他のユーザーには公開されません。
           .menu-box-footer
-            = f.button :submit, t("form.published"), class: "btn-success published-btn", name: :published
-            = f.button :submit, t("form.draft"), class: "btn-success draft-btn", name: :draft, style: "display: none;"
+            = f.button :submit, t("form.published"), class: "btn-success published-btn", name: :published, style: "#{'display: none;' if @plan.draft?}"
+            = f.button :submit, t("form.draft"), class: "btn-success draft-btn", name: :draft, style: "#{'display: none;' if @plan.status.blank? || @plan.published?}"
             .dropdown.toggle-status
-              = link_to "#", class: "btn btn-success toggle-status-btn", data: { toggle: :dropdown } do
+              = link_to "javascript:void(0);", class: "btn btn-success toggle-status-btn", data: { toggle: :dropdown } do
                 = fa_icon "angle-down"
-              %ul.dropdown-menu.toggle-menu
+              %ul.dropdown-menu.toggle-menu{ style: "left: #{@plan.draft? ? '-132px' : '-120px'}" }
                 %li.toggle-item
-                  = link_to "#", class: "set-published" do
+                  = link_to "javascript:void(0);", class: "set-published" do
                     = t("form.published")
-                    = fa_icon "check"
+                    = fa_icon "check", class: "toggle-check", style: "#{'display: none;' if @plan.draft?}"
                 %li.toggle-item
-                  = link_to "#", class: "set-draft" do
+                  = link_to "javascript:void(0);", class: "set-draft" do
                     = t("form.draft")
-                    = fa_icon "check", style: "display: none;"
+                    = fa_icon "check", class: "toggle-check", style: "#{'display: none;' if @plan.status.blank? || @plan.published?}"
