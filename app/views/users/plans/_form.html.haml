@@ -30,8 +30,8 @@
           .menu-box-body
             = t("form.help_save")
           .menu-box-footer
-            = f.button :submit, t("form.published"), class: "btn-success published-btn", name: :published, style: "#{'display: none;' if @plan.draft?}"
-            = f.button :submit, t("form.draft"), class: "btn-success draft-btn", name: :draft, style: "#{'display: none;' if @plan.status.blank? || @plan.published?}"
+            = f.button :submit, t("form.published"), class: "btn-success published-btn", name: :published, style: "#{'display: none;' if @plan.draft? && params[:init].blank?}"
+            = f.button :submit, t("form.draft"), class: "btn-success draft-btn", name: :draft, style: "#{'display: none;' if @plan.published? || params[:init].present?}"
             .dropdown.toggle-status
               = link_to "javascript:void(0);", class: "btn btn-success toggle-status-btn", data: { toggle: :dropdown } do
                 = fa_icon "angle-down"
@@ -39,8 +39,8 @@
                 %li.toggle-item
                   = link_to "javascript:void(0);", class: "set-published" do
                     = t("form.published")
-                    = fa_icon "check", class: "toggle-check", style: "#{'display: none;' if @plan.draft?}"
+                    = fa_icon "check", class: "toggle-check", style: "#{'display: none;' if @plan.draft? && params[:init].blank?}"
                 %li.toggle-item
                   = link_to "javascript:void(0);", class: "set-draft" do
                     = t("form.draft")
-                    = fa_icon "check", class: "toggle-check", style: "#{'display: none;' if @plan.status.blank? || @plan.published?}"
+                    = fa_icon "check", class: "toggle-check", style: "#{'display: none;' if @plan.published? || params[:init].present?}"

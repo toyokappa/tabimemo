@@ -1,5 +1,5 @@
 .container
-  - if request.referer == new_user_registration_url
+  - if params[:init].present?
     .registration-step
       %h2= t("view.registration_step")
       %span.text-muted= t("view.suggestion_register_profile")

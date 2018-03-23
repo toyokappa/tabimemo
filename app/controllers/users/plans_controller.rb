@@ -31,7 +31,7 @@ class Users::PlansController < ApplicationController
   def create
     @plan = current_user.plans.build(new_plan_params)
     if @plan.save
-      redirect_to edit_users_plan_path(@plan)
+      redirect_to edit_users_plan_path(@plan, init: true)
     else
       render "new"
     end
