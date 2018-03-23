@@ -18,17 +18,17 @@
       .following-scroll
         .menu-box
           .menu-box-header
-            スポットの並び替え
+            = t("form.sortable_spots")
           .menu-box-body
-            「並べ替える」ボタンをクリックするとスポットの並べ替えウィンドウが立ち上がります。
+            = t("form.help_sort")
           .menu-box-footer
             = f.button :submit, class: "submit-sortable", name: :sortable, style: "display: none"
-            = button_tag t("form.sortable_spots"), type: :button, class: "btn btn-success sortable-spot-btn"
+            = button_tag t("form.sort"), type: :button, class: "btn btn-success sortable-spot-btn"
         .menu-box
           .menu-box-header
-            プランの保存
+            = t("form.save_plan")
           .menu-box-body
-            「公開する」を押して他のユーザーへプランを共有しましょう。「下書きで保存する」を押すと他のユーザーには公開されません。
+            = t("form.help_save")
           .menu-box-footer
             = f.button :submit, t("form.published"), class: "btn-success published-btn", name: :published, style: "#{'display: none;' if @plan.draft?}"
             = f.button :submit, t("form.draft"), class: "btn-success draft-btn", name: :draft, style: "#{'display: none;' if @plan.status.blank? || @plan.published?}"

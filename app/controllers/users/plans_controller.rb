@@ -56,7 +56,7 @@ class Users::PlansController < ApplicationController
         redirect_to plan_path(@plan), notice: t(:update_success, scope: :flash)
       end
     else
-      flash.now[:alert] = "入力内容に不備があります。内容を確認し修正してください。"
+      flash.now[:alert] = t(:register_failed, scope: :flash)
       render "edit"
     end
   end

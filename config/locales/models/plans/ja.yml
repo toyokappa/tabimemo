@@ -3,7 +3,7 @@ ja:
     attributes:
       plan:
         name: プラン名
-        description: キャッチコピー
+        description: プラン説明
   enumerize:
     status:
       draft: 下書き

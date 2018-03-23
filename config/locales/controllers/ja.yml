@@ -1,6 +1,7 @@
 ja:
   flash:
     register_success: 登録しました！
+    register_failed: 入力内容に不備があります。内容を確認し修正してください。
     update_success: 更新しました！
     delete_success: 削除しました！
     comment_success: コメントしました。
