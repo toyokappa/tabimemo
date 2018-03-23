@@ -28,7 +28,19 @@
           .menu-box-header
             プランの保存
           .menu-box-body
-            「公開する」を押して他のユーザーへプランを共有しましょう。「下書きを保存する」を押すと他のユーザーには公開されません。
+            「公開する」を押して他のユーザーへプランを共有しましょう。「下書きで保存する」を押すと他のユーザーには公開されません。
           .menu-box-footer
-            = f.button :submit, t("form.published"), class: "btn-success", name: :published
-            = f.button :submit, t("form.draft"), class: "btn-success", name: :draft
+            = f.button :submit, t("form.published"), class: "btn-success published-btn", name: :published
+            = f.button :submit, t("form.draft"), class: "btn-success draft-btn", name: :draft, style: "display: none;"
+            .dropdown.toggle-status
+              = link_to "#", class: "btn btn-success toggle-status-btn", data: { toggle: :dropdown } do
+                = fa_icon "angle-down"
+              %ul.dropdown-menu.toggle-menu
+                %li.toggle-item
+                  = link_to "#", class: "set-published" do
+                    = t("form.published")
+                    = fa_icon "check"
+                %li.toggle-item
+                  = link_to "#", class: "set-draft" do
+                    = t("form.draft")
+                    = fa_icon "check", style: "display: none;"

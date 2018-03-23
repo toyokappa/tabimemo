@@ -253,6 +253,25 @@
       .btn {
         width: 100%;
       }
+      .published-btn, .draft-btn {
+        display: inline-block;
+        width: calc(100% - 40px);
+        border-radius: 3px 0 0 3px;
+      }
+      .toggle-status {
+        display: inline-block;
+        width: 40px;
+        margin-left: -4px;
+        border-left: 1px solid white;
+        .toggle-status-btn {
+          border-radius: 0 3px 3px 0;
+          font-size: 20px;
+          padding: 2px 0;
+        }
+        .toggle-menu {
+          left: -120px;
+        }
+      }
     }
   }
 }
