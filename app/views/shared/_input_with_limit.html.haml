@@ -1,0 +1,6 @@
+.form-group{ class: "#{'has-error' if f.object.errors[col].present?}" }
+  = f.label col
+  = render "shared/count_limit", f: f, col: col, limit: limit
+  = f.input_field col, rows: rows, class: "form-control limit-target", data: { limit: limit }
+  = f.hint hint if hint.present?
+  = render "shared/has_error", f: f, col: col

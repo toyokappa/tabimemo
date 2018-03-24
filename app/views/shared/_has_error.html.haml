@@ -1,0 +1,3 @@
+- if f.object.errors[col].present?
+  - f.object.errors.full_messages_for(col).each do |message|
+    %span.help-block= message
