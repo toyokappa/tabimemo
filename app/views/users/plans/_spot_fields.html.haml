@@ -9,9 +9,7 @@
   .form-group{ class: "#{'has-error' if f.object.errors.full_messages_for(:name).present?}" }
     .spot-position-num= f.object.position
     = f.text_field :name, placeholder: t("form.spot_name_hint"), class: "form-control spot-name", autocomplete: "nope"
-    - if f.object.errors.full_messages_for(:name).present?
-      - f.object.errors.full_messages_for(:name).each do |message|
-        .help-block= message
+    = render "shared/has_error", f: f, col: :name
   - if f.object.latitude.blank?
     .text-danger.preview-maps-rule= t("form.preview_maps_rule")
   .preview-maps
@@ -24,6 +22,6 @@
     .col-sm-4.photo-input
       = file_field :photo, :image, multiple: true, class: "spot-photos", style: "display: none", data: new_photo_field(f)
       = image_tag "add_photos.png", class: "add-photos"
-  = f.input :description, input_html: { rows: 5 }, placeholder: t("form.maximum_length", length: 150), hint: t("form.spot_description_hint")
+  = render "shared/input_with_limit", f: f, col: :description, limit: 150, rows: 4, hint: t("form.spot_description_hint")
   = button_tag t("form.destroy_spot"), type: :button, class: "btn btn-danger destroy-spot-btn"
   .clear

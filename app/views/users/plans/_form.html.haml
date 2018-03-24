@@ -1,9 +1,9 @@
 .row
-  = simple_form_for @plan, url: url do |f|
+  = simple_form_for @plan, url: url, html: { class: "form-with-limit" } do |f|
     .col-lg-9.main-field
       %h2= t(".title")
-      = f.input :name, placeholder: t("form.maximum_length", length: 30), hint: t("form.plan_name_hint")
-      = f.input :description, input_html: { rows: 3 }, placeholder: t("form.maximum_length", length: 60), hint: t("form.plan_description_hint")
+      = render "shared/input_with_limit", f: f, col: :name, limit: 30, rows: nil, hint: t("form.plan_name_hint")
+      = render "shared/input_with_limit", f: f, col: :description, limit: 60, rows: nil, hint: t("form.plan_description_hint")
       %h2= t("form.register_spot")
       .spot-container
         .spot-field
