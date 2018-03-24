@@ -146,16 +146,27 @@
 .spot-container {
   .spot-form {
     .spot-position-num {
+      display: inline-block;
       color: white;
       background-color: #5cb85c;
       font-size: 24px;
       text-align: center;
+      vertical-align: middle;
       width: 36px;
       height: 36px;
       line-height: 36px;
       border-radius: 50%;
-      margin-top: -10px;
-      margin-bottom: 10px;
+    }
+    .spot-name {
+      display: inline-block;
+      font-size: 18px;
+      vertical-align: middle;
+      height: 38px;
+      width: calc(100% - 45px);
+      margin-left:5px;
+    }
+    .destroy-spot-btn {
+      float: right;
     }
   }
   .photo-field {
@@ -174,7 +185,7 @@
       }
       .set-header-btn {
         position: absolute;
-        bottom: -13px;
+        bottom: 7px;
         right: 22px;
       }
       .header-image {
@@ -207,6 +218,59 @@
         width: 100%;
         height: auto;
         cursor: pointer;
+      }
+    }
+  }
+  .create-spot-btn {
+    width: 100%;
+    margin-bottom: 30px;
+  }
+}
+
+.sidebar {
+  .menu-box {
+    background-color: white;
+    border: 1px solid lightgray;
+    border-radius: 6px;
+    margin-top: 20px;
+    .menu-box-header {
+      color: white;
+      background-color: #5cb85c;
+      font-size: 16px;
+      font-weight: bold;
+      text-align: center;
+      padding: 10px;
+      border-radius: 5px 5px 0 0;
+    }
+    .menu-box-body {
+      font-size: 13px;
+      padding: 15px;
+    }
+    .menu-box-footer {
+      text-align: center;
+      padding: 10px 15px;
+      border-top: 1px solid lightgray;
+      .btn {
+        width: 100%;
+      }
+      .published-btn, .draft-btn {
+        display: inline-block;
+        width: calc(100% - 40px);
+        border-radius: 3px 0 0 3px;
+      }
+      .toggle-status {
+        display: inline-block;
+        width: 40px;
+        margin-left: -4px;
+        border-left: 1px solid white;
+        .toggle-status-btn {
+          border-radius: 0 3px 3px 0;
+          font-size: 20px;
+          padding: 2px 0;
+        }
+        .toggle-menu {
+          left: -120px;
+        }
       }
     }
   }
@@ -304,19 +368,10 @@
 /*    show    */
 
 .plan-top {
-  position: relative;
-  overflow: hidden;
-  height: 500px;
   .plan-top-image {
-    position: absolute;
+    height: 500px;
     background-position: center center;
     background-size: cover;
-    position: absolute;
-    top: -5px;
-    bottom: -5px;
-    left: -5px;
-    right: -5px;
-    filter: blur(5px);
   }
   .no-plan-top-image {
     height: 500px;

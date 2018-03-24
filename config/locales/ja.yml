@@ -15,6 +15,9 @@ ja:
   view:
     no_plans: 表示できるプランはありません。
     delete_confirm: 削除しますか？
+    example: 記入例：
+    limit: 残り
+    chars: 文字
   link:
     edit: 編集
     delete: 削除

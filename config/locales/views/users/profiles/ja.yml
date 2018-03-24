@@ -8,6 +8,8 @@ ja:
       show:
         least_plans: 最新のプラン
         liked_plans: いいねしたプラン
+      form:
+        location_example: 群馬県渋川市
   link:
     register_profile: プロフィールを登録する
     edit_profile: プロフィールを編集する
@@ -19,3 +21,5 @@ ja:
     suggestion_register_profile: プロフィールを登録することで、プランを登録した際に他のユーザーから感心を持ってもらいやすくなります。
   form:
     profile_name_hint: "他のユーザーに表示される名前です。未登録の場合、ユーザー名（%{user_name}）が表示されます。"
+  validation:
+    url_format: へは「http://」もしくは「https://」から始まるURLを入力してください

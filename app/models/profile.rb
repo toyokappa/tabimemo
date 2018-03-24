@@ -7,7 +7,7 @@ class Profile < ApplicationRecord
   belongs_to :user, foreign_key: "id"
 
   URL_FORMAT = /\A#{URI::regexp(%w(http https))}\z/i
-  validates :url, format: { with: URL_FORMAT }, allow_blank: true
+  validates :url, format: { with: URL_FORMAT, message: I18n.t("validation.url_format") }, allow_blank: true
   validate :max_file_size
 
   private

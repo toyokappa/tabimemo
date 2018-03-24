@@ -1,15 +1,46 @@
-= simple_form_for @plan, url: url do |f|
-  = f.input :name, placeholder: t("form.maximum_length", length: 50), hint: t("form.plan_name_hint")
-  = f.input :description, input_html: { rows: 5 }, placeholder: t("form.maximum_length", length: 1000), hint: t("form.plan_description_hint")
-  %h2= t("form.register_spot")
-  .spot-container
-    .spot-field
-      = f.simple_fields_for :spots do |spot|
-        = render "spot_fields", f: spot
-      = button_tag t("form.create_spot"), type: :button, class: "btn btn-success create-spot-btn", data: new_spot_field(f)
-      = button_tag t("form.sortable_spots"), type: :button, class: "btn btn-success sortable-spot-btn"
-      .text-danger.map-rule= t("form.map_rule")
-      .map
-  = f.button :submit, t("form.published"), class: "btn-primary", name: :published
-  = f.button :submit, t("form.draft"), class: "btn-primary", name: :draft
-  = f.button :submit, class: "submit-sortable", name: :sortable, style: "display: none"
+.row
+  = simple_form_for @plan, url: url, html: { class: "form-with-limit" } do |f|
+    .col-lg-9.main-field
+      %h2= t(".title")
+      = render "shared/input_with_limit", f: f, col: :name, limit: 30, rows: nil, hint: t("form.plan_name_hint")
+      = render "shared/input_with_limit", f: f, col: :description, limit: 60, rows: nil, hint: t("form.plan_description_hint")
+      %h2= t("form.register_spot")
+      .spot-container
+        .spot-field
+          = f.simple_fields_for :spots do |spot|
+            = render "spot_fields", f: spot
+          = button_tag type: :button, class: "btn btn-lg btn-success create-spot-btn", data: new_spot_field(f) do
+            = fa_icon "plus-circle"
+            = t("form.create_spot")
+          .text-danger.map-rule= t("form.map_rule")
+          .map
+    .col-lg-3.sidebar
+      .following-scroll
+        .menu-box
+          .menu-box-header
+            = t("form.sortable_spots")
+          .menu-box-body
+            = t("form.help_sort")
+          .menu-box-footer
+            = f.button :submit, class: "submit-sortable", name: :sortable, style: "display: none"
+            = button_tag t("form.sort"), type: :button, class: "btn btn-success sortable-spot-btn"
+        .menu-box
+          .menu-box-header
+            = t("form.save_plan")
+          .menu-box-body
+            = t("form.help_save")
+          .menu-box-footer
+            = f.button :submit, t("form.published"), class: "btn-success published-btn", name: :published, style: "#{'display: none;' if @plan.draft? && params[:init].blank?}"
+            = f.button :submit, t("form.draft"), class: "btn-success draft-btn", name: :draft, style: "#{'display: none;' if @plan.published? || params[:init].present?}"
+            .dropdown.toggle-status
+              = link_to "javascript:void(0);", class: "btn btn-success toggle-status-btn", data: { toggle: :dropdown } do
+                = fa_icon "angle-down"
+              %ul.dropdown-menu.toggle-menu{ style: "left: #{@plan.draft? ? '-132px' : '-120px'}" }
+                %li.toggle-item
+                  = link_to "javascript:void(0);", class: "set-published" do
+                    = t("form.published")
+                    = fa_icon "check", class: "toggle-check", style: "#{'display: none;' if @plan.draft? && params[:init].blank?}"
+                %li.toggle-item
+                  = link_to "javascript:void(0);", class: "set-draft" do
+                    = t("form.draft")
+                    = fa_icon "check", class: "toggle-check", style: "#{'display: none;' if @plan.published? || params[:init].present?}"
