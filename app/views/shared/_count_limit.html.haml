@@ -1,5 +1,5 @@
 - count_limit = limit - (f.object.send(col)&.length || 0)
 .limit-field{ class: "#{'text-danger' if count_limit < 0}" }
-  残り
+  = t("view.limit")
   %span.limit-value= count_limit
-  文字
+  = t("view.chars")
