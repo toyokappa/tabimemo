@@ -4,9 +4,10 @@ class SmoothScroll
 
   scrollTo: (e)->
     e.preventDefault()
+    header_height = 100
     hash = this.hash
     $('html, body').animate {
-      scrollTop: $(hash).offset().top
+      scrollTop: $(hash).offset().top - header_height
     }, 500, "swing"
     false
 

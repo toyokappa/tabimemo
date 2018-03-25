@@ -4,69 +4,84 @@
   - else
     .no-plan-top-image
 .container
-  .plan-field
-    .plan-header
-      %h2.plan-name= @plan.name
-      .plan-description= simple_format h(@plan.description)
-      - if @plan.published?
-        .reaction-field
-          .pageviews
-            = fa_icon "eye"
-            = @pv
-          .like-area
-            - if user_signed_in?
-              - if @like.present?
-                = render "plans/unlike"
-              - else
-                = render "plans/like"
-            - else
-              .like
-                = link_to new_user_session_path do
-                  = fa_icon "heart-o"
-                  = Like.where(plan_id: @plan).count
-          .comment
-            = link_to "#comment-field", class: "smooth-scroll"  do
-              = fa_icon "comment-o"
-              = Comment.where(plan_id: @plan).count
-      - if @plan.user == current_user
-        .plan-menu
-          = link_to t("link.edit"), edit_users_plan_path(@plan), class: "btn btn-success"
-          = link_to t("link.delete"), users_plan_path(@plan), method: :delete, data: { confirm: t("view.delete_confirm") }, class: "btn btn-danger"
-      .clear
-    .spot-field
-      - @plan.spots.each_with_index do |spot, i|
-        .spot-item
-          = hidden_field_tag :latitude, spot.latitude, class: "spot-latitude"
-          = hidden_field_tag :longitude, spot.longitude, class: "spot-longitude"
-          = hidden_field_tag :position, spot.position, class: "spot-position"
-          %h2.spot-header
-            .spot-position-num= spot.position
-            .spot-name= spot.name
-          - if spot.photos.any?
-            .image-area
-              = render "plans/photo_grid", spot: spot
-          .spot-description= simple_format h(spot.description)
-      - lat_length = @plan.spots.map { |spot| spot.latitude }.compact.length
-      - if lat_length > 1
-        .map
-    .author-field
-      = t("view.plan_user")
-      = link_to user_profile_path(@user.name), class: "author" do
-        .author-image= image_tag @user.profile&.image.present? ? @user.profile.image.thumb.url : "no_user_image.svg"
-        .author-name= @user.profile&.name.present? ? @user.profile.name : @user.name
-  #comment-field.comment-field
-    - @comments.each do |comment|
-      .comment-item
-        .comment-header
-          = link_to user_profile_path(comment.user.name), class: "comment-user" do
-            .comment-user-image= image_tag comment.user.profile&.image.present? ? comment.user.profile.image.thumb.url : "no_user_image.svg"
-            .comment-user-name= comment.user.profile&.name.present? ? comment.user.profile.name : comment.user.name
-          .comment-at= comment.created_at.strftime("%Y-%m-%d %H:%M")
-        .comment-content= simple_format h(comment.content)
-        -if current_user == comment.user
-          .comment-delete= link_to t("link.delete"), comment_path(comment), method: :delete, data: { confirm: t("view.delete_confirm") }
-    -if user_signed_in? && @plan.published?
-      = simple_form_for @comment do |f|
-        = f.hidden_field :plan_id, value: @plan.id
-        = f.input :content, required: false, placeholder: t("form.input_comment"), input_html: { rows: 3 }, label: t("form.label_comment")
-        = f.button :submit, value: t("form.submit_comment"), class: "btn-success"
+  .row
+    .main-field.col-lg-9
+      .plan-field
+        .plan-header
+          %h2.plan-name= @plan.name
+          .plan-description= simple_format h(@plan.description)
+          - if @plan.published?
+            .reaction-field
+              .pageviews
+                = fa_icon "eye"
+                = @pv
+              .like-area
+                - if user_signed_in?
+                  - if @like.present?
+                    = render "plans/unlike"
+                  - else
+                    = render "plans/like"
+                - else
+                  .like
+                    = link_to new_user_session_path do
+                      = fa_icon "heart-o"
+                      = Like.where(plan_id: @plan).count
+              .comment
+                = link_to "#comment-field", class: "smooth-scroll"  do
+                  = fa_icon "comment-o"
+                  = Comment.where(plan_id: @plan).count
+          - if @plan.user == current_user
+            .plan-menu
+              = link_to t("link.edit"), edit_users_plan_path(@plan), class: "btn btn-success"
+              = link_to t("link.delete"), users_plan_path(@plan), method: :delete, data: { confirm: t("view.delete_confirm") }, class: "btn btn-danger"
+          .clear
+        .spot-field
+          - @plan.spots.each_with_index do |spot, i|
+            .spot-item{ id: "spot-#{spot.position}" }
+              = hidden_field_tag :latitude, spot.latitude, class: "spot-latitude"
+              = hidden_field_tag :longitude, spot.longitude, class: "spot-longitude"
+              = hidden_field_tag :position, spot.position, class: "spot-position"
+              %h2.spot-header
+                .spot-position-num= spot.position
+                .spot-name= spot.name
+              - if spot.photos.any?
+                .image-area
+                  = render "plans/photo_grid", spot: spot
+              .spot-description= simple_format h(spot.description)
+          - lat_length = @plan.spots.map { |spot| spot.latitude }.compact.length
+          - if lat_length > 1
+            #route-map.map
+        .author-field
+          = t("view.plan_user")
+          = link_to user_profile_path(@user.name), class: "author" do
+            .author-image= image_tag @user.profile&.image.present? ? @user.profile.image.thumb.url : "no_user_image.svg"
+            .author-name= @user.profile&.name.present? ? @user.profile.name : @user.name
+      #comment-field.comment-field
+        - @comments.each do |comment|
+          .comment-item
+            .comment-header
+              = link_to user_profile_path(comment.user.name), class: "comment-user" do
+                .comment-user-image= image_tag comment.user.profile&.image.present? ? comment.user.profile.image.thumb.url : "no_user_image.svg"
+                .comment-user-name= comment.user.profile&.name.present? ? comment.user.profile.name : comment.user.name
+              .comment-at= comment.created_at.strftime("%Y-%m-%d %H:%M")
+            .comment-content= simple_format h(comment.content)
+            -if current_user == comment.user
+              .comment-delete= link_to t("link.delete"), comment_path(comment), method: :delete, data: { confirm: t("view.delete_confirm") }
+        -if user_signed_in? && @plan.published?
+          = simple_form_for @comment do |f|
+            = f.hidden_field :plan_id, value: @plan.id
+            = f.input :content, required: false, placeholder: t("form.input_comment"), input_html: { rows: 3 }, label: t("form.label_comment")
+            = f.button :submit, value: t("form.submit_comment"), class: "btn-success"
+    .sidebar.col-lg-3
+      .following-scroll
+        %ul.table-contents
+          %li.table-contents-header スポット目次
+          - @plan.spots.each do |spot|
+            = link_to "#spot-#{spot.position}", class: "table-contents-item smooth-scroll page-link" do
+              %li
+                .table-contents-position= spot.position
+                .table-contents-name= spot.name
+          - if lat_length > 1
+            = link_to "#route-map", class: "table-contents-item smooth-scroll page-link" do
+              .table-contents-icon= fa_icon "map"
+              .table-contents-name ルートマップ
