@@ -5,6 +5,8 @@ ja:
       popular_plans: 人気のプラン
   view:
     plan_user: "投稿者:"
+    spot_table_contents: スポット目次
+    route_map: ルートマップ
   form:
     input_comment: コメントを入力してください
     label_comment: コメントを投稿する

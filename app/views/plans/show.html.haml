@@ -75,7 +75,7 @@
     .sidebar.col-lg-3
       .following-scroll
         %ul.table-contents
-          %li.table-contents-header スポット目次
+          %li.table-contents-header= t("view.spot_table_contents")
           - @plan.spots.each do |spot|
             = link_to "#spot-#{spot.position}", class: "table-contents-item smooth-scroll page-link" do
               %li
@@ -84,4 +84,4 @@
           - if lat_length > 1
             = link_to "#route-map", class: "table-contents-item smooth-scroll page-link" do
               .table-contents-icon= fa_icon "map"
-              .table-contents-name ルートマップ
+              .table-contents-name= t("view.route_map")
