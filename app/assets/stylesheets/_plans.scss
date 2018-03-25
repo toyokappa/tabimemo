@@ -540,6 +540,11 @@
   }
 }
 
+@media screen and (max-width: 1199px) {
+  .table-contents {
+    display: none;
+  }
+}
 .table-contents {
   margin-top: 20px;
   padding: 0;
@@ -565,6 +570,9 @@
     border-radius: 0 0 5px 5px;
     }
     &:hover {
+      background-color: #fff6da;
+    }
+    &.active {
       background-color: #fff6da;
     }
     .table-contents-position {

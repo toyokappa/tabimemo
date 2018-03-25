@@ -50,7 +50,6 @@
               .spot-description= simple_format h(spot.description)
           - lat_length = @plan.spots.map { |spot| spot.latitude }.compact.length
           - if lat_length > 1
-            .map
             #route-map.map
         .author-field
           = t("view.plan_user")
@@ -78,7 +77,7 @@
         %ul.table-contents
           %li.table-contents-header スポット目次
           - @plan.spots.each do |spot|
-            = link_to "#spot-#{spot.position}", class: "table-contents-item smooth-scroll" do
+            = link_to "#spot-#{spot.position}", class: "table-contents-item smooth-scroll page-link" do
               %li
                 .table-contents-position= spot.position
                 .table-contents-name= spot.name
