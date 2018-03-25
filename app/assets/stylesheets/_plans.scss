@@ -564,6 +564,9 @@
       border-bottom: none;
     border-radius: 0 0 5px 5px;
     }
+    &:hover {
+      background-color: #fff6da;
+    }
     .table-contents-position {
       display: inline-block;
       color: white;
@@ -573,7 +576,17 @@
       width: 24px;
       height: 24px;
       line-height: 24px;
+      vertical-align: middle;
+      margin-right: 5px;
       border-radius: 50%;
+    }
+    .table-contents-icon {
+      display: inline-block;
+      color: #5cb85c;
+      font-size: 24px;
+      line-height: 24px;
+      margin-right: 5px;
+      vertical-align: middle;
     }
     .table-contents-name {
       display: inline-block;

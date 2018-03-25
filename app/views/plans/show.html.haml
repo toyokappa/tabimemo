@@ -51,6 +51,7 @@
           - lat_length = @plan.spots.map { |spot| spot.latitude }.compact.length
           - if lat_length > 1
             .map
+            #route-map.map
         .author-field
           = t("view.plan_user")
           = link_to user_profile_path(@user.name), class: "author" do
@@ -81,3 +82,7 @@
               %li
                 .table-contents-position= spot.position
                 .table-contents-name= spot.name
+          - if lat_length > 1
+            = link_to "#route-map", class: "table-contents-item smooth-scroll page-link" do
+              .table-contents-icon= fa_icon "map"
+              .table-contents-name ルートマップ
