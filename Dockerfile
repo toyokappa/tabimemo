@@ -1,4 +1,4 @@
-FROM ruby:2.4.1
+FROM ruby:2.4.0
 
 ENV APP_ROOT=/usr/src/app
 RUN mkdir -p $APP_ROOT

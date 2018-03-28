@@ -1,0 +1,47 @@
+version: "2"
+
+volumes:
+  db_data:
+    driver: local
+  gem_data:
+    driver: local
+  redis_data:
+    driver: local
+
+services:
+  rails:
+    build:
+      context: ./
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/usr/src/app:cached
+      - gem_data:/usr/src/app/vendor
+    environment:
+      RAILS_ENV: development
+      GOOGLE_MAPS_API: AIzaSyDBlYdxJipM-Gablze4G84BoPagcYp4k-8
+      RAILS_DB_HOST: db
+      RAILS_DB_USER: root
+      RAILS_DB_PASS:
+    command:
+      bin/start_server.sh
+    depends_on:
+      - db
+
+  db:
+    build:
+      context: ./containers/db
+    ports:
+      - "3307:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: tabimemo_development
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
