@@ -12,21 +12,26 @@ services:
   rails:
     build:
       context: ./
-    ports:
-      - "3000:3000"
     volumes:
       - .:/usr/src/app:cached
-      - gem_data:/usr/src/app/vendor
+      - gem_data:/usr/src/app/vendor/bundle
     environment:
       RAILS_ENV: development
       GOOGLE_MAPS_API: AIzaSyDBlYdxJipM-Gablze4G84BoPagcYp4k-8
       RAILS_DB_HOST: db
       RAILS_DB_USER: root
       RAILS_DB_PASS:
-    command:
-      bin/start_server.sh
+      MANUAL: $MANUAL
+
+  web:
+    extends:
+      service: rails
+    ports:
+      - "3000:3000"
+    command: bin/start_dev_server.sh
     depends_on:
       - db
+      - redis
 
   db:
     build:
