@@ -99,4 +99,5 @@ Rails.application.configure do
   # Custom configure
   config.x.mail.noreply = "noreply@tabimemo.fun"
   config.x.mail.to = "kppg42@gmail.com"
+  config.x.google_apis.map = ENV["GOOGLE_MAPS_API"]
 end

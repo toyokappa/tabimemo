@@ -10,7 +10,6 @@ gem "bootstrap-sass"
 gem "carrierwave"
 gem "coffee-rails", "~> 4.2"
 gem "devise"
-gem "dotenv-rails"
 gem "enumerize"
 gem "enumerize"
 gem "fog"
@@ -70,6 +69,10 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "shoulda-matchers"
+end
+
+group :production do
+  gem "dotenv-rails"
 end
 
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
