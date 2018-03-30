@@ -28,6 +28,8 @@ Rails.application.routes.draw do
   get "/privacy_policy", to: "static#privacy_policy"
   post "/opinions", to: "opinions#create"
 
+  get "/batch/save_page_views", to: "batch/save_page_views#exec"
+
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
   end
