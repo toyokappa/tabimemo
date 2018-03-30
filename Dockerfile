@@ -15,9 +15,9 @@ RUN apt-get update && \
 ADD Gemfile $APP_ROOT
 ADD Gemfile.lock $APP_ROOT
 
+RUN gem update --system
 RUN bundle install --system # --without development test
 
 ADD . $APP_ROOT
 
 EXPOSE 3000
-CMD bin/start_server.sh

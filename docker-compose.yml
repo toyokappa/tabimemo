@@ -21,6 +21,8 @@ services:
       RAILS_DB_HOST: db
       RAILS_DB_USER: root
       RAILS_DB_PASS:
+      REDIS_HOSTNAME: redis
+      REDIS_PORT: 6379
       MANUAL: $MANUAL
 
   web:

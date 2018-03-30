@@ -58,5 +58,5 @@ Rails.application.configure do
   config.x.mail.noreply = "noreply@example.com"
   config.x.mail.to = "kppg42@gmail.com"
 
-  ENV["REDIS"] = "localhost:6379"
+  ENV["REDIS"] = "#{ENV.fetch('REDIS_HOSTNAME') { 'localhost' }}:#{ENV.fetch('REDIS_PORT') { '6379' }}"
 end

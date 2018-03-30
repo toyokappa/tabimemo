@@ -1,7 +1,7 @@
 default: &default
   adapter: mysql2
   encoding: utf8
-  charaset: urf8
+  charaset: utf8
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   host: <%= ENV.fetch("RAILS_DB_HOST") { "localhost" } %>
   username: <%= ENV.fetch("RAILS_DB_USER") { "root" } %>
