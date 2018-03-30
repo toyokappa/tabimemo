@@ -7,7 +7,6 @@ set :rbenv_ruby, "2.4.1"
 set :pty, true
 
 set :unicorn_config_path, "#{current_path}/config/unicorn.rb"
-set :whenever_indentifier, "#{fetch(:application)}_#{fetch(:stage)}"
 
 append :linked_files, "config/database.yml", "config/secrets.yml", ".env"
 append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "vendor/bundle", "public/system"

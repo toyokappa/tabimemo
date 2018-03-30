@@ -10,7 +10,6 @@ gem "bootstrap-sass"
 gem "carrierwave"
 gem "coffee-rails", "~> 4.2"
 gem "devise"
-gem "dotenv-rails"
 gem "enumerize"
 gem "enumerize"
 gem "fog"
@@ -36,6 +35,7 @@ gem "simple_form"
 gem "turbolinks", "~> 5"
 gem "uglifier", ">= 1.3.0"
 gem "unicorn"
+gem "unicorn-worker-killer"
 gem "whenever", require: false
 
 group :development, :test do
@@ -69,6 +69,10 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "shoulda-matchers"
+end
+
+group :production do
+  gem "dotenv-rails"
 end
 
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]

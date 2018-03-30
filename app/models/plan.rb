@@ -55,7 +55,7 @@ class Plan < ApplicationRecord
       [plan_id, pv > 0 ? (like * 0.7 + comment * 0.3) / pv : 0]
     end
     ids = scores.to_h.delete_if { |_,v| v == 0 }.sort_by { |_,v| -v }.to_h.keys
-    self.where(id: ids).order("field(id, #{ids.join(',')})")
+    self.where(id: ids).order("field(id, #{ids.present? ? ids.join(',') : 'null'})")
   }
 
   ransack_alias :keyword, :name_or_description_or_spots_name_or_spots_description_or_spots_address
