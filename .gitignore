@@ -19,6 +19,7 @@
 .byebug_history
 
 public/uploads
+public/tmp
 vendor/bundle
 .DS_Store
 dump.rdb
