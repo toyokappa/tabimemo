@@ -5,6 +5,7 @@ class SavePageViewsJob < ApplicationJob
     yesterday = "pv#{Date.yesterday.strftime('%Y_%m_%d')}"
     yesterday_pv = Plan.send(yesterday)
     today = "pv#{Date.today.strftime('%Y_%m_%d')}"
+    Plan.sorted_set today, global: true
     today_pv = Plan.send(today)
     display_pv = Plan.display_pv
 
