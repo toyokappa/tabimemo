@@ -174,12 +174,31 @@ ul {
 
 form {
   .required-input {
+    font-size: 12px;
     color: white;
     background-color: crimson;
     padding: 3px 5px;
     border-radius: 3px;
     margin-left: 3px;
   }
+}
+
+.register-form {
+  margin-top: 30px;
+  padding: 20px 30px;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  h3 {
+    font-weight: bold;
+    margin-top: 0;
+    padding-bottom: 5px;
+    border-bottom: 1px solid lightgray;
+    margin-bottom: 20px;
+  }
+}
+
+.btn-100 {
+  width: 100%;
 }
 
 /*    simple_format(h(object))対策    */
