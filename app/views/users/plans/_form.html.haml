@@ -1,6 +1,6 @@
 .row
   = simple_form_for @plan, url: url, html: { class: "form-with-limit" } do |f|
-    .col-lg-9.main-field
+    .col-md-9.main-field
       .register-form
         %h3= t(".title")
         = render "shared/input_with_limit", f: f, col: :name, limit: 30, rows: nil, hint: t("form.plan_name_hint")
@@ -15,7 +15,7 @@
             = t("form.create_spot")
           .text-danger.map-rule= t("form.map_rule")
           .map
-    .col-lg-3.sidebar
+    .col-md-3.sidebar
       .following-scroll
         .menu-box
           .menu-box-header

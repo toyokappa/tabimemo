@@ -5,7 +5,7 @@
     .no-plan-top-image
 .container
   .row
-    .main-field.col-lg-9
+    .main-field.col-md-9
       .plan-field
         .plan-header
           %h2.plan-name= @plan.name
@@ -72,7 +72,7 @@
             = f.hidden_field :plan_id, value: @plan.id
             = f.input :content, required: false, placeholder: t("form.input_comment"), input_html: { rows: 3 }, label: t("form.label_comment")
             = f.button :submit, value: t("form.submit_comment"), class: "btn-success"
-    .sidebar.col-lg-3
+    .sidebar.col-md-3
       .following-scroll
         %ul.table-contents
           %li.table-contents-header= t("view.spot_table_contents")
