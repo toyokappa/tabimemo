@@ -144,6 +144,9 @@
 /*    edit    */
 
 .spot-container {
+  h3 {
+    font-weight: bold;
+  }
   .spot-form {
     .spot-position-num {
       display: inline-block;
@@ -232,7 +235,7 @@
     background-color: white;
     border: 1px solid lightgray;
     border-radius: 6px;
-    margin-top: 20px;
+    margin-top: 30px;
     .menu-box-header {
       color: white;
       background-color: #5cb85c;
@@ -392,6 +395,7 @@
     .plan-name {
       font-size: 30px;
       font-weight: bold;
+      margin-top: 30px;
       margin-bottom: 10px;
     }
     .plan-description {
@@ -540,13 +544,13 @@
   }
 }
 
-@media screen and (max-width: 1199px) {
+@media screen and (max-width: 991px) {
   .table-contents {
     display: none;
   }
 }
 .table-contents {
-  margin-top: 20px;
+  margin-top: 30px;
   padding: 0;
   border: 1px solid lightgray;
   border-radius: 6px;

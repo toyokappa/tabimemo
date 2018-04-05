@@ -4,7 +4,7 @@ class CurrentSection
     return
 
   setCurrentSection: =>
-    scroll_top = $(window).scrollTop() + 100
+    scroll_top = $(window).scrollTop() + 110
     $page_link = $(".page-link")
     iteration = _.range $page_link.length
     _.forEach iteration, (i)->

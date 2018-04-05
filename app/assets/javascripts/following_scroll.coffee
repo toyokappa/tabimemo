@@ -1,14 +1,12 @@
 class FollowingScroll
   constructor: (@$root)->
-    @target_top = @$root.offset().top
-    @target_height = @$root.outerHeight(true)
-    @target_width = @$root.outerWidth()
+    @target_top = @$root.closest(".row").offset().top + 30
     @checkWindowWidth()
     @bind()
     return
 
   followingScroll: =>
-    window_top = $(window).scrollTop() + 100
+    window_top = $(window).scrollTop() + 110
     $footer = $(".footer")
 
     if window_top > @target_top
@@ -24,8 +22,10 @@ class FollowingScroll
 
   checkWindowWidth: =>
     $(window).off "scroll", @followingScroll
-    if $(window).width() >= 1200
-      @followingScroll()
+    if $(window).width() >= 992
+      @target_height = @$root.outerHeight(true)
+      @target_width = @$root.closest(".sidebar").width()
+      @$root.css { width: @target_width }
       $(window).on "scroll", @followingScroll
     else
       @$root.css { position: "static", top: "auto", width: "100%" }

@@ -1,20 +1,22 @@
 .container
-  %h2= t(".title")
-  = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-    .form-inputs
-      = f.input :name, required: true, autofocus: true, placeholder: t(".user_name_format", length: 15)
-      = f.input :email, required: true
-      = f.input :password, required: true, placeholder: t("form.minimum_length", length: @minimum_password_length)
-      = f.input :password_confirmation, required: true
-      .form-group
-        = f.check_box :agreement
-        = f.label :agreement do
-          = link_to t("menu.terms"), terms_path
-          = t("form.and")
-          = link_to t("menu.privacy_policy"), privacy_policy_path
-          = t("form.agree")
-        - if resource.errors.full_messages_for(:agreement).present?
-          - resource.errors.full_messages_for(:agreement).each do |message|
-            .text-danger= message
-    .form-actions
-      = f.button :submit, class: "btn-primary"
+  .row
+    .col-md-6.col-md-offset-3.register-form
+      %h3= t(".title")
+      = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+        .form-inputs
+          = f.input :name, required: true, autofocus: true, placeholder: t(".user_name_format", length: 15)
+          = f.input :email, required: true
+          = f.input :password, required: true, placeholder: t("form.minimum_length", length: @minimum_password_length)
+          = f.input :password_confirmation, required: true
+          .form-group
+            = f.check_box :agreement
+            = f.label :agreement do
+              = link_to t("menu.terms"), terms_path
+              = t("form.and")
+              = link_to t("menu.privacy_policy"), privacy_policy_path
+              = t("form.agree")
+            - if resource.errors.full_messages_for(:agreement).present?
+              - resource.errors.full_messages_for(:agreement).each do |message|
+                .text-danger= message
+        .form-actions
+          = f.button :submit, class: "btn-success btn-100"
