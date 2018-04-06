@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     get "/translate_spot", to: "plans#translate_spot"
     post "/spots", to: "spots#create"
     post "/photos", to: "photos#create"
+    get "/unsubscribe", to: "unsubscribe#show"
   end
 
   resources :users, param: :name, path: "/", only: [] do
