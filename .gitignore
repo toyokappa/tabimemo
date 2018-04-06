@@ -26,3 +26,4 @@ dump.rdb
 config/database.yml
 config/secrets.yml
 .env
+.ruby-version
