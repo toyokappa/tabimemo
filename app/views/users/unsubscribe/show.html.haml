@@ -1,0 +1,17 @@
+.container
+  .row
+    .col-md-8.col-md-offset-2
+      .contents-field
+        .contents-header
+          %h3= t(".title")
+          .unsubscribe-description
+            = t(".description")
+        .contents-body
+          %h4= t(".warning")
+          %ul.unsubscribe-confirm
+            %li= t(".confirm_1_html")
+            %li= t(".confirm_2_html")
+            %li= t(".confirm_3")
+        .contents-footer
+          = link_to t(".delete_user"), user_registration_path, method: :delete, class: "btn btn-danger"
+          = link_to t(".cancel"), root_path, class: "btn btn-default"
