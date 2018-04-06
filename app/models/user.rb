@@ -8,6 +8,7 @@ class User < ApplicationRecord
          authentication_keys: [:login]
 
   has_one :profile, dependent: :destroy, foreign_key: "id"
+  has_one :notification, dependent: :destroy, inverse_of: :user
   has_many :plans, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :liked_plans, -> { order("likes.created_at desc") }, through: :likes, source: :plan

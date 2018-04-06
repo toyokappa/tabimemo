@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180318020928) do
+ActiveRecord::Schema.define(version: 20180407075226) do
 
   create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.text "content"
@@ -30,6 +30,15 @@ ActiveRecord::Schema.define(version: 20180318020928) do
     t.index ["plan_id"], name: "index_likes_on_plan_id"
     t.index ["user_id", "plan_id"], name: "index_likes_on_user_id_and_plan_id", unique: true
     t.index ["user_id"], name: "index_likes_on_user_id"
+  end
+
+  create_table "notifications", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.boolean "when_like", default: true, null: false
+    t.boolean "when_comment", default: true, null: false
+    t.boolean "when_news", default: true, null: false
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "page_views", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
