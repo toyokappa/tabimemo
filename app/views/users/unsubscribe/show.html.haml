@@ -3,15 +3,15 @@
     .col-md-8.col-md-offset-2
       .contents-field
         .contents-header
-          %h3 アカウントを削除して退会しますか？
+          %h3= t(".title")
           .unsubscribe-description
-            退会手続きを進めても宜しいですか？アカウントを削除する前に、下記の注意事項を必ずご確認ください。
+            = t(".description")
         .contents-body
-          %h4 アカウント削除に際する注意事項
+          %h4= t(".warning")
           %ul.unsubscribe-confirm
-            %li 下記の削除ボタンをクリック後、<strong>即時にアカウントが削除されます。</strong>投稿したプランや画像も完全に削除されますのでご注意ください。
-            %li <a href="/users/edit">ユーザーID</a>や<a href="/users/profile/edit">表示名</a>を変更するために、アカウントを削除する必要はありません。設定画面から変更することが可能です。
-            %li 退会後に同じユーザーIDでご登録いただいた場合でも、退会以前のデータは復元できませんのでご注意ください。
+            %li= t(".confirm_1_html")
+            %li= t(".confirm_2_html")
+            %li= t(".confirm_3")
         .contents-footer
-          = link_to "アカウントを削除する", user_registration_path, method: :delete, class: "btn btn-danger"
-          = link_to "キャンセル", root_path, class: "btn btn-default"
+          = link_to t(".delete_user"), user_registration_path, method: :delete, class: "btn btn-danger"
+          = link_to t(".cancel"), root_path, class: "btn btn-default"
