@@ -1,0 +1,12 @@
+<%= @like.user.profile&.name.present? ? @like.user.profile.name : @like.user.name %>さんがあなたのプランに「いいね！」をしました。
+
+＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+【プラン名】
+<%= @plan.name %>
+
+【プランURL】
+<%= plan_url(@plan) %>
+＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+
+メール通知に関する設定は下記のURLから変更ができます。
+<%= edit_users_notification_url %>
