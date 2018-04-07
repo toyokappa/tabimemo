@@ -1,10 +1,15 @@
 <%= @comment.user.profile&.name.present? ? @comment.user.profile.name : @comment.user.name %>さんがあなたのプランにコメントをしました。
 
 ＝＝＝＝＝＝＝＝＝＝＝＝＝＝
-プラン名: <%= @plan.name %>
+【プラン名】
+<%= @plan.name %>
 
-プランURL：<%= plan_url(@plan) %>
+【プランURL】
+<%= plan_url(@plan) %>
 
-コメント:
+【コメント】
 <%= @comment.content %>
 ＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+
+メール通知に関する設定は下記のURLから変更ができます。
+<%= edit_users_notification_url %>
