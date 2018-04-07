@@ -1,0 +1,9 @@
+ja:
+  activerecord:
+    models:
+      notification: メール通知設定
+    attributes:
+      notification:
+        when_like: 自分のプランにいいねがついたとき
+        when_comment: 自分のプランにコメントがついたとき
+        when_news: Tabimemoのサービスに関するお知らせがあったとき

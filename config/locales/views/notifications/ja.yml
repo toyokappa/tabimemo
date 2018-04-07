@@ -1,0 +1,5 @@
+ja:
+  users:
+    notifications:
+      edit:
+        form_description: Tabimemoからメールを受信するタイミングを設定できます。

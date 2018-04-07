@@ -1,0 +1,11 @@
+.container
+  .row
+    .col-md-6.col-md-offset-3.register-form
+      %h3= Notification.model_name.human
+      .form-description
+        = t(".form_description")
+      = simple_form_for @notification, url: users_notification_path do |f|
+        = f.input :when_like
+        = f.input :when_comment
+        = f.input :when_news
+        = f.button :submit, class: "btn-success btn-100"
