@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: "users/registrations" }
   namespace :users do
     resources :plans, only: [:index, :new, :create, :edit, :update, :destroy]
-    resource :profile, only: [:new, :create, :edit, :update]
+    resource :profile, only: [:edit, :update]
     resource :notification, only: [:edit, :update]
     get "/password", to: "passwords#edit"
     put "/password", to: "passowrds#update"
