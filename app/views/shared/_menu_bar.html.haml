@@ -1,0 +1,13 @@
+.menu-box
+  .menu-box-header
+    = t("menu.setting_menu")
+  .menu-box-body
+    %ul
+      %li{ class: "#{'active' if request.url == edit_user_registration_url}" }
+        = link_to t("menu.user_info"), edit_user_registration_path
+      %li{ class: "#{'active' if request.url == users_password_url}" }
+        = link_to t("menu.edit_password"), users_password_path
+      %li{ class: "#{'active' if request.url == edit_users_notification_url}" }
+        = link_to Notification.model_name.human, edit_users_notification_path
+      %li{ class: "#{'active' if request.url == users_unsubscribe_url}" }
+        = link_to t("menu.unsubscribe"), users_unsubscribe_path

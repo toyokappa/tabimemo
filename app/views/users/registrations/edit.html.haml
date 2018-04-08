@@ -1,10 +1,14 @@
 .container
   .row
-    .col-md-6.col-md-offset-3.register-form
-      %h3= t(".title")
-      = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-        .form-inputs
-          = f.input :name, required: true, autofocus: true, placeholder: t("form.maximum_length", length: 15)
-          = f.input :email, required: true
-        .form-actions
-          = f.button :submit, class: "btn-success btn-100"
+    .col-md-3
+      .menu-bar
+        = render "shared/menu_bar"
+    .col-md-6
+      .register-form
+        %h3= t(".title")
+        = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+          .form-inputs
+            = f.input :name, required: true, autofocus: true, placeholder: t("form.maximum_length", length: 15)
+            = f.input :email, required: true
+          .form-actions
+            = f.button :submit, class: "btn-success btn-100"
