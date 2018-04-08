@@ -1,4 +1,4 @@
-<%= @comment.user.profile&.name.present? ? @comment.user.profile.name : @comment.user.name %>さんがあなたのプランにコメントをしました。
+<%= @like.user.profile&.name.present? ? @like.user.profile.name : @like.user.name %>さんがあなたのプランに「いいね！」をしました。
 
 ＝＝＝＝＝＝＝＝＝＝＝＝＝＝
 【プラン名】
@@ -6,9 +6,6 @@
 
 【プランURL】
 <%= plan_url(@plan) %>
-
-【コメント】
-<%= @comment.content %>
 ＝＝＝＝＝＝＝＝＝＝＝＝＝＝
 
 メール通知に関する設定は下記のURLから変更ができます。

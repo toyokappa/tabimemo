@@ -11,7 +11,9 @@ class CommentsController < ApplicationController
     @pv = @plan.show_pv + @plan.page_views.sum(:count)
 
     if @comment.save
-      CommentMailer.email(@comment, @plan).deliver if @plan.user != current_user
+      if @plan.user != current_user && @plan.user.notification.when_comment?
+        CommentMailer.email(@comment, @plan).deliver
+      end
       redirect_to @plan, notice: t("flash.comment_success")
     else
       render "plans/show"

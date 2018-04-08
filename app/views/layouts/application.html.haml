@@ -23,8 +23,7 @@
               %ul.dropdown-menu
                 %li.dropdown-item= link_to t("menu.manage_plan"), users_plans_path
                 %li.dropdown-item= link_to Profile.model_name.human, user_profile_path(current_user.name)
-                %li.dropdown-item= link_to t("menu.user_info"), edit_user_registration_path
-                %li.dropdown-item= link_to t("menu.edit_password"), users_password_path
+                %li.dropdown-item= link_to t("menu.user_setting"), edit_user_registration_path
                 %li.dropdown-item= link_to t("menu.sign_out"), destroy_user_session_path, method: :delete
           - else
             %li= link_to t("menu.sign_up"), new_user_registration_path
