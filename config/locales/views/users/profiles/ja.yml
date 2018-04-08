@@ -1,8 +1,6 @@
 ja:
   users:
     profiles:
-      new:
-        title: プロフィール登録
       edit:
         title: プロフィール編集
       show:
