@@ -54,15 +54,15 @@
         .author-field
           = t("view.plan_user")
           = link_to user_profile_path(@user.name), class: "author" do
-            .author-image= image_tag @user.profile&.image.present? ? @user.profile.image.thumb.url : "no_user_image.svg"
-            .author-name= @user.profile&.name.present? ? @user.profile.name : @user.name
+            .author-image= image_tag @user.profile.image.present? ? @user.profile.image.thumb.url : "no_user_image.svg"
+            .author-name= @user.profile.name.present? ? @user.profile.name : @user.name
       #comment-field.comment-field
         - @comments.each do |comment|
           .comment-item
             .comment-header
               = link_to user_profile_path(comment.user.name), class: "comment-user" do
-                .comment-user-image= image_tag comment.user.profile&.image.present? ? comment.user.profile.image.thumb.url : "no_user_image.svg"
-                .comment-user-name= comment.user.profile&.name.present? ? comment.user.profile.name : comment.user.name
+                .comment-user-image= image_tag comment.user.profile.image.present? ? comment.user.profile.image.thumb.url : "no_user_image.svg"
+                .comment-user-name= comment.user.profile.name.present? ? comment.user.profile.name : comment.user.name
               .comment-at= comment.created_at.strftime("%Y-%m-%d %H:%M")
             .comment-content= simple_format h(comment.content)
             -if current_user == comment.user
