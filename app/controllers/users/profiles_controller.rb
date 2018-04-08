@@ -19,19 +19,6 @@ class Users::ProfilesController < ApplicationController
     end
   end
 
-  def new
-    @profile = current_user.build_profile
-  end
-
-  def create
-    @profile = current_user.build_profile(profile_params)
-    if @profile.save
-      redirect_to user_profile_path(current_user.name), notice: t("flash.register_success")
-    else
-      render "new"
-    end
-  end
-
   def edit
   end
 
