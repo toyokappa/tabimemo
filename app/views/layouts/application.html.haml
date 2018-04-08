@@ -19,7 +19,7 @@
             %li= link_to t("menu.register_plan"), new_users_plan_path
             %li.dropdown
               = link_to "#", class: "dropdown-image", data: { toggle: :dropdown } do
-                = image_tag current_user.profile&.image.present? ? current_user.profile.image.thumb.url : "no_user_image.svg"
+                = image_tag current_user.profile.image.present? ? current_user.profile.image.thumb.url : "no_user_image.svg"
               %ul.dropdown-menu
                 %li.dropdown-item= link_to t("menu.manage_plan"), users_plans_path
                 %li.dropdown-item= link_to Profile.model_name.human, user_profile_path(current_user.name)
