@@ -13,7 +13,9 @@
     %header.navbar.navbar-fixed-top
       %nav.container
         .navbar-header
-          = link_to t("app.title"), root_path, class: "navbar-brand"
+          = link_to root_path, class: "navbar-brand" do
+            .header-logo= image_tag "logo.svg", class: "logo"
+            .pc.header-title= t("app.title")
         = render "layouts/search_form"
         %ul.nav.navbar-nav.navbar-right
           - if user_signed_in?
