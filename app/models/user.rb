@@ -7,7 +7,7 @@ class User < ApplicationRecord
          :rememberable, :trackable, :validatable,
          authentication_keys: [:login]
 
-  has_one :profile, dependent: :destroy, foreign_key: "id", inverse_of: :user
+  has_one :profile, dependent: :destroy, inverse_of: :user
   has_one :notification, dependent: :destroy, inverse_of: :user
   has_many :plans, dependent: :destroy
   has_many :likes, dependent: :destroy
