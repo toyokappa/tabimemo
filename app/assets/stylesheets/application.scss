@@ -61,6 +61,10 @@ body {
   padding-top: 80px;
 }
 
+h2 {
+  @include font-size(30px, 20px);
+}
+
 .navbar {
   margin-bottom: 0 !important;
 }
