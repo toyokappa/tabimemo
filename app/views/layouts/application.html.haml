@@ -37,6 +37,7 @@
                   %li.dropdown-item= link_to t("menu.user_setting"), edit_user_registration_path
                   %li.dropdown-item= link_to t("menu.sign_out"), destroy_user_session_path, method: :delete
             - else
+              %li.sp= link_to t("menu.home"), root_path
               %li= link_to t("menu.sign_up"), new_user_registration_path
               %li= link_to t("menu.sign_in"), new_user_session_path
       - flash.each do |message_type, message|

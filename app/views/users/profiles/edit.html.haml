@@ -1,11 +1,12 @@
 .container
   .row
-    .col-md-8.col-md-offset-2.register-form
-      - if params[:init].present?
-        .registration-step
-          %h3= t("view.registration_step")
-          %span.text-muted= t("view.suggestion_register_profile")
-          = link_to t("link.skip_profile"), root_path
-      - else
-        %h3= t(".title")
-      = render "form"
+    .col-md-8.col-md-offset-2
+      .register-form
+        - if params[:init].present?
+          .registration-step
+            %h3= t("view.registration_step")
+            %span.text-muted= t("view.suggestion_register_profile")
+            = link_to t("link.skip_profile"), root_path
+        - else
+          %h3= t(".title")
+        = render "form"
