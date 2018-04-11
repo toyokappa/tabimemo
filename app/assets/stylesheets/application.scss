@@ -74,6 +74,15 @@ ul {
   flex-wrap: wrap;
 }
 
+.btn-lg {
+  @include sp() {
+    padding: 8px 14px;
+    font-size: 16px;
+    line-height: 1.5;
+    border-radius: 5px;
+  }
+}
+
 .clear {
   clear: both;
 }
@@ -260,25 +269,29 @@ ul {
   color: white;
   background-color: #484848;
   padding: 50px 0;
+  @include sp() {
+    font-size: 12px;
+  }
   ul {
     padding-left: 0;
     padding-bottom: 25px;
     border-bottom: 1px solid white;
     margin-bottom: 25px;
     li {
-      display: inline;
-      margin: 0 20px;
+      display: inline-block;
+      @include pc() {
+        margin: 0 20px;
+      }
+      @include sp() {
+        margin: 0 10px;
+      }
       a {
         color: white;
       }
     }
   }
   .opinion-form {
-    width: 600px;
-    margin: 0 auto;
-    .btn {
-      width: 100%;
-    }
+    margin-bottom: 20px;
   }
 }
 

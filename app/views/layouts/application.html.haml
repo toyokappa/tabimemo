@@ -49,14 +49,19 @@
         %ul
           %li= link_to t("menu.terms"), terms_path
           %li= link_to t("menu.privacy_policy"), privacy_policy_path
-          %li= link_to t("menu.blog"), "http://toyokappa.hatenablog.com/", target: "_blank"
+          %li
+            = link_to "http://toyokappa.hatenablog.com/", target: "_blank" do
+              = t("menu.blog")
+              = fa_icon "external-link"
         - if user_signed_in?
-          .opinion-form
-            = form_for Opinion.new do |f|
-              = f.hidden_field :user, value: current_user.name
-              = f.hidden_field :email, value: current_user.email
-              .form-group
-                = f.text_area :content, class: "form-control", placeholder: t("view.opinion_description"), rows: 5
-              = f.submit t("form.send"), class: "btn btn-success"
+          .row
+            .col-md-6.col-md-offset-3
+              .opinion-form
+                = form_for Opinion.new do |f|
+                  = f.hidden_field :user, value: current_user.name
+                  = f.hidden_field :email, value: current_user.email
+                  .form-group
+                    = f.text_area :content, class: "form-control", placeholder: t("view.opinion_description"), rows: 5
+                  = f.submit t("form.send"), class: "btn btn-success btn-100"
         .copyrights
           2018 &copy; Toyokappa, All Rights Reserved.

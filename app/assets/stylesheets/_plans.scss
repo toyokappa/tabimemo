@@ -1,23 +1,32 @@
+@import "mixin";
+
 /*    index    */
 
 .page-top {
   position: relative;
   width: 100%;
-  height: calc(100vh - 80px);
   text-align: center;
   display: table;
-  margin-bottom: 20px;
+  @include pc() {
+    height: 600px;
+    height: calc(100vh - 80px);
+    margin-bottom: 20px;
+  }
+  @include sp() {
+    height: 240px;
+    height: calc(100vw * 0.6)
+  }
   .page-top-contents{
     display: table-cell;
     vertical-align: middle;
     background-color: rgba(0, 0, 0, 0.2);
     .page-top-title {
       color: white;
-      font-size: 36px;
+      @include font-size(36px, 20px);
     }
     .page-top-sub {
       color: white;
-      font-size: 18px;
+      @include font-size(18px, 14px);
       margin-bottom: 20px;
     }
     .slide {
@@ -38,14 +47,14 @@
 
 .plan-index-area {
   .plan-index-group {
-    margin-bottom: 40px;
+    margin-bottom: 30px;
     &:last-child {
       margin-bottom: 0;
     }
     h2 {
       color: #484848;
-      font-size: 28px;
       margin-bottom: 10px;
+      @include font-size(28px, 24px);
     }
     .plan-item {
       margin-bottom: 20px;
