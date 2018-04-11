@@ -13,24 +13,32 @@
     %header.navbar.navbar-fixed-top
       %nav.container
         .navbar-header
-          = link_to root_path, class: "navbar-brand" do
+          = link_to root_path, class: "pc navbar-brand" do
             .header-logo= image_tag "logo.svg", class: "logo"
-            .pc.header-title= t("app.title")
-        = render "layouts/search_form"
-        %ul.nav.navbar-nav.navbar-right
-          - if user_signed_in?
-            %li= link_to t("menu.register_plan"), new_users_plan_path
-            %li.dropdown
-              = link_to "#", class: "dropdown-image", data: { toggle: :dropdown } do
-                = image_tag current_user.profile.image.present? ? current_user.profile.image.thumb.url : "no_user_image.svg"
-              %ul.dropdown-menu
-                %li.dropdown-item= link_to t("menu.manage_plan"), users_plans_path
-                %li.dropdown-item= link_to Profile.model_name.human, user_profile_path(current_user.name)
-                %li.dropdown-item= link_to t("menu.user_setting"), edit_user_registration_path
-                %li.dropdown-item= link_to t("menu.sign_out"), destroy_user_session_path, method: :delete
-          - else
-            %li= link_to t("menu.sign_up"), new_user_registration_path
-            %li= link_to t("menu.sign_in"), new_user_session_path
+            .header-title= t("app.title")
+          = link_to "javascript:void(0);", class: "sp navbar-brand collapse-btn navbar-toggle", data: { toggle: :collapse, target: ".collapse-target" } do
+            .header-logo= image_tag "logo.svg", class: "logo"
+          = render "layouts/search_form"
+        .collapse.navbar-collapse.collapse-target
+          %ul.nav.navbar-nav.navbar-right
+            - if user_signed_in?
+              %li.sp= link_to t("menu.home"), root_path
+              %li= link_to t("menu.register_plan"), new_users_plan_path
+              %li.sp= link_to t("menu.manage_plan"), users_plans_path
+              %li.sp= link_to Profile.model_name.human, user_profile_path(current_user.name)
+              %li.sp= link_to t("menu.user_setting"), edit_user_registration_path
+              %li.sp= link_to t("menu.sign_out"), destroy_user_session_path, method: :delete
+              %li.pc.dropdown
+                = link_to "#", class: "dropdown-image", data: { toggle: :dropdown } do
+                  = image_tag current_user.profile.image.present? ? current_user.profile.image.thumb.url : "no_user_image.svg"
+                %ul.dropdown-menu
+                  %li.dropdown-item= link_to t("menu.manage_plan"), users_plans_path
+                  %li.dropdown-item= link_to Profile.model_name.human, user_profile_path(current_user.name)
+                  %li.dropdown-item= link_to t("menu.user_setting"), edit_user_registration_path
+                  %li.dropdown-item= link_to t("menu.sign_out"), destroy_user_session_path, method: :delete
+            - else
+              %li= link_to t("menu.sign_up"), new_user_registration_path
+              %li= link_to t("menu.sign_in"), new_user_session_path
       - flash.each do |message_type, message|
         .flash-message-container
           = content_tag :div, message, class: "alert alert-#{message_type}"

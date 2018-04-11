@@ -21,6 +21,7 @@
 @import "bootstrap";
 @import "font-awesome";
 @import "baguetteBox.min";
+@import "mixin";
 
 /*    alert   */
 
@@ -101,23 +102,40 @@ ul {
     }
   }
   .search-form {
-    margin-top: 20px;
     margin-bottom: 0;
+    @include pc() {
+      margin-top: 20px;
+    }
     .keyword-input {
       font-size: 18px;
       color: #888888;
       height: inherit;
-      width: 400px;
       border-radius: 3px;
       padding: 7px 10px 7px 46px;
       background: image-url("search.png") no-repeat 10px 8px;
       background-size: 24px;
+      @include pc() {
+        width: 400px;
+      }
+      @include sp() {
+        width: calc(100% - 75px);
+      }
     }
   }
   .nav > li > a {
     color: gray;
     padding: 30px 15px;
   }
+}
+
+.navbar-toggle {
+  float: left;
+  margin: 0;
+  border: 0;
+}
+
+.navbar-fixed-top .navbar-collapse {
+  max-height: 100%;
 }
 
 .dropdown {
