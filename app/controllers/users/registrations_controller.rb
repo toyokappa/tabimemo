@@ -10,8 +10,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     super
-    resource.create_profile
-    resource.create_notification
   end
 
   # GET /resource/edit
