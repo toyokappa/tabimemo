@@ -4,7 +4,7 @@ class Profile < ApplicationRecord
   mount_uploader :image, ProfileImageUploader
 
   before_create -> { self.id = user.id }
-  belongs_to :user, foreign_key: "id", inverse_of: :profile
+  belongs_to :user, inverse_of: :profile
 
   URL_FORMAT = /\A#{URI::regexp(%w(http https))}\z/i
   validates :url, format: { with: URL_FORMAT, message: I18n.t("validation.url_format") }, allow_blank: true
