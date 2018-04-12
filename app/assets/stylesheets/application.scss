@@ -78,6 +78,10 @@ ul {
   flex-wrap: wrap;
 }
 
+.table-responsive {
+  border: 0 !important;
+}
+
 .btn-lg {
   @include sp() {
     padding: 8px 14px;

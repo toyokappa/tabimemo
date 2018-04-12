@@ -1,41 +1,42 @@
-%table.table
-  %thead
-    %tr.plan-item
-      %th.h-plan-title= t("view.plan_name")
-      %th.h-plan-spot-count= t("view.spot_count")
-      %th.h-plan-pvs= t("view.plan_pvs")
-      %th.h-plan-likes= t("view.plan_likes")
-      %th.h-plan-comments= t("view.plan_comments")
-      %th.h-plan-created-at= t("view.plan_created_at")
-      %th.h-plan-menu
-  %tbody
-    - if @plans.present?
-      - @plans.each do |plan|
-        %tr.plan-item
-          %td.plan-title
-            %h3.plan-name
-              = link_to plan.name, plan_path(plan)
-            .plan-status{ class: plan.status }
-              = plan.status_text
-            .plan-description
-              = plan.description.truncate(100)
-          %td.plan-spot-count
-            = plan.spots.count
-          %td.plan-pvs
-            = plan.total_pv
-          %td.plan-likes
-            = plan.likes.count
-          %td.plan-comments
-            = plan.comments.count
-          %td.plan-created-at
-            = l(plan.created_at, format: :default)
-          %td.plan-menu
-            = link_to t("link.edit"), edit_users_plan_path(plan), class: "btn btn-success"
-    - else
+.table-responsive
+  %table.table
+    %thead
       %tr.plan-item
-        %td.plan-title= t("view.no_plans")
-        %td.plan-spot-count -
-        %td.plan-pvs -
-        %td.plan-likes -
-        %td.plan-comments -
-        %td.plan-created-at -
+        %th.h-plan-title= t("view.plan_name")
+        %th.h-plan-spot-count= t("view.spot_count")
+        %th.h-plan-pvs= t("view.plan_pvs")
+        %th.h-plan-likes= t("view.plan_likes")
+        %th.h-plan-comments= t("view.plan_comments")
+        %th.h-plan-created-at= t("view.plan_created_at")
+        %th.h-plan-menu
+    %tbody
+      - if @plans.present?
+        - @plans.each do |plan|
+          %tr.plan-item
+            %td.plan-title
+              %h3.plan-name
+                = link_to plan.name, plan_path(plan)
+              .plan-status{ class: plan.status }
+                = plan.status_text
+              .plan-description
+                = plan.description.truncate(100)
+            %td.plan-spot-count
+              = plan.spots.count
+            %td.plan-pvs
+              = plan.total_pv
+            %td.plan-likes
+              = plan.likes.count
+            %td.plan-comments
+              = plan.comments.count
+            %td.plan-created-at
+              = l(plan.created_at, format: :default)
+            %td.plan-menu
+              = link_to t("link.edit"), edit_users_plan_path(plan), class: "btn btn-success"
+      - else
+        %tr.plan-item
+          %td.plan-title= t("view.no_plans")
+          %td.plan-spot-count -
+          %td.plan-pvs -
+          %td.plan-likes -
+          %td.plan-comments -
+          %td.plan-created-at -
