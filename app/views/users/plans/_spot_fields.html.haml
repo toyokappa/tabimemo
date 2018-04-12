@@ -16,7 +16,7 @@
   .row.flex.photo-field
     = f.simple_fields_for :photos do |photo_f|
       = render "photo_fields", f: photo_f
-    .col-sm-4.photo-loading
+    .col-sm-4.col-xs-12.photo-loading
       .loading-wrap
         = image_tag "oval.svg", class: "loading-icon"
     .col-sm-4.photo-input
