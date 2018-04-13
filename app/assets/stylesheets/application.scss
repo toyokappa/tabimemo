@@ -223,7 +223,13 @@ ul {
     padding: 15px 30px;
     text-align: center;
     .btn {
-      margin: 0 10px;
+      @include pc() {
+        margin: 0 10px;
+      }
+      @include sp() {
+        width: 100%;
+        margin: 10px 0;
+      }
     }
   }
 }
