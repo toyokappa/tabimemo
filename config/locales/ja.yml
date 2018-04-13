@@ -2,6 +2,7 @@ ja:
   app:
     title: Tabimemo
   menu:
+    home: ホーム
     sign_up: ユーザー登録
     sign_in: ログイン
     sign_out: ログアウト

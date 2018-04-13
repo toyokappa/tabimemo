@@ -1,8 +1,13 @@
+@import "mixin";
+
 /*    show    */
 .profile-area {
   margin-top: 20px;
   .profile-image {
     margin-bottom: 15px;
+    @include sp() {
+      text-align: center;
+    }
     img {
       width: 200px;
       height: 200px;
@@ -13,6 +18,9 @@
     font-size: 20px;
     font-weight: bold;
     margin: 0 0 15px;
+    @include sp() {
+      text-align: center;
+    }
   }
   .profile-description {
     margin-bottom: 15px;
@@ -25,7 +33,7 @@
   }
 }
 
-/*    new    */
+/*    edit    */
 .registration-step {
   margin-bottom: 30px;
 }
@@ -35,5 +43,11 @@
       height: 200px;
       width: auto;
     }
+  }
+}
+.profile-birthday {
+  @include sp() {
+    display: inline-block !important;
+    width: 32% !important;
   }
 }

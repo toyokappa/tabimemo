@@ -1,0 +1,49 @@
+// PC用のメディアクエリ
+@mixin pc() {
+  @media only screen and (min-width: 769px) {
+    @content;
+  }
+}
+
+// SP用のメディアクエリ
+@mixin sp() {
+  @media only screen and (max-width: 768px) {
+    @content;
+  }
+}
+
+// PCにしか見えないクラス
+.pc {
+  @include sp() {
+    display: none !important;
+  }
+}
+
+// SPにしか見えないクラス
+.sp {
+  @include pc() {
+    display: none !important;
+  }
+}
+
+// PC, SPに別々のfont-sizeを指定する
+@mixin font-size($pc, $sp) {
+  font-size: $pc;
+  @include sp() {
+    font-size: $sp
+  }
+}
+
+// max-widthを指定するメディアクエリ
+@mixin media-max-width($width) {
+  @media only screen and (max-width: $width) {
+    @content;
+  }
+}
+
+// min-widthを指定するメディアクエリ
+@mixin media-min-width($width) {
+  @media only screen and (min-width: $width) {
+    @content;
+  }
+}

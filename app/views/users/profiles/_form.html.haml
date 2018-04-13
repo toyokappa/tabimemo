@@ -9,5 +9,6 @@
   = f.input :birthday, use_month_numbers: true,
             start_year: Date.today.year,
             end_year: Date.today.year - 110,
-            prompt: ["年", "月", "日"]
+            prompt: ["年", "月", "日"],
+            input_html: { class: "profile-birthday" }
   = f.button :submit, class: "btn-success btn-100"

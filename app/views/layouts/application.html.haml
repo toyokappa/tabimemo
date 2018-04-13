@@ -4,6 +4,7 @@
     %title= t("app.title")
     = csrf_meta_tags
     %meta{ name: "turbolinks-cache-control", content: "no-preview" }
+    %meta{ name: "viewport", content: "width=device-width, initial-scale=1.0" }
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
     %script{ src: "//maps.google.com/maps/api/js?key=#{Rails.configuration.x.google_apis[:map]}&libraries=places", defer: true }
@@ -12,22 +13,33 @@
     %header.navbar.navbar-fixed-top
       %nav.container
         .navbar-header
-          = link_to t("app.title"), root_path, class: "navbar-brand"
-        = render "layouts/search_form"
-        %ul.nav.navbar-nav.navbar-right
-          - if user_signed_in?
-            %li= link_to t("menu.register_plan"), new_users_plan_path
-            %li.dropdown
-              = link_to "#", class: "dropdown-image", data: { toggle: :dropdown } do
-                = image_tag current_user.profile.image.present? ? current_user.profile.image.thumb.url : "no_user_image.svg"
-              %ul.dropdown-menu
-                %li.dropdown-item= link_to t("menu.manage_plan"), users_plans_path
-                %li.dropdown-item= link_to Profile.model_name.human, user_profile_path(current_user.name)
-                %li.dropdown-item= link_to t("menu.user_setting"), edit_user_registration_path
-                %li.dropdown-item= link_to t("menu.sign_out"), destroy_user_session_path, method: :delete
-          - else
-            %li= link_to t("menu.sign_up"), new_user_registration_path
-            %li= link_to t("menu.sign_in"), new_user_session_path
+          = link_to root_path, class: "pc navbar-brand" do
+            .header-logo= image_tag "logo.svg", class: "logo"
+            .header-title= t("app.title")
+          = link_to "javascript:void(0);", class: "sp navbar-brand collapse-btn navbar-toggle", data: { toggle: :collapse, target: ".collapse-target" } do
+            .header-logo= image_tag "logo.svg", class: "logo"
+          = render "layouts/search_form"
+        .collapse.navbar-collapse.collapse-target
+          %ul.nav.navbar-nav.navbar-right
+            - if user_signed_in?
+              %li.sp= link_to t("menu.home"), root_path
+              %li= link_to t("menu.register_plan"), new_users_plan_path
+              %li.sp= link_to t("menu.manage_plan"), users_plans_path
+              %li.sp= link_to Profile.model_name.human, user_profile_path(current_user.name)
+              %li.sp= link_to t("menu.user_setting"), edit_user_registration_path
+              %li.sp= link_to t("menu.sign_out"), destroy_user_session_path, method: :delete
+              %li.pc.dropdown
+                = link_to "#", class: "dropdown-image", data: { toggle: :dropdown } do
+                  = image_tag current_user.profile.image.present? ? current_user.profile.image.thumb.url : "no_user_image.svg"
+                %ul.dropdown-menu
+                  %li.dropdown-item= link_to t("menu.manage_plan"), users_plans_path
+                  %li.dropdown-item= link_to Profile.model_name.human, user_profile_path(current_user.name)
+                  %li.dropdown-item= link_to t("menu.user_setting"), edit_user_registration_path
+                  %li.dropdown-item= link_to t("menu.sign_out"), destroy_user_session_path, method: :delete
+            - else
+              %li.sp= link_to t("menu.home"), root_path
+              %li= link_to t("menu.sign_up"), new_user_registration_path
+              %li= link_to t("menu.sign_in"), new_user_session_path
       - flash.each do |message_type, message|
         .flash-message-container
           = content_tag :div, message, class: "alert alert-#{message_type}"
@@ -38,14 +50,19 @@
         %ul
           %li= link_to t("menu.terms"), terms_path
           %li= link_to t("menu.privacy_policy"), privacy_policy_path
-          %li= link_to t("menu.blog"), "http://toyokappa.hatenablog.com/", target: "_blank"
+          %li
+            = link_to "http://toyokappa.hatenablog.com/", target: "_blank" do
+              = t("menu.blog")
+              = fa_icon "external-link"
         - if user_signed_in?
-          .opinion-form
-            = form_for Opinion.new do |f|
-              = f.hidden_field :user, value: current_user.name
-              = f.hidden_field :email, value: current_user.email
-              .form-group
-                = f.text_area :content, class: "form-control", placeholder: t("view.opinion_description"), rows: 5
-              = f.submit t("form.send"), class: "btn btn-success"
+          .row
+            .col-md-6.col-md-offset-3
+              .opinion-form
+                = form_for Opinion.new do |f|
+                  = f.hidden_field :user, value: current_user.name
+                  = f.hidden_field :email, value: current_user.email
+                  .form-group
+                    = f.text_area :content, class: "form-control", placeholder: t("view.opinion_description"), rows: 5
+                  = f.submit t("form.send"), class: "btn btn-success btn-100"
         .copyrights
           2018 &copy; Toyokappa, All Rights Reserved.

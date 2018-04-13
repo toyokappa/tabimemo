@@ -1,23 +1,32 @@
+@import "mixin";
+
 /*    index    */
 
 .page-top {
   position: relative;
   width: 100%;
-  height: calc(100vh - 80px);
   text-align: center;
   display: table;
-  margin-bottom: 20px;
+  @include pc() {
+    height: 600px;
+    height: calc(100vh - 80px);
+    margin-bottom: 20px;
+  }
+  @include sp() {
+    height: 240px;
+    height: calc(100vw * 0.6)
+  }
   .page-top-contents{
     display: table-cell;
     vertical-align: middle;
     background-color: rgba(0, 0, 0, 0.2);
     .page-top-title {
       color: white;
-      font-size: 36px;
+      @include font-size(36px, 20px);
     }
     .page-top-sub {
       color: white;
-      font-size: 18px;
+      @include font-size(18px, 14px);
       margin-bottom: 20px;
     }
     .slide {
@@ -38,14 +47,14 @@
 
 .plan-index-area {
   .plan-index-group {
-    margin-bottom: 40px;
+    margin-bottom: 30px;
     &:last-child {
       margin-bottom: 0;
     }
     h2 {
       color: #484848;
-      font-size: 28px;
       margin-bottom: 10px;
+      @include font-size(28px, 24px);
     }
     .plan-item {
       margin-bottom: 20px;
@@ -201,8 +210,13 @@
       .loading-wrap {
         position: relative;
         width: 100%;
-        height: 100%;
         background-color: #b9b9b9;
+        @include pc() {
+          height: 100%;
+        }
+        @include sp() {
+          height: 200px;
+        }
         .loading-icon {
           position: absolute;
           top: 0;
@@ -304,8 +318,13 @@
 }
 
 .map {
-  height: 500px;
   margin-bottom: 20px;
+  @include pc() {
+    height: 500px;
+  }
+  @include sp() {
+    height: 240px;
+  }
 }
 .preview-maps {
   height: 300px;
@@ -372,15 +391,25 @@
 
 .plan-top {
   .plan-top-image {
-    height: 500px;
     background-position: center center;
     background-size: cover;
+    @include pc() {
+      height: 500px;
+    }
+    @include sp() {
+      height: 200px;
+    }
   }
   .no-plan-top-image {
-    height: 500px;
     background-image: image-url("no_plan_top_image.jpg");
     background-position: center center;
     background-size: cover;
+    @include pc() {
+      height: 500px;
+    }
+    @include sp() {
+      height: 200px;
+    }
   }
 }
 
@@ -393,7 +422,7 @@
     border-bottom: 1px solid lightgray;
     margin-bottom: 20px;
     .plan-name {
-      font-size: 30px;
+      @include font-size(30px, 26px);
       font-weight: bold;
       margin-top: 30px;
       margin-bottom: 10px;
@@ -432,22 +461,34 @@
   }
   .spot-field {
     .spot-item {
-      padding: 30px 40px;
       border: 1px solid lightgray;
       border-radius: 5px;
       margin-bottom: 20px;
+      @include pc() {
+        padding: 30px 40px;
+      }
+      @include sp() {
+        padding: 15px 20px;
+      }
       .spot-header{
         margin-top: 0;
         .spot-position-num {
           color: white;
           background-color: #5cb85c;
-          font-size: 24px;
           text-align: center;
-          width: 36px;
-          height: 36px;
           display: inline-block;
-          line-height: 36px;
           border-radius: 50%;
+          @include font-size(24px, 16px);
+          @include pc() {
+            width: 36px;
+            height: 36px;
+            line-height: 36px;
+          }
+          @include sp() {
+            width: 24px;
+            height: 24px;
+            line-height: 24px;
+          }
         }
         .spot-name {
           display: inline-block;
