@@ -21,4 +21,31 @@ module ApplicationHelper
   def url_without_protocol(url)
     url_without_protocol = url.split("/").drop(2).join("/")
   end
+
+  def default_meta_tags
+    {
+      site: t("app.title"),
+      reverse: true,
+      charset: "utf-8",
+      description: t("app.descritpion"),
+      keyword: t("app.keyword"),
+      icon: [
+        { href: image_url("favicon.ico") },
+        { href: image_url("icon.png"), rel: "apple-touch-icon", sizes: "180x180", type: "image/png" }
+      ],
+      og: {
+        site_name: t("app.title"),
+        description: t("app.descritpion"),
+        type: "website",
+        url: request.original_url,
+        locale: "ja_JP"
+      },
+      twitter: {
+        card: "summary",
+        title: t("app.title"),
+        description: t("app.descritpion"),
+        site: "@toyokappa"
+      }
+    }
+  end
 end
