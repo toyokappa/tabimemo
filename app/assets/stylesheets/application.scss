@@ -29,29 +29,41 @@
   position: fixed;
   display: none;
   width: 100%;
-  padding: 20px 0;
   z-index: 9999;
   text-align: center;
+  @include pc() {
+    padding: 20px 0;
+  }
 }
 
 .alert-notice {
   @extend .alert-success;
   display: inline-block;
-  width: auto;
-  min-width: 400px;
-  max-width: 1000px;
   padding: 30px;
   margin: 0 auto;
+  @include pc() {
+    width: auto;
+    max-width: 1000px;
+    min-width: 400px;
+  }
+  @include sp() {
+    width: 100%;
+  }
 }
 
 .alert-error, .alert-alert {
   @extend .alert-danger;
   display: inline-block;
-  width: auto;
-  min-width: 640px;
-  max-width: 1000px;
   padding: 30px;
   margin: 0 auto;
+  @include pc() {
+    width: auto;
+    max-width: 1000px;
+    min-width: 640px;
+  }
+  @include sp() {
+    width: 100%;
+  }
 }
 
 /*    default   */
