@@ -27,15 +27,15 @@ module ApplicationHelper
       site: t("app.title"),
       reverse: true,
       charset: "utf-8",
-      keyword: "TABIMEMO, たびめも, 旅行, プラン, スポット, 観光",
-      description: "旅行のプランをシェアするサービス。旅行の想い出をプランとして投稿したり、他のユーザーが登録したプランを検索できる。今度の休みはどこに行こう？と悩んだらプランを検索してみましょう。",
+      description: t("app.descritpion"),
+      keyword: t("app.keyword"),
       icon: [
         { href: image_url("favicon.ico") },
         { href: image_url("icon.png"), rel: "apple-touch-icon", sizes: "180x180", type: "image/png" }
       ],
       og: {
         site_name: t("app.title"),
-        description: "旅行のプランをシェアするサービス。旅行の想い出をプランとして投稿したり、他のユーザーが登録したプランを検索できる。今度の休みはどこに行こう？と悩んだらプランを検索してみましょう。",
+        description: t("app.descritpion"),
         type: "website",
         url: request.original_url,
         locale: "ja_JP"
@@ -43,7 +43,7 @@ module ApplicationHelper
       twitter: {
         card: "summary",
         title: t("app.title"),
-        description: "旅行のプランをシェアするサービス。旅行の想い出をプランとして投稿したり、他のユーザーが登録したプランを検索できる。今度の休みはどこに行こう？と悩んだらプランを検索してみましょう。",
+        description: t("app.descritpion"),
         site: "@toyokappa"
       }
     }

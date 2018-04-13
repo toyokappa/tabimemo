@@ -5,7 +5,7 @@ module MetaSetter
     # meta, twitter, ogの3箇所を一気に上書きするためのメソッド
     # :title, :description, :imageのみ使用可能
     set_meta_tags key => value,
-                  twitter: { key => "#{value}#{' | Tabimemo' if key == :title}" },
+                  twitter: { key => "#{value}#{' | ' + t('app.title') if key == :title}" },
                   og: { key => value }
   end
 end
