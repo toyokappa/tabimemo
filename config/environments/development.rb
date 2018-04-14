@@ -60,4 +60,6 @@ Rails.application.configure do
   config.x.google_apis.map = "AIzaSyDBlYdxJipM-Gablze4G84BoPagcYp4k-8"
 
   ENV["REDIS"] = "#{ENV.fetch('REDIS_HOSTNAME') { 'localhost' }}:#{ENV.fetch('REDIS_PORT') { '6379' }}"
+  ENV["TWITTER_API_KEY"] = "4XA3VncIQPUENTCM9DUbSl3sY"
+  ENV["TWITTER_API_SECRET"] = "Jr8mnjnfQ02bqmJnsq7I7WHTpbnBhVZpnw0ioEWgJBPdloElkL"
 end
