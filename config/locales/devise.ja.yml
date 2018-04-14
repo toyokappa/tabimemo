@@ -26,6 +26,7 @@ ja:
     omniauth_callbacks:
       failure: "%{kind} から承認されませんでした。理由：%{reason}"
       success: "%{kind} から承認されました。"
+      registered: "%{kind} は連携済みのため、ログインしました。"
     passwords:
       no_token: "このページにアクセスする事が出来ません。正しいURLでアクセスしている事を確認して下さい。"
       send_instructions: "パスワードのリセット方法を数分以内にメールでご連絡します。"

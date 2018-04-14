@@ -20,12 +20,20 @@ class User < ApplicationRecord
 
   after_create :init_user
 
-  def self.find_first_by_auth_conditions(warden_conditions)
-    conditions = warden_conditions.dup
-    if login = conditions.delete(:login)
-      where(conditions).where(["name = :value OR lower(email) = lower(:value)", { value: login }]).first
-    else
-      where(conditions).first
+  class << self
+    def find_first_by_auth_conditions(warden_conditions)
+      conditions = warden_conditions.dup
+      if login = conditions.delete(:login)
+        where(conditions).where(["name = :value OR lower(email) = lower(:value)", { value: login }]).first
+      else
+        where(conditions).first
+      end
+    end
+
+    def find_for_oauth(auth)
+      user = User.find_by(uid: auth.uid, provider: auth.provider)
+      user = User.new(uid: auth.uid, provider: auth.provider, password: Devise.friendly_token[0, 20]) unless user
+      user
     end
   end
 
