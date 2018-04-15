@@ -7,10 +7,10 @@
           .form-inputs
             = f.input :name, required: true, autofocus: true, placeholder: t(".user_name_format", length: 15)
             = f.input :email, required: true
-            - if @user.provider == "twitter"
-              = f.hidden_field :password, value: @user.password
-              = f.hidden_field :uid, value: @user.uid
-              = f.hidden_field :provider, value: @user.provider
+            - if resource.from_twitter?
+              = f.hidden_field :password
+              = f.hidden_field :uid
+              = f.hidden_field :provider
             - else
               = f.input :password, required: true, placeholder: t("form.minimum_length", length: @minimum_password_length)
               = f.input :password_confirmation, required: true
@@ -26,5 +26,5 @@
                   .text-danger= message
           .form-actions
             = f.button :submit, class: "btn-success btn-100"
-        - unless @user.provider == "twitter"
+        - unless resource.from_twitter?
           = link_to "Twitterアカウントで登録", user_twitter_omniauth_authorize_path, class: "btn btn-primary btn-100"

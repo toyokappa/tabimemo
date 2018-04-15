@@ -20,6 +20,10 @@ class User < ApplicationRecord
 
   after_create :init_user
 
+  def from_twitter?
+    provider == "twitter"
+  end
+
   class << self
     def find_first_by_auth_conditions(warden_conditions)
       conditions = warden_conditions.dup
