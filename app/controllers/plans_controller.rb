@@ -39,7 +39,7 @@ class PlansController < ApplicationController
       when "show" then
         set_common_meta(:title, @plan.name)
         set_common_meta(:description, @plan.description)
-        set_common_meta(:image, @plan.get_header_image.image.url)
+        set_common_meta(:image, @plan.get_header_image.image.url) if @plan.get_header_image.present?
         set_meta_tags keyword: @plan.spots.map(&:name).join(", ")
       end
     end
