@@ -32,7 +32,7 @@ class User < ApplicationRecord
 
     def find_for_oauth(auth)
       user = User.find_by(uid: auth.uid, provider: auth.provider)
-      user = User.new(uid: auth.uid, provider: auth.provider, password: Devise.friendly_token[0, 20]) unless user
+      user = User.new(uid: auth.uid, provider: auth.provider, email: auth.info.email, password: Devise.friendly_token[0, 20]) unless user
       user
     end
   end
