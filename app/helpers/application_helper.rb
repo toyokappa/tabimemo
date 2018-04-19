@@ -27,7 +27,7 @@ module ApplicationHelper
       site: t("app.title"),
       reverse: true,
       charset: "utf-8",
-      description: t("app.descritpion"),
+      description: t("app.description"),
       keyword: t("app.keyword"),
       icon: [
         { href: image_url("favicon.ico") },
@@ -35,7 +35,7 @@ module ApplicationHelper
       ],
       og: {
         site_name: t("app.title"),
-        description: t("app.descritpion"),
+        description: t("app.description"),
         type: "website",
         url: request.original_url,
         locale: "ja_JP"
@@ -43,7 +43,7 @@ module ApplicationHelper
       twitter: {
         card: "summary",
         title: t("app.title"),
-        description: t("app.descritpion"),
+        description: t("app.description"),
         site: "@toyokappa"
       }
     }
