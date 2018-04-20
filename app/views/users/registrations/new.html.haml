@@ -26,5 +26,12 @@
                   .text-danger= message
           .form-actions
             = f.button :submit, class: "btn-success btn-100"
+          - if resource.from_twitter?
+            = f.simple_fields_for :profile do |prof_f|
+              = prof_f.hidden_field :name
+              = prof_f.hidden_field :description
+              = prof_f.hidden_field :location
+              = prof_f.hidden_field :url
+              = prof_f.hidden_field :remote_image_url
         - unless resource.from_twitter?
           = link_to "Twitterアカウントで登録", user_twitter_omniauth_authorize_path, class: "btn btn-primary btn-100"

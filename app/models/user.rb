@@ -14,6 +14,8 @@ class User < ApplicationRecord
   has_many :liked_plans, -> { order("likes.created_at desc") }, through: :likes, source: :plan
   has_many :comments, dependent: :destroy
 
+  accepts_nested_attributes_for :profile
+
   VALID_NAME_REGEX = /\A[\w+\-]+\z/i
   validates :name, presence: true, length: { maximum: 15 }, uniqueness: { case_sensitive: false }, format: { with: VALID_NAME_REGEX, message: I18n.t("validation.user_name_format") }
   validates :agreement, acceptance: { message: I18n.t("validation.agreement") }
@@ -36,7 +38,12 @@ class User < ApplicationRecord
 
     def find_for_oauth(auth)
       user = User.find_by(uid: auth.uid, provider: auth.provider)
-      user = User.new(uid: auth.uid, provider: auth.provider, email: auth.info.email, password: Devise.friendly_token[0, 20]) unless user
+      unless user
+        user = User.new(uid: auth.uid, provider: auth.provider, email: auth.info.email, password: Devise.friendly_token[0, 20])
+        profile = user.build_profile(name: auth.info.name, description: auth.info.description,
+                                     location: auth.info.location, url: auth.info.urls.Website,
+                                     remote_image_url: auth.info.image.sub("normal", "400x400"))
+      end
       user
     end
   end
@@ -44,7 +51,7 @@ class User < ApplicationRecord
   private
 
     def init_user
-      self.create_profile
+      self.create_profile unless self.profile.present?
       self.create_notification
     end
 end
