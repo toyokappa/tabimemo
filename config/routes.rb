@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   }
   namespace :users do
     resources :plans, only: [:index, :new, :create, :edit, :update, :destroy]
+    resources :social_accounts, only: [:destroy]
     resource :profile, only: [:edit, :update]
     resource :notification, only: [:edit, :update]
     get "/password", to: "passwords#edit"

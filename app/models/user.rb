@@ -28,6 +28,10 @@ class User < ApplicationRecord
     social_accounts.present?
   end
 
+  def social_account_with(sns)
+    social_accounts.find_by(provider: sns.to_s)
+  end
+
   class << self
     def find_first_by_auth_conditions(warden_conditions)
       conditions = warden_conditions.dup
