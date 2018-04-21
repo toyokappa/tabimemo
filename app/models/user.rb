@@ -13,8 +13,10 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :liked_plans, -> { order("likes.created_at desc") }, through: :likes, source: :plan
   has_many :comments, dependent: :destroy
+  has_many :social_accounts, dependent: :destroy
 
   accepts_nested_attributes_for :profile
+  accepts_nested_attributes_for :social_accounts
 
   VALID_NAME_REGEX = /\A[\w+\-]+\z/i
   validates :name, presence: true, length: { maximum: 15 }, uniqueness: { case_sensitive: false }, format: { with: VALID_NAME_REGEX, message: I18n.t("validation.user_name_format") }
@@ -22,8 +24,8 @@ class User < ApplicationRecord
 
   after_create :init_user
 
-  def from_twitter?
-    provider == "twitter"
+  def from_social_accounts?
+    social_accounts.present?
   end
 
   class << self
@@ -37,12 +39,13 @@ class User < ApplicationRecord
     end
 
     def find_for_oauth(auth)
-      user = User.find_by(uid: auth.uid, provider: auth.provider)
+      user = SocialAccount.find_by(uid: auth.uid, provider: auth.provider)&.user
       unless user
-        user = User.new(uid: auth.uid, provider: auth.provider, email: auth.info.email, password: Devise.friendly_token[0, 20])
-        profile = user.build_profile(name: auth.info.name, description: auth.info.description,
-                                     location: auth.info.location, url: auth.info.urls.Website,
-                                     remote_image_url: auth.info.image.sub("normal", "400x400"))
+        user = self.new(email: auth.info.email)
+        user.social_accounts.build(uid: auth.uid, provider: auth.provider)
+        user.build_profile(name: auth.info.name, description: auth.info.description,
+                           location: auth.info.location, url: auth.info.urls.Website,
+                           remote_image_url: auth.info.image.sub("normal", "400x400"))
       end
       user
     end

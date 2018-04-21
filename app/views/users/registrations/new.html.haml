@@ -7,10 +7,8 @@
           .form-inputs
             = f.input :name, required: true, autofocus: true, placeholder: t(".user_name_format", length: 15)
             = f.input :email, required: true
-            - if resource.from_twitter?
-              = f.hidden_field :password
-              = f.hidden_field :uid
-              = f.hidden_field :provider
+            - if resource.from_social_accounts?
+              = f.hidden_field :password, value: Devise.friendly_token[0, 20]
             - else
               = f.input :password, required: true, placeholder: t("form.minimum_length", length: @minimum_password_length)
               = f.input :password_confirmation, required: true
@@ -26,12 +24,15 @@
                   .text-danger= message
           .form-actions
             = f.button :submit, class: "btn-success btn-100"
-          - if resource.from_twitter?
+          - if resource.from_social_accounts?
+            = f.simple_fields_for :social_accounts do |sa_f|
+              = sa_f.hidden_field :uid
+              = sa_f.hidden_field :provider
             = f.simple_fields_for :profile do |prof_f|
               = prof_f.hidden_field :name
               = prof_f.hidden_field :description
               = prof_f.hidden_field :location
               = prof_f.hidden_field :url
               = prof_f.hidden_field :remote_image_url
-        - unless resource.from_twitter?
+        - unless resource.from_social_accounts?
           = link_to "Twitterアカウントで登録", user_twitter_omniauth_authorize_path, class: "btn btn-primary btn-100"
