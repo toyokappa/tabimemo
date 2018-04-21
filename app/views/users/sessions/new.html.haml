@@ -10,3 +10,4 @@
             = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
           .form-actions
             = f.button :submit, t(".title"), class: "btn-success btn-100"
+          = link_to "Twitterアカウントでログイン", user_twitter_omniauth_authorize_path, class: "btn btn-primary btn-100"
