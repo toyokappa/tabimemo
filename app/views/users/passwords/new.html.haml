@@ -1,0 +1,14 @@
+.container
+  .row
+    .col-md-3
+      .menu-bar
+        = render "shared/menu_bar"
+    .col-md-6
+      .register-form
+        %h3= t(".title")
+        = simple_form_for @user, url: users_password_path, method: :post do |f|
+          .form-inputs
+            = f.input :password, required: true, placeholder: t("form.minimum_length", length: 6)
+            = f.input :password_confirmation, required: true
+          .form-actions
+            = f.button :submit, class: "btn-success btn-100"

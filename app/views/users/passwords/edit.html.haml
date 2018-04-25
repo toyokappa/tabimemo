@@ -6,7 +6,7 @@
     .col-md-6
       .register-form
         %h3= t(".title")
-        = simple_form_for @user, url: users_password_path do |f|
+        = simple_form_for @user, url: users_password_path, method: :patch do |f|
           .form-inputs
             = f.input :current_password, required: true, autofocus: true
             = f.input :password, label: t("form.new_password"), required: true, placeholder: t("form.minimum_length", length: 6)

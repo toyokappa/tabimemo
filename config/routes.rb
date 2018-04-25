@@ -9,8 +9,7 @@ Rails.application.routes.draw do
     resources :social_accounts, only: [:destroy]
     resource :profile, only: [:edit, :update]
     resource :notification, only: [:edit, :update]
-    get "/password", to: "passwords#edit"
-    put "/password", to: "passowrds#update"
+    resource :password, only: [:new, :create, :edit, :password]
     patch "/password", to: "passwords#update"
     get "/plans_published", to: "plans#published"
     get "/plans_draft", to: "plans#draft"

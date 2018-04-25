@@ -5,8 +5,12 @@
     %ul
       %li{ class: "#{'active' if request.url == edit_user_registration_url}" }
         = link_to t("menu.user_info"), edit_user_registration_path
-      %li{ class: "#{'active' if request.url == users_password_url}" }
-        = link_to t("menu.edit_password"), users_password_path
+      - if current_user.encrypted_password.blank?
+        %li{ class: "#{'active' if request.url == new_users_password_url || request.url == users_password_url}" }
+          = link_to t("menu.new_password"), new_users_password_path
+      - else
+        %li{ class: "#{'active' if request.url == edit_users_password_url || request.url == users_password_url}" }
+          = link_to t("menu.edit_password"), edit_users_password_path
       %li{ class: "#{'active' if request.url == edit_users_notification_url}" }
         = link_to Notification.model_name.human, edit_users_notification_path
       %li{ class: "#{'active' if request.url == users_unsubscribe_url}" }

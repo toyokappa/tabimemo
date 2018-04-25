@@ -1,6 +1,8 @@
 ja:
   users:
     passwords:
+      new:
+        title: パスワード登録
       edit:
         title: パスワード変更
   form:
