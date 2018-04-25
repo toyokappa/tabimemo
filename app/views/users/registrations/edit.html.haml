@@ -12,7 +12,11 @@
             = f.input :email, required: true
           .form-actions
             = f.button :submit, class: "btn-success btn-100"
-          - if current_user.social_account_with(:twitter)
-            = link_to "Twitterアカウントと連携解除", users_social_account_path(current_user.social_account_with(:twitter)), method: :delete, data: { confirm: "本当に解除しますか？" }, class: "btn btn-danger btn-100"
-          - else
-            = link_to "Twitterアカウントと連携", user_twitter_omniauth_authorize_path, class: "btn btn-primary btn-100"
+        - if current_user.social_account_with(:twitter)
+          = button_to "Twitterアカウントの連携解除", users_social_account_path(current_user.social_account_with(:twitter)),
+                      method: :delete, data: { confirm: "本当に解除しますか？" }, class: "btn btn-danger btn-100",
+                      disabled: (true if current_user.encrypted_password.blank?)
+          - if current_user.encrypted_password.blank?
+            .text-danger ※Twitterアカウントを解除するには<a href="password/new">パスワード登録</a>が必須です。
+        - else
+          = link_to "Twitterアカウントと連携", user_twitter_omniauth_authorize_path, class: "btn btn-primary btn-100"
