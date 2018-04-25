@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
         u.permit(:name, :email, :password,
                  :password_confirmation, :agreement,
                  :remember_me, :uid, :provider,
-                 social_accounts_attributes: [:id, :provider, :uid],
+                 social_accounts_attributes: [:id, :provider, :uid, :access_token, :access_secret],
                  profile_attributes: [:id, :name, :description, :location, :url, :remote_image_url]
                 )
       end

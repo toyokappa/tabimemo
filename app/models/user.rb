@@ -50,7 +50,7 @@ class User < ApplicationRecord
       user = SocialAccount.find_by(uid: auth.uid, provider: auth.provider)&.user
       unless user
         user = self.new(email: auth.info.email)
-        user.social_accounts.build(uid: auth.uid, provider: auth.provider)
+        user.social_accounts.build(uid: auth.uid, provider: auth.provider, access_token: auth.credentials.token, access_secret: auth.credentials.secret)
         user.build_profile(name: auth.info.name, description: auth.info.description,
                            location: auth.info.location, url: auth.info.urls.Website,
                            remote_image_url: auth.info.image.sub("normal", "400x400"))

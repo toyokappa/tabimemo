@@ -26,6 +26,8 @@
             = f.simple_fields_for :social_accounts do |sa_f|
               = sa_f.hidden_field :uid
               = sa_f.hidden_field :provider
+              = sa_f.hidden_field :access_token
+              = sa_f.hidden_field :access_secret
             = f.simple_fields_for :profile do |prof_f|
               = prof_f.hidden_field :name
               = prof_f.hidden_field :description
