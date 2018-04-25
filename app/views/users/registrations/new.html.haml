@@ -7,9 +7,7 @@
           .form-inputs
             = f.input :name, required: true, autofocus: true, placeholder: t(".user_name_format", length: 15)
             = f.input :email, required: true
-            - if resource.from_social_accounts?
-              = f.hidden_field :password, value: Devise.friendly_token[0, 20]
-            - else
+            - unless resource.from_social_accounts?
               = f.input :password, required: true, placeholder: t("form.minimum_length", length: @minimum_password_length)
               = f.input :password_confirmation, required: true
             .form-group

@@ -32,6 +32,10 @@ class User < ApplicationRecord
     social_accounts.find_by(provider: sns.to_s)
   end
 
+  def password_required?
+    super && (social_accounts.blank? || persisted?)
+  end
+
   class << self
     def find_first_by_auth_conditions(warden_conditions)
       conditions = warden_conditions.dup
