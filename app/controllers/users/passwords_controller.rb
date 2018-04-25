@@ -19,6 +19,7 @@ class Users::PasswordsController < ApplicationController
   end
 
   def update
+    @user.extend(Devise::Models::DatabaseAuthenticatablePatch)
     if @user.update_with_password(password_params)
       bypass_sign_in(@user)
       redirect_to root_path, notice: t("flash.update_success")
