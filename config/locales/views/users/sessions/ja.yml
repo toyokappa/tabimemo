@@ -3,5 +3,6 @@ ja:
     sessions:
       new:
         title: ログイン
+        twitter_login: Twitterアカウントでログイン
   form:
     login_id: ユーザー名またはメールアドレス

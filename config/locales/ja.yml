@@ -12,6 +12,7 @@ ja:
     manage_plan: プラン管理
     setting_menu: 設定メニュー
     user_info: ユーザー情報
+    new_password: パスワード登録
     edit_password: パスワード変更
     user_setting: ユーザー設定
     unsubscribe: アカウント削除
@@ -24,6 +25,7 @@ ja:
     example: 記入例：
     limit: 残り
     chars: 文字
+    use_sns: SNSアカウントを利用
   link:
     edit: 編集
     delete: 削除

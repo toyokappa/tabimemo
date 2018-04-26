@@ -1,12 +1,15 @@
 Rails.application.routes.draw do
   root "welcome#index"
-  devise_for :users, controllers: { registrations: "users/registrations" }
+  devise_for :users, controllers: { 
+    registrations: "users/registrations",
+    omniauth_callbacks: "users/omniauth_callbacks"
+  }
   namespace :users do
     resources :plans, only: [:index, :new, :create, :edit, :update, :destroy]
+    resources :social_accounts, only: [:destroy]
     resource :profile, only: [:edit, :update]
     resource :notification, only: [:edit, :update]
-    get "/password", to: "passwords#edit"
-    put "/password", to: "passowrds#update"
+    resource :password, only: [:new, :create, :edit, :password]
     patch "/password", to: "passwords#update"
     get "/plans_published", to: "plans#published"
     get "/plans_draft", to: "plans#draft"

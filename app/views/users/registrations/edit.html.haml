@@ -12,3 +12,18 @@
             = f.input :email, required: true
           .form-actions
             = f.button :submit, class: "btn-success btn-100"
+        .sns-connection-area
+          %h3= t(".connect_sns")
+          .form-description= t(".sns_description")
+          - if current_user.social_account_with(:twitter)
+            = button_to users_social_account_path(current_user.social_account_with(:twitter)),
+                        method: :delete, data: { confirm: t(".confirm_disconnection") }, class: "btn btn-danger btn-100",
+                        disabled: (true if current_user.encrypted_password.blank?) do
+              = fa_icon "twitter"
+              = t(".twitter_disconnection")
+            - if current_user.encrypted_password.blank?
+              .text-danger= t(".sns_disconnection_hint_html")
+          - else
+            = link_to user_twitter_omniauth_authorize_path, class: "btn btn-twitter btn-100" do
+              = fa_icon "twitter"
+              = t(".twitter_connection")

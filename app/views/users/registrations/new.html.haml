@@ -7,8 +7,9 @@
           .form-inputs
             = f.input :name, required: true, autofocus: true, placeholder: t(".user_name_format", length: 15)
             = f.input :email, required: true
-            = f.input :password, required: true, placeholder: t("form.minimum_length", length: @minimum_password_length)
-            = f.input :password_confirmation, required: true
+            - unless resource.from_social_accounts?
+              = f.input :password, required: true, placeholder: t("form.minimum_length", length: @minimum_password_length)
+              = f.input :password_confirmation, required: true
             .form-group
               = f.check_box :agreement
               = f.label :agreement do
@@ -21,3 +22,22 @@
                   .text-danger= message
           .form-actions
             = f.button :submit, class: "btn-success btn-100"
+          - if resource.from_social_accounts?
+            = f.simple_fields_for :social_accounts do |sa_f|
+              = sa_f.hidden_field :uid
+              = sa_f.hidden_field :provider
+              = sa_f.hidden_field :access_token
+              = sa_f.hidden_field :access_secret
+            = f.simple_fields_for :profile do |prof_f|
+              = prof_f.hidden_field :name
+              = prof_f.hidden_field :description
+              = prof_f.hidden_field :location
+              = prof_f.hidden_field :url
+              = prof_f.hidden_field :remote_image_url
+        - unless resource.from_social_accounts?
+          .sns-connection-area
+            %h3= t("view.use_sns")
+            .form-description= t(".sns_description")
+            = link_to user_twitter_omniauth_authorize_path, class: "btn btn-twitter btn-100" do
+              = fa_icon "twitter"
+              = t(".twitter_registration")

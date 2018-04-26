@@ -26,6 +26,11 @@ ja:
     omniauth_callbacks:
       failure: "%{kind} から承認されませんでした。理由：%{reason}"
       success: "%{kind} から承認されました。"
+      success_connection: "%{kind} との連携が完了しました。"
+      registered: "%{kind} は連携済みのため、ログインしました。"
+      already_used: "%{kind}アカウントは既に他のユーザーが連携済みのため、連携できませんでした。"
+      already_registered: "%{kind}アカウントでご利用のメールアドレスは既に登録されています。%{kind}連携を行う場合はログイン後、設定画面から連携をしてください。"
+      release_connection: "%{kind} との連携を解除しました。"
     passwords:
       no_token: "このページにアクセスする事が出来ません。正しいURLでアクセスしている事を確認して下さい。"
       send_instructions: "パスワードのリセット方法を数分以内にメールでご連絡します。"
