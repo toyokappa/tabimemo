@@ -31,7 +31,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     def connect_to(provider)
       provider = provider.to_s
       auth = request.env["omniauth.auth"]
-      social_account = current_user.social_accounts.build(uid: auth.uid, provider: auth.provider)
+      social_account = current_user.social_accounts.build(uid: auth.uid, provider: auth.provider, access_token: auth.credentials.token, access_secret: auth.credentials.secret)
       if social_account.save
         redirect_to edit_user_registration_path, notice: t("devise.omniauth_callbacks.success_connection", kind: provider.capitalize)
       else
