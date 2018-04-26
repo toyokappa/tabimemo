@@ -15,11 +15,11 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       provider = provider.to_s
       @user = User.find_for_oauth(request.env["omniauth.auth"])
 
-      if User.find_by(email: @user.email).present?
-        redirect_to new_user_session_path, alert: t("devise.omniauth_callbacks.already_registered", kind: provider.capitalize)
-      elsif @user.persisted?
+      if @user.persisted?
         flash[:notice] = t("devise.omniauth_callbacks.registered", kind: provider.capitalize)
         sign_in_and_redirect @user, event: :authentication
+      elsif User.find_by(email: @user.email).present?
+        redirect_to new_user_session_path, alert: t("devise.omniauth_callbacks.already_registered", kind: provider.capitalize)
       elsif @user.present?
         flash.now[:notice] = t("devise.omniauth_callbacks.success", kind: provider.capitalize)
         render "users/registrations/new"
