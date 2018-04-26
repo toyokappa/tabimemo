@@ -35,4 +35,9 @@
               = prof_f.hidden_field :url
               = prof_f.hidden_field :remote_image_url
         - unless resource.from_social_accounts?
-          = link_to "Twitterアカウントで登録", user_twitter_omniauth_authorize_path, class: "btn btn-primary btn-100"
+          .sns-connection-area
+            %h3 SNSアカウントを利用
+            .form-description SNSアカウントを利用してユーザー登録を行うことで、ユーザー登録が簡易的になり、かつログインも簡単に出来るようになります。
+            = link_to user_twitter_omniauth_authorize_path, class: "btn btn-twitter btn-100" do
+              = fa_icon "twitter"
+              Twitterアカウントで登録

@@ -103,6 +103,22 @@ ul {
   }
 }
 
+.btn-twitter {
+  color: white;
+  background-color: #55acee;
+  border-color: #449bdd;
+  &:hover {
+    color: white;
+    background-color: #449bdd;
+    border-color: #338acc;
+  }
+  &:focus {
+    color: white;
+    background-color: #449bdd;
+    border-color: #338acc;
+  }
+}
+
 .clear {
   clear: both;
 }
@@ -348,6 +364,9 @@ form {
   }
   .form-description {
     margin-bottom: 15px;
+  }
+  .sns-connection-area {
+    margin-top: 30px;
   }
 }
 
