@@ -4,8 +4,16 @@ ja:
       new:
         title: ユーザー登録
         user_name_format: "ログイン時に使用するIDを入力してください（%{length}字以内）"
+        sns_description: SNSアカウントを利用してユーザー登録を行うことで、ユーザー登録が簡易的になり、かつログインも簡単に出来るようになります。
+        twitter_registration: Twitterアカウントで登録
       edit:
         title: ユーザー情報
+        connect_sns: SNS連携
+        sns_description: SNS連携を行うことにより、連携をしたSNSアカウントを利用して簡単にログインすることが出来るようになります。
+        sns_disconnection_hint_html: '※Twitterアカウントを解除するには<a href="password/new">パスワード登録</a>が必須です。'
+        twitter_connection: Twitterアカウントと連携
+        twitter_disconnection: Twitterアカウントの連携を解除
+        confirm_disconnection: 本当に連携を解除しますか？
   validation:
     user_name_format: は半角英数字、ハイフン( - )、アンダーバー( _ )、プラス( + )のみ使用可能です
     agreement: に同意が必要です

@@ -11,7 +11,7 @@
           .form-actions
             = f.button :submit, t(".title"), class: "btn-success btn-100"
           .sns-connection-area
-            %h3 SNSアカウントを利用
+            %h3= t("view.use_sns")
             = link_to user_twitter_omniauth_authorize_path, class: "btn btn-twitter btn-100" do
               = fa_icon "twitter"
-              Twitterアカウントでログイン
+              = t(".twitter_login")

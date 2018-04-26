@@ -11,4 +11,4 @@
             = f.input :password, required: true, placeholder: t("form.minimum_length", length: 6)
             = f.input :password_confirmation, required: true
           .form-actions
-            = f.button :submit, class: "btn-success btn-100"
+            = f.button :submit, t("helpers.submit.create"), class: "btn-success btn-100"
