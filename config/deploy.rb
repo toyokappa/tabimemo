@@ -4,7 +4,7 @@ lock "~> 3.10.1"
 set :application, "tabimemo"
 set :repo_url, "git@github.com:toyokappa/tabimemo.git"
 set :rbenv_ruby, "2.4.1"
-set :pty, true
+set :pty, false
 
 set :unicorn_config_path, "#{current_path}/config/unicorn.rb"
 

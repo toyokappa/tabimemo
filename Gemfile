@@ -62,6 +62,7 @@ group :development do
   gem "capistrano-bundler"
   gem "capistrano-rails"
   gem "capistrano-rbenv"
+  gem "capistrano-sidekiq", github: "seuros/capistrano-sidekiq"
   gem "capistrano3-unicorn"
   gem "i18n-tasks"
   gem "letter_opener"
