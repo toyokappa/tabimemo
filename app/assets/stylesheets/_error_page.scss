@@ -1,0 +1,35 @@
+body {
+  font-family: sans-serif;
+  @include font-size(14px, 12px);
+}
+.wrapper {
+  display: table;
+  width: 100%;
+  height: 90vh;
+  .error-contents {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    .logo-lg {
+      width: 200px;
+    }
+    .error-title {
+      @include font-size(36px, 30px);
+      color: #999999;
+      margin-bottom: 30px;
+    }
+    .error-description {
+      margin-bottom: 20px;
+    }
+    .back-link {
+      margin-bottom: 15px;
+      a {
+        color: inherit;
+        text-decoration: underline;
+      }
+    }
+    .copyrights {
+      font-size: 12px;
+    }
+  }
+}
