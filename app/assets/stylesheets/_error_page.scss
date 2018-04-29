@@ -1,3 +1,5 @@
+@import "mixin";
+
 body {
   font-family: sans-serif;
   @include font-size(14px, 12px);
@@ -30,6 +32,10 @@ body {
     }
     .copyrights {
       font-size: 12px;
+    }
+    .under-line {
+      color: inherit;
+      text-decoration: underline;
     }
   }
 }
