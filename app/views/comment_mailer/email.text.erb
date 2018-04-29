@@ -9,6 +9,9 @@
 
 【コメント】
 <%= @comment.content %>
+
+【コメントしたユーザー】
+<%= user_profile_url(@comment.user.name) %>
 ＝＝＝＝＝＝＝＝＝＝＝＝＝＝
 
 メール通知に関する設定は下記のURLから変更ができます。
