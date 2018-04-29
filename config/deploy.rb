@@ -6,6 +6,7 @@ set :repo_url, "git@github.com:toyokappa/tabimemo.git"
 set :rbenv_ruby, "2.4.1"
 set :pty, false
 
+set :unicorn_pid, "#{shared_path}/tmp/pids/unicorn.pid"
 set :unicorn_config_path, "#{current_path}/config/unicorn.rb"
 
 append :linked_files, "config/database.yml", "config/secrets.yml", ".env"
