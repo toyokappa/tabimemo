@@ -16,8 +16,9 @@
           = link_to root_path, class: "pc navbar-brand" do
             .header-logo= image_tag "logo.svg", class: "logo"
             .header-title= t("app.title")
-          = link_to "javascript:void(0);", class: "sp navbar-brand collapse-btn navbar-toggle", data: { toggle: :collapse, target: ".collapse-target" } do
+          = link_to "javascript:void(0);", class: "sp navbar-brand collapse-btn navbar-toggle menu-btn", data: { toggle: :collapse, target: ".collapse-target" } do
             .header-logo= image_tag "logo.svg", class: "logo"
+            .menu-vector= image_tag "menu_vector.svg", class: "vector"
           = render "layouts/search_form"
         .collapse.navbar-collapse.collapse-target
           %ul.nav.navbar-nav.navbar-right
