@@ -26,6 +26,7 @@ ja:
     limit: 残り
     chars: 文字
     use_sns: SNSアカウントを利用
+    back_link: 直前のページに戻る
   link:
     edit: 編集
     delete: 削除

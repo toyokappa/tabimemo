@@ -1,0 +1,16 @@
+ja:
+  errors:
+    bad_request:
+      bad_request: リクエストが不正です
+      help_html: '再度お試しいただくか、<a href="mailto:kppg42@gmail.com" class="under-line">システム管理者</a>までお問い合わせください'
+    forbidden:
+      forbidden: アクセスが拒否されました
+    internal_server_error:
+      internal_server_error: サーバーに問題が発生しました
+      help_html: 'しばらく待ってから再度お試しいただくか、<a href="mailto:kppg42@gmail.com" class="under-line">システム管理者</a>までお問い合わせください'
+    not_found:
+      not_found: ページが見つかりませんでした
+      help: URLが間違っているか、すでに削除された可能性があります
+    unprocessable_entity:
+      unprocessable_entity: ページが表示できません
+      help_html: '繰り返し同様の操作を行っていただくか、<a href="mailto:kppg42@gmail.com" class="under-line">システム管理者</a>までお問い合わせください'

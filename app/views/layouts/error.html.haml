@@ -1,0 +1,19 @@
+!!! 5
+%html
+  %head
+    %title= t("app.title")
+    = csrf_meta_tags
+    %meta{ name: "turbolinks-cache-control", content: "no-preview" }
+    %meta{ name: "viewport", content: "width=device-width, initial-scale=1.0" }
+    = stylesheet_link_tag    'error', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'error', 'data-turbolinks-track': 'reload'
+    = analytics_init if GoogleAnalytics.valid_tracker?
+  %body
+    .wrapper
+      .error-contents
+        = image_tag "logo_lg.svg", class: "logo-lg"
+        = yield
+        .back-link
+          = link_to t("view.back_link"), :back
+        .copyrights
+          2018 &copy; Toyokappa, All Rights Reserved.
