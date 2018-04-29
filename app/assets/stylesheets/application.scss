@@ -133,12 +133,31 @@ ul {
     color: #5cb85c;
     font-size: 24px;
     font-weight: bold;
-    padding: 28px 15px;
+    padding: 28px 10px 28px 15px;
     .header-logo {
       display: inline-block;
       vertical-align: middle;
+      margin-right: 3px;
       .logo {
         height: 24px;
+      }
+    }
+    .menu-vector {
+      display: inline-block;
+      vertical-align: middle;
+      -webkit-transition-property: -ms-transform, -webkit-transform, transform;
+      -moz-transition-property: transform;
+      transition-property: -ms-transform, -webkit-transform, transform;
+      -webkit-transition-duration: 250ms;
+      -moz-transition-duration: 250ms;
+      transition-duration: 250ms;
+      -webkit-transition-timing-function: ease-in-out;
+      transition-timing-function: ease-in-out;
+      .vector {
+        width: 12px;
+      }
+      &.rotate-vector {
+        transform: rotate(180deg);
       }
     }
     .header-title {
@@ -163,7 +182,7 @@ ul {
         width: 400px;
       }
       @include sp() {
-        width: calc(100% - 75px);
+        width: calc(100% - 85px);
       }
     }
   }
