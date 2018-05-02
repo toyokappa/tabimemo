@@ -1,6 +1,6 @@
 .container
   .row
-    .profile-area.col-lg-3.col-md-4.col-sm-6
+    .profile-area.col-lg-3.col-sm-4
       .profile-image
         = image_tag @profile.image.present? ? @profile.image.thumb.url : "no_user_image.svg"
       %h3.profile-name= @profile.name.present? ? @profile.name : @user.name
@@ -23,7 +23,7 @@
           = l(@profile.birthday, format: :long)
       - if @user == current_user
         %p= link_to t("link.edit_profile"), edit_users_profile_path, class: "btn btn-success"
-    .plan-index-area.col-lg-9.col-md-8.col-sm-6
+    .plan-index-area.col-lg-9.col-sm-8
       .plan-index-group
         %h2= t("view.user_plan")
         %ul.plan-status-menu
