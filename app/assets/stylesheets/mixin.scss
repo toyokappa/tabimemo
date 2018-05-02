@@ -1,3 +1,10 @@
+// PC用幅広めのメディアクエリ
+@mixin lg() {
+  @media only screen and (min-width: 1200px) {
+    @content;
+  }
+}
+
 // PC用のメディアクエリ
 @mixin pc() {
   @media only screen and (min-width: 769px) {
