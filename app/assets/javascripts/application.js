@@ -16,7 +16,6 @@
 //= require jquery-ui/widgets/autocomplete
 //= require jquery-ui/widgets/sortable
 //= require jquery.ui.touch-punch.min
-//= require jquery.matchHeight-min
 //= require lodash
 //= require baguetteBox.min
 //= require turbolinks
