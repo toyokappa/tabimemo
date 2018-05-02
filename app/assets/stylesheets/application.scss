@@ -13,7 +13,6 @@
  *= require jquery-ui
  *= require jquery-ui/autocomplete
  *= require jquery-ui/sortable
- *= require_tree .
  *= require_self
  */
 
@@ -22,6 +21,11 @@
 @import "font-awesome";
 @import "baguetteBox.min";
 @import "mixin";
+@import "count_limit";
+@import "grid_layout";
+@import "plans";
+@import "profile";
+@import "static";
 
 /*    alert   */
 
