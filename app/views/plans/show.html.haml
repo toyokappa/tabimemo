@@ -51,6 +51,27 @@
           - lat_length = @plan.spots.map { |spot| spot.latitude }.compact.length
           - if lat_length > 1
             #route-map.map
+        .under-reaction-field
+          .plan-reaction
+            .pageviews
+              = fa_icon "eye"
+              = @pv
+            .like-area
+              - if user_signed_in?
+                - if @like.present?
+                  = render "plans/unlike"
+                - else
+                  = render "plans/like"
+              - else
+                .like
+                  = link_to new_user_session_path do
+                    = fa_icon "heart-o"
+                    = Like.where(plan_id: @plan).count
+            .comment
+              = link_to "#comment-field", class: "smooth-scroll"  do
+                = fa_icon "comment-o"
+                = Comment.where(plan_id: @plan).count
+          .sns-reaction
         .author-field
           .author-info-left
             = link_to user_profile_path(@user.name) do
