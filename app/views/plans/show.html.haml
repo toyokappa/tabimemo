@@ -52,10 +52,13 @@
           - if lat_length > 1
             #route-map.map
         .author-field
-          = t("view.plan_user")
-          = link_to user_profile_path(@user.name), class: "author" do
-            .author-image= image_tag @user.profile.image.present? ? @user.profile.image.thumb.url : "no_user_image.svg"
-            .author-name= @user.profile.name.present? ? @user.profile.name : @user.name
+          .author-info-left
+            = link_to user_profile_path(@user.name) do
+              .author-image= image_tag @user.profile.image.present? ? @user.profile.image.thumb.url : "no_user_image.svg"
+          .author-info-right
+            = link_to user_profile_path(@user.name) do
+              .author-name= @user.profile.name.present? ? @user.profile.name : @user.name
+            .author-description= @user.profile.description
       #comment-field.comment-field
         - @comments.each do |comment|
           .comment-item
