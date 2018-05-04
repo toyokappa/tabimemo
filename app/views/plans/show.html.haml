@@ -71,19 +71,19 @@
               = link_to "#comment-field", class: "smooth-scroll"  do
                 = fa_icon "comment-o"
                 = Comment.where(plan_id: @plan).count
-          .sns-reaction
+          .sns-reaction.set-open-new-window
             .sns-share-btn
-              = link_to "https://twitter.com/share?url=#{plan_url(@plan)}", class: "btn btn-twitter" do
+              = link_to "https://twitter.com/share?url=#{plan_url(@plan)}", class: "btn btn-twitter open-new-window" do
                 = fa_icon "twitter"
                 Twitterでシェア
             .sns-share-btn
-              = link_to "https://www.facebook.com/sharer/sharer.php?u=#{plan_url(@plan)}", class: "btn btn-facebook" do
+              = link_to "https://www.facebook.com/sharer/sharer.php?u=#{plan_url(@plan)}", class: "btn btn-facebook open-new-window" do
                 = fa_icon "facebook"
                 Facebookでシェア
             .sns-share-btn
-              = link_to "https://social-plugins.line.me/lineit/share?url=#{plan_url(@plan)}", class: "btn btn-line" do
+              = link_to "https://social-plugins.line.me/lineit/share?url=#{plan_url(@plan)}", class: "btn btn-line open-new-window" do
                 = fa_icon "comment"
-                Lineでシェア
+                LINEでシェア
         .author-field
           .author-info-left
             = link_to user_profile_path(@user.name) do
