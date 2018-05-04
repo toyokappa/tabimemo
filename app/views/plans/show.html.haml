@@ -10,8 +10,13 @@
         .plan-header
           %h2.plan-name= @plan.name
           .plan-description= simple_format h(@plan.description)
+          .top-author-field
+            = link_to user_profile_path(@user.name), class: "author-image" do
+              = image_tag @user.profile.image.present? ? @user.profile.image.thumb.url : "no_user_image.svg"
+            = link_to user_profile_path(@user.name), class: "author-name" do
+              = @user.profile.name.present? ? @user.profile.name : @user.name
           - if @plan.published?
-            .reaction-field
+            .top-reaction-field
               .pageviews
                 = fa_icon "eye"
                 = @pv
@@ -51,7 +56,7 @@
           - lat_length = @plan.spots.map { |spot| spot.latitude }.compact.length
           - if lat_length > 1
             #route-map.map
-        .under-reaction-field
+        .bottom-reaction-field
           .plan-reaction
             .pageviews
               = fa_icon "eye"
@@ -84,7 +89,7 @@
               = link_to "https://social-plugins.line.me/lineit/share?url=#{plan_url(@plan)}", class: "btn btn-line open-new-window" do
                 = fa_icon "comment"
                 LINEでシェア
-        .author-field
+        .bottom-author-field
           .author-info-left
             = link_to user_profile_path(@user.name) do
               .author-image= image_tag @user.profile.image.present? ? @user.profile.image.thumb.url : "no_user_image.svg"
