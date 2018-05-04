@@ -14,6 +14,8 @@
             = fa_icon "plus-circle"
             = t("form.create_spot")
           .text-danger.map-rule= t("form.map_rule")
+          .text-danger.no-routes{ style: "display: none;" }
+            = t("form.no_routes")
           .map
     .col-md-3.sidebar
       .following-scroll
