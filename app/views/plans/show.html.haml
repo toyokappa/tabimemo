@@ -56,39 +56,40 @@
           - lat_length = @plan.spots.map { |spot| spot.latitude }.compact.length
           - if lat_length > 1
             #route-map.map
-        .bottom-reaction-field
-          .plan-reaction
-            .pageviews
-              = fa_icon "eye"
-              = @pv
-            .like-area
-              - if user_signed_in?
-                - if @like.present?
-                  = render "plans/unlike"
+        - if @plan.published?
+          .bottom-reaction-field
+            .plan-reaction
+              .pageviews
+                = fa_icon "eye"
+                = @pv
+              .like-area
+                - if user_signed_in?
+                  - if @like.present?
+                    = render "plans/unlike"
+                  - else
+                    = render "plans/like"
                 - else
-                  = render "plans/like"
-              - else
-                .like
-                  = link_to new_user_session_path do
-                    = fa_icon "heart-o"
-                    = Like.where(plan_id: @plan).count
-            .comment
-              = link_to "#comment-field", class: "smooth-scroll"  do
-                = fa_icon "comment-o"
-                = Comment.where(plan_id: @plan).count
-          .sns-reaction.set-open-new-window
-            .sns-share-btn
-              = link_to "https://twitter.com/share?url=#{plan_url(@plan)}", class: "btn btn-twitter open-new-window" do
-                = fa_icon "twitter"
-                = t(".share_twitter")
-            .sns-share-btn
-              = link_to "https://www.facebook.com/sharer/sharer.php?u=#{plan_url(@plan)}", class: "btn btn-facebook open-new-window" do
-                = fa_icon "facebook"
-                = t(".share_facebook")
-            .sns-share-btn
-              = link_to "https://social-plugins.line.me/lineit/share?url=#{plan_url(@plan)}", class: "btn btn-line open-new-window" do
-                = fa_icon "comment"
-                = t(".share_line")
+                  .like
+                    = link_to new_user_session_path do
+                      = fa_icon "heart-o"
+                      = Like.where(plan_id: @plan).count
+              .comment
+                = link_to "#comment-field", class: "smooth-scroll"  do
+                  = fa_icon "comment-o"
+                  = Comment.where(plan_id: @plan).count
+            .sns-reaction.set-open-new-window
+              .sns-share-btn
+                = link_to "https://twitter.com/share?url=#{plan_url(@plan)}", class: "btn btn-twitter open-new-window" do
+                  = fa_icon "twitter"
+                  = t(".share_twitter")
+              .sns-share-btn
+                = link_to "https://www.facebook.com/sharer/sharer.php?u=#{plan_url(@plan)}", class: "btn btn-facebook open-new-window" do
+                  = fa_icon "facebook"
+                  = t(".share_facebook")
+              .sns-share-btn
+                = link_to "https://social-plugins.line.me/lineit/share?url=#{plan_url(@plan)}", class: "btn btn-line open-new-window" do
+                  = fa_icon "comment"
+                  = t(".share_line")
         .bottom-author-field
           .author-info-left
             = link_to user_profile_path(@user.name) do
