@@ -3,6 +3,10 @@ ja:
     index:
       latest_plans: 最新のプラン
       popular_plans: 人気のプラン
+    show:
+      share_twitter: Twitterでシェア
+      share_facebook: Facebookでシェア
+      share_line: LINEでシェア
   view:
     plan_user: "投稿者:"
     spot_table_contents: スポット目次

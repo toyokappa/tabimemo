@@ -80,15 +80,15 @@
             .sns-share-btn
               = link_to "https://twitter.com/share?url=#{plan_url(@plan)}", class: "btn btn-twitter open-new-window" do
                 = fa_icon "twitter"
-                Twitterでシェア
+                = t(".share_twitter")
             .sns-share-btn
               = link_to "https://www.facebook.com/sharer/sharer.php?u=#{plan_url(@plan)}", class: "btn btn-facebook open-new-window" do
                 = fa_icon "facebook"
-                Facebookでシェア
+                = t(".share_facebook")
             .sns-share-btn
               = link_to "https://social-plugins.line.me/lineit/share?url=#{plan_url(@plan)}", class: "btn btn-line open-new-window" do
                 = fa_icon "comment"
-                LINEでシェア
+                = t(".share_line")
         .bottom-author-field
           .author-info-left
             = link_to user_profile_path(@user.name) do
