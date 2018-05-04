@@ -46,6 +46,19 @@ class displayMap
         if status == "OK"
           @directionsRenderer.setDirections(result)
           @directionsRenderer.setMap(@map)
+        else if status == "ZERO_RESULTS"
+          min_lat = parseFloat _.min(latitudes)
+          min_lng = parseFloat _.min(longitudes)
+          max_lat = parseFloat _.max(latitudes)
+          max_lng = parseFloat _.max(longitudes)
+          mid_lat = (min_lat + max_lat) / 2.0
+          mid_lng = (min_lng + max_lng) / 2.0
+          min_bounds = new google.maps.LatLng min_lat, min_lng
+          max_bounds = new google.maps.LatLng max_lat, max_lng
+          center_position = new google.maps.LatLng mid_lat, mid_lng
+          @map.setCenter center_position
+          @map.fitBounds new google.maps.LatLngBounds(min_bounds, max_bounds)
+          @$root.find(".no-routes").show()
         else
           console.log status
 
