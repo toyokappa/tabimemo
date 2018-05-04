@@ -72,6 +72,18 @@
                 = fa_icon "comment-o"
                 = Comment.where(plan_id: @plan).count
           .sns-reaction
+            .sns-share-btn
+              = link_to "https://twitter.com/share?url=#{plan_url(@plan)}", class: "btn btn-twitter" do
+                = fa_icon "twitter"
+                Twitterでシェア
+            .sns-share-btn
+              = link_to "https://www.facebook.com/sharer/sharer.php?u=#{plan_url(@plan)}", class: "btn btn-facebook" do
+                = fa_icon "facebook"
+                Facebookでシェア
+            .sns-share-btn
+              = link_to "https://social-plugins.line.me/lineit/share?url=#{plan_url(@plan)}", class: "btn btn-line" do
+                = fa_icon "comment"
+                Lineでシェア
         .author-field
           .author-info-left
             = link_to user_profile_path(@user.name) do

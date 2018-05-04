@@ -123,6 +123,38 @@ ul {
   }
 }
 
+.btn-facebook {
+  color: white;
+  background-color: #3B5998;
+  border-color: #2A4887;
+  &:hover {
+    color: white;
+    background-color: #2A4887;
+    border-color: #193776;
+  }
+  &:focus {
+    color: white;
+    background-color: #2A4887;
+    border-color: #193776;
+  }
+}
+
+.btn-line {
+  color: white;
+  background-color: #00b900;
+  border-color: #00a800;
+  &:hover {
+    color: white;
+    background-color: #00a800;
+    border-color: #009700;
+  }
+  &:focus {
+    color: white;
+    background-color: #00a800;
+    border-color: #009700;
+  }
+}
+
 .clear {
   clear: both;
 }

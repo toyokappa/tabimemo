@@ -531,6 +531,7 @@
   font-size: 20px;
   line-height: 34px;
   .plan-reaction {
+    margin-bottom: 5px;
     .pageviews {
       display: inline-block;
       color: #4dadf7;
@@ -553,6 +554,9 @@
     }
   }
   .sns-reaction {
+    .sns-share-btn {
+      display: inline-block;
+    }
   }
 }
 
