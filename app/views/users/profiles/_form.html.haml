@@ -2,7 +2,7 @@
   .image-field
     = f.input :image, as: :image_preview, input_html: { class: "images", preview_version: :thumb }
   = f.input :name, hint: t("form.profile_name_hint", user_name: @profile.user.name)
-  = f.input :description
+  = f.input :description, input_html: { rows: 4 }
   = f.input :location, placeholder: "#{t('view.example')}#{t('.location_example')}"
   = f.input :url, placeholder: "#{t('view.example')}#{root_url}"
   = f.input :gender, include_blank: t("form.select_item", item: Profile.human_attribute_name(:gender)), class: "form-control"

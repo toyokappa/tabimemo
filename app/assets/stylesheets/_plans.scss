@@ -177,6 +177,11 @@
 
 /*    edit    */
 
+@include sp() {
+  textarea[name="plan[description]"] {
+    height: 8em;
+  }
+}
 .spot-container {
   h3 {
     font-weight: bold;
@@ -200,16 +205,26 @@
       vertical-align: middle;
       height: 38px;
       width: calc(100% - 45px);
+      padding: 6px 12px;
       margin-left:5px;
     }
     .destroy-spot-btn {
       float: right;
+    }
+    @include sp() {
+      textarea {
+        height: 10em;
+      }
     }
   }
   .photo-field {
     .photo-item {
       position: relative;
       margin-bottom: 20px;
+      @include sp() {
+        width: 85%;
+        margin: 0 auto 20px;
+      }
       .preview-photo {
         width: 100%;
         height: auto;
@@ -232,6 +247,10 @@
     .photo-loading {
       display: none;
       margin-bottom: 20px;
+      @include sp() {
+        width: 85%;
+        margin: 0 auto 20px;
+      }
       .loading-wrap {
         position: relative;
         width: 100%;
@@ -240,7 +259,7 @@
           height: 100%;
         }
         @include sp() {
-          height: 200px;
+          height: calc(85vw * 0.55);
         }
         .loading-icon {
           position: absolute;
@@ -256,6 +275,10 @@
     }
     .photo-input {
       margin-bottom: 20px;
+      @include sp() {
+        width: 85%;
+        margin: 0 auto 20px;
+      }
       .add-photos {
         width: 100%;
         height: auto;
