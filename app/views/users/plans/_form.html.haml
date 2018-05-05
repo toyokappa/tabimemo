@@ -4,7 +4,7 @@
       .register-form
         %h3= t(".title")
         = render "shared/input_with_limit", f: f, col: :name, limit: 30, rows: nil, hint: t("form.plan_name_hint")
-        = render "shared/input_with_limit", f: f, col: :description, limit: 100, rows: nil, hint: t("form.plan_description_hint")
+        = render "shared/input_with_limit", f: f, col: :description, limit: 100, rows: 3, hint: t("form.plan_description_hint")
       .spot-container
         %h3= t("form.register_spot")
         .spot-field
