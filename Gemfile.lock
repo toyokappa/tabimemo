@@ -217,7 +217,7 @@ GEM
       fog-core (~> 2.1)
       fog-json (~> 1.1)
       fog-xml (~> 0.1)
-    fog-core (2.1.0)
+    fog-core (2.1.2)
       builder
       excon (~> 0.58)
       formatador (~> 0.2)
@@ -237,10 +237,10 @@ GEM
     fog-ecloud (0.3.0)
       fog-core
       fog-xml
-    fog-google (1.9.1)
-      fog-core (<= 2.1.0)
-      fog-json (~> 1.2)
-      fog-xml (~> 0.1.0)
+    fog-google (1.7.1)
+      fog-core
+      fog-json
+      fog-xml
       google-api-client (~> 0.23.0)
     fog-internet-archive (0.0.1)
       fog-core
@@ -695,7 +695,7 @@ DEPENDENCIES
   meta-tags
   mini_magick
   mysql2
-  omniauth
+  omniauth (~> 1.9)
   omniauth-twitter
   onkcop
   pry-byebug
