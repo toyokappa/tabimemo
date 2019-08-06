@@ -1,6 +1,8 @@
 #!/bin/bash
 set -ex
 
+bundle install --path vendor/bundle
+
 echo set crontab
 bundle exec whenever --update-crontab
 
