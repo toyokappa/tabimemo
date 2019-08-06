@@ -100,4 +100,6 @@ Rails.application.configure do
   config.x.mail.noreply = "noreply@tabimemo.fun"
   config.x.mail.to = "kppg42@gmail.com"
   config.x.google_apis.map = ENV["GOOGLE_MAPS_API"]
+
+  config.x.redis_url = "#{ENV.fetch('REDIS_HOSTNAME') { 'localhost' }}:#{ENV.fetch('REDIS_PORT') { '6379' }}"
 end
