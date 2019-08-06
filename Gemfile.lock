@@ -695,7 +695,7 @@ DEPENDENCIES
   meta-tags
   mini_magick
   mysql2
-  omniauth (~> 1.9)
+  omniauth
   omniauth-twitter
   onkcop
   pry-byebug
