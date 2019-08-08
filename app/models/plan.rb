@@ -2,31 +2,7 @@ class Plan < ApplicationRecord
   extend Enumerize
   include Redis::Objects
 
-  attr_accessor :pop_score
   enumerize :status, in: { draft: 0, published: 1 }, scope: true, predicates: true
-
-  @@yesterday = "pv#{Date.yesterday.strftime('%Y_%m_%d')}"
-  @@today = "pv#{Date.today.strftime('%Y_%m_%d')}"
-  # 日付別でDBに保存するようのPV
-  sorted_set @@yesterday, global: true
-  sorted_set @@today, global: true
-  # 画面表示用のPV
-  sorted_set :display_pv, global: true
-
-  def increment_pv
-    set_pv_keys
-    self.class.send(@@today).increment(id)
-    self.class.display_pv.increment(id)
-  end
-
-  def show_pv
-    set_pv_keys
-    self.class.display_pv[id].to_i
-  end
-
-  def total_pv
-    show_pv + page_views.sum(:count)
-  end
 
   belongs_to :user
   has_many :spots, -> { order(:position) }, inverse_of: :plan, dependent: :destroy
@@ -51,7 +27,7 @@ class Plan < ApplicationRecord
     scores = plan_ids.map do |plan_id|
       like = likes[plan_id].to_i
       comment = comments[plan_id].to_i
-      pv = pvs[plan_id].to_i + self.display_pv[plan_id].to_i
+      pv = pvs[plan_id].to_i + self.pv[plan_id].to_i
       [plan_id, pv > 0 ? (like * 0.7 + comment * 0.3) / pv : 0]
     end
     ids = scores.to_h.delete_if { |_,v| v == 0 }.sort_by { |_,v| -v }.to_h.keys
@@ -64,13 +40,23 @@ class Plan < ApplicationRecord
     photos.find_by(is_header: true) || photos.first
   end
 
-  private
+  # PV機能の実装
+  # 方針: PVを日毎の厳密な修正はせずにバッチが走ったタイミングで翌日のPVを集計するようにする
+  # 1. 投稿したユーザー以外のPVをredisに格納
+  # 2. 溜まったPVをDBに保存する処理を実行
+  # 3. 保存処理が完了したらredisののPVをリセットする処理の実行
+  #
+  sorted_set :pv, global: true
 
-    def set_pv_keys
-      if @@today != "pv#{Date.today.strftime('%Y_%m_%d')}"
-        @@yesterday = "pv#{Date.yesterday.strftime('%Y_%m_%d')}"
-        @@today = "pv#{Date.today.strftime('%Y_%m_%d')}"
-        self.class.sorted_set @@today, global: true
-      end
-    end
+  def increment_pv
+    self.class.pv.increment(id)
+  end
+
+  def daily_pv
+    self.class.pv[id].to_i
+  end
+
+  def total_pv
+    daily_pv + page_views.sum(:count)
+  end
 end

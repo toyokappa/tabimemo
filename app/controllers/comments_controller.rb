@@ -8,7 +8,7 @@ class CommentsController < ApplicationController
     @user = @plan.user
     @like = current_user.likes.find_by(plan_id: @plan)
     @comments = @plan.comments
-    @pv = @plan.show_pv + @plan.page_views.sum(:count)
+    @pv = @plan.total_pv
 
     if @comment.save
       if @plan.user != current_user && @plan.user.notification.when_comment?
