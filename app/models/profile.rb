@@ -10,6 +10,10 @@ class Profile < ApplicationRecord
   validates :url, format: { with: URL_FORMAT, message: I18n.t("validation.url_format") }, allow_blank: true
   validate :max_file_size
 
+  def thumb_url
+    image&.thumb&.url || "no_user_image.svg"
+  end
+
   private
 
     def max_file_size
