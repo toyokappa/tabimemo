@@ -3,6 +3,6 @@
     .register-form
       %h3= t(".title")
       = simple_form_for @plan, url: users_plans_path, html: { class: "form-with-limit"} do |f|
-        = render "shared/input_with_limit", f: f, col: :name, limit: 30, rows: nil, hint: t("form.plan_name_hint")
-        = render "shared/input_with_limit", f: f, col: :description, limit: 100, rows: nil, hint: t("form.plan_description_hint")
+        = render "shared/input_with_limit", f: f, col: :name, limit: 100, rows: nil, hint: t("form.plan_name_hint")
+        = render "shared/input_with_limit", f: f, col: :description, limit: 1000, rows: 5, hint: t("form.plan_description_hint")
         = f.button :submit, t("form.register_plan"), class: "btn-success btn-100"

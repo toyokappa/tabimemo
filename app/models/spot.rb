@@ -4,8 +4,8 @@ class Spot < ApplicationRecord
 
   belongs_to :plan
 
-  validates :name, length: { maximum: 30 }
-  validates :description, length: { maximum: 150 }
+  validates :name, length: { maximum: 100 }
+  validates :description, length: { maximum: 1000 }
 
   before_save :set_default_name_with_blank
 

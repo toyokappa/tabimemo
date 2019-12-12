@@ -12,8 +12,8 @@ class Plan < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :page_views, dependent: :destroy
 
-  validates :name, presence: true, length: { maximum: 30 }
-  validates :description, length: { maximum: 100 }
+  validates :name, presence: true, length: { maximum: 100 }
+  validates :description, length: { maximum: 1000 }
 
   scope :default_order, -> { order(published_at: :desc) }
   scope :management_order, -> { reorder(id: :desc) }
