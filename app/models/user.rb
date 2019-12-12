@@ -36,6 +36,10 @@ class User < ApplicationRecord
     super && (social_accounts.blank? || persisted?)
   end
 
+  def display_name
+    profile.name.presence || name
+  end
+
   class << self
     def find_first_by_auth_conditions(warden_conditions)
       conditions = warden_conditions.dup

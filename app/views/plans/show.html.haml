@@ -12,14 +12,14 @@
           .plan-description= simple_format h(@plan.description)
           .top-author-field
             = link_to user_profile_path(@user.name), class: "author-image" do
-              = image_tag @user.profile.image.present? ? @user.profile.image.thumb.url : "no_user_image.svg"
+              = image_tag @user.profile.thumb_url
             = link_to user_profile_path(@user.name), class: "author-name" do
-              = @user.profile.name.present? ? @user.profile.name : @user.name
+              = @user.display_name
           - if @plan.published?
             .top-reaction-field
               .pageviews
                 = fa_icon "eye"
-                = @pv
+                = @plan.total_pv
               .like-area
                 - if user_signed_in?
                   - if @like.present?
@@ -61,7 +61,7 @@
             .plan-reaction
               .pageviews
                 = fa_icon "eye"
-                = @pv
+                = @plan.total_pv
               .like-area
                 - if user_signed_in?
                   - if @like.present?
@@ -93,18 +93,18 @@
         .bottom-author-field
           .author-info-left
             = link_to user_profile_path(@user.name) do
-              .author-image= image_tag @user.profile.image.present? ? @user.profile.image.thumb.url : "no_user_image.svg"
+              .author-image= image_tag @user.profile.thumb_url
           .author-info-right
             = link_to user_profile_path(@user.name) do
-              .author-name= @user.profile.name.present? ? @user.profile.name : @user.name
+              .author-name= @user.display_name
             .author-description= @user.profile.description
       #comment-field.comment-field
         - @comments.each do |comment|
           .comment-item
             .comment-header
               = link_to user_profile_path(comment.user.name), class: "comment-user" do
-                .comment-user-image= image_tag comment.user.profile.image.present? ? comment.user.profile.image.thumb.url : "no_user_image.svg"
-                .comment-user-name= comment.user.profile.name.present? ? comment.user.profile.name : comment.user.name
+                .comment-user-image= image_tag comment.user.profile.thumb_url
+                .comment-user-name= comment.user.display_name
               .comment-at= comment.created_at.strftime("%Y-%m-%d %H:%M")
             .comment-content= simple_format h(comment.content)
             -if current_user == comment.user
