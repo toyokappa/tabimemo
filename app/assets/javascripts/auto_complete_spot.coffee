@@ -19,26 +19,24 @@ class AutoCompleteSpot
     @useHtml()
     $target.autocomplete
       source: (req, res)->
-        getPlaceIds(input).done (data)->
-          $ajax = _.map data, (place_id)-> getPlaces place_id
-          $.when.apply($, $ajax).then ->
-            places = _.map arguments, (place_data)->
-              place = place_data[0]
-              label: "<div class='place-title'>#{place.name}</div><div class='place-description'>#{place.address}</div>"
-              value: place.name
-              address: place.address
-              lat: place.lat
-              lng: place.lng
-            res places
+        getPredictions(input).done (data)->
+          places = _.map data, (place)->
+            address = place.address
+            address = address.slice(3) if address.indexOf("日本、") == 0
+            label: "<div class='place-title'>#{place.name}</div><div class='place-description'>#{address}</div>"
+            place_id: place.place_id
+            value: place.name
+            address: address
+          res places
       select: (event, ui)->
         $target.val ui.item.value
+        $spot_form.find(".place-id").val(ui.item.place_id).change()
         $spot_form.find(".spot-address").val ui.item.address
-        $spot_form.find(".spot-latitude").val ui.item.lat
-        $spot_form.find(".spot-longitude").val(ui.item.lng).change()
       autoFocus: true
+      delay: 200
     return
 
-  getPlaceIds = (input)->
+  getPredictions = (input)->
     defer = $.Deferred()
     $.ajax
       url: "/users/suggest_spot"
@@ -49,17 +47,21 @@ class AutoCompleteSpot
       success: defer.resolve
     return defer.promise()
 
-  getPlaces = (place_id)->
-    defer = $.Deferred()
-    $.ajax
-      url: "/users/translate_spot"
-      type: "GET"
-      data:
-        placeid: place_id
-      dataType: "json"
-      success: defer.resolve
-    return defer.promise()
-
+  setGeometry: (e)=>
+    $target = $(e.target)
+    request = { placeId: $target.val() }
+    $spot_form = $target.closest(".spot-form")
+    $latitude = $spot_form.find(".spot-latitude")
+    $longitude = $spot_form.find(".spot-longitude")
+    service = new google.maps.places.PlacesService(@map)
+    service.getDetails request, (place, status)=>
+      if status == "OK"
+        location = place.geometry.location
+        $latitude.val location.lat()
+        $longitude.val(location.lng()).change()
+      else
+        console.log status
+    return
 
   useHtml: ->
     $.ui.autocomplete.prototype._renderItem = (ul, item)->
@@ -67,6 +69,7 @@ class AutoCompleteSpot
 
   bind: =>
     @$root.on "keyup", ".spot-name", @suggestSpot
+    @$root.on "change", ".place-id", @setGeometry
 
 $(document).on "turbolinks:load", ->
   new AutoCompleteSpot $(".spot-container") if $(".spot-container")[0]

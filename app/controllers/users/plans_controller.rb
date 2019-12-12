@@ -73,7 +73,7 @@ class Users::PlansController < ApplicationController
 
     # オートコンプリート用のクエリ
     url = "https://maps.googleapis.com/maps/api/place/autocomplete/json?"
-    params = URI.encode_www_form({ key: key, input: input})
+    params = URI.encode_www_form({ key: key, input: input, language: :ja})
     uri = URI.parse "#{url}#{params}"
 
     request = Net::HTTP::Get.new(uri.request_uri)
@@ -82,35 +82,15 @@ class Users::PlansController < ApplicationController
     end
 
     body = JSON.load response.body
-    place_ids = body["predictions"].map { |prediction| prediction["place_id"] }
-
-    render json: place_ids
-  end
-
-  def translate_spot
-    key = Rails.configuration.x.google_apis[:map]
-    placeid = params[:placeid]
-
-    # プレイス詳細用のクエリ(GoogleのAPIがアドレスを日本語で返却してくれないため、一時的に対応)
-    url = "https://maps.googleapis.com/maps/api/place/details/json?"
-    params = URI.encode_www_form({ key: key, placeid: placeid, language: :ja })
-    uri = URI.parse "#{url}#{params}"
-
-    request = Net::HTTP::Get.new(uri.request_uri)
-    response = Net::HTTP.start(uri.host, uri.port, use_ssl: uri.scheme == "https")do |http|
-      http.request(request)
+    places = body["predictions"].map do |item|
+      {
+        place_id: item.dig("place_id"),
+        name: item.dig("structured_formatting", "main_text"),
+        address: item.dig("structured_formatting", "secondary_text"),
+      }
     end
 
-    body = JSON.load response.body
-    result = body["result"]
-    if result.present?
-      address = result["formatted_address"]
-      address.slice!(/^日本、〒[0-9]{3}-[0-9]{4}\s/)
-      place = { name: result["name"], address: address, lat: result["geometry"]["location"]["lat"], lng: result["geometry"]["location"]["lng"] }
-      render json: place
-    else
-      render json: ""
-    end
+    render json: places
   end
 
   private
