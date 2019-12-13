@@ -1,3 +1,3 @@
 FROM mysql:5.7
 
-EXPOSE 3306
+RUN chown -R mysql:mysql /var/lib/mysql

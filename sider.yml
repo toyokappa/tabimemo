@@ -1,8 +1,0 @@
-linter:
-  rubocop:
-    gems:
-      - "onkcop"
-    config:
-      - ".rubocop.yml"
-    rails: true
-    safe: true

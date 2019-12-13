@@ -1,6 +1,6 @@
 include ActionDispatch::TestProcess
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :profile do
     name { Faker::Name.name }
     description { Faker::Lorem.paragraph }

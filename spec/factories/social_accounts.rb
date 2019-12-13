@@ -1,7 +1,7 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :social_account do
-    provider "MyString"
-    uid "MyString"
-    user_id 1
+    provider { "MyString" }
+    uid { "MyString" }
+    user_id { 1 }
   end
 end

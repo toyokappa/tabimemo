@@ -5,6 +5,8 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+ruby "2.4.6"
+
 gem "aws-ses"
 gem "bootstrap-sass"
 gem "carrierwave"
@@ -12,8 +14,7 @@ gem "coffee-rails", "~> 4.2"
 gem "devise"
 gem "devise_security_extension", git: "https://github.com/phatworx/devise_security_extension.git", branch: "master"
 gem "enumerize"
-gem "enumerize"
-gem "fog"
+gem "fog-aws"
 gem "google-analytics-rails"
 gem "font-awesome-rails"
 gem "hamlit-rails"
@@ -48,7 +49,7 @@ gem "unicorn-worker-killer"
 gem "whenever", require: false
 
 group :development, :test do
-  gem "factory_girl_rails"
+  gem "factory_bot_rails"
   gem "faker"
   gem "pry-byebug"
   gem "pry-doc"
