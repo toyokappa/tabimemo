@@ -1,54 +1,43 @@
-version: "2"
+version: "3.7"
 
 volumes:
-  db_data:
-    driver: local
-  gem_data:
-    driver: local
-  redis_data:
-    driver: local
+  bundle-volume:
+  mysql-volume:
+  redis-volume:
 
 services:
-  rails:
-    build:
-      context: ./
-    volumes:
-      - .:/usr/src/app:cached
-      - gem_data:/usr/src/app/vendor/bundle
-    environment:
-      RAILS_ENV: development
-      GOOGLE_MAPS_API: AIzaSyDBlYdxJipM-Gablze4G84BoPagcYp4k-8
-      RAILS_DB_HOST: db
-      RAILS_DB_USER: root
-      RAILS_DB_PASS:
-      REDIS_HOSTNAME: redis
-      REDIS_PORT: 6379
-      MANUAL: $MANUAL
-
-  web:
-    extends:
-      service: rails
-    ports:
-      - "3000:3000"
-    command: bin/start_dev_server.sh
-    depends_on:
-      - db
-      - redis
-
-  db:
+  mysql:
     build:
       context: ./containers/db
     ports:
-      - "3307:3306"
+      - "7706:3306"
     volumes:
-      - db_data:/var/lib/mysql
+      - mysql-volume:/var/lib/mysql
     environment:
-      MYSQL_DATABASE: tabimemo_development
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
 
   redis:
     image: redis:alpine
     ports:
-      - "6379:6379"
+      - "7779:6379"
     volumes:
-      - redis_data:/data
+      - redis-volume:/data
+
+  web:
+    build: .
+    volumes:
+      - .:/usr/src/app:cached
+      - bundle-volume:/usr/src/app/vendor/bundle
+    environment:
+      GOOGLE_MAPS_API: AIzaSyDBlYdxJipM-Gablze4G84BoPagcYp4k-8
+      RDS_HOSTNAME: mysql
+      RDS_USERNAME: root
+      REDIS_HOSTNAME: redis
+      REDIS_PORT: 6379
+      MANUAL: $MANUAL
+    ports:
+      - "7700:3000"
+    command: bin/start_dev_server.sh
+    depends_on:
+      - mysql
+      - redis

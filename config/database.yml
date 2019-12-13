@@ -4,9 +4,9 @@ default: &default
   charset: utf8mb4
   collation: utf8mb4_unicode_ci
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  host: <%= ENV.fetch("RAILS_DB_HOST") { "localhost" } %>
-  username: <%= ENV.fetch("RAILS_DB_USER") { "root" } %>
-  password: <%= ENV.fetch("RAILS_DB_PASS") { "" } %>
+  host: <%= ENV.fetch("RDS_HOSTNAME") { "localhost" } %>
+  username: <%= ENV.fetch("RDS_USERNAME") { "root" } %>
+  password: <%= ENV.fetch("RDS_PASSWORD") { "" } %>
 
 development:
   <<: *default
@@ -19,7 +19,4 @@ test:
 production:
   <<: *default
   database: tabimemo_production
-  host: <%= ENV["RDS_HOSTNAME"] %>
-  username: <%= ENV["RDS_USERNAME"] %>
-  password: <%= ENV["RDS_PASSWORD"] %>
   socket: /var/lib/mysql/mysql.sock
