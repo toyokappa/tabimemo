@@ -1,11 +1,11 @@
-FROM ruby:2.4.0
+FROM ruby:2.4.6
 
 ENV APP_ROOT=/usr/src/app
 RUN mkdir -p $APP_ROOT
 WORKDIR $APP_ROOT
 
 RUN apt-get update && \
-    apt-get install -y mysql-client \
+    apt-get install -y default-mysql-client \
                        nodejs \
                        cron \
                        vim \
