@@ -47,7 +47,7 @@ gem "unicorn-worker-killer"
 gem "whenever", require: false
 
 group :development, :test do
-  gem "factory_girl_rails"
+  gem "factory_bot_rails"
   gem "faker"
   gem "pry-byebug"
   gem "pry-doc"

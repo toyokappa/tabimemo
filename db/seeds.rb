@@ -1,7 +1,7 @@
-require "factory_girl"
+require "factory_bot"
 
 15.times do
-  FactoryGirl.create(:plan) do |plan|
-    FactoryGirl.create_list(:spot, 3, plan: plan)
+  FactoryBot.create(:plan) do |plan|
+    FactoryBot.create_list(:spot, 3, plan: plan)
   end
 end

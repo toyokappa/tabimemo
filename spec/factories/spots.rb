@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :spot do
     name { Faker::Address.city }
     description { Faker::Lorem.paragraph }
