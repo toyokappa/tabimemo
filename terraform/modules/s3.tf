@@ -15,6 +15,23 @@ resource "aws_s3_bucket" "assets" {
     Env = terraform.workspace
     Project = local.app_name
   }
+
+  policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "PublicReadForGetBucketObjects",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity ${aws_cloudfront_origin_access_identity.assets.id}"
+      },
+      "Action": "s3:GetObject",
+      "Resource": "arn:aws:s3:::${local.app_name}-${terraform.workspace}-assets/*"
+    }
+  ]
+}
+EOF
 }
 
 resource "aws_s3_bucket" "resources" {
@@ -34,4 +51,21 @@ resource "aws_s3_bucket" "resources" {
     Env = terraform.workspace
     Project = local.app_name
   }
+
+  policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "PublicReadForGetBucketObjects",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity ${aws_cloudfront_origin_access_identity.resources.id}"
+      },
+      "Action": "s3:GetObject",
+      "Resource": "arn:aws:s3:::${local.app_name}-${terraform.workspace}-resources/*"
+    }
+  ]
+}
+EOF
 }
