@@ -29,6 +29,7 @@ resource "aws_instance" "ecs_instance" {
   vpc_security_group_ids = [aws_security_group.ecs_instance.id]
   subnet_id = aws_subnet.public_a.id
   associate_public_ip_address = true
+  iam_instance_profile = aws_iam_instance_profile.ecs_instance.name
 
   tags = {
     Name = "${local.app_name}-${terraform.workspace}-instance"
