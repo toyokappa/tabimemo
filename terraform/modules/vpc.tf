@@ -61,3 +61,14 @@ resource "aws_route" "public_a" {
   gateway_id = aws_internet_gateway.main.id
   destination_cidr_block = "0.0.0.0/0"
 }
+
+resource "aws_vpc_endpoint" "s3" {
+  vpc_id = aws_vpc.main.id
+  service_name = "com.amazon.ap-northeast-1.s3"
+  policy = templatefile("policies/s3_vpc_endpoint_policy.tmpl", { app_name = local.app_name, env = terraform.workspace })
+}
+
+resource "aws_vpc_endpoint_route_table_association" "s3" {
+  route_table_id = aws_route_table.public_a.id
+  vpc_endpoint_id = aws_vpc_endpoint.s3.id
+}
