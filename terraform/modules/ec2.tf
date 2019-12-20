@@ -35,6 +35,8 @@ resource "aws_instance" "ecs_instance" {
     Env = terraform.workspace
     Project = local.app_name
   }
+
+  user_data = templatefile("bin/attach_ecs.tmpl", { app_name = local.app_name, env = terraform.workspace })
 }
 
 resource "aws_security_group" "ecs_instance" {
