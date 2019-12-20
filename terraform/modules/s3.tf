@@ -16,22 +16,15 @@ resource "aws_s3_bucket" "assets" {
     Project = local.app_name
   }
 
-  policy = <<EOF
-{
-  "Version": "2012-10-17",
-  "Statement": [
+  policy = templatefile(
+    "policies/s3_cloudfront_policy.tmpl",
     {
-      "Sid": "PublicReadForGetBucketObjects",
-      "Effect": "Allow",
-      "Principal": {
-        "AWS": "arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity ${aws_cloudfront_origin_access_identity.assets.id}"
-      },
-      "Action": "s3:GetObject",
-      "Resource": "arn:aws:s3:::${local.app_name}-${terraform.workspace}-assets/*"
+      origin_access_identity_id = aws_cloudfront_origin_access_identity.assets.id,
+      app_name = local.app_name,
+      env = terraform.workspace,
+      name = "assets"
     }
-  ]
-}
-EOF
+  )
 }
 
 resource "aws_s3_bucket" "resources" {
@@ -52,20 +45,13 @@ resource "aws_s3_bucket" "resources" {
     Project = local.app_name
   }
 
-  policy = <<EOF
-{
-  "Version": "2012-10-17",
-  "Statement": [
+  policy = templatefile(
+    "policies/s3_cloudfront_policy.tmpl",
     {
-      "Sid": "PublicReadForGetBucketObjects",
-      "Effect": "Allow",
-      "Principal": {
-        "AWS": "arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity ${aws_cloudfront_origin_access_identity.resources.id}"
-      },
-      "Action": "s3:GetObject",
-      "Resource": "arn:aws:s3:::${local.app_name}-${terraform.workspace}-resources/*"
+      origin_access_identity_id = aws_cloudfront_origin_access_identity.resources.id,
+      app_name = local.app_name,
+      env = terraform.workspace,
+      name = "resources"
     }
-  ]
-}
-EOF
+  )
 }
