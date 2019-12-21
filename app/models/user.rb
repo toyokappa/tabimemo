@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  include LevelCountable
+
   attr_accessor :login, :agreement
 
   # Include default devise modules. Others available are:
