@@ -1,0 +1,19 @@
+{
+  "Statement": [
+    {
+      "Sid": "Access-to-specific-bucket-only",
+      "Principal": {
+        "Service": "ec2.amazonaws.com"
+      },
+      "Action": [
+        "s3:GetObject",
+        "s3:PutObject"
+      ],
+      "Effect": "Allow",
+      "Resource": [
+        "arn:aws:s3:::${app_name}-${env}-assets/*",
+        "arn:aws:s3:::${app_name}-${env}-resources/*"
+      ]
+    }
+  ]
+}
