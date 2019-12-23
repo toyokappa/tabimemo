@@ -16,6 +16,7 @@ ADD Gemfile $APP_ROOT
 ADD Gemfile.lock $APP_ROOT
 
 RUN gem update --system
+RUN gem install bundler --version 1.17.3
 RUN bundle install --system # --without development test
 
 ADD . $APP_ROOT
