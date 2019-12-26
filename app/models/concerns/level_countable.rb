@@ -24,6 +24,12 @@ module LevelCountable
     LEVEL_TABLE[level] || -1
   end
 
+  def next_level_exp_rate
+    return 0 if exp <= current_level_exp
+
+    ((exp - current_level_exp).to_f / (next_level_exp - current_level_exp) * 100).round(1)
+  end
+
   private
 
     def calc_exp
@@ -54,5 +60,9 @@ module LevelCountable
           false
         end
       end
+    end
+
+    def current_level_exp
+      LEVEL_TABLE[level - 1]
     end
 end

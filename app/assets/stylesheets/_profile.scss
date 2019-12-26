@@ -17,7 +17,7 @@
   .profile-name {
     font-size: 20px;
     font-weight: bold;
-    margin: 0 0 15px;
+    margin: 0 0 10px;
     @include sp() {
       text-align: center;
     }
@@ -29,6 +29,33 @@
     margin-bottom: 15px;
     i {
       width: 18px;
+    }
+  }
+  .profile-level-area {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    .profile-level {
+      font-weight: bold;
+      .level-title {
+        font-size: 18px;
+      }
+      .level-value {
+        font-size: 28px;
+      }
+    }
+    .profile-exp {
+      font-weight: bold;
+    }
+  }
+  .profile-exp-rate {
+    width: 100%;
+    background-color: #e6e6e6;
+    margin-bottom: 15px;
+    .bar-chart {
+      display: block;
+      background-color: #5cb85c;
+      height: 16px;
     }
   }
 }
