@@ -12,11 +12,13 @@ class PlansController < ApplicationController
   end
 
   def show
-    return redirect_to root_path if @plan.draft? && @plan.user != current_user
-
-    @plan.increment_pv if @plan.user != current_user
-    @photo = @plan.get_header_image
     @user = @plan.user
+    return redirect_to root_path if @plan.draft? && @user != current_user
+
+    @plan.increment_pv if @user != current_user
+    @user.trophy.judge_pv_count!
+
+    @photo = @plan.get_header_image
     @like = @plan.likes.find_by(user: current_user)
     @comment = current_user&.comments&.build
     @comments = @plan.comments

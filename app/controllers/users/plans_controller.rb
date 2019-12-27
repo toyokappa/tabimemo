@@ -54,7 +54,8 @@ class Users::PlansController < ApplicationController
         redirect_to edit_users_plan_path(@plan), notice: t(:sort_success, scope: :flash)
       else
         RefreshSitemapJob.perform_later
-        @plan.user.obtain_exp!
+        current_user.obtain_exp!
+        current_user.trophy.judge_plan_count!
         redirect_to plan_path(@plan), notice: t(:update_success, scope: :flash)
       end
     else

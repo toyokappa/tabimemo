@@ -11,11 +11,16 @@ class User < ApplicationRecord
 
   has_one :profile, dependent: :destroy, inverse_of: :user
   has_one :notification, dependent: :destroy, inverse_of: :user
+  has_one :trophy, dependent: :destroy, inverse_of: :user
   has_many :plans, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :liked_plans, -> { order("likes.created_at desc") }, through: :likes, source: :plan
   has_many :comments, dependent: :destroy
   has_many :social_accounts, dependent: :destroy
+
+  has_many :plan_page_views, through: :plans, source: :page_views
+  has_many :plan_likes, through: :plans, source: :likes
+  has_many :plan_comments, through: :plans, source: :comments
 
   accepts_nested_attributes_for :profile
   accepts_nested_attributes_for :social_accounts
@@ -70,5 +75,6 @@ class User < ApplicationRecord
     def init_user
       self.create_profile unless self.profile.present?
       self.create_notification
+      self.create_trophy
     end
 end

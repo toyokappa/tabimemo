@@ -11,6 +11,7 @@ class CommentsController < ApplicationController
     @pv = @plan.total_pv
 
     if @comment.save
+      @user.trophy.judge_comment_count!
       if @plan.user != current_user && @plan.user.notification.when_comment?
         CommentMailer.email(@comment, @plan).deliver
       end
