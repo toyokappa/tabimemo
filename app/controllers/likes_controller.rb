@@ -3,6 +3,7 @@ class LikesController < ApplicationController
     @plan = Plan.find(params[:plan_id])
     current_user.likes.create(plan: @plan)
     @plan.user.obtain_exp!
+    @plan.user.trophy.judge_like_count!
     if @plan.user != current_user && @plan.user.notification.when_like?
       LikeMailer.email(current_user, @plan).deliver
     end

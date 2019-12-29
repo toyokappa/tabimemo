@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191221113612) do
+ActiveRecord::Schema.define(version: 20191227072928) do
 
   create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC" do |t|
     t.text "content"
@@ -108,6 +108,29 @@ ActiveRecord::Schema.define(version: 20191221113612) do
     t.index ["plan_id"], name: "index_spots_on_plan_id"
   end
 
+  create_table "trophies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC" do |t|
+    t.boolean "plan_count_lv1", default: false, null: false
+    t.boolean "plan_count_lv2", default: false, null: false
+    t.boolean "plan_count_lv3", default: false, null: false
+    t.boolean "plan_count_lv4", default: false, null: false
+    t.boolean "pv_count_lv1", default: false, null: false
+    t.boolean "pv_count_lv2", default: false, null: false
+    t.boolean "pv_count_lv3", default: false, null: false
+    t.boolean "pv_count_lv4", default: false, null: false
+    t.boolean "like_count_lv1", default: false, null: false
+    t.boolean "like_count_lv2", default: false, null: false
+    t.boolean "like_count_lv3", default: false, null: false
+    t.boolean "like_count_lv4", default: false, null: false
+    t.boolean "comment_count_lv1", default: false, null: false
+    t.boolean "comment_count_lv2", default: false, null: false
+    t.boolean "comment_count_lv3", default: false, null: false
+    t.boolean "comment_count_lv4", default: false, null: false
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_trophies_on_user_id"
+  end
+
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC" do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -132,4 +155,5 @@ ActiveRecord::Schema.define(version: 20191221113612) do
   add_foreign_key "photos", "spots"
   add_foreign_key "plans", "users"
   add_foreign_key "spots", "plans"
+  add_foreign_key "trophies", "users"
 end
