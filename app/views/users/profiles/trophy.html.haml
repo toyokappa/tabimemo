@@ -7,6 +7,7 @@
         .trophy-list
           - Trophy.titles.each do |title|
             .trophy-item
-              .text-center= image_tag @trophy.send(title) ? "trophy.png" : "no_trophy.png", class: "trophy-image"
+              .text-center= image_tag @trophy.send(title) ? "trophy.png" : "no_trophy.png",
+                            title: "ボーナスExp: #{Trophy.const_get("#{title.upcase}_EXP")}", class: "trophy-image"
               .trophy-title.text-center= Trophy.human_attribute_name title
               .trophy-desc.text-center= Trophy.human_attribute_name "#{title}_desc"
