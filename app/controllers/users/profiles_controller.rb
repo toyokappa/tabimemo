@@ -1,23 +1,20 @@
 class Users::ProfilesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:show, :liked]
-  before_action :set_user, only: [:show, :liked]
+  skip_before_action :authenticate_user!, only: [:show, :like, :trophy]
+  before_action :set_user, only: [:show, :like, :trophy]
   before_action :set_profile, only: [:edit, :update]
   before_action :set_meta, only: [:show]
 
   def show
-    @profile = @user.profile
     @plans = @user.plans.published
-    respond_to do |format|
-      format.html
-      format.js { render "plan_list" }
-    end
   end
 
-  def liked
+  def like
     @plans = @user.liked_plans
-    respond_to do |format|
-      format.js { render "plan_list" }
-    end
+    render :show
+  end
+
+  def trophy
+    @trophy = @user.trophy
   end
 
   def edit
@@ -47,7 +44,7 @@ class Users::ProfilesController < ApplicationController
 
     def set_meta
       case action_name
-      when "show" then
+      when "show"
         title = @user.profile.name.present? ? "#{@user.profile.name}さん" : "#{@user.name}さん"
         set_common_meta(:title, title)
         set_common_meta(:description, @user.profile.description) if @user.profile.description.present?

@@ -1,8 +1,8 @@
 .container
   .row
-    = render "shared/profile", profile: @profile, user: @user
+    = render "profile", profile: @user.profile, user: @user
     .plan-index-area.col-lg-9.col-sm-8
       .plan-index-group
-        = render "shared/profile_menu", user: @user
+        = render "profile_menu", user: @user
         .plan-list
           = render "plan_list", plans: @plans

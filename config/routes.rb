@@ -21,8 +21,8 @@ Rails.application.routes.draw do
 
   resources :users, param: :name, path: "/", only: [] do
     resource :profile, only: [:show], controller: "users/profiles"
-    get "/liked_plans", to: "users/profiles#liked"
-    resource :trophy, only: [:show], controller: "users/trophies"
+    get "/likes", to: "users/profiles#like"
+    get "/trophies", to: "users/profiles#trophy"
   end
 
   resources :plans, only: [:index, :show]
