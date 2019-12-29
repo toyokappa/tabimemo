@@ -18,4 +18,21 @@ RSpec.describe User, type: :model do
     it { is_expected.to allow_value("toyokappa").for(:name) }
     it { is_expected.not_to allow_value("toyo.kappa").for(:name)}
   end
+
+  describe "#next_level_exp" do
+    let!(:user) { build :user }
+    before { allow(user).to receive(:level).and_return(mock_level) }
+
+    context "レベルが1の場合" do
+      let(:mock_level) { 1 }
+      
+      it { expect(user.next_level_exp).to eq 10 }
+    end
+
+    context "最大レベルの場合" do
+      let(:mock_level) { 40 }
+      
+      it { expect(user.next_level_exp).to eq -1 }
+    end
+  end
 end

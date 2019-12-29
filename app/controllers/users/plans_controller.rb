@@ -54,6 +54,7 @@ class Users::PlansController < ApplicationController
         redirect_to edit_users_plan_path(@plan), notice: t(:sort_success, scope: :flash)
       else
         RefreshSitemapJob.perform_later
+        @plan.user.obtain_exp!
         redirect_to plan_path(@plan), notice: t(:update_success, scope: :flash)
       end
     else
@@ -64,6 +65,7 @@ class Users::PlansController < ApplicationController
 
   def destroy
     @plan.destroy!
+    @plan.user.obtain_exp!
     redirect_to users_plans_path, notice: t(:delete_success, scope: :flash)
   end
 

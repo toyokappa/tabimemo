@@ -39,4 +39,6 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  config.x.redis_url = "#{ENV.fetch('REDIS_HOSTNAME') { 'localhost' }}:#{ENV.fetch('REDIS_PORT') { '6379' }}"
 end

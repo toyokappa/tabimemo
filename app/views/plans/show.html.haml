@@ -97,6 +97,7 @@
           .author-info-right
             = link_to user_profile_path(@user.name) do
               .author-name= @user.display_name
+            .author-level= "Lv.#{@user.level}"
             .author-description= @user.profile.description
       #comment-field.comment-field
         - @comments.each do |comment|
