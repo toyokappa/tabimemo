@@ -1,0 +1,35 @@
+@import "mixin";
+
+.trophy-list {
+  font-size: 0px;
+  margin-right: -7px;
+  margin-left: -7px;
+  .trophy-item {
+    display: inline-block;
+    vertical-align: top;
+    padding: 15px 0;
+    @include lg() {
+      width: 25% !important;
+    }
+    @include pc() {
+      width: 33.3%;
+    }
+    @include sp {
+      width: 50%;
+    }
+    .trophy-image {
+      max-width: 100px;
+      width: 100%;
+      height: auto;
+    }
+    .trophy-title {
+      font-size: 14px;
+      font-weight: bold;
+      margin-top: 5px;
+    }
+    .trophy-desc {
+      color: #a0a0a0;
+      font-size: 12px;
+    }
+  }
+}

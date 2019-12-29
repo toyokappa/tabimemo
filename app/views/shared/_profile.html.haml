@@ -1,0 +1,32 @@
+.profile-area.col-lg-3.col-sm-4
+  .profile-image
+    = image_tag profile.image.present? ? profile.image.thumb.url : "no_user_image.svg"
+  %h3.profile-name= user.display_name
+  .d-flex
+    .profile-level-area
+      .profile-level
+        %span.level-title Lv.
+        %span.level-value= user.level
+      .profile-exp= "Exp #{user.exp}/#{user.next_level_exp}"
+    .profile-exp-rate
+      .bar-chart{ style: "width: #{user.next_level_exp_rate}%;" }
+  .profile-description= profile.description
+  - if profile.location.present?
+    .profile-item
+      = fa_icon "map-pin"
+      = profile.location
+  - if profile.url.present?
+    .profile-item{ style: "word-break: break-all;" }
+      = fa_icon "link"
+      = link_to url_without_protocol(profile.url), profile.url, target: "_blank"
+  - if profile.gender.present?
+    .profile-item
+      = fa_icon "user-circle-o"
+      = profile.gender_text
+  - if profile.birthday.present?
+    .profile-item
+      = fa_icon "birthday-cake"
+      = l(profile.birthday, format: :long)
+  - if user == current_user
+    %p= link_to t("link.edit_profile"), edit_users_profile_path, class: "btn btn-success"
+

@@ -14,7 +14,6 @@ Rails.application.routes.draw do
     get "/plans_published", to: "plans#published"
     get "/plans_draft", to: "plans#draft"
     get "/suggest_spot", to: "plans#suggest_spot"
-    get "/translate_spot", to: "plans#translate_spot"
     post "/spots", to: "spots#create"
     post "/photos", to: "photos#create"
     get "/unsubscribe", to: "unsubscribe#show"
@@ -23,6 +22,7 @@ Rails.application.routes.draw do
   resources :users, param: :name, path: "/", only: [] do
     resource :profile, only: [:show], controller: "users/profiles"
     get "/liked_plans", to: "users/profiles#liked"
+    resource :trophy, only: [:show], controller: "users/trophies"
   end
 
   resources :plans, only: [:index, :show]

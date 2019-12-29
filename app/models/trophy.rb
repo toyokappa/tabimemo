@@ -1,6 +1,12 @@
 class Trophy < ApplicationRecord
   belongs_to :user
 
+  class << self
+    def titles
+      column_names - %w[id user_id created_at updated_at]
+    end
+  end
+
   # プラン数の実績 ---------
   def judge_plan_count!
     case user.plans.published.count

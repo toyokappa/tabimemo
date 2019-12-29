@@ -1,0 +1,36 @@
+ja:
+  activerecord:
+    attributes:
+      trophy:
+        plan_count_lv1: アマチュアプランナー
+        plan_count_lv1_desc: 10件のプランを公開
+        plan_count_lv2: ベテランプランナー
+        plan_count_lv2_desc: 30件のプランを公開
+        plan_count_lv3: スーパープランナー
+        plan_count_lv3_desc: 50件のプランを公開
+        plan_count_lv4: レジェンドプランナー
+        plan_count_lv4_desc: 100件のプランを公開
+        pv_count_lv1: 見られてるぜぇ
+        pv_count_lv1_desc: トータル1,000PVの達成
+        pv_count_lv2: おらは人気者！
+        pv_count_lv2_desc: トータル10,000PVの達成
+        pv_count_lv3: スマッシュヒット！
+        pv_count_lv3_desc: トータル10万PVの達成
+        pv_count_lv4: 超売れっ子
+        pv_count_lv4_desc: トータル100万PVの達成
+        like_count_lv1: いいプラン書きますねぇ
+        like_count_lv1_desc: 50いいねの獲得
+        like_count_lv2: グッドプランナー賞
+        like_count_lv2_desc: 100いいねの獲得
+        like_count_lv3: 誰もが愛してやまない
+        like_count_lv3_desc: 1000いいねの獲得
+        like_count_lv4: Best Of Best
+        like_count_lv4_desc: 5000いいねの獲得
+        comment_count_lv1: 噂の的
+        comment_count_lv1_desc: 10件のコメントがつく
+        comment_count_lv2: 反響の的
+        comment_count_lv2_desc: 50件のコメントがつく
+        comment_count_lv3: 実力か？炎上か？
+        comment_count_lv3_desc: 100件のコメントがつく
+        comment_count_lv4: 話題沸騰！
+        comment_count_lv4_desc: 500件のコメントがつく

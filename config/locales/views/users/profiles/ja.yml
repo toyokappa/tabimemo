@@ -3,9 +3,6 @@ ja:
     profiles:
       edit:
         title: プロフィール編集
-      show:
-        least_plans: 最新のプラン
-        liked_plans: いいねしたプラン
       form:
         location_example: 群馬県渋川市
   link:
