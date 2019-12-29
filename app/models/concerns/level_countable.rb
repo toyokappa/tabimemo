@@ -33,10 +33,11 @@ module LevelCountable
   private
 
     def calc_exp
-      plans.published.sum do |plan|
-        total = plan.spots.count >= 5 ? 30 : 10
-        total += plan.photos.count * 1
-        total += plan.likes.except_plan_user.count * 2
+      plans.published.eager_load(:spots, :photos, :likes).sum do |plan|
+        total = plan.spots.length >= 5 ? 30 : 10
+        total += plan.photos.length * 1
+        # N+1問題の回避策としてwhereを使わない
+        total += plan.likes.select { |like| like.user_id != plan.user_id }.length * 2
       end
     end
 
