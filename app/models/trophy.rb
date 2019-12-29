@@ -1,4 +1,6 @@
 class Trophy < ApplicationRecord
+  include Trophy::Configurable
+
   belongs_to :user
 
   class << self
@@ -10,19 +12,19 @@ class Trophy < ApplicationRecord
   # プラン数の実績 ---------
   def judge_plan_count!
     case user.plans.published.count
-    when 10
+    when PLAN_COUNT_LV1_THRESHOLD
       return if plan_count_lv1?
 
       update!(plan_count_lv1: true)
-    when 30
+    when PLAN_COUNT_LV2_THRESHOLD
       return if plan_count_lv2?
 
       update!(plan_count_lv2: true)
-    when 50
+    when PLAN_COUNT_LV3_THRESHOLD
       return if plan_count_lv3?
 
       update!(plan_count_lv3: true)
-    when 100
+    when PLAN_COUNT_LV4_THRESHOLD
       return if plan_count_lv4?
 
       update!(plan_count_lv4: true)
@@ -32,19 +34,19 @@ class Trophy < ApplicationRecord
   # PV数の実績 ---------
   def judge_pv_count!
     case user.plan_page_views.sum(&:count)
-    when 1_000
+    when PV_COUNT_LV1_THRESHOLD
       return if pv_count_lv1?
 
       update!(pv_count_lv1: true)
-    when 10_000
+    when PV_COUNT_LV2_THRESHOLD
       return if pv_count_lv2?
 
       update!(pv_count_lv2: true)
-    when 100_000
+    when PV_COUNT_LV3_THRESHOLD
       return if pv_count_lv3?
 
       update!(pv_count_lv3: true)
-    when 1_000_000
+    when PV_COUNT_LV4_THRESHOLD
       return if pv_count_lv4?
 
       update!(pv_count_lv4: true)
@@ -54,19 +56,19 @@ class Trophy < ApplicationRecord
   # いいね数の実績 ---------
   def judge_like_count!
     case user.plan_likes.except_plan_user.count
-    when 50
+    when LIKE_COUNT_LV1_THRESHOLD
       return if like_count_lv1?
 
       update!(like_count_lv1: true)
-    when 100
+    when LIKE_COUNT_LV2_THRESHOLD
       return if like_count_lv2?
 
       update!(like_count_lv2: true)
-    when 1_000
+    when LIKE_COUNT_LV3_THRESHOLD
       return if like_count_lv3?
 
       update!(like_count_lv3: true)
-    when 5_000
+    when LIKE_COUNT_LV4_THRESHOLD
       return if like_count_lv4?
 
       update!(like_count_lv4: true)
@@ -76,19 +78,19 @@ class Trophy < ApplicationRecord
   # コメント数の実績 ---------
   def judge_comment_count!
     case user.plan_comments.except_plan_user.count
-    when 10
+    when COMMENT_COUNT_LV1_THRESHOLD
       return if comment_count_lv1?
 
       update!(comment_count_lv1: true)
-    when 50
+    when COMMENT_COUNT_LV2_THRESHOLD
       return if comment_count_lv2?
 
       update!(comment_count_lv2: true)
-    when 100
+    when COMMENT_COUNT_LV3_THRESHOLD
       return if comment_count_lv3?
 
       update!(comment_count_lv3: true)
-    when 500
+    when COMMENT_COUNT_LV4_THRESHOLD
       return if comment_count_lv4?
 
       update!(comment_count_lv4: true)
