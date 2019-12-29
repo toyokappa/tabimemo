@@ -9,6 +9,14 @@ class Trophy < ApplicationRecord
     end
   end
 
+  def exp
+    total = 0
+    Trophy.titles.each do |title|
+      total += Trophy.const_get("#{title.upcase}_EXP") if send(title)
+    end
+    total
+  end
+
   # プラン数の実績 ---------
   def judge_plan_count!
     case user.plans.published.count
