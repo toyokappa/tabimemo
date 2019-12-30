@@ -33,12 +33,15 @@ module User::LevelCountable
   private
 
     def calc_exp
-      plans.published.eager_load(:spots, :photos, :likes).sum do |plan|
-        total = plan.spots.length >= 5 ? 30 : 10
+      total = 0
+      total += followers.length * 2
+      plans.published.eager_load(:spots, :photos, :likes).each do |plan|
+        total += plan.spots.length >= 5 ? 30 : 10
         total += plan.photos.length * 1
         # N+1問題の回避策としてwhereを使わない
         total += plan.likes.select { |like| like.user_id != plan.user_id }.length * 2
       end
+      total
     end
 
     def level_up!
