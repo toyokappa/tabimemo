@@ -18,6 +18,13 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :social_accounts, dependent: :destroy
 
+  # フォロー機能
+  has_many :active_relationships, dependent: :destroy, class_name: "Relationship", foreign_key: "followed_id"
+  has_many :following, through: :active_relationships, source: :followed
+  has_many :passive_relationships, dependent: :destroy, class_name: "Relationship", foreign_key: "follower_id"
+  has_many :followers, through: :passive_relationships, source: :follower
+
+  # トロフィー集計用
   has_many :plan_page_views, through: :plans, source: :page_views
   has_many :plan_likes, through: :plans, source: :likes
   has_many :plan_comments, through: :plans, source: :comments
