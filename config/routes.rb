@@ -23,6 +23,7 @@ Rails.application.routes.draw do
     resource :profile, only: [:show], controller: "profiles"
     get "/likes", to: "profiles#like"
     get "/trophies", to: "profiles#trophy"
+    get "/followers", to: "profiles#followers"
     resource :relationship, only: [:create, :destroy]
   end
 

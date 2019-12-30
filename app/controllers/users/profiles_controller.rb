@@ -1,6 +1,6 @@
 class Users::ProfilesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:show, :like, :trophy]
-  before_action :set_user, only: [:show, :like, :trophy]
+  before_action :set_user, only: [:show, :like, :trophy, :followers]
   before_action :set_profile, only: [:edit, :update]
   before_action :set_meta, only: [:show]
 
@@ -15,6 +15,10 @@ class Users::ProfilesController < ApplicationController
 
   def trophy
     @trophy = @user.trophy
+  end
+
+  def followers
+    @followers = @user.followers
   end
 
   def edit

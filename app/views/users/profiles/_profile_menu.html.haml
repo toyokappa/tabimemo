@@ -1,5 +1,5 @@
 %ul.plan-status-menu
   %li= link_to t(".least_plans"), user_profile_path(user.name), class: "#{'active' if action_name == 'show'}"
   %li= link_to t(".liked_plans"), user_likes_path(user.name), class: "#{'active' if action_name == 'like'}"
+  %li= link_to t(".followers"), user_followers_path(user.name), class: "#{'active' if action_name == 'followers'}"
   %li= link_to t(".trophy"), user_trophies_path(user.name), class: "#{'active' if action_name == 'trophy'}"
-

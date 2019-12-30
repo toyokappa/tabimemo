@@ -60,6 +60,46 @@
   }
 }
 
+/*    followers    */
+.follower-list {
+  padding: 0;
+  .follower {
+    display: flex;
+    padding: 20px 0;
+    border-bottom: 1px solid lightgray;
+    &:first-child {
+      padding-top: 0px;
+    }
+    .item-left {
+      margin-right: 10px;
+      .follower-image {
+        img {
+          width: 80px;
+          border-radius: 50%;
+        }
+      }
+    }
+    .item-right {
+      width: 100%;
+      .item-main {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        .follower-name {
+          a {
+            color: inherit;
+            font-size: 18px;
+            font-weight: bold;
+          }
+        }
+      }
+      .item-sub {
+      }
+    }
+  }
+}
+
 /*    edit    */
 .registration-step {
   margin-bottom: 30px;
