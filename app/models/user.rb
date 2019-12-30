@@ -19,9 +19,9 @@ class User < ApplicationRecord
   has_many :social_accounts, dependent: :destroy
 
   # フォロー機能
-  has_many :active_relationships, dependent: :destroy, class_name: "Relationship", foreign_key: "followed_id"
+  has_many :active_relationships, dependent: :destroy, class_name: "Relationship", foreign_key: "follower_id"
   has_many :following, through: :active_relationships, source: :followed
-  has_many :passive_relationships, dependent: :destroy, class_name: "Relationship", foreign_key: "follower_id"
+  has_many :passive_relationships, dependent: :destroy, class_name: "Relationship", foreign_key: "followed_id"
   has_many :followers, through: :passive_relationships, source: :follower
 
   # トロフィー集計用
@@ -59,7 +59,7 @@ class User < ApplicationRecord
   end
 
   def unfollow!(other_user)
-    active_relationships.find_by(follower: other_user).destroy!
+    following.delete(other_user)
   end
 
   def following?(other_user)

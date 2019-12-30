@@ -2,6 +2,11 @@
   .profile-image
     = image_tag profile.image.present? ? profile.image.thumb.url : "no_user_image.svg"
   %h3.profile-name= user.display_name
+  - unless user == current_user
+    - if current_user.following?(user)
+      = link_to "フォロー中", user_relationship_path(user.name), method: :delete, class: "btn btn-success btn-block", data: { disable_with: "処理中..." }
+    - else
+      = link_to "フォローする", user_relationship_path(user.name), method: :post, class: "btn btn-default btn-block", data: { disable_with: "処理中..." }
   .d-flex
     .profile-level-area
       .profile-level
