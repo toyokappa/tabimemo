@@ -54,6 +54,18 @@ class User < ApplicationRecord
     profile.name.presence || name
   end
 
+  def follow!(other_user)
+    following << other_user
+  end
+
+  def unfollow!(other_user)
+    active_relationships.find_by(follower: other_user).destroy!
+  end
+
+  def following?(other_user)
+    following.include?(other_user)
+  end
+
   class << self
     def find_first_by_auth_conditions(warden_conditions)
       conditions = warden_conditions.dup
