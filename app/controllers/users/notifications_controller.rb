@@ -5,11 +5,8 @@ class Users::NotificationsController < ApplicationController
   end
 
   def update
-    if @notification.update(notification_paramas)
-      redirect_to edit_users_notification_path, notice: t(:update_success, scope: :flash)
-    else
-      render "edit"
-    end
+    @notification.update!(notification_paramas)
+    redirect_to edit_users_notification_path, notice: t(:update_success, scope: :flash)
   end
 
   private
