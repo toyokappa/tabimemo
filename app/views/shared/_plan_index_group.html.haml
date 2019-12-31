@@ -5,19 +5,28 @@
         .plan-image
           - photo = plan.get_header_image
           = image_tag photo.present? ? photo.image.thumb.url : "no_plan_image.png"
-        %h3.plan-name= plan.name
-        .plan-description
-          = plan.description.truncate(54)
-        .plan-reactions
-          .plan-pageviews
-            = fa_icon "eye"
-            = plan.total_pv
-          .plan-like
-            - if current_user&.likes&.find_by(plan_id: plan).present?
-              = fa_icon "heart"
-            - else
-              = fa_icon "heart-o"
-            = plan.likes.count
-          .plan-comment
-            = fa_icon "comment-o"
-            = plan.comments.count
+        .plan-info
+          .plan-info-right
+            .plan-user-image
+              = link_to user_profile_path(plan.user.name) do
+                = image_tag plan.user.profile_image_thumb_url
+          .plan-info-left
+            %h3.plan-name= plan.name
+            .plan-description
+              = plan.description.truncate(54)
+            .plan-user-name
+              %span by
+              = link_to plan.user.display_name, user_profile_path(plan.user.name)
+            .plan-reactions
+              .plan-pageviews
+                = fa_icon "eye"
+                = plan.total_pv
+              .plan-like
+                - if current_user&.likes&.find_by(plan_id: plan).present?
+                  = fa_icon "heart"
+                - else
+                  = fa_icon "heart-o"
+                = plan.likes.count
+              .plan-comment
+                = fa_icon "comment-o"
+                = plan.comments.count

@@ -11,5 +11,6 @@
         = simple_form_for @notification, url: users_notification_path do |f|
           = f.input :when_like
           = f.input :when_comment
+          = f.input :when_follow
           = f.input :when_news
           = f.button :submit, class: "btn-success btn-100"

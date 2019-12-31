@@ -31,7 +31,7 @@
               %li.sp= link_to t("menu.sign_out"), destroy_user_session_path, method: :delete
               %li.pc.dropdown
                 = link_to "#", class: "dropdown-image", data: { toggle: :dropdown } do
-                  = image_tag current_user.profile.image.present? ? current_user.profile.image.thumb.url : "no_user_image.svg"
+                  = image_tag current_user.profile_image_thumb_url
                 %ul.dropdown-menu
                   %li.dropdown-item= link_to t("menu.manage_plan"), users_plans_path
                   %li.dropdown-item= link_to Profile.model_name.human, user_profile_path(current_user.name)

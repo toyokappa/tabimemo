@@ -1,6 +1,6 @@
 class Users::ProfilesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:show, :like, :trophy]
-  before_action :set_user, only: [:show, :like, :trophy]
+  skip_before_action :authenticate_user!, only: [:show, :like, :trophy, :followers, :following]
+  before_action :set_user, only: [:show, :like, :trophy, :followers, :following]
   before_action :set_profile, only: [:edit, :update]
   before_action :set_meta, only: [:show]
 
@@ -15,6 +15,16 @@ class Users::ProfilesController < ApplicationController
 
   def trophy
     @trophy = @user.trophy
+  end
+
+  def followers
+    @follow_users = @user.followers.order(created_at: :desc)
+    render :follow_list
+  end
+
+  def following
+    @follow_users = @user.following.order(created_at: :desc)
+    render :follow_list
   end
 
   def edit
@@ -48,7 +58,7 @@ class Users::ProfilesController < ApplicationController
         title = @user.profile.name.present? ? "#{@user.profile.name}さん" : "#{@user.name}さん"
         set_common_meta(:title, title)
         set_common_meta(:description, @user.profile.description) if @user.profile.description.present?
-        set_common_meta(:image, @user.profile.image.url) if @user.profile.image.present?
+        set_common_meta(:image, @user.profile_image_url) if @user.profile.image.present?
       end
     end
 end

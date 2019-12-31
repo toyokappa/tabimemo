@@ -19,10 +19,13 @@ Rails.application.routes.draw do
     get "/unsubscribe", to: "unsubscribe#show"
   end
 
-  resources :users, param: :name, path: "/", only: [] do
-    resource :profile, only: [:show], controller: "users/profiles"
-    get "/likes", to: "users/profiles#like"
-    get "/trophies", to: "users/profiles#trophy"
+  resources :users, module: :users, param: :name, path: "/", only: [] do
+    resource :profile, only: [:show], controller: "profiles"
+    get "/likes", to: "profiles#like"
+    get "/trophies", to: "profiles#trophy"
+    get "/followers", to: "profiles#followers"
+    get "/following", to: "profiles#following"
+    resource :relationship, only: [:create, :destroy]
   end
 
   resources :plans, only: [:index, :show]

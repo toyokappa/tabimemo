@@ -15,14 +15,20 @@
     .plan-index-group
       %h2= t(".latest_plans")
       - if @plans.present?
-        = render "shared/plan_index_group", plans: @plans, size: "lg"
-        - if Plan.published.length > 8
+        = render "shared/plan_index_group", plans: @plans.take(8), size: "lg"
+        - if @plans.length > 8
           = link_to t("link.more_plans"), plans_path(type: :latest)
       - else
         = t("view.no_plans")
     - if @pop_plans.present?
       .plan-index-group
         %h2= t(".popular_plans")
-        = render "shared/plan_index_group", plans: @pop_plans, size: "lg"
-        - if Plan.with_popular.length > 8
+        = render "shared/plan_index_group", plans: @pop_plans.take(8), size: "lg"
+        - if @pop_plans.length > 8
           = link_to t("link.more_plans"), plans_path(type: :popular)
+    - if @following_plans.present?
+      .plan-index-group
+        %h2= t(".following_plans")
+        = render "shared/plan_index_group", plans: @following_plans.take(8), size: "lg"
+        - if @following_plans.length > 8
+          = link_to t("link.more_plans"), plans_path(type: :following)

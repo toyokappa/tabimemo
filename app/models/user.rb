@@ -18,6 +18,14 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :social_accounts, dependent: :destroy
 
+  # フォロー機能
+  has_many :active_relationships, dependent: :destroy, class_name: "Relationship", foreign_key: "follower_id"
+  has_many :following, through: :active_relationships, source: :followed
+  has_many :passive_relationships, dependent: :destroy, class_name: "Relationship", foreign_key: "followed_id"
+  has_many :followers, through: :passive_relationships, source: :follower
+  has_many :following_plans, -> { order(created_at: :desc) }, through: :following, source: :plans
+
+  # トロフィー集計用
   has_many :plan_page_views, through: :plans, source: :page_views
   has_many :plan_likes, through: :plans, source: :likes
   has_many :plan_comments, through: :plans, source: :comments
@@ -45,6 +53,26 @@ class User < ApplicationRecord
 
   def display_name
     profile.name.presence || name
+  end
+
+  def profile_image_url
+    profile.image_url.presence || "no_user_image.svg"
+  end
+
+  def profile_image_thumb_url
+    profile.image&.thumb&.url || "no_user_image.svg"
+  end
+
+  def follow!(other_user)
+    following << other_user
+  end
+
+  def unfollow!(other_user)
+    following.delete(other_user)
+  end
+
+  def following?(other_user)
+    following.include?(other_user)
   end
 
   class << self

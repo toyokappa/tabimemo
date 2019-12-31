@@ -1,0 +1,24 @@
+.container
+  .row
+    = render "profile", profile: @user.profile, user: @user
+    .plan-index-area.col-lg-9.col-sm-8
+      .plan-index-group
+        = render "profile_menu", user: @user
+        %ul.follow-user-list
+          - @follow_users.each do |follow_user|
+            %li.follow-user
+              .item-left
+                .follow-user-image
+                  = image_tag follow_user.profile_image_thumb_url
+              .item-right
+                .item-main
+                  .follow-user-name
+                    = link_to follow_user.display_name, user_profile_path(follow_user.name)
+                  .follow-user-follow-button
+                    - if current_user.following?(follow_user)
+                      = link_to "フォロー中", user_relationship_path(follow_user.name), method: :delete, class: "btn btn-success btn-sm", data: { disable_with: "処理中..." }
+                    - else
+                      = link_to "フォローする", user_relationship_path(follow_user.name), method: :post, class: "btn btn-default btn-sm", data: { disable_with: "処理中..." }
+                .item-sub
+                  .follow-user-description
+                    = follow_user.profile.description
