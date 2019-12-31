@@ -23,6 +23,7 @@ class User < ApplicationRecord
   has_many :following, through: :active_relationships, source: :followed
   has_many :passive_relationships, dependent: :destroy, class_name: "Relationship", foreign_key: "followed_id"
   has_many :followers, through: :passive_relationships, source: :follower
+  has_many :following_plans, -> { order(created_at: :desc) }, through: :following, source: :plans
 
   # トロフィー集計用
   has_many :plan_page_views, through: :plans, source: :page_views

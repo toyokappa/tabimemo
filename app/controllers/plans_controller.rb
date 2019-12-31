@@ -4,8 +4,11 @@ class PlansController < ApplicationController
   before_action :set_meta
 
   def index
-    if params[:type] == "popular"
+    case params[:type]
+    when "popular"
       @plans = Plan.with_popular.page(params[:page])
+    when "following"
+      @plans = current_user.following_plans.page(params[:page]) if user_signed_in?
     else
       @plans = Plan.published.page(params[:page])
     end

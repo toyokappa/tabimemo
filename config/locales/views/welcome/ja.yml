@@ -5,6 +5,7 @@ ja:
       page_top_sub: あなたのオリジナルのプランをみんなにシェアしよう
       latest_plans: 最新のプラン
       popular_plans: 人気のプラン
+      following_plans: フォロー中のプラン # TODO: もっと良い名付け
   link:
     register_plan: プランを登録する
     sign_up: まずはユーザー登録
