@@ -6,4 +6,5 @@ ja:
       notification:
         when_like: 自分のプランにいいねがついたとき
         when_comment: 自分のプランにコメントがついたとき
+        when_follow: 誰かからフォローされたとき
         when_news: Tabimemoのサービスに関するお知らせがあったとき
