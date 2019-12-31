@@ -95,30 +95,54 @@
           }
         }
       }
-      .plan-name {
-        @include font-size(18px, 15px);
-        font-weight: bold;
-        margin: 10px 0 6px;
-      }
-      .plan-description {
-        @include font-size(14px, 13px);
-        margin-bottom: 6px;
-      }
-      .plan-reactions {
-        font-size: 16px;
-        .plan-pageviews {
-          display: inline-block;
-          color: #4dadf7;
-          margin-right: 10px;
+      .plan-info {
+        display: flex;
+        margin-top: 10px;
+        .plan-info-right {
+          .plan-user-image {
+            img {
+              width: 40px;
+              border-radius: 50%;
+              margin-right: 10px;
+            }
+          }
         }
-        .plan-like {
-          display: inline-block;
-          color: crimson;
-          margin-right: 10px;
-        }
-        .plan-comment {
-          display: inline-block;
-          color: #5cb85c;
+        .plan-info-left {
+          width: 100%;
+          .plan-name {
+            @include font-size(16px, 14px);
+            font-weight: bold;
+            margin: 0 0 6px;
+          }
+          .plan-description {
+            @include font-size(14px, 13px);
+            margin-bottom: 3px;
+          }
+          .plan-user-name {
+            @include font-size(11px, 10px);
+            color: grey;
+            margin-bottom: 3px;
+            a {
+              color: inherit;
+            }
+          }
+          .plan-reactions {
+            font-size: 16px;
+            .plan-pageviews {
+              display: inline-block;
+              color: #4dadf7;
+              margin-right: 10px;
+            }
+            .plan-like {
+              display: inline-block;
+              color: crimson;
+              margin-right: 10px;
+            }
+            .plan-comment {
+              display: inline-block;
+              color: #5cb85c;
+            }
+          }
         }
       }
     }
