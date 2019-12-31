@@ -1,6 +1,6 @@
 .profile-area.col-lg-3.col-sm-4
   .profile-image
-    = image_tag profile.image&.url || "no_user_image.svg"
+    = image_tag profile.image_url.presence || "no_user_image.svg"
   %h3.profile-name= user.display_name
   - unless user == current_user
     - if current_user.following?(user)

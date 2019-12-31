@@ -55,6 +55,14 @@ class User < ApplicationRecord
     profile.name.presence || name
   end
 
+  def profile_image_url
+    profile.image_url.presence || "no_user_image.svg"
+  end
+
+  def profile_image_thumb_url
+    profile.image&.thumb&.url || "no_user_image.svg"
+  end
+
   def follow!(other_user)
     following << other_user
   end

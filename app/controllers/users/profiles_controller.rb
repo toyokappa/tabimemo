@@ -58,7 +58,7 @@ class Users::ProfilesController < ApplicationController
         title = @user.profile.name.present? ? "#{@user.profile.name}さん" : "#{@user.name}さん"
         set_common_meta(:title, title)
         set_common_meta(:description, @user.profile.description) if @user.profile.description.present?
-        set_common_meta(:image, @user.profile.image.url) if @user.profile.image.present?
+        set_common_meta(:image, @user.profile_image_url) if @user.profile.image.present?
       end
     end
 end

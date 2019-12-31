@@ -9,7 +9,7 @@
           .plan-info-right
             .plan-user-image
               = link_to user_profile_path(plan.user.name) do
-                = image_tag plan.user.profile.image&.thumb&.url || "no_user_image.svg"
+                = image_tag plan.user.profile_image_thumb_url
           .plan-info-left
             %h3.plan-name= plan.name
             .plan-description
