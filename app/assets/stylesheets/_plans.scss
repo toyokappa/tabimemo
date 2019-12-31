@@ -781,10 +781,16 @@
       text-decoration: none;
       &:hover {
         color: #5cb85c;
+        .badge {
+          background-color: #5cb85c;
+        }
       }
       &.active {
         color: #5cb85c;
         border-bottom: 3px solid #5cb85c;
+        .badge {
+          background-color: #5cb85c;
+        }
       }
     }
   }

@@ -1,6 +1,12 @@
 %ul.plan-status-menu
   %li= link_to t(".least_plans"), user_profile_path(user.name), class: "#{'active' if action_name == 'show'}"
   %li= link_to t(".liked_plans"), user_likes_path(user.name), class: "#{'active' if action_name == 'like'}"
-  %li= link_to t(".followers"), user_followers_path(user.name), class: "#{'active' if action_name == 'followers'}"
-  %li= link_to t(".following"), user_following_path(user.name), class: "#{'active' if action_name == 'following'}"
+  %li
+    = link_to user_followers_path(user.name), class: "#{'active' if action_name == 'followers'}" do
+      %span= t(".followers")
+      %span.badge= user.followers.length
+  %li
+    = link_to user_following_path(user.name), class: "#{'active' if action_name == 'following'}" do
+      %span= t(".following")
+      %span.badge= user.following.length
   %li= link_to t(".trophy"), user_trophies_path(user.name), class: "#{'active' if action_name == 'trophy'}"
