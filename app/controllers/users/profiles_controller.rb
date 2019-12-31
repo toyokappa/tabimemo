@@ -1,6 +1,6 @@
 class Users::ProfilesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:show, :like, :trophy]
-  before_action :set_user, only: [:show, :like, :trophy, :followers]
+  skip_before_action :authenticate_user!, only: [:show, :like, :trophy, :followers, :following]
+  before_action :set_user, only: [:show, :like, :trophy, :followers, :following]
   before_action :set_profile, only: [:edit, :update]
   before_action :set_meta, only: [:show]
 
@@ -18,7 +18,13 @@ class Users::ProfilesController < ApplicationController
   end
 
   def followers
-    @followers = @user.followers
+    @follow_users = @user.followers.order(created_at: :desc)
+    render :follow_list
+  end
+
+  def following
+    @follow_users = @user.following.order(created_at: :desc)
+    render :follow_list
   end
 
   def edit
