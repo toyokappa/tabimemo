@@ -4,6 +4,7 @@ class Users::RelationshipsController < ApplicationController
     current_user.follow!(follower)
     follower.obtain_exp!
     follower.trophy.judge_follower_count!
+    FollowMailer.email(follower).deliver
     redirect_back fallback_location: user_profile_path(follower.name), notice: "#{follower.display_name}さんをフォローしました"
   end
 

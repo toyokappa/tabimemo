@@ -1,0 +1,7 @@
+<%= @follower.display_name %>さんからフォローされました!
+
+<%= @follower.display_name %>さんのプロフィールをチェック
+<%= user_profile_url(@follower.name) %>
+
+メール通知に関する設定は下記のURLから変更ができます。
+<%= edit_users_notification_url %>
