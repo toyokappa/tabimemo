@@ -34,3 +34,11 @@ ja:
         comment_count_lv3_desc: 100件のコメントがつく
         comment_count_lv4: 話題沸騰！
         comment_count_lv4_desc: 500件のコメントがつく
+        follower_count_lv1: 気になるあの人
+        follower_count_lv1_desc: 50人からフォローされる
+        follower_count_lv2: 話題のあの人
+        follower_count_lv2_desc: 100人からフォローされる
+        follower_count_lv3: インフルエンサー
+        follower_count_lv3_desc: 500人からフォローされる
+        follower_count_lv4: 教祖様
+        follower_count_lv4_desc: 1000人からフォローされる

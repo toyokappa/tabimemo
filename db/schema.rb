@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191229143757) do
+ActiveRecord::Schema.define(version: 20191231064410) do
 
   create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC" do |t|
     t.text "content"
@@ -138,6 +138,10 @@ ActiveRecord::Schema.define(version: 20191229143757) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "follower_count_lv1", default: false, null: false
+    t.boolean "follower_count_lv2", default: false, null: false
+    t.boolean "follower_count_lv3", default: false, null: false
+    t.boolean "follower_count_lv4", default: false, null: false
     t.index ["user_id"], name: "index_trophies_on_user_id"
   end
 

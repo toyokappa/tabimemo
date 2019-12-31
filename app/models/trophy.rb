@@ -104,4 +104,26 @@ class Trophy < ApplicationRecord
       update!(comment_count_lv4: true)
     end
   end
+
+  # フォロワー数の実績 ---------
+  def judge_follower_count!
+    case user.followers.count
+    when FOLLOWER_COUNT_LV1_THRESHOLD
+      return if follower_count_lv1?
+
+      update!(follower_count_lv1: true)
+    when FOLLOWER_COUNT_LV2_THRESHOLD
+      return if follower_count_lv2?
+
+      update!(follower_count_lv2: true)
+    when FOLLOWER_COUNT_LV3_THRESHOLD
+      return if follower_count_lv3?
+
+      update!(follower_count_lv3: true)
+    when FOLLOWER_COUNT_LV4_THRESHOLD
+      return if follower_count_lv4?
+
+      update!(follower_count_lv4: true)
+    end
+  end
 end
