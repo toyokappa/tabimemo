@@ -3,10 +3,9 @@
 # エラーで処理中断
 set -ex
 
-export APP_NAME=bestcode
-export AWS_ACCOUNT_ID=195500977316
-export NAMESPACE=toyokappa
-export CONTAINER_REGISTRY=${AWS_ACCOUNT_ID}.dkr.ecr.ap-northeast-1.amazonaws.com
+# build&deploy共通の環境変数取り込み
+source ${BASH_SOURCE%/*}/env.sh
+
 export SHA1=$1
 export ENV=$2
 
@@ -20,7 +19,7 @@ $(aws ecr get-login --region ap-northeast-1)
 build_rails_image() {
   echo start rails container build
   local rails_docker_cache=~/caches/docker/${APP_NAME}-rails_${ENV}.tar
-  local rails_image_name=${CONTAINER_REGISTRY}/${NAMESPACE}/${APP_NAME}-rails:${ENV}_${SHA1}
+  local rails_image_name=${CONTAINER_REGISTRY}/${APP_NAME}-rails:${ENV}_${SHA1}
 
   if [[ -e ${rails_docker_cache} ]]; then
     docker load -i ${rails_docker_cache}

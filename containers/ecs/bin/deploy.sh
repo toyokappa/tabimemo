@@ -3,10 +3,9 @@
 # エラーで処理中断
 set -ex
 
-export APP_NAME=tabimemo
-export AWS_ACCOUNT_ID=195500977316
-export NAMESPACE=toyokappa
-export CONTAINER_REGISTRY=${AWS_ACCOUNT_ID}.dkr.ecr.ap-northeast-1.amazonaws.com
+# build&deploy共通の環境変数取り込み
+source ${BASH_SOURCE%/*}/env.sh
+
 export SHA1=$1
 export ENV=$2
 export APP_PREFIX=${APP_NAME}-${ENV}
