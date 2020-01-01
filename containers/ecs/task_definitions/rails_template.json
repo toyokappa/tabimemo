@@ -1,0 +1,40 @@
+{
+    "family": "${APP_NAME}-${ENV}-rails",
+    "executionRoleArn": "${APP_NAME}-${ENV}_ecs",
+    "taskRoleArn": "arn:aws:iam::${AWS_ACCOUNT_ID}:role/${APP_NAME}-${ENV}-task-role",
+    "containerDefinitions": [
+        {
+            "name": "rails",
+            "image": "${CONTAINER_REGISTRY}/${APP_NAME}-app:${ENV}_${SHA1}",
+            "cpu": 0,
+            "memory": ${RAILS_MEMORY},
+            "portMappings": [
+                {
+                    "containerPort": 3000,
+                    "hostPort": 3000,
+                    "protocol": "tcp"
+                }
+            ],
+            "essential": true,
+            "command": [
+                "/usr/src/app/bin/start_server.sh"
+            ],
+            "environment": [
+            ],
+            "secrets": [
+            ],
+            "privileged": false,
+            "readonlyRootFilesystem": false,
+            "pseudoTerminal": false,
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-group": "${APP_NAME}-${ENV}-lg",
+                    "awslogs-region": "ap-northeast-1",
+                    "awslogs-stream-prefix": "rails"
+                }
+            }
+        }
+    ],
+    "memory": "${TOTAL_MEMORY}"
+}
