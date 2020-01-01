@@ -452,3 +452,8 @@ form {
     }
   }
 }
+
+/*    toastr override    */
+#toast-container>div {
+  width: 400px;
+}

@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     post "/photos", to: "photos#create"
     get "/unsubscribe", to: "unsubscribe#show"
     patch "/level_up", to: "level_up#update"
+    patch "/got_trophy", to: "got_trophy#update"
   end
 
   resources :users, module: :users, param: :name, path: "/", only: [] do
