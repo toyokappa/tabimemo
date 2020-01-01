@@ -3,6 +3,13 @@ class Trophy < ApplicationRecord
 
   belongs_to :user
 
+  before_save do
+    got_trophy_name = self.changed.first
+    if got_trophy_name && send(got_trophy_name)
+      user.update!(got_trophy_name: got_trophy_name)
+    end
+  end
+
   class << self
     def titles
       column_names - %w[id user_id created_at updated_at]

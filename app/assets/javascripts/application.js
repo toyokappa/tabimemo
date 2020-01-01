@@ -18,6 +18,7 @@
 //= require jquery.ui.touch-punch.min
 //= require lodash
 //= require baguetteBox.min
+//= require toastr
 //= require turbolinks
 //= require bootstrap
 //= require_tree .

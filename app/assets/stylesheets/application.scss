@@ -13,6 +13,7 @@
  *= require jquery-ui
  *= require jquery-ui/autocomplete
  *= require jquery-ui/sortable
+ *= require toastr
  *= require_self
  */
 
@@ -450,4 +451,9 @@ form {
       margin-bottom: 0;
     }
   }
+}
+
+/*    toastr override    */
+#toast-container>div {
+  width: 400px;
 }
