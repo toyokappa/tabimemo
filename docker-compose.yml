@@ -8,7 +8,8 @@ volumes:
 services:
   mysql:
     build:
-      context: ./containers/db
+      context: .
+      dockerfile: ./containers/local/db/Dockerfile
     ports:
       - "7706:3306"
     volumes:
@@ -24,7 +25,9 @@ services:
       - redis-volume:/data
 
   web:
-    build: .
+    build:
+      context: .
+      dockerfile: ./containers/local/rails/Dockerfile
     volumes:
       - .:/usr/src/app:cached
       - bundle-volume:/usr/src/app/vendor/bundle
