@@ -49,7 +49,7 @@ module User::LevelCountable
       return false if LEVEL_TABLE.last <= exp
       return false if level >= next_level
 
-      update!(level: next_level)
+      update!(level: next_level, level_up: true)
     end
 
     def next_level

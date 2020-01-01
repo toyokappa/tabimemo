@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191231071306) do
+ActiveRecord::Schema.define(version: 20191231150815) do
 
   create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC" do |t|
     t.text "content"
@@ -162,6 +162,7 @@ ActiveRecord::Schema.define(version: 20191231071306) do
     t.string "name", default: "", null: false
     t.integer "exp", default: 0, null: false
     t.integer "level", default: 1, null: false
+    t.boolean "level_up", default: false, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["name"], name: "index_users_on_name", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
