@@ -1,3 +1,8 @@
+require 'json'
+require 'yaml'
+require 'set'
+require 'optparse'
+
 # コマンドラインオプションを格納する箱
 Config = Struct.new(:task_definition_template, :env_file, :secrets_file) do
   def valid?
