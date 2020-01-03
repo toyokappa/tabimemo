@@ -45,8 +45,6 @@ gem "sitemap_generator"
 gem "toastr-rails"
 gem "turbolinks", "~> 5"
 gem "uglifier", ">= 1.3.0"
-gem "unicorn"
-gem "unicorn-worker-killer"
 gem "whenever", require: false
 
 group :development, :test do
@@ -61,12 +59,6 @@ end
 
 group :development do
   gem "annotate", require: false
-  gem "capistrano"
-  gem "capistrano-bundler"
-  gem "capistrano-rails"
-  gem "capistrano-rbenv"
-  gem "capistrano-sidekiq", github: "seuros/capistrano-sidekiq"
-  gem "capistrano3-unicorn"
   gem "i18n-tasks"
   gem "letter_opener"
   gem "letter_opener_web"
