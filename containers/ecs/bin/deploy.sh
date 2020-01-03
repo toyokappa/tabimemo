@@ -31,7 +31,8 @@ deploy_rails() {
   echo "########################################### update rails task definition start"
 
   aws ecs register-task-definition \
-    --cli-input-json file://task_definitions_rails.json
+    --cli-input-json file://task_definitions_rails.json \
+    --region ap-northeast-1
 
   local least_task_definition=$(least_task_definition ${APP_PREFIX}-rails)
 
@@ -59,7 +60,8 @@ deploy_sidekiq() {
   echo "########################################### update sidekiq task definition start"
 
   aws ecs register-task-definition \
-    --cli-input-json file://task_definitions_sidekiq.json
+    --cli-input-json file://task_definitions_sidekiq.json \
+    --region ap-northeast-1
 
   local least_task_definition=$(least_task_definition ${APP_PREFIX}-sidekiq)
 
