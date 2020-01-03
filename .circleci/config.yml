@@ -27,7 +27,7 @@ jobs:
             ./containers/ecs/bin/build_docker.sh $CIRCLE_SHA1 production
       - save_cache:
           name: Saving Docker Image cache
-          key: 001-cache-docker-image-{{ .Branch }}-{{ checksum "Dockerfile" }}
+          key: 001-cache-docker-image-{{ .Branch }}-{{ checksum "containers/ecs/rails/Dockerfile" }}
           paths:
             - "~/caches/docker"
       - save_cache:
