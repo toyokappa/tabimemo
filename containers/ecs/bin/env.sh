@@ -1,7 +1,7 @@
 #! /bin/bash
 
-export APP_NAME=bestcode
-export AWS_ACCOUNT_ID=195500977316
+export APP_NAME=tabimemo
+export AWS_ACCOUNT_ID=160320342740
 export CONTAINER_REGISTRY=${AWS_ACCOUNT_ID}.dkr.ecr.ap-northeast-1.amazonaws.com
 
 # タスク定義のprefixから最新のタスク定義のarnを返す
