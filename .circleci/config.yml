@@ -22,6 +22,15 @@ jobs:
             - 001-cache-bundle-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
             - 001-cache-bundle-{{ .Branch }}-
       - run:
+          name: compute assets digest
+          command: |
+            git log -1 --format="%h" app/assets > assets-digest
+      - restore_cache:
+          name: Restoring assets cache
+          keys:
+            - v3-cache-assets-{{ .Branch }}-{{ checksum "assets-digest" }}
+            - v3-cache-assets-{{ .Branch }}-
+      - run:
           name: build docker
           command: |
             ./containers/ecs/bin/build_docker.sh $CIRCLE_SHA1 production
@@ -35,6 +44,11 @@ jobs:
           key: 001-cache-bundle-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
           paths:
             - "~/caches/bundle"
+      - save_cache:
+          name: Saving assets cache
+          key: v3-cache-assets-{{ .Branch }}-{{ checksum "assets-digest" }}
+          paths:
+            - "public/assets"
       - run:
           name: deploy
           command: |
