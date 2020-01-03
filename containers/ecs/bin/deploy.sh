@@ -23,7 +23,7 @@ deploy_rails() {
   ruby ./containers/ecs/scripts/gen_task_definition.rb \
     --env_file ./containers/ecs/config/${ENV}.env \
     --secrets-file ./containers/ecs/config/secrets.yml \
-    --task-definition-template ./containers/ecs/task_definition/rails_template.json | jq '.' > task_definitions_rails.json
+    --task-definition-template ./containers/ecs/task_definitions/rails_template.json | jq '.' > task_definitions_rails.json
   cat task_definitions_rails.json
 
   echo "########################################### generate rails task definition end"
@@ -51,15 +51,15 @@ deploy_sidekiq() {
   ruby ./containers/ecs/scripts/gen_task_definition.rb \
     --env_file ./containers/ecs/config/${ENV}.env \
     --secrets-file ./containers/ecs/config/secrets.yml \
-    --task-definition-template ./containers/ecs/task_definition/rails_template.json | jq '.' > task_definitions_rails.json
-  cat task_definitions_rails.json
+    --task-definition-template ./containers/ecs/task_definitions/sidekiq_template.json | jq '.' > task_definitions_sidekiq.json
+  cat task_definitions_sidekiq.json
 
   echo "########################################### generate sidekiq task definition end"
 
   echo "########################################### update sidekiq task definition start"
 
   aws ecs register-task-definition \
-    --cli-input-json file://task_definitions_rails.json
+    --cli-input-json file://task_definitions_sidekiq.json
 
   local least_task_definition=$(least_task_definition ${APP_PREFIX}-sidekiq)
 
