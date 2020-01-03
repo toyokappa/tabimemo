@@ -14,7 +14,7 @@ jobs:
       - restore_cache:
           name: Restoring docker cache
           keys:
-            - 001-cache-docker-image-{{ .Branch }}-{{ checksum "Dockerfile" }}
+            - 001-cache-docker-image-{{ .Branch }}-{{ checksum "containers/ecs/rails/Dockerfile" }}
             - 001-cache-docker-image-{{ .Branch }}-
       - restore_cache:
           name: Restoring bundle cache
