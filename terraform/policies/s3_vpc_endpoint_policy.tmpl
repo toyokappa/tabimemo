@@ -1,9 +1,10 @@
 {
+  "Version": "2012-10-17",
   "Statement": [
     {
       "Sid": "Access-to-specific-bucket-only",
-      "Principal": {
-        "Service": "ec2.amazonaws.com"
+      "PrincipalGroup": {
+        "AWS": "svc:ec2.amazonaws.com"
       },
       "Action": [
         "s3:GetObject",

@@ -4,7 +4,7 @@ resource "aws_lb" "alb" {
   load_balancer_type = "application"
 
   security_groups = [aws_security_group.alb.id]
-  subnets = [aws_subnet.public_a.id]
+  subnets = [aws_subnet.public_a.id, aws_subnet.public_c.id]
 
   enable_deletion_protection = true
 
@@ -47,7 +47,7 @@ resource "aws_lb_listener" "alb" {
   port = 443
   protocol = "HTTPS"
   ssl_policy = "ELBSecurityPolicy-2016-08"
-  certificate_arn = ""
+  certificate_arn = local.alb_certificate_arn
 
   default_action {
     type = "forward"

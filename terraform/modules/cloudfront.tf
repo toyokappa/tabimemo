@@ -3,6 +3,7 @@ resource "aws_cloudfront_distribution" "main" {
   is_ipv6_enabled = true
   comment = "${local.app_name}-${terraform.workspace}-distribution"
   default_root_object = ""
+  aliases = local.domain
   
   #-----------------------------------------------------------
   # web
@@ -33,7 +34,7 @@ resource "aws_cloudfront_distribution" "main" {
       }
     }
 
-    viewer_protocol_policy = "rediect-to-https"
+    viewer_protocol_policy = "redirect-to-https"
     min_ttl = 0
     default_ttl = 0
     max_ttl = 0
@@ -65,7 +66,7 @@ resource "aws_cloudfront_distribution" "main" {
       }
     }
 
-    viewer_protocol_policy = "rediect-to-https"
+    viewer_protocol_policy = "redirect-to-https"
     min_ttl = 0
     default_ttl = 0
     max_ttl = 0
@@ -80,11 +81,6 @@ resource "aws_cloudfront_distribution" "main" {
     s3_origin_config {
       origin_access_identity = "origin-access-identity/cloudfront/${aws_cloudfront_origin_access_identity.resources.id}"
     }
-  }
-
-  origin {
-    domain_name = aws_s3_bucket.resources.bucket_domain_name
-    origin_id = aws_s3_bucket.resources.id
   }
 
   ordered_cache_behavior {
@@ -102,18 +98,16 @@ resource "aws_cloudfront_distribution" "main" {
       }
     }
 
-    viewer_protocol_policy = "rediect-to-https"
+    viewer_protocol_policy = "redirect-to-https"
     min_ttl = 0
     default_ttl = 0
     max_ttl = 0
   }
 
   viewer_certificate {
-    cloudfront_default_certificate = true
-
-    # acm_certificate_arn      = ""
-    # ssl_support_method       = "sni-only"
-    # minimum_protocol_version = "TLSv1.2_2018"
+    acm_certificate_arn      = local.cf_certificate_arn
+    ssl_support_method       = "sni-only"
+    minimum_protocol_version = "TLSv1.2_2018"
   }
 
   restrictions {

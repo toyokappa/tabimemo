@@ -1,6 +1,6 @@
 provider "aws" {
   region  = "ap-northeast-1"
-  profile = "wakatter"
+  profile = "tabimemo"
 }
 
 module "app" {

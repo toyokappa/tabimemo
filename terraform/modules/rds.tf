@@ -1,17 +1,17 @@
 resource "aws_db_instance" "db" {
   allocated_storage = 20
   storage_type = "gp2"
-  engine = "aurora-mysql"
+  engine = "mysql"
   engine_version = "5.7"
   instance_class = "db.t2.micro"
   multi_az = false
   db_subnet_group_name = aws_db_subnet_group.db.name
   vpc_security_group_ids = [aws_security_group.db.id]
-  storage_encrypted = true
+  # storage_encrypted = true
   deletion_protection = true
-  name = "${local.app_name}-${terraform.workspace}-db"
-  username = "tabimemo_user"
-  password = random_id.db_password.b64
+  identifier = "${local.app_name}-${terraform.workspace}-db"
+  username = local.db_username
+  password = local.db_password
   parameter_group_name = aws_db_parameter_group.db.name
 
   lifecycle {
@@ -21,7 +21,10 @@ resource "aws_db_instance" "db" {
 
 resource "aws_db_subnet_group" "db" {
   name = "${local.app_name}-${terraform.workspace}-db-subnet-group"
-  subnet_ids = [aws_subnet.private_a.id]
+  subnet_ids = [
+    aws_subnet.private_a.id,
+    aws_subnet.private_c.id,
+  ]
 }
 
 resource "aws_security_group" "db" {
@@ -44,13 +47,9 @@ resource "aws_security_group" "db" {
   }
 }
 
-resource "random_id" "db_password" {
-  byte_length = 8
-}
-
 resource "aws_db_parameter_group" "db" {
   name = "${local.app_name}-${terraform.workspace}-db-parameter-group"
-  family = "aurora-mysql5.7"
+  family = "mysql5.7"
 
   parameter {
     name         = "character_set_client"
