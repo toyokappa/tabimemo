@@ -10,6 +10,8 @@ jobs:
         - feature/deploy
     steps:
       - checkout
+      - aws-cli/setup:
+          profile-name: tabimemo
       - setup_remote_docker
       - restore_cache:
           name: Restoring docker cache
