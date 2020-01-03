@@ -14,6 +14,7 @@ BUNDLE_CACHE_PATH=~/caches/bundle
 bundle install --path=${BUNDLE_CACHE_PATH}
 
 # asset precompile
+SECRET_KEY_BASE=$(aws ssm get-parameters --names "/${APP_NAME}/${ENV}/secret_key_base" --output=text --with-decryption --query "Parameters[0].Value") \
 ASSET_SYNC=true \
 RAILS_ENV=${ENV} \
 bundle exec rails assets:precompile --trace
