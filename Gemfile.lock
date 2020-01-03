@@ -53,6 +53,11 @@ GEM
       activerecord (>= 3.2, < 7.0)
       rake (>= 10.4, < 14.0)
     arel (8.0.0)
+    asset_sync (2.8.2)
+      activemodel (>= 4.1.0)
+      fog-core
+      mime-types (>= 2.99)
+      unf
     ast (2.4.0)
     autoprefixer-rails (9.7.3)
       execjs
@@ -404,6 +409,9 @@ GEM
       thread_safe (~> 0.1)
     uglifier (4.2.0)
       execjs (>= 0.3.0, < 3)
+    unf (0.1.4)
+      unf_ext
+    unf_ext (0.0.7.6)
     unicode-display_width (1.6.0)
     warden (1.2.8)
       rack (>= 2.0.6)
@@ -427,6 +435,7 @@ PLATFORMS
 
 DEPENDENCIES
   annotate
+  asset_sync
   aws-ses
   bootstrap-sass
   capybara

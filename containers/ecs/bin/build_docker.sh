@@ -13,6 +13,11 @@ export ENV=$2
 BUNDLE_CACHE_PATH=~/caches/bundle
 bundle install --path=${BUNDLE_CACHE_PATH}
 
+# asset precompile
+ASSET_SYNC=true \
+RAILS_ENV=${ENV} \
+bundle exec rails assets:precompile --trace
+
 $(aws ecr get-login --region ap-northeast-1)
 
 # Rails作成
