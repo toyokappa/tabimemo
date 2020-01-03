@@ -58,6 +58,7 @@ gem "rollbar"
 
 gem "ransack"
 gem "uglifier", ">= 1.3.0"
+gem "therubyracer"
 gem "whenever", require: false
 
 group :development, :test do

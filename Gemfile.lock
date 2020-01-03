@@ -209,6 +209,7 @@ GEM
       actionmailer (>= 3.2)
       letter_opener (~> 1.0)
       railties (>= 3.2)
+    libv8 (3.16.14.19)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -322,6 +323,7 @@ GEM
       redis (>= 3.0.4)
     redis-objects (1.5.0)
       redis (~> 4.0)
+    ref (2.0.0)
     regexp_parser (1.6.0)
     responders (3.0.0)
       actionpack (>= 5.0)
@@ -397,6 +399,9 @@ GEM
     temple (0.8.2)
     terminal-table (1.8.0)
       unicode-display_width (~> 1.1, >= 1.1.1)
+    therubyracer (0.12.3)
+      libv8 (~> 3.16.14.15)
+      ref
     thor (1.0.1)
     thread_safe (0.3.6)
     tilt (2.0.10)
@@ -489,6 +494,7 @@ DEPENDENCIES
   simple_form
   sitemap_generator
   spring
+  therubyracer
   toastr-rails
   turbolinks (~> 5)
   tzinfo-data
