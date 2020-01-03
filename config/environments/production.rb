@@ -60,10 +60,11 @@ Rails.application.configure do
   # Use a real queuing backend for Active Job (and separate queues per environment)
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "tabimemo_#{Rails.env}"
+  domain = "tabimemo.xyz"
   config.action_mailer.perform_caching = false
   config.action_mailer.raise_delivery_errors = false
   config.action_mailer.perform_caching = false
-  config.action_mailer.default_url_options = { host: "tabimemo.fun", protocol: "https" }
+  config.action_mailer.default_url_options = { host: domain, protocol: "https" }
   config.action_mailer.delivery_method = :ses
 
   # Ignore bad email addresses and do not raise email delivery errors.
@@ -97,7 +98,7 @@ Rails.application.configure do
   GA.tracker = "UA-100430187-2"
 
   # Custom configure
-  config.x.mail.noreply = "noreply@tabimemo.fun"
+  config.x.mail.noreply = "noreply@#{domain}"
   config.x.mail.to = "kppg42@gmail.com"
   config.x.google_apis.map = ENV["GOOGLE_MAPS_API"]
 
