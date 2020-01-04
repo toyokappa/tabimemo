@@ -32,7 +32,6 @@ deploy_rails() {
 
   # debug
   aws --version
-  aws ecs register-task-definition --generate-cli-skeleton --region ap-northeast-1
 
   aws ecs register-task-definition \
     --cli-input-json file://task_definitions_rails.json \
