@@ -5,6 +5,7 @@ set -ex
 
 # build&deploy共通の環境変数取り込み
 source ${BASH_SOURCE%/*}/env.sh
+export -f latest_task_definition
 
 export SHA1=$1
 export ENV=$2
