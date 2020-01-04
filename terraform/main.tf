@@ -1,5 +1,4 @@
 provider "aws" {
-  required_version = ">= 0.12.0"
   region  = "ap-northeast-1"
   profile = "tabimemo"
 }
@@ -12,6 +11,7 @@ resource "aws_s3_bucket" "tfstate" {
 }
 
 terraform {
+  required_version = ">= 0.12.0"
   backend "s3" {
     bucket = "tabimemo-terraform-state"
     region = "ap-northeast-1"
