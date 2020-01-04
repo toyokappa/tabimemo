@@ -44,7 +44,8 @@ deploy_rails() {
     --cluster ${APP_PREFIX}-cluster \
     --service ${APP_PREFIX}-rails \
     --task-definition ${latest_task_definition} \
-    --desired-count ${DESIRED_COUNT_RAILS}
+    --desired-count ${DESIRED_COUNT_RAILS} \
+    --region ap-northeast-1
 
   echo "########################################### update rails task definition end"
 }
@@ -73,7 +74,8 @@ deploy_sidekiq() {
     --cluster ${APP_PREFIX}-cluster \
     --service ${APP_PREFIX}-sidekiq \
     --task-definition ${latest_task_definition} \
-    --desired-count ${DESIRED_COUNT_SIDEKIQ}
+    --desired-count ${DESIRED_COUNT_SIDEKIQ} \
+    --region ap-northeast-1
 
   echo "########################################### update sidekiq task definition end"
 }

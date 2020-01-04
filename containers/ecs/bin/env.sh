@@ -9,5 +9,5 @@ export CONTAINER_REGISTRY=${AWS_ACCOUNT_ID}.dkr.ecr.ap-northeast-1.amazonaws.com
 # => arn:aws:ecs:ap-northeast-1:360128825233:task-definition/aw-cms1-dev:43
 function latest_task_definition () {
   local cluster_name=$1
-  aws ecs list-task-definitions --family-prefix $cluster_name --sort DESC --max-items 1 | jq -r '.taskDefinitionArns[0]'
+  aws ecs list-task-definitions --family-prefix $cluster_name --sort DESC --max-items 1 --region ap-northeast-1 | jq -r '.taskDefinitionArns[0]'
 }
