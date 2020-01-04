@@ -37,12 +37,12 @@ deploy_rails() {
     --cli-input-json file://task_definitions_rails.json \
     --region ap-northeast-1
 
-  local least_task_definition=$(least_task_definition ${APP_PREFIX}-rails)
+  local latest_task_definition=$(latest_task_definition ${APP_PREFIX}-rails)
 
   aws ecs update-service \
     --cluster ${APP_PREFIX}-cluster \
     --service ${APP_PREFIX}-rails \
-    --task-definition ${least_task_definition} \
+    --task-definition ${latest_task_definition} \
     --desired-count ${DESIRED_COUNT_RAILS}
 
   echo "########################################### update rails task definition end"
@@ -66,12 +66,12 @@ deploy_sidekiq() {
     --cli-input-json file://task_definitions_sidekiq.json \
     --region ap-northeast-1
 
-  local least_task_definition=$(least_task_definition ${APP_PREFIX}-sidekiq)
+  local latest_task_definition=$(latest_task_definition ${APP_PREFIX}-sidekiq)
 
   aws ecs update-service \
     --cluster ${APP_PREFIX}-cluster \
     --service ${APP_PREFIX}-sidekiq \
-    --task-definition ${least_task_definition} \
+    --task-definition ${latest_task_definition} \
     --desired-count ${DESIRED_COUNT_SIDEKIQ}
 
   echo "########################################### update sidekiq task definition end"
