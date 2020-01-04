@@ -30,6 +30,10 @@ deploy_rails() {
 
   echo "########################################### update rails task definition start"
 
+  # debug
+  aws --version
+  aws ecs register-task-definition --generate-cli-skeleton --region ap-northeast-1
+
   aws ecs register-task-definition \
     --cli-input-json file://task_definitions_rails.json \
     --region ap-northeast-1
