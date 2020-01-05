@@ -1,5 +1,6 @@
 resource "aws_iam_instance_profile" "ecs_instance" {
   name = "${local.app_name}-${terraform.workspace}-ecs-instance-profile"
+  role = aws_iam_role.ecs_instance.name
 }
 
 resource "aws_iam_role" "ecs_instance" {
