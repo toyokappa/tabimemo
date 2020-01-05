@@ -4,7 +4,7 @@ resource "aws_iam_instance_profile" "ecs_instance" {
 }
 
 resource "aws_iam_role" "ecs_instance" {
-  name = "${local.app_name}-${terraform.workspace}-ecs-instance-assume-role"
+  name = "${local.app_name}-${terraform.workspace}-ecs-instance-role"
   assume_role_policy = file("policies/ec2_assume_role_policy.json")
 }
 
