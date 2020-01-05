@@ -9,17 +9,7 @@ resource "aws_iam_role" "ecs_instance" {
 }
 
 resource "aws_iam_role_policy_attachment" "ecs_service" {
-  policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonEC2ContainerServiceRole"
-  role = aws_iam_role.ecs_instance.id
-}
-
-resource "aws_iam_role_policy_attachment" "ecr" {
-  policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
-  role = aws_iam_role.ecs_instance.id
-}
-
-resource "aws_iam_role_policy_attachment" "ecr_power_user" {
-  policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryPowerUser"
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonEC2ContainerServiceforEC2Role"
   role = aws_iam_role.ecs_instance.id
 }
 
