@@ -21,15 +21,15 @@ jobs:
           keys:
             - 003-cache-bundle-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
             - 003-cache-bundle-{{ .Branch }}-
-      - run:
-          name: compute assets digest
-          command: |
-            git log -1 --format="%h" app/assets > assets-digest
-      - restore_cache:
-          name: Restoring assets cache
-          keys:
-            - 003-cache-assets-{{ .Branch }}-{{ checksum "assets-digest" }}
-            - 003-cache-assets-{{ .Branch }}-
+#       - run:
+#           name: compute assets digest
+#           command: |
+#             git log -1 --format="%h" app/assets > assets-digest
+#       - restore_cache:
+#           name: Restoring assets cache
+#           keys:
+#             - 003-cache-assets-{{ .Branch }}-{{ checksum "assets-digest" }}
+#             - 003-cache-assets-{{ .Branch }}-
       - run:
           name: build docker
           command: |
@@ -44,11 +44,11 @@ jobs:
           key: 003-cache-bundle-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
           paths:
             - "~/caches/bundle"
-      - save_cache:
-          name: Saving assets cache
-          key: 003-cache-assets-{{ .Branch }}-{{ checksum "assets-digest" }}
-          paths:
-            - "public/assets"
+#       - save_cache:
+#           name: Saving assets cache
+#           key: 003-cache-assets-{{ .Branch }}-{{ checksum "assets-digest" }}
+#           paths:
+#             - "public/assets"
       - run:
           name: deploy
           command: |
