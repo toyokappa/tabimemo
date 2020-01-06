@@ -1,7 +1,6 @@
 {
     "family": "${APP_NAME}-${ENV}-rails",
     "executionRoleArn": "${APP_NAME}-${ENV}-ecs-execution-role",
-    "networkMode": "awsvpc",
     "containerDefinitions": [
         {
             "name": "rails",
