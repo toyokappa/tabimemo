@@ -4,7 +4,7 @@
     "containerDefinitions": [
         {
             "name": "rails",
-            "image": "${CONTAINER_REGISTRY}/${APP_NAME}-app:${ENV}_${SHA1}",
+            "image": "${CONTAINER_REGISTRY}/${APP_NAME}-rails:${ENV}_${SHA1}",
             "cpu": 0,
             "memory": ${RAILS_MEMORY},
             "links": [],
