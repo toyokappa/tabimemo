@@ -49,6 +49,5 @@
     ],
     "requiresCompatibilities": [
         "EC2"
-    ],
-    "memory": "${TOTAL_MEMORY}"
+    ]
 }

@@ -10,7 +10,6 @@ export SHA1=$1
 export ENV=$2
 export APP_PREFIX=${APP_NAME}-${ENV}
 
-export TOTAL_MEMORY=983
 export RAILS_MEMORY=512
 export SIDEKIQ_MEMORY=256
 export DESIRED_COUNT_RAILS=1
