@@ -49,7 +49,7 @@ build_nginx_image() {
     docker load -i ${nginx_docker_cache}
   fi
 
-  docker build --rm=false -t ${nginx_image_name} -f ./containers/ecs/nginx/Dockerfile .
+  docker build --rm=false -t ${nginx_image_name} ./containers/ecs/nginx
   mkdir -p ~/caches/docker
   docker save -o ${nginx_docker_cache} $(docker history ${nginx_image_name} -q | grep -v missing)
   time docker push ${nginx_image_name}
