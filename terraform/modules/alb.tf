@@ -42,6 +42,11 @@ resource "aws_lb_target_group" "alb" {
   vpc_id = aws_vpc.main.id
 }
 
+resource "aws_lb_target_group_attachment" "alb" {
+  target_group_arn = aws_lb_target_group.alb.arn
+  target_id = aws_instance.ecs_instance.id
+}
+
 resource "aws_lb_listener" "alb" {
   load_balancer_arn = aws_lb.alb.arn
   port = 443
