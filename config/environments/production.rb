@@ -1,4 +1,5 @@
 Rails.application.configure do
+  domain = "tabimemo.xyz"
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
@@ -33,7 +34,7 @@ Rails.application.configure do
   # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
-  # config.action_controller.asset_host = 'http://assets.example.com'
+  config.action_controller.asset_host = "https://#{domain}"
 
   # Specifies the header that your server uses for sending files.
   # config.action_dispatch.x_sendfile_header = 'X-Sendfile' # for Apache
@@ -60,7 +61,6 @@ Rails.application.configure do
   # Use a real queuing backend for Active Job (and separate queues per environment)
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "tabimemo_#{Rails.env}"
-  domain = "tabimemo.xyz"
   config.action_mailer.perform_caching = false
   config.action_mailer.raise_delivery_errors = false
   config.action_mailer.perform_caching = false
