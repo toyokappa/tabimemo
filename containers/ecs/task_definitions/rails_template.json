@@ -1,7 +1,6 @@
 {
     "family": "${APP_NAME}-${ENV}-rails",
-    "executionRoleArn": "${APP_NAME}-${ENV}-ecs-instance-role",
-    "taskRoleArn": "arn:aws:iam::${AWS_ACCOUNT_ID}:role/${APP_NAME}-${ENV}-ecs-task-role",
+    "networkMode": "awsvpc",
     "containerDefinitions": [
         {
             "name": "rails",

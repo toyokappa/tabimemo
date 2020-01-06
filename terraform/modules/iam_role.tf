@@ -18,14 +18,3 @@ resource "aws_iam_role_policy" "ssm_get_policy" {
   role = aws_iam_role.ecs_instance.name
   policy = templatefile("policies/ssm_get_policy.tmpl", { aws_account_id = local.aws_account_id })
 }
-
-resource "aws_iam_role" "ecs_task" {
-  name = "${local.app_name}-${terraform.workspace}-ecs-task-role"
-  assume_role_policy = file("policies/ecs_assume_role_policy.json")
-}
-
-resource "aws_iam_role_policy" "ecs_task" {
-  name = "${local.app_name}-${terraform.workspace}-ecs-task-policy"
-  role = aws_iam_role.ecs_task.name
-  policy = file("policies/ecs_task_policy.json")
-}
