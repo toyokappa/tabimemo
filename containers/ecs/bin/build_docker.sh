@@ -57,5 +57,8 @@ build_nginx_image() {
 }
 export -f build_nginx_image
 
-build_rails_image
+# 並列にビルドを行う
+cat << EOS | xargs -P 2 -Icommand bash -c "set -ex; \command"
 build_nginx_image
+build_rails_image
+EOS
