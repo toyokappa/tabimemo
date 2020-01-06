@@ -14,13 +14,13 @@ jobs:
       - restore_cache:
           name: Restoring docker cache
           keys:
-            - 002-cache-docker-image-{{ .Branch }}-{{ checksum "containers/ecs/rails/Dockerfile" }}
-            - 002-cache-docker-image-{{ .Branch }}-
+            - 003-cache-docker-image-{{ .Branch }}-{{ checksum "containers/ecs/rails/Dockerfile" }}
+            - 003-cache-docker-image-{{ .Branch }}-
       - restore_cache:
           name: Restoring bundle cache
           keys:
-            - 002-cache-bundle-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
-            - 002-cache-bundle-{{ .Branch }}-
+            - 003-cache-bundle-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+            - 003-cache-bundle-{{ .Branch }}-
       - run:
           name: compute assets digest
           command: |
@@ -28,25 +28,25 @@ jobs:
       - restore_cache:
           name: Restoring assets cache
           keys:
-            - 002-cache-assets-{{ .Branch }}-{{ checksum "assets-digest" }}
-            - 002-cache-assets-{{ .Branch }}-
+            - 003-cache-assets-{{ .Branch }}-{{ checksum "assets-digest" }}
+            - 003-cache-assets-{{ .Branch }}-
       - run:
           name: build docker
           command: |
             ./containers/ecs/bin/build_docker.sh $CIRCLE_SHA1 production
       - save_cache:
           name: Saving Docker Image cache
-          key: 002-cache-docker-image-{{ .Branch }}-{{ checksum "containers/ecs/rails/Dockerfile" }}
+          key: 003-cache-docker-image-{{ .Branch }}-{{ checksum "containers/ecs/rails/Dockerfile" }}
           paths:
             - "~/caches/docker"
       - save_cache:
           name: Saving bundle cache
-          key: 002-cache-bundle-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+          key: 003-cache-bundle-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
           paths:
             - "~/caches/bundle"
       - save_cache:
           name: Saving assets cache
-          key: 002-cache-assets-{{ .Branch }}-{{ checksum "assets-digest" }}
+          key: 003-cache-assets-{{ .Branch }}-{{ checksum "assets-digest" }}
           paths:
             - "public/assets"
       - run:
