@@ -3,12 +3,12 @@ provider "aws" {
   profile = "tabimemo"
 }
 
-resource "aws_s3_bucket" "tfstate" {
-  bucket = "tabimemo-terraform-state"
-  versioning {
-    enabled = true
-  }
-}
+# resource "aws_s3_bucket" "tfstate" {
+#   bucket = "tabimemo-terraform-state"
+#   versioning {
+#     enabled = true
+#   }
+# }
 
 terraform {
   required_version = ">= 0.12.0"
