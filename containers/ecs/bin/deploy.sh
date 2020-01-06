@@ -19,14 +19,6 @@ export DESIRED_COUNT_SIDEKIQ=1
 export RAILS_ENV=${ENV}
 
 deploy() {
-  echo "########################################### generate nginx task definition start"
-
-  ruby ./containers/ecs/scripts/gen_nginx_task_definition.rb \
-    --task-definition-template ./containers/ecs/task_definitions/nginx_template.json | jq '.' > task_definitions_nginx.json
-  cat task_definitions_nginx.json
-
-  echo "########################################### generate nginx task definition end"
-
   echo "########################################### generate rails task definition start"
 
   ruby ./containers/ecs/scripts/gen_task_definition.rb \
@@ -46,23 +38,6 @@ deploy() {
   cat task_definitions_sidekiq.json
 
   echo "########################################### generate sidekiq task definition end"
-
-  echo "########################################### update nginx task definition start"
-
-  aws ecs register-task-definition \
-    --cli-input-json file://task_definitions_nginx.json \
-    --region ap-northeast-1
-
-  local latest_task_definition_nginx=$(latest_task_definition ${APP_PREFIX}-nginx)
-
-  aws ecs update-service \
-    --cluster ${APP_PREFIX}-cluster \
-    --service ${APP_PREFIX}-nginx \
-    --task-definition ${latest_task_definition_nginx} \
-    --desired-count ${DESIRED_COUNT_NGINX} \
-    --region ap-northeast-1
-
-  echo "########################################### update nginx task definition end"
 
   echo "########################################### update rails task definition start"
 
