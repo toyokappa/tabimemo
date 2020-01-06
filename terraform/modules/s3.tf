@@ -27,8 +27,8 @@ resource "aws_s3_bucket" "assets" {
   )
 }
 
-resource "aws_s3_bucket" "resources" {
-  bucket = "${local.app_name}-${terraform.workspace}-resources"
+resource "aws_s3_bucket" "uploads" {
+  bucket = "${local.app_name}-${terraform.workspace}-uploads"
   region = "ap-northeast-1"
 
   server_side_encryption_configuration {
@@ -40,7 +40,7 @@ resource "aws_s3_bucket" "resources" {
   }
 
   tags = {
-    Name = "${local.app_name}-${terraform.workspace}-resources-bucket"
+    Name = "${local.app_name}-${terraform.workspace}-uploads-bucket"
     Env = terraform.workspace
     Project = local.app_name
   }
@@ -48,10 +48,10 @@ resource "aws_s3_bucket" "resources" {
   policy = templatefile(
     "policies/s3_cloudfront_policy.tmpl",
     {
-      origin_access_identity_id = aws_cloudfront_origin_access_identity.resources.id,
+      origin_access_identity_id = aws_cloudfront_origin_access_identity.uploads.id,
       app_name = local.app_name,
       env = terraform.workspace,
-      name = "resources"
+      name = "uploads"
     }
   )
 }
