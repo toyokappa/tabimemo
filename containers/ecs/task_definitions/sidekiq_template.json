@@ -18,7 +18,7 @@
             "essential": true,
             "entryPoint": [],
             "command": [
-                "/usr/src/app/bin/start_server.sh"
+                "/usr/src/app/bin/start_sidekiq.sh"
             ],
             "linuxParameters": {
                 "capabilities": {},
