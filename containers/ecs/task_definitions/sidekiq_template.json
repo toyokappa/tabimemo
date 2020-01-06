@@ -8,7 +8,7 @@
             "cpu": 0,
             "memory": ${SIDEKIQ_MEMORY},
             "links": [],
-            "essential": false,
+            "essential": true,
             "entryPoint": [],
             "command": [
                 "/usr/src/app/bin/start_sidekiq.sh"
