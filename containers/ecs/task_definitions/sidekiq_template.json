@@ -8,13 +8,6 @@
             "cpu": 0,
             "memory": ${SIDEKIQ_MEMORY},
             "links": [],
-            "portMappings": [
-                {
-                    "containerPort": 3000,
-                    "hostPort": 3000,
-                    "protocol": "tcp"
-                }
-            ],
             "essential": true,
             "entryPoint": [],
             "command": [
