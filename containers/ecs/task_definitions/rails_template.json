@@ -8,6 +8,7 @@
             "image": "${CONTAINER_REGISTRY}/${APP_NAME}-app:${ENV}_${SHA1}",
             "cpu": 0,
             "memory": ${RAILS_MEMORY},
+            "links": [],
             "portMappings": [
                 {
                     "containerPort": 3000,
@@ -16,16 +17,27 @@
                 }
             ],
             "essential": true,
+            "entryPoint": [],
             "command": [
                 "/usr/src/app/bin/start_server.sh"
             ],
+            "linuxParameters": {
+                "capabilities": {},
+                "devices": []
+            },
             "environment": [
             ],
             "secrets": [
             ],
             "privileged": false,
             "readonlyRootFilesystem": false,
+            "dnsServers": [],
+            "dnsSearchDomains": [],
+            "extraHosts": [],
+            "dockerSecurityOptions": [],
             "pseudoTerminal": false,
+            "dockerLabels": {},
+            "ulimits": [],
             "logConfiguration": {
                 "logDriver": "awslogs",
                 "options": {
