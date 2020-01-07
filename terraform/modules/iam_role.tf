@@ -37,3 +37,14 @@ resource "aws_iam_role_policy" "ssm_get_policy" {
 }
 
 # ECS Task用ロール
+
+resource "aws_iam_role" "ecs_task_role" {
+  name = "${local.app_name}-${terraform.workspace}-ecs-task-role"
+  assume_role_policy = file("policies/ecs_tasks_assume_role_policy.json")
+}
+
+resource "aws_iam_role_policy" "ecs_task_policy" {
+  name = "${local.app_name}-${terraform.workspace}-ecs-task-policy"
+  role = aws_iam_role.ecs_task_role.name
+  policy = file("policies/ecs_task_policy.json")
+}

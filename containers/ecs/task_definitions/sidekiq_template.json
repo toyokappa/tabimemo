@@ -1,5 +1,6 @@
 {
     "family": "${APP_NAME}-${ENV}-sidekiq",
+    "taskRoleArn": "${APP_NAME}-${ENV}-ecs-task-role",
     "executionRoleArn": "${APP_NAME}-${ENV}-ecs-execution-role",
     "containerDefinitions": [
         {
