@@ -29,6 +29,9 @@ $ cd tabimemo/
 $ docker-compose build
 $ docker-compose up
 ```
+環境が起動したら下記のURLにアクセス。（下記のURLでないとTwitterログインが作動しません）
+
+http://tabimemo.lvh.me:3000
 
 ### pryを使ったデバッグを行う場合
 pryを使ったデバッグを行う場合は下記の方法で立ち上げるようにしてください。
