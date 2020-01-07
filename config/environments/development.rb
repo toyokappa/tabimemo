@@ -1,4 +1,5 @@
 Rails.application.configure do
+  domain = "tabimemo.lvh.me"
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded on
@@ -55,7 +56,7 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   # Custom configure
-  config.x.mail.noreply = "noreply@example.com"
+  config.x.mail.noreply = "noreply@#{domain}"
   config.x.mail.to = "kppg42@gmail.com"
   config.x.google_apis.map = ENV["GOOGLE_API_KEY"]
 
