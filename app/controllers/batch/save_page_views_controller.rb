@@ -1,4 +1,4 @@
-class Batch::SavePageViewsController < BatchController
+class Batch::SavePageViewsController < Batch::ApplicationController
   def exec
     SavePageViewsJob.perform_now
     render json: "ok"
