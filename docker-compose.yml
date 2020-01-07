@@ -24,7 +24,7 @@ services:
     volumes:
       - redis-volume:/data
 
-  web:
+  web: &web
     build:
       context: .
       dockerfile: ./containers/local/rails/Dockerfile
@@ -40,9 +40,19 @@ services:
       REDIS_HOSTNAME: redis
       REDIS_PORT: 6379
       MANUAL: $MANUAL
+
+  rails:
+    <<: *web
     ports:
       - "3000:3000"
-    command: bin/start_dev_server.sh
+    command: /usr/src/app/bin/start_dev_server.sh
+    depends_on:
+      - mysql
+      - redis
+
+  sidekiq:
+    <<: *web
+    command: /usr/src/app/bin/start_sidekiq.sh
     depends_on:
       - mysql
       - redis

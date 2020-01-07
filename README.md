@@ -39,7 +39,7 @@ pryを使ったデバッグを行う場合は下記の方法で立ち上げる�
 $ MANUAL=1 docker-compose up
 
 # docker-composeが立ち上がったらターミナルの別のタブで下記コマンドを実行
-$ docker-compose exec web rails s -b 0.0.0.0
+$ docker-compose exec rails rails s -b 0.0.0.0
 ```
 
 ## デプロイについて
