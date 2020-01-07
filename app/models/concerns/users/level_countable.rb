@@ -1,4 +1,4 @@
-module User::LevelCountable
+module Users::LevelCountable
   extend ActiveSupport::Concern
 
   LEVEL_TABLE = [

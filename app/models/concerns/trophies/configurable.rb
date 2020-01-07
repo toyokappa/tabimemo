@@ -1,4 +1,4 @@
-module Trophy::Configurable
+module Trophies::Configurable
   extend ActiveSupport::Concern
 
   # 達成条件
