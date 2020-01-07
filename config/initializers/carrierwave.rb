@@ -1,5 +1,6 @@
-if Rails.env.production?
-  CarrierWave.configure do |config|
+CarrierWave.configure do |config|
+  if Rails.env.production?
+    config.storage = :fog
     config.fog_credentials = {
       provider: "AWS",
       use_iam_profile: true,
@@ -11,6 +12,8 @@ if Rails.env.production?
     config.remove_previously_stored_files_after_update = false
     config.fog_directory = "tabimemo-#{Rails.env}-uploads"
     config.asset_host = Rails.configuration.x.asset_host
+  else
+    config.storage = :file
   end
 end
 
