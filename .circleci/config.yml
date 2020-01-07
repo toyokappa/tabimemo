@@ -7,7 +7,6 @@ jobs:
     branches:
       only:
         - master
-        - feature/deploy
     steps:
       - checkout
       - setup_remote_docker
