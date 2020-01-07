@@ -32,7 +32,9 @@ services:
       - .:/usr/src/app:cached
       - bundle-volume:/usr/src/app/vendor/bundle
     environment:
-      GOOGLE_MAPS_API: AIzaSyDBlYdxJipM-Gablze4G84BoPagcYp4k-8
+      TWITTER_API_KEY: $TWITTER_API_KEY
+      TWITTER_API_SECRET: $TWITTER_API_SECRET
+      GOOGLE_API_KEY: $GOOGLE_API_KEY
       RDS_HOSTNAME: mysql
       RDS_USERNAME: root
       REDIS_HOSTNAME: redis
