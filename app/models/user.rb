@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  include User::LevelCountable
+  include Users::LevelCountable
 
   attr_accessor :login, :agreement
 

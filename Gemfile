@@ -7,44 +7,58 @@ end
 
 ruby "2.4.9"
 
-gem "aws-ses"
-gem "bootstrap-sass"
-gem "carrierwave"
-gem "coffee-rails", "~> 4.2"
-gem "devise"
-gem "devise_security_extension", git: "https://github.com/phatworx/devise_security_extension.git", branch: "master"
+# Core
+gem "rails", "~> 5.1.2"
+gem "puma", "~> 3.12"
+gem "mysql2"
 gem "enumerize"
-gem "fog-aws"
-gem "google-analytics-rails"
+gem "sidekiq"
+gem "rails-i18n"
+gem "redis"
+gem "redis-objects"
+gem "redis-namespace"
+
+# Frontend
+gem "bootstrap-sass"
+gem "coffee-rails", "~> 4.2"
 gem "font-awesome-rails"
 gem "hamlit-rails"
 gem "jbuilder", "~> 2.5"
 gem "jquery-rails"
 gem "jquery-ui-rails"
-gem "kaminari"
-gem "kaminari-i18n"
-gem "lodash-rails"
-gem "meta-tags"
-gem "mini_magick"
-gem "mysql2"
-gem "omniauth"
-gem "omniauth-twitter"
-gem "puma", "~> 3.12"
-gem "rails", "~> 5.1.2"
-gem "rails-i18n"
-gem "rambulance"
-gem "ransack"
-gem "redis"
-gem "redis-objects"
-gem "redis-namespace"
-gem "rollbar"
 gem "sass-rails", "~> 5.0"
-gem "sidekiq"
-gem "simple_form"
-gem "sitemap_generator"
 gem "toastr-rails"
 gem "turbolinks", "~> 5"
+gem "lodash-rails"
+gem "simple_form"
+gem "kaminari"
+gem "kaminari-i18n"
+
+# Image
+gem "asset_sync"
+gem "carrierwave"
+gem "fog-aws"
+gem "mini_magick"
+
+# Authentication
+gem "devise"
+gem "devise_security_extension", git: "https://github.com/phatworx/devise_security_extension.git", branch: "master"
+gem "omniauth"
+gem "omniauth-twitter"
+
+# SEO
+gem "google-analytics-rails"
+gem "meta-tags"
+gem "sitemap_generator"
+
+# Error
+gem "rambulance"
+gem "rollbar"
+
+gem "ransack"
 gem "uglifier", ">= 1.3.0"
+gem "therubyracer"
+gem "activerecord-nulldb-adapter"
 gem "whenever", require: false
 
 group :development, :test do

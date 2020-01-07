@@ -3,17 +3,15 @@
   "Statement": [
     {
       "Sid": "Access-to-specific-bucket-only",
-      "PrincipalGroup": {
-        "AWS": "svc:ec2.amazonaws.com"
-      },
+      "Principal": "*",
       "Action": [
-        "s3:GetObject",
-        "s3:PutObject"
+        "s3:*"
       ],
       "Effect": "Allow",
       "Resource": [
         "arn:aws:s3:::${app_name}-${env}-assets/*",
-        "arn:aws:s3:::${app_name}-${env}-resources/*"
+        "arn:aws:s3:::${app_name}-${env}-uploads/*",
+        "arn:aws:s3:::prod-ap-northeast-1-starport-layer-bucket/*"
       ]
     }
   ]

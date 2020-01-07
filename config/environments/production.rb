@@ -1,4 +1,5 @@
 Rails.application.configure do
+  domain = "tabimemo.xyz"
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
@@ -33,7 +34,7 @@ Rails.application.configure do
   # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
-  # config.action_controller.asset_host = 'http://assets.example.com'
+  config.action_controller.asset_host = "https://#{domain}"
 
   # Specifies the header that your server uses for sending files.
   # config.action_dispatch.x_sendfile_header = 'X-Sendfile' # for Apache
@@ -63,8 +64,16 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
   config.action_mailer.raise_delivery_errors = false
   config.action_mailer.perform_caching = false
-  config.action_mailer.default_url_options = { host: "tabimemo.fun", protocol: "https" }
-  config.action_mailer.delivery_method = :ses
+  config.action_mailer.default_url_options = { host: domain, protocol: "https" }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address: "smtp.mailgun.org",
+    domain: domain,
+    port: 587,
+    user_name: ENV["SMTP_USERNAME"],
+    password: ENV["SMTP_PASSWORD"],
+    authentication: :plain,
+  }
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
@@ -97,9 +106,10 @@ Rails.application.configure do
   GA.tracker = "UA-100430187-2"
 
   # Custom configure
-  config.x.mail.noreply = "noreply@tabimemo.fun"
+  config.x.mail.noreply = "noreply@#{domain}"
   config.x.mail.to = "kppg42@gmail.com"
-  config.x.google_apis.map = ENV["GOOGLE_MAPS_API"]
+  config.x.google_apis.map = ENV["GOOGLE_API_KEY"]
+  config.x.asset_host = "https://#{domain}"
 
   config.x.redis_url = "#{ENV.fetch('REDIS_HOSTNAME') { 'localhost' }}:#{ENV.fetch('REDIS_PORT') { '6379' }}"
 end

@@ -10,71 +10,69 @@ export SHA1=$1
 export ENV=$2
 export APP_PREFIX=${APP_NAME}-${ENV}
 
-export TOTAL_MEMORY=1024
-export RAILS_MEMORY=768
+export NGINX_MEMORY=128
+export RAILS_MEMORY=512
 export SIDEKIQ_MEMORY=256
+export DESIRED_COUNT_NGINX=1
 export DESIRED_COUNT_RAILS=1
 export DESIRED_COUNT_SIDEKIQ=1
 export RAILS_ENV=${ENV}
 
-deploy_rails() {
+deploy() {
   echo "########################################### generate rails task definition start"
 
   ruby ./containers/ecs/scripts/gen_task_definition.rb \
     --env_file ./containers/ecs/config/${ENV}.env \
     --secrets-file ./containers/ecs/config/secrets.yml \
-    --task-definition-template ./containers/ecs/task_definition/rails_template.json | jq '.' > task_definitions_rails.json
+    --task-definition-template ./containers/ecs/task_definitions/rails_template.json | jq '.' > task_definitions_rails.json
   cat task_definitions_rails.json
 
   echo "########################################### generate rails task definition end"
 
-  echo "########################################### update rails task definition start"
-
-  aws ecs register-task-definition \
-    --cli-input-json file://task_definitions_rails.json
-
-  local least_task_definition=$(least_task_definition ${APP_PREFIX}-rails)
-
-  aws ecs update-service \
-    --cluster ${APP_PREFIX}-cluster \
-    --service ${APP_PREFIX}-rails \
-    --task-definition ${least_task_definition} \
-    --desired-count ${DESIRED_COUNT_RAILS}
-
-  echo "########################################### update rails task definition end"
-}
-export -f deploy_rails
-
-deploy_sidekiq() {
   echo "########################################### generate sidekiq task definition start"
 
   ruby ./containers/ecs/scripts/gen_task_definition.rb \
     --env_file ./containers/ecs/config/${ENV}.env \
     --secrets-file ./containers/ecs/config/secrets.yml \
-    --task-definition-template ./containers/ecs/task_definition/rails_template.json | jq '.' > task_definitions_rails.json
-  cat task_definitions_rails.json
+    --task-definition-template ./containers/ecs/task_definitions/sidekiq_template.json | jq '.' > task_definitions_sidekiq.json
+  cat task_definitions_sidekiq.json
 
   echo "########################################### generate sidekiq task definition end"
+
+  echo "########################################### update rails task definition start"
+
+  aws ecs register-task-definition \
+    --cli-input-json file://task_definitions_rails.json \
+    --region ap-northeast-1
+
+  local latest_task_definition_rails=$(latest_task_definition ${APP_PREFIX}-rails)
+
+  aws ecs update-service \
+    --cluster ${APP_PREFIX}-cluster \
+    --service ${APP_PREFIX}-rails \
+    --task-definition ${latest_task_definition_rails} \
+    --desired-count ${DESIRED_COUNT_RAILS} \
+    --region ap-northeast-1
+
+  echo "########################################### update rails task definition end"
 
   echo "########################################### update sidekiq task definition start"
 
   aws ecs register-task-definition \
-    --cli-input-json file://task_definitions_rails.json
+    --cli-input-json file://task_definitions_sidekiq.json \
+    --region ap-northeast-1
 
-  local least_task_definition=$(least_task_definition ${APP_PREFIX}-sidekiq)
+  local latest_task_definition_sidekiq=$(latest_task_definition ${APP_PREFIX}-sidekiq)
 
   aws ecs update-service \
     --cluster ${APP_PREFIX}-cluster \
     --service ${APP_PREFIX}-sidekiq \
-    --task-definition ${least_task_definition} \
-    --desired-count ${DESIRED_COUNT_SIDEKIQ}
+    --task-definition ${latest_task_definition_sidekiq} \
+    --desired-count ${DESIRED_COUNT_SIDEKIQ} \
+    --region ap-northeast-1
 
   echo "########################################### update sidekiq task definition end"
 }
-export -f deploy_sidekiq
+export -f deploy
 
-# 並列にビルドを行う
-cat << EOS | xargs -P 2 -Icommand bash -c "set -ex; \command"
-deploy_rails
-deploy_sidekiq
-EOS
+deploy

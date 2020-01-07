@@ -73,21 +73,21 @@ resource "aws_cloudfront_distribution" "main" {
   }
 
   #-----------------------------------------------------------
-  # resources bucket
+  # uploads bucket
   origin {
-    domain_name = aws_s3_bucket.resources.bucket_domain_name
-    origin_id = aws_s3_bucket.resources.id
+    domain_name = aws_s3_bucket.uploads.bucket_domain_name
+    origin_id = aws_s3_bucket.uploads.id
 
     s3_origin_config {
-      origin_access_identity = "origin-access-identity/cloudfront/${aws_cloudfront_origin_access_identity.resources.id}"
+      origin_access_identity = "origin-access-identity/cloudfront/${aws_cloudfront_origin_access_identity.uploads.id}"
     }
   }
 
   ordered_cache_behavior {
-    path_pattern = "/resources/*"
+    path_pattern = "/uploads/*"
     allowed_methods = ["HEAD", "GET", "OPTIONS"]
     cached_methods = ["HEAD", "GET"]
-    target_origin_id = aws_s3_bucket.resources.id
+    target_origin_id = aws_s3_bucket.uploads.id
     compress = true
 
     forwarded_values {
@@ -121,6 +121,6 @@ resource "aws_cloudfront_origin_access_identity" "assets" {
   comment = "${local.app_name}-${terraform.workspace}-assets"
 }
 
-resource "aws_cloudfront_origin_access_identity" "resources" {
-  comment = "${local.app_name}-${terraform.workspace}-resources"
+resource "aws_cloudfront_origin_access_identity" "uploads" {
+  comment = "${local.app_name}-${terraform.workspace}-uploads"
 }

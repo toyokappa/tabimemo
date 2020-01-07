@@ -1,36 +1,15 @@
-data "aws_ami" "amazon_linux" {
-  most_recent = true
-  owners = ["amazon"]
-
-  filter {
-    name = "architecture"
-    values = ["x86_64"]
-  }
-
-  filter {
-    name = "root-device-type"
-    values = ["ebs"]
-  }
-
-  filter {
-    name = "virtualization-type"
-    values = ["hvm"]
-  }
-
-  filter {
-    name   = "block-device-mapping.volume-type"
-    values = ["gp2"]
-  }
+data "aws_ssm_parameter" "amazon_linux2_for_ecs" {
+  name = "/aws/service/ecs/optimized-ami/amazon-linux-2/recommended/image_id"
 }
 
 resource "aws_instance" "ecs_instance" {
-  ami = data.aws_ami.amazon_linux.id
+  ami = data.aws_ssm_parameter.amazon_linux2_for_ecs.value
   instance_type = "t2.micro"
   vpc_security_group_ids = [aws_security_group.ecs_instance.id]
   subnet_id = aws_subnet.public_a.id
   associate_public_ip_address = true
   iam_instance_profile = aws_iam_instance_profile.ecs_instance.name
-  key_name = "tabimemo-bastion"
+  key_name = aws_key_pair.bastion.key_name
 
   tags = {
     Name = "${local.app_name}-${terraform.workspace}-instance"
@@ -50,14 +29,14 @@ resource "aws_security_group" "ecs_instance" {
     from_port = 80
     to_port = 80
     protocol = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    security_groups = [aws_security_group.alb.id]
   }
 
   ingress {
     from_port = 22
     to_port = 22
     protocol = "tcp"
-    cidr_blocks = ["52.199.220.222/32"]
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   egress {
@@ -66,4 +45,9 @@ resource "aws_security_group" "ecs_instance" {
     protocol = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
+}
+
+resource "aws_key_pair" "bastion" {
+  key_name = "tabimemo-bastion"
+  public_key = file("~/.ssh/tabimemo-bastion.pub")
 }

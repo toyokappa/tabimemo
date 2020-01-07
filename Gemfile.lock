@@ -42,6 +42,8 @@ GEM
       activemodel (= 5.1.7)
       activesupport (= 5.1.7)
       arel (~> 8.0)
+    activerecord-nulldb-adapter (0.4.0)
+      activerecord (>= 2.0.0)
     activesupport (5.1.7)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (>= 0.7, < 2)
@@ -53,14 +55,14 @@ GEM
       activerecord (>= 3.2, < 7.0)
       rake (>= 10.4, < 14.0)
     arel (8.0.0)
+    asset_sync (2.8.2)
+      activemodel (>= 4.1.0)
+      fog-core
+      mime-types (>= 2.99)
+      unf
     ast (2.4.0)
     autoprefixer-rails (9.7.3)
       execjs
-    aws-ses (0.6.0)
-      builder
-      mail (> 2.2.5)
-      mime-types
-      xml-simple
     bcrypt (3.1.13)
     bindex (0.8.1)
     binding_of_caller (0.8.0)
@@ -204,6 +206,7 @@ GEM
       actionmailer (>= 3.2)
       letter_opener (~> 1.0)
       railties (>= 3.2)
+    libv8 (3.16.14.19)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -317,6 +320,7 @@ GEM
       redis (>= 3.0.4)
     redis-objects (1.5.0)
       redis (~> 4.0)
+    ref (2.0.0)
     regexp_parser (1.6.0)
     responders (3.0.0)
       actionpack (>= 5.0)
@@ -392,6 +396,9 @@ GEM
     temple (0.8.2)
     terminal-table (1.8.0)
       unicode-display_width (~> 1.1, >= 1.1.1)
+    therubyracer (0.12.3)
+      libv8 (~> 3.16.14.15)
+      ref
     thor (1.0.1)
     thread_safe (0.3.6)
     tilt (2.0.10)
@@ -404,6 +411,9 @@ GEM
       thread_safe (~> 0.1)
     uglifier (4.2.0)
       execjs (>= 0.3.0, < 3)
+    unf (0.1.4)
+      unf_ext
+    unf_ext (0.0.7.6)
     unicode-display_width (1.6.0)
     warden (1.2.8)
       rack (>= 2.0.6)
@@ -417,7 +427,6 @@ GEM
     websocket-extensions (0.1.4)
     whenever (1.0.0)
       chronic (>= 0.6.3)
-    xml-simple (1.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
     yard (0.9.20)
@@ -426,8 +435,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activerecord-nulldb-adapter
   annotate
-  aws-ses
+  asset_sync
   bootstrap-sass
   capybara
   carrierwave
@@ -480,6 +490,7 @@ DEPENDENCIES
   simple_form
   sitemap_generator
   spring
+  therubyracer
   toastr-rails
   turbolinks (~> 5)
   tzinfo-data

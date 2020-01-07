@@ -1,5 +1,5 @@
 class Trophy < ApplicationRecord
-  include Trophy::Configurable
+  include Trophies::Configurable
 
   belongs_to :user
 

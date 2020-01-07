@@ -1,10 +1,14 @@
 class ApplicationUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
 
-  if Rails.env.production?
-    storage :fog
-  else
-    storage :file
+  def url
+    if path.present?
+      # 保存先がローカルの場合
+      return "#{super}?updatedAt=#{model.updated_at.to_i}" if Rails.env.in? %w[development test]
+      # 保存先がS3の場合
+      return "#{asset_host}/#{path}?updatedAt=#{model.updated_at.to_i}"
+    end
+    super
   end
 
   def store_dir
