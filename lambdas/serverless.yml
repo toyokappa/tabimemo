@@ -1,0 +1,20 @@
+service: tabimemo-lambdas
+
+provider:
+  name: aws
+  runtime: ruby2.5
+  region: ap-northeast-1
+  profile: tabimemo
+  stage: ${opt:stage, 'development'}
+  vpc: ${self:custom.vpc.${self:provider.stage}}
+
+custom:
+  environments: ${file(./config/environments.yml)}
+  vpc: ${file(./config/vpc.yml)}
+
+functions:
+  savePaveViews:
+    handler: functions/save_page_views.exec
+    events:
+      - schedule: cron(0 15 * * ? *)
+    environment: ${self:custom.environments.${self:provider.stage}}

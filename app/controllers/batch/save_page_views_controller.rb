@@ -1,6 +1,6 @@
-class Batch::SavePageViewsController < BatchController
-  def exec
-    SavePageViewsJob.perform_now
+class Batch::SavePageViewsController < Batch::ApplicationController
+  def create
+    SavePageViewsJob.perform_later
     render json: "ok"
   end
 end

@@ -1,0 +1,11 @@
+global: &global
+  BATCH_USERNAME: ${ssm:/tabimemo/${self:provider.stage}/batch_username~true}
+  BATCH_PASSWORD: ${ssm:/tabimemo/${self:provider.stage}/batch_password~true}
+
+development:
+  <<: *global
+  BATCH_HOSTNAME: https://tabimemo.lvh.me:3000
+
+production:
+  <<: *global
+  BATCH_HOSTNAME: https://tabimemo.xyz

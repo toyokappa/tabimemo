@@ -59,7 +59,6 @@ gem "ransack"
 gem "uglifier", ">= 1.3.0"
 gem "therubyracer"
 gem "activerecord-nulldb-adapter"
-gem "whenever", require: false
 
 group :development, :test do
   gem "factory_bot_rails"
