@@ -3,4 +3,4 @@
 # エラーで処理中断
 set -ex
 
-bundle exec sidekiq
+RAILS_ENV=${RAILS_ENV} bundle exec sidekiq
