@@ -2,4 +2,4 @@ User-agent: Googlebot
 Disallow: /apple-app-site-association
 Disallow: /.well-known/
 
-Sitemap: https://tabimemo.fun/sitemap.xml.gz
+Sitemap: https://tabimemo.xyz/sitemap.xml.gz
