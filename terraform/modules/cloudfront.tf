@@ -104,6 +104,27 @@ resource "aws_cloudfront_distribution" "main" {
     max_ttl = 0
   }
 
+  ordered_cache_behavior {
+    path_pattern = "/sitemaps/*"
+    allowed_methods = ["HEAD", "GET", "OPTIONS"]
+    cached_methods = ["HEAD", "GET"]
+    target_origin_id = aws_s3_bucket.uploads.id
+    compress = true
+
+    forwarded_values {
+      query_string = true
+
+      cookies {
+        forward = "none"
+      }
+    }
+
+    viewer_protocol_policy = "redirect-to-https"
+    min_ttl = 0
+    default_ttl = 0
+    max_ttl = 0
+  }
+
   viewer_certificate {
     acm_certificate_arn      = local.cf_certificate_arn
     ssl_support_method       = "sni-only"
