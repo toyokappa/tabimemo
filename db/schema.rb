@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191231150815) do
+ActiveRecord::Schema.define(version: 20200108151758) do
 
   create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC" do |t|
     t.text "content"
@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 20191231150815) do
   end
 
   create_table "page_views", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC" do |t|
-    t.integer "count"
+    t.integer "count", default: 0, null: false
     t.date "date"
     t.integer "plan_id"
     t.datetime "created_at", null: false
