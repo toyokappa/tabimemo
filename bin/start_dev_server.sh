@@ -3,9 +3,6 @@ set -ex
 
 bundle install --path vendor/bundle
 
-echo set crontab
-bundle exec whenever --update-crontab
-
 if [ "${MANUAL}" = "" ]; then
   RAILS_ENV=${RAILS_ENV} bundle exec rails db:create
   RAILS_ENV=${RAILS_ENV} bundle exec rails db:migrate
