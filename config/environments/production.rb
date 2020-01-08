@@ -103,7 +103,7 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   # Google Analytics Tracking ID
-  GA.tracker = "UA-100430187-2"
+  GA.tracker = "UA-100430187-4"
 
   # Custom configure
   config.x.mail.noreply = "noreply@#{domain}"

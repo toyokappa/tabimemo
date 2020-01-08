@@ -1,4 +1,4 @@
-SitemapGenerator::Sitemap.default_host = "https://tabimemo.fun"
+SitemapGenerator::Sitemap.default_host = "https://tabimemo.xyz"
 
 SitemapGenerator::Sitemap.create do
   Plan.published.find_each do |plan|
