@@ -60,7 +60,7 @@ Redis: PV計測及びSidekiqのqueueを一時的に保管するのに使用
 ### セットアップコマンド
 下記のコマンドで開発環境のセットアップが可能です。
 ```bash
-git clone git@github.com:toyokappa/bestcode.git
+git clone git@github.com:toyokappa/tabimemo.git
 cd tabimemo/
 
 bundle install --path vendor/bundle
