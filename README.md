@@ -71,5 +71,5 @@ bin/rails s -b 0.0.0.0
 
 別プロセスでSidekiqのサーバーも立ち上げてください。
 ```bash
-bundle exec sidekiq start
+bundle exec sidekiq
 ```
