@@ -22,12 +22,12 @@ MySQL:   5.7
 ## 開発環境セットアップ(Docker環境)
 Docker環境も用意しています。Dockerでの環境構築を希望の場合は下記でセットアップしてください。
 ```bash
-$ git clone git@github.com:toyokappa/tabimemo.git
-$ cd tabimemo/
+git clone git@github.com:toyokappa/tabimemo.git
+cd tabimemo/
 
 # 初回のみ実行。5〜10分程度かかります。
-$ docker-compose build
-$ docker-compose up
+docker-compose build
+docker-compose up
 ```
 環境が起動したら下記のURLにアクセス。（下記のURLでないとTwitterログインが作動しません）
 
@@ -36,10 +36,10 @@ http://tabimemo.lvh.me:3000
 ### pryを使ったデバッグを行う場合
 pryを使ったデバッグを行う場合は下記の方法で立ち上げるようにしてください。
 ```bash
-$ MANUAL=1 docker-compose up
+MANUAL=1 docker-compose up
 
 # docker-composeが立ち上がったらターミナルの別のタブで下記コマンドを実行
-$ docker-compose exec rails rails s -b 0.0.0.0
+docker-compose exec rails rails s -b 0.0.0.0
 ```
 
 ## デプロイについて
@@ -47,3 +47,29 @@ $ docker-compose exec rails rails s -b 0.0.0.0
 
 ## インフラ構成
 インフラについてはAWSを使用しており、具体的な構成については下記の様になっています。また、インフラの構成管理には`terraform`を使用しており、基本的なインフラの設定変更は`/terraform`ディレクトリにて行います。
+
+## 開発環境セットアップ(Local環境)
+Dockerでの環境構築が難しい場合は下記の手順でローカル環境に開発環境のセットアップを進めてください。
+
+### 依存ライブラリ
+下記のライブラリを使用していますので、事前にインストールするようにしてください。
+```
+Redis: PV計測及びSidekiqのqueueを一時的に保管するのに使用
+```
+
+### セットアップコマンド
+下記のコマンドで開発環境のセットアップが可能です。
+```bash
+git clone git@github.com:toyokappa/bestcode.git
+cd tabimemo/
+
+bundle install --path vendor/bundle
+bin/rails db:create
+bin/rails db:migrate
+bin/rails s -b 0.0.0.0
+```
+
+別プロセスでSidekiqのサーバーも立ち上げてください。
+```bash
+bundle exec sidekiq start
+```
