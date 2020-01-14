@@ -40,6 +40,3 @@ ja:
   date:
     formats:
       long: ! "%Y年%m月%d日"
-  time:
-    formats:
-        default: '%Y/%m/%d %H:%M'
