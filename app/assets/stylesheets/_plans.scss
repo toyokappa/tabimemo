@@ -643,19 +643,12 @@
   }
   .author-info-right {
     a {
-      display: inline-block;
       color: inherit;
       margin-bottom: 7px;
       .author-name {
         font-size: 16px;
         font-weight: bold;
       }
-    }
-    .author-level {
-      display: inline-block;
-      font-size: 16px;
-      font-weight: bold;
-      margin-left: 10px;
     }
   }
 }
