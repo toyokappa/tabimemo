@@ -117,24 +117,17 @@
           .plan-description {
             @include font-size(14px, 13px);
             margin-bottom: 3px;
-            @include pc() {
-              overflow: hidden;
-              width: 100%;
+            overflow: hidden;
+            width: 100%;
               p{
                 font-size: 14px;
                 display: -webkit-box;
                 -webkit-box-orient: vertical;
                 -webkit-line-clamp: 3;
               }
-            }
             @include sm() {
-              overflow: hidden;
-              width: 100%;
               p{
                 font-size: 13px;
-                display: -webkit-box;
-                -webkit-box-orient: vertical;
-                -webkit-line-clamp: 3;
               }
             }
           }
