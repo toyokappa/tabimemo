@@ -19,6 +19,13 @@
   }
 }
 
+// SP用のメディアクエリ
+@mixin sm(){
+  @media only screen and (max-width: 400px) {
+    @content;
+  }
+}
+
 // PCにしか見えないクラス
 .pc {
   @include sp() {
@@ -29,6 +36,13 @@
 // SPにしか見えないクラス
 .sp {
   @include pc() {
+    display: none !important;
+  }
+}
+
+// smにしか見えないクラス
+.sm {
+  @include sm() {
     display: none !important;
   }
 }
