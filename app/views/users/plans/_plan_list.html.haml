@@ -29,7 +29,7 @@
             %td.plan-comments
               = plan.comments.count
             %td.plan-created-at
-              = l(plan.created_at, format: :default)
+              = l plan.created_at, format: :long
             %td.plan-menu
               = link_to t("link.edit"), edit_users_plan_path(plan), class: "btn btn-success"
       - else
