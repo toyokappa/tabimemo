@@ -13,7 +13,8 @@
           .plan-info-left
             %h3.plan-name= plan.name
             .plan-description
-              = plan.description.truncate(54)
+              %p
+                = plan.description
             .plan-user-name
               %span by
               = link_to plan.user.display_name, user_profile_path(plan.user.name)

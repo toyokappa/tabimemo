@@ -117,6 +117,19 @@
           .plan-description {
             @include font-size(14px, 13px);
             margin-bottom: 3px;
+            overflow: hidden;
+            width: 100%;
+              p{
+                font-size: 14px;
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 3;
+              }
+            @include sm() {
+              p{
+                font-size: 13px;
+              }
+            }
           }
           .plan-user-name {
             @include font-size(11px, 10px);
