@@ -19,7 +19,7 @@
   }
 }
 
-// SP用のメディアクエリ
+// SM用のメディアクエリ
 @mixin sm(){
   @media only screen and (max-width: 400px) {
     @content;
