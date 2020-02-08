@@ -1,6 +1,7 @@
 class ApplicationUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
 
+
   def url
     if path.present?
       # 保存先がローカルの場合
@@ -36,7 +37,8 @@ class ApplicationUploader < CarrierWave::Uploader::Base
 
   def fix_rotate
     manipulate! do |img|
-      img = img.auto_orient
+      img.auto_orient
+      img.strip
       img = yield(img) if block_given?
       img
     end
