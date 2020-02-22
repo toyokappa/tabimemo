@@ -5,7 +5,7 @@ class LevelUpToast
 
   displayToast: =>
     level = @$root.data().level
-    toastr.success("Lv.#{level}にレベルアップしました！", "レベルアップ")
+    toastr.success("Lv.#{level}になりました！", "レベルアップ")
 
     token = $('meta[name="csrf_token"]').attr('content')
     $.ajax(
