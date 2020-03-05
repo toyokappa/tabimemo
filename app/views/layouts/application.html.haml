@@ -68,6 +68,6 @@
         .copyrights
           2018 &copy; Toyokappa, All Rights Reserved.
 - if user_signed_in? && current_user.level_up?
-  #level-up-toast{ data: { level: current_user.level } }
+  #level-up-toast{ data: { level: current_user.level, user: current_user.name } }
 - if user_signed_in? && current_user.got_trophy_name
   #got-trophy-toast{ data: { trophy: Trophy.human_attribute_name(current_user.got_trophy_name), user: current_user.name } }
