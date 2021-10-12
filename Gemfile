@@ -9,7 +9,7 @@ ruby "2.4.9"
 
 # Core
 gem "rails", "~> 5.1.2"
-gem "puma", "~> 3.12"
+gem "puma", "~> 5.5"
 gem "mysql2"
 gem "enumerize"
 gem "sidekiq"
